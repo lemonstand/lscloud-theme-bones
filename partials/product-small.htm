@@ -1,0 +1,13 @@
+---
+description: Displays a product in a small area, to be used in lists.
+---
+{# takes product as an argument #}
+<li>
+  <a href="product/{{ product.url_name }}">
+    <img
+      src="{{ product.images.first.thumbnail(400, 400)|default('http://placehold.it/400x400') }}"
+      alt="{{ product.images.first.description }}"
+      title="{{ product.images.first.description }}" />
+    {{ product.name }}
+  </a>
+</li>

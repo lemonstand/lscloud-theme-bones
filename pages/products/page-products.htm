@@ -8,6 +8,6 @@ published: true
 ---
 <ul>
 {% for product in products %}
-<li><a href="product/{{ product.url_name }}">{{ product.name }}</a>
+  {{ partial('product-small', { product: product }) }}
 {% endfor %}
 </ul>
