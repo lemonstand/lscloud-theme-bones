@@ -8,6 +8,6 @@ published: true
 ---
 <ul>
 {% for product in products %}
-<li>{{ product.name }}</li>
+<li><a href="product/{{ product.url_name }}">{{ product.name }}</a>
 {% endfor %}
 </ul>
