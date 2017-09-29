@@ -1,11 +1,7 @@
 ---
-name: bonesv2
+name: 'Bones V2'
 engine: twig
 404: home
 customFields:
-  title: {
-    type: text,
-    title: 'Shown in the title bar',
-    default: 'This Shop'
-  }
+    title: { type: text, title: 'Shown in the title bar', default: 'This Shop' }
 ---
