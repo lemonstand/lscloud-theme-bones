@@ -6,4 +6,5 @@ website: 'https://lemonstand.com/'
 engine: twig
 404: '404'
 customFields:
+  title: { type: text, title: 'Shown in the title bar', default: 'This Shop' }
 ---
