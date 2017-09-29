@@ -1,10 +1,11 @@
 ---
-name: Bones V2
-description: 'A good starting point from which to build a great Lemonstand theme.'
-author: 'LemonStand'
-website: 'https://lemonstand.com/'
+name: bonesv2
 engine: twig
-404: '404'
+404: home
 customFields:
-  title: { type: text, title: 'Shown in the title bar', default: 'This Shop' }
+  title: {
+    type: text,
+    title: 'Shown in the title bar',
+    default: 'This Shop'
+  }
 ---
