@@ -6,4 +6,23 @@ action: shop:product
 template: default
 published: true
 ---
+<section>
+<header>
 {{ product.name }}
+{% if product.images|length %}
+<img
+  src="{{ product.images.first.thumbnail('auto', 'auto') }}"
+  alt="{{ product.images.first.description }}"
+  title="{{product.images.first.title }}" />
+{% endif %}
+{{ product.description | raw}}
+</header>
+</section>
+{% if product.in_stock_amount|default(product.out_of_stock_threshold + 1) > product.out_of_stock_threshold|default(0) %}
+  {% if product.onSale %}
+    SALE!
+  {% endif %}
+{% else %}
+  This product is currently out of stock.
+  Check back for more {{ product.expected_availability_date|default('soon') }}.
+{% endif %}
