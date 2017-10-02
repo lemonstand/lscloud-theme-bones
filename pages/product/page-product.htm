@@ -28,7 +28,7 @@ ${{ product.price }}
 {% endif %}
 {{ partial('price-tiers', {tiers: product.priceTiers}) }}
 {% if theme.enable_reviews %}
-  {{ partial('reviews', {product: product}) }}
+  {{ partial('reviews', {reviews: product.reviews()}) }}
 {% endif %}
 </section>
 
