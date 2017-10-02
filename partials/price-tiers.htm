@@ -1,0 +1,12 @@
+---
+description: Displays a product's price tiers (priceTiers)
+---
+{# takes tiers as an argument #}
+{% if tiers|length %}
+  <ul>
+  {% for tier in tiers %}
+    <li>{{ tier.price }} for {{ tier.quantity }}
+  {% endfor %}
+  </ul>
+{% endif %}
+

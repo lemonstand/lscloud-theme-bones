@@ -26,3 +26,4 @@ published: true
   This product is currently out of stock.
   Check back for more {{ product.expected_availability_date|default('soon') }}.
 {% endif %}
+{{ partial('price-tiers', {tiers: product.priceTiers}) }}
