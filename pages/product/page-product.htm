@@ -33,5 +33,17 @@ ${{ product.price }}
 {% if theme.enable_ratings %}
   {{ partial('ratings', {ratings: product.rating()}) }}
 {% endif %}
+{% if product.crossSells|length %}
+  <section id="cross-sells">
+    <h1>Cross Sells</h1>
+    {{ partial('related-products', { products: product.crossSells }) }}
+  </section>
+{% endif %}
+{% if product.upSells|length %}
+  <section id="related">
+    <h1>Related</h1>
+    {{ partial('related-products', { products : product.upSells }) }}
+  </section>
+{% endif %}
 </section>
 
