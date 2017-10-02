@@ -8,6 +8,6 @@ published: true
 ---
 <ul>
 {% for product in products %}
-  {{ partial('product-small', { product: product }) }}
+  <li>{{ partial('product-small', { product: product }) }}
 {% endfor %}
 </ul>
