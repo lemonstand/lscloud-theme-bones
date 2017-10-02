@@ -1,0 +1,14 @@
+---
+url: /category/:urlName@
+name: Category
+description: Lists the products in a category.
+action: shop:category
+template: default
+published: true
+---
+<h1>{{ category.name }}</h1>
+<ul>
+{% for product in products %}
+  <li>{{ partial('product-small', { product: product }) }}
+{% endfor %}
+</ul>
