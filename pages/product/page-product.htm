@@ -30,5 +30,8 @@ ${{ product.price }}
 {% if theme.enable_reviews %}
   {{ partial('reviews', {reviews: product.reviews()}) }}
 {% endif %}
+{% if theme.enable_ratings %}
+  {{ partial('ratings', {ratings: product.rating()}) }}
+{% endif %}
 </section>
 
