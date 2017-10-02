@@ -4,4 +4,5 @@ engine: twig
 404: home
 customFields:
     title: { type: text, title: 'Shown in the title bar', default: 'This Shop' }
+    enable_reviews: { type: checkbox, title: 'Show reviews on the product page', default: 'true' }
 ---
