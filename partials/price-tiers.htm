@@ -5,7 +5,7 @@ description: Displays a product's price tiers (priceTiers)
 {% if tiers|length %}
   <ul>
   {% for tier in tiers %}
-    <li>{{ tier.price }} for {{ tier.quantity }}
+    <li>{{ tier.price | currency}} for {{ tier.quantity }}
   {% endfor %}
   </ul>
 {% endif %}
