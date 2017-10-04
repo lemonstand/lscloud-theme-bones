@@ -17,6 +17,9 @@ published: true
 {% endif %}
 {{ product.price | currency }}
 </header>
+<section>
+  {{ partial('product-images', { images: product.images }) }}
+</section>
 {{ product.description | raw}}
 {% if product.in_stock_amount|default(product.out_of_stock_threshold + 1) > product.out_of_stock_threshold|default(0) %}
   {% if product.onSale %}
