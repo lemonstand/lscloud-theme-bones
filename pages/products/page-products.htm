@@ -6,7 +6,7 @@ action: shop:products
 template: default
 published: true
 ---
-<ul>
+<ul class="product-list">
 {% for product in products %}
   <li>{{ partial('product-small', { product: product }) }}
 {% endfor %}
