@@ -6,4 +6,8 @@ action: shop:products
 template: default
 published: true
 ---
-Test
+<h1>{{ theme.title }}</h1>
+{{ partial('categories', {categories: categories}) }}
+{{ partial('product-list', {products: featured}) }}
+{{ partial('about') }}
+{{ partial('home-custom') }}

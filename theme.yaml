@@ -3,7 +3,7 @@ name: 'Bones V2'
 engine: twig
 404: home
 customFields:
-    title: { type: text, title: 'Shown in the title bar', default: 'This Shop' }
+    title: { type: text, title: 'The name of this store', default: 'This Shop' }
     sticky_menu: { type: checkbox, title: 'Keep menu on the page as user scrolls', default: true }
     enable_reviews: { type: checkbox, title: 'Show reviews on the product page', default: true }
     enable_ratings: { type: checkbox, title: 'Show ratings on the product page', default: true }
