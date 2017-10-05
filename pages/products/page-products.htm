@@ -7,8 +7,4 @@ template: default
 published: true
 ---
 <link rel="stylesheet" href="{{ 'css/page-products.css' | theme_resource }}">
-<ul class="product-list">
-{% for product in products %}
-  <li>{{ partial('product-small', { product: product }) }}
-{% endfor %}
-</ul>
+{{ partial('product-list', { products: products }) }}

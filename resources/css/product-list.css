@@ -1,8 +1,14 @@
-img {
+.product-list {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.product-list img {
   display: block;
   margin-bottom: 1rem;
 }
-a {
+.product-list a {
   display: block;
   text-decoration: none;
   font-size: large;
