@@ -1,1 +1,3 @@
-Menus will go here.
+{% for page in cmsContent('page') %}
+  <a href="{{ page.permalink }}">{{ page.title }}</a>
+{% endfor %}
