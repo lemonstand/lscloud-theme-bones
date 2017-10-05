@@ -1,0 +1,12 @@
+img {
+  display: block;
+}
+a {
+  display: block;
+  text-decoration: none;
+  font-size: large;
+  text-transform: uppercase;
+  color: inherit;
+  text-align: center;
+  margin: 3rem;
+}

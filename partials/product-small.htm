@@ -2,6 +2,7 @@
 description: Displays a product in a small area.
 ---
 {# takes product as an argument #}
+<style scoped>@import '{{ 'css/product-small.css' | theme_resource }}';</style>
 <a href="product/{{ product.url_name }}">
   <img
     src="{{ product.images.first.thumbnail(400, 400)|default('http://placehold.it/400x400') }}"
