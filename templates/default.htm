@@ -5,7 +5,7 @@
 {{ partial('head') }}
 </head>
 <body>
-<header>
+<header {% if theme.sticky_menu %}class="sticky"{% endif %}>
 {{ partial('header') }}
 </header>
 <main>
