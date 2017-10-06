@@ -1,3 +1,36 @@
+---
+description: A registration form to sign up as a customer.
+---
 <section>
-Register
+<h1>Register</h1>
+<!--<form method="post" data-ajax-handler="shop:onSignup">-->
+{{ open_form({'data-ajax-handler': 'shop:onSignup'}) }}
+<section>
+  {{ flash() }}
+</section>
+<label>
+  First Name
+  <input type="text" name="signup[first_name]" required />
+</label>
+<label>
+  Last Name
+  <input type="text" name="signup[last_name]" required />
+</label>
+<label>
+  Email
+  <input type="email" name="signup[email]" required />
+</label>
+<label>
+  Password
+  <input type="password" name="signup[password]" required />
+</label>
+<label>
+  Confirm Password
+  <input type="password" name="signup[password_confirmation]" required />
+</label>
+<input type="hidden" name="accepts_marketing" value="0" />
+<input type="hidden" name="autologin" value="1" />
+<input type="hidden" name="redirect" value="/"/>
+<button type="submit">sign up</button>
+</form>
 </section>
