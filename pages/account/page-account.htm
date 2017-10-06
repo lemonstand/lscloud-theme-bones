@@ -6,4 +6,10 @@ action: shop:categories
 template: default
 published: true
 ---
-Account
+<h1>Account</h1>
+{% if customer %}
+  {{ partial('account-settings') }}
+{% else %}
+  {{ partial('register') }}
+  {{ partial('login') }}
+{% endif %}

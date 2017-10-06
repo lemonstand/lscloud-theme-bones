@@ -3,3 +3,10 @@
 {% for page in cmsContent('page') %}
   <a href="{{ page.permalink }}">{{ page.title }}</a>
 {% endfor %}
+<a href="/account">
+  {% if customer %}
+    account
+  {% else %}
+    sign up
+  {% endif %}
+</a>
