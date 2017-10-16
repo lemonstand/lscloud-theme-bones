@@ -2,36 +2,36 @@
 description: A registration form to sign up as a customer.
 ---
 <section>
-<h1>Register</h1>
-<form method="post" data-ajax-handler="shop:onSignup">
-<label>
-  First Name
-  <input type="text" name="signup[first_name]" required />
-  <span class="error"></span>
-</label>
-<label>
-  Last Name
-  <input type="text" name="signup[last_name]" required />
-  <span class="error"></span>
-</label>
-<label>
-  Email
-  <input type="email" name="signup[email]" required />
-  <span class="error"></span>
-</label>
-<label>
-  Password
-  <input type="password" name="signup[password]" id="signup[password]" required />
-  <span class="error"></span>
-</label>
-<label>
-  Confirm Password
-  <input type="password" name="signup[password_confirmation]" id="signup[password_confirmation]" required />
-  <span class="error"></span>
-</label>
-<input type="hidden" name="accepts_marketing" value="0" />
-<input type="hidden" name="autologin" value="1" />
-<input type="hidden" name="redirect" value="/"/>
-<button type="submit">sign up</button>
-</form>
+  <h1>Register</h1>
+  <form method="post" data-ajax-handler="shop:onSignup">
+    <label>
+      First Name
+      <input type="text" name="signup[first_name]" required />
+      <span class="error"></span>
+    </label>
+    <label>
+      Last Name
+      <input type="text" name="signup[last_name]" required />
+      <span class="error"></span>
+    </label>
+    <label>
+      Email
+      <input type="email" name="signup[email]" required />
+      <span class="error"></span>
+    </label>
+    <label>
+      Password
+      <input type="password" name="signup[password]" required />
+      <span class="error"></span>
+    </label>
+    <label>
+      Confirm Password
+      <input type="password" name="signup[password_confirmation]" required />
+      <span class="error"></span>
+    </label>
+    <input type="hidden" name="accepts_marketing" value="0" />
+    <input type="hidden" name="autologin" value="1" />
+    <input type="hidden" name="redirect" value="/" />
+    <button type="submit">sign up</button>
+  </form>
 </section>
