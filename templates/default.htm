@@ -14,5 +14,11 @@
 <footer>
 {{ partial('footer') }}
 </footer>
+{# This theme uses the Foundation framework #}
+<script src="{{ 'foundation/what-input.js' | theme_resource }}"></script>
+<script src="{{ 'foundation/foundation.min.js' | theme_resource }}"></script>
+<script>
+  $(document).foundation();
+</script>
 </body>
 </html>
