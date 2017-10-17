@@ -1,7 +1,10 @@
 ---
 description: A registration form to sign up as a customer.
 ---
-<form method="post" data-ajax-handler="shop:onSignup">
+<form
+  method="post"
+  data-ajax-handler="shop:onSignup"
+  data-validation-message="">
   <label>
     First Name
     <input type="text" name="signup[first_name]" required />
