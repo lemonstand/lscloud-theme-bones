@@ -1,3 +1,14 @@
-<section>
-Login
-</section>
+<form method="post" data-ajax-handler="shop:onLogin">
+  <label>
+    Email
+    <input type="email" name="email" required />
+    <span class="error"></span>
+  </label>
+  <label>
+    Password
+    <input type="password" name="password" required />
+    <span class="error"></span>
+  </label>
+  <button type="submit">log in</button>
+  <input type="hidden" name="redirect" value="/" />
+</form>
