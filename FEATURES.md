@@ -1,5 +1,7 @@
 # LemonStand theme development / testing checklist
 
+## Currently implemented in this theme
+
 ## Overall site layout (sitemap)
 * Homepage
 * Category page(s)
