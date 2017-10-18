@@ -2,6 +2,18 @@
 
 ## Currently implemented in this theme
 
+### Overall site layout (sitemap)
+* Register page (Linked to here on registration)
+* Forgot password page
+
+#### My Account area
+* Login page
+  * Forgot password link going to page or modal
+  * Errors show up under fields when missing/filled incorrectly.
+* Registration page
+  * Sign up for email list is ticked by default
+  * Errors show up under fields when missing/filled incorrectly. Error responses are sent from LemonStand for these cases
+
 ## Overall site layout (sitemap)
 * Homepage
 * Category page(s)
