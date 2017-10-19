@@ -1,0 +1,58 @@
+{
+  "name": "bones-v2",
+  "version": "0.0.1",
+  "description": "A bare-bones starting point theme for Lemonstand 2",
+  "main": "theme.yaml",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "gulp build",
+    "build:watch": "gulp build:watch",
+    "build:production": "gulp build --production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/sasquatchstudioprojects/bones-v2.git"
+  },
+  "keywords": [
+    "bones",
+    "v2",
+    "lemonstand",
+    "theme"
+  ],
+  "author": "Lemonstand",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/sasquatchstudioprojects/bones-v2/issues"
+  },
+  "homepage": "https://gitlab.com/sasquatchstudioprojects/bones-v2#README",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "font-awesome": "^4.7.0",
+    "foundation-sites": "~6.4.3",
+    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-autoprefixer": "^4.0.0",
+    "gulp-clean-css": "^3.9.0",
+    "gulp-if": "^2.0.2",
+    "gulp-imagemin": "^3.4.0",
+    "gulp-jshint": "^2.0.4",
+    "gulp-notify": "^3.0.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-sass-lint": "^1.3.4",
+    "gulp-sourcemaps": "^2.6.1",
+    "gulp-uglify": "^3.0.0",
+    "jshint": "^2.9.5",
+    "motion-ui": "^1.2.3",
+    "vinyl-named": "^1.1.0",
+    "webpack": "^3.8.1",
+    "webpack-stream": "^4.0.0",
+    "yargs": "^9.0.1"
+  },
+  "babel": {
+    "presets": [
+      "env"
+    ]
+  }
+}

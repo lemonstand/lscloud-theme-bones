@@ -1,16 +1,4 @@
-{# This goes in the page head. Add script and style tags here #}
-<link rel="stylesheet" href="{{ 'css/global.css' | theme_resource }}">
-
-{# Themes *must* include Lemonstand's css file to work #}
+{# Themes *must* include lemonstand.css to work #}
 <link rel="stylesheet" href="/cms/lemonstand.css">
-
-{# Themes *must* include jquery for the following script to work #}
-<script src="https://code.jquery.com/jquery-3.2.1.js">
-</script>
-{# Themes *must* include this script for lemonstand features to work #}
-<script src="cms/lemonstand.js"></script>
-
-{# This theme uses the Foundation framework (more in the template) #}
-<link
-  rel="stylesheet"
-  href="{{ 'foundation/foundation.min.css' | theme_resource }}">
+<link rel="stylesheet" href="{{ 'css/dist/app.min.css' | theme_resource }}">
+<link rel="stylesheet" href="{{ 'css/custom.css' | theme_resource }}">

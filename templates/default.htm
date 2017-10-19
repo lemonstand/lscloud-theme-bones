@@ -1,24 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>{{ theme.title }}</title>
-{{ partial('head') }}
+  <title>{{ theme.title }}</title>
+  {{ partial('head') }}
 </head>
 <body>
-<header {% if theme.sticky_menu %}class="sticky"{% endif %}>
-{{ partial('header') }}
-</header>
-<main>
-{{ page() }}
-</main>
-<footer>
-{{ partial('footer') }}
-</footer>
-{# This theme uses the Foundation framework #}
-<script src="{{ 'foundation/what-input.js' | theme_resource }}"></script>
-<script src="{{ 'foundation/foundation.min.js' | theme_resource }}"></script>
-<script>
-  $(document).foundation();
-</script>
+  <header {% if theme.sticky_menu %}class="sticky"{% endif %}>
+  {{ partial('header') }}
+  </header>
+
+  <main>
+  {{ page() }}
+  </main>
+
+  <footer>
+  {{ partial('footer') }}
+  </footer>
+
+  <script type="text/javascript" src="{{ 'javascript/dist/app.min.js' | theme_resource }}"></script>
+
+  {# Themes *must* include jquery and core.js to work #}
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="/cms/core.js"></script>
+
+  <script type="text/javascript" src="{{ 'javascript/custom.js' | theme_resource }}"></script>
 </body>
 </html>
