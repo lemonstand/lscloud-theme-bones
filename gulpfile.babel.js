@@ -19,8 +19,6 @@ const gulpConfig = JSON.parse(jsonConfig);
 
 // Build Sass into CSS
 gulp.task('sass', () => {
-  console.log("PRODUCTION?", PRODUCTION);
-  console.log("GULP CONFIG", gulpConfig);
   return gulp.src('resources/css/src/app.scss')
       .pipe(sourcemaps.init())
       .pipe(sass({
