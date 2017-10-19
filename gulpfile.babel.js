@@ -10,6 +10,7 @@ import gulp from 'gulp';
 import autoprefixer from 'gulp-autoprefixer';
 import cleanCss from 'gulp-clean-css';
 import gulpIf from 'gulp-if';
+import imagemin from 'gulp-imagemin';
 import jshint from 'gulp-jshint';
 import notify from 'gulp-notify';
 import rename from 'gulp-rename';
@@ -119,8 +120,11 @@ gulp.task('javascript', (callback) => {
 
 
 gulp.task('images', (callback) => {
-  console.log("TODO: Images task");
-  callback();
+  return gulp.src('resources/images/src/**/*')
+      .pipe(imagemin({
+        progressive: true
+      }))
+      .pipe(gulp.dest('resources/images/dist'));
 });
 
 

@@ -34,6 +34,7 @@
     "gulp-autoprefixer": "^4.0.0",
     "gulp-clean-css": "^3.9.0",
     "gulp-if": "^2.0.2",
+    "gulp-imagemin": "^3.4.0",
     "gulp-jshint": "^2.0.4",
     "gulp-notify": "^3.0.0",
     "gulp-rename": "^1.2.2",
