@@ -22,6 +22,7 @@ const PRODUCTION = !!(yargs.argv.production);
 const jsonConfig = fs.readFileSync('gulp-config.json', 'utf8');
 const gulpConfig = JSON.parse(jsonConfig);
 const webpackConfig = {
+  devtool: PRODUCTION ? false : 'source-map',
   module: {
     rules: [
       {
