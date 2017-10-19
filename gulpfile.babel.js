@@ -118,7 +118,7 @@ gulp.task('javascript', (callback) => {
   return gulp.series('javascript-lint', 'javascript-build')(callback);
 });
 
-
+// Minify images
 gulp.task('images', (callback) => {
   return gulp.src('resources/images/src/**/*')
       .pipe(imagemin({
@@ -127,15 +127,14 @@ gulp.task('images', (callback) => {
       .pipe(gulp.dest('resources/images/dist'));
 });
 
-
+// Grab any font files needed
 gulp.task('fonts', (callback) => {
-  console.log("TODO: Fonts task");
-  callback();
+  return gulp.src('node_modules/font-awesome/fonts/*')
+      .pipe(gulp.dest('resources/fonts/dist'));
 });
 
-
-// Build the "dist" folder for css, fonts, images, and javascript
-gulp.task('build', gulp.parallel('sass', 'javascript', 'images', 'fonts'));
+// Build the "dist" folder for images, fonts, css and javascript
+gulp.task('build', gulp.parallel('images', 'fonts', 'sass', 'javascript'));
 
 // If given no command, run the build task
 gulp.task('default', gulp.series('build'));

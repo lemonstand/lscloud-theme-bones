@@ -1,5 +1,9 @@
 @charset 'utf-8';
 
+// Font Awesome
+$fa-font-path: '../../fonts/dist';
+@import 'font-awesome';
+
 // Foundation
 @import 'foundation-settings';
 @import 'foundation';
