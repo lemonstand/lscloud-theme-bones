@@ -10,6 +10,7 @@ import gulp from 'gulp';
 import autoprefixer from 'gulp-autoprefixer';
 import cleanCss from 'gulp-clean-css';
 import gulpIf from 'gulp-if';
+import jshint from 'gulp-jshint';
 import notify from 'gulp-notify';
 import rename from 'gulp-rename';
 import sass from 'gulp-sass';
@@ -74,8 +75,31 @@ gulp.task('sass', (callback) => {
   return gulp.series('sass-lint', 'sass-build')(callback);
 });
 
+// Lint first-party Javascript
+gulp.task('javascript-lint', () => {
+  return gulp.src('resources/javascript/src/**/*.js')
+      .pipe(jshint({
+        esversion: 6
+      }))
+      .pipe(jshint.reporter('default'))
+      .pipe(jshint.reporter('fail')) // Will fail the task only if errors are found
+      .pipe(notify((file) => {
+          if (file.jshint.success) {
+            return false;
+          }
 
-gulp.task('javascript', (callback) => {
+          const errors = file.jshint.results.map((data) => {
+            if (data.error) {
+              return "(" + data.error.line + ':' + data.error.character + ') ' + data.error.reason;
+            }
+          }).join("\n");
+
+          return file.relative + " (" + file.jshint.results.length + " errors)\n" + errors;
+      }));
+});
+
+// Build JS into single file
+gulp.task('javascript-build', () => {
   return gulp.src('resources/javascript/src/app.js')
       .pipe(vinylNamed())
       .pipe(sourcemaps.init())
@@ -86,6 +110,11 @@ gulp.task('javascript', (callback) => {
       .pipe(gulpIf(!PRODUCTION, sourcemaps.write()))
       .pipe(gulp.dest('resources/javascript/dist'))
       .pipe(notify({ message: 'Javascript built to dist/app.min.js' }));
+});
+
+
+gulp.task('javascript', (callback) => {
+  return gulp.series('javascript-lint', 'javascript-build')(callback);
 });
 
 
