@@ -1,0 +1,25 @@
+{
+  "name": "bones-v2",
+  "version": "0.0.1",
+  "description": "A bare-bones starting point theme for Lemonstand 2",
+  "main": "theme.yaml",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/sasquatchstudioprojects/bones-v2.git"
+  },
+  "keywords": [
+    "bones",
+    "v2",
+    "lemonstand",
+    "theme"
+  ],
+  "author": "Lemonstand",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/sasquatchstudioprojects/bones-v2/issues"
+  },
+  "homepage": "https://gitlab.com/sasquatchstudioprojects/bones-v2#README"
+}
