@@ -1,0 +1,13 @@
+input.error {
+  @include form-input-error();
+}
+
+span.error {
+  @include form-error();
+  display: block;
+}
+
+// Lemonstand doesn't set erroneous labels color, so do the same for Abide.
+label.is-invalid-label {
+  color: inherit;
+}
