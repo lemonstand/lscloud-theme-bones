@@ -1,6 +1,9 @@
 'use strict';
 
 import fs from 'fs';
+import vinylNamed from 'vinyl-named';
+import webpack from 'webpack';
+import webpackStream from 'webpack-stream';
 import yargs from 'yargs';
 
 import gulp from 'gulp';
@@ -12,11 +15,29 @@ import rename from 'gulp-rename';
 import sass from 'gulp-sass';
 import sassLint from 'gulp-sass-lint';
 import sourcemaps from 'gulp-sourcemaps';
+import uglify from 'gulp-uglify';
 
 // Load build settings
 const PRODUCTION = !!(yargs.argv.production);
 const jsonConfig = fs.readFileSync('gulp-config.json', 'utf8');
 const gulpConfig = JSON.parse(jsonConfig);
+const webpackConfig = {
+  module: {
+    rules: [
+      {
+        test: /.js$/,
+        use: [
+          {
+            loader: 'babel-loader'
+          }
+        ]
+      }
+    ]
+  },
+  output: {
+    filename: 'app.min.js'
+  }
+};
 
 // Lint first-party Sass
 gulp.task('sass-lint', () => {
@@ -54,8 +75,16 @@ gulp.task('sass', (callback) => {
 
 
 gulp.task('javascript', (callback) => {
-  console.log("TODO: Javascript task");
-  callback();
+  return gulp.src('resources/javascript/src/app.js')
+      .pipe(vinylNamed())
+      .pipe(sourcemaps.init())
+      .pipe(webpackStream(webpackConfig, webpack))
+      .pipe(gulpIf(PRODUCTION, uglify()
+          .on('error', e => { console.log(e); })
+      ))
+      .pipe(gulpIf(!PRODUCTION, sourcemaps.write()))
+      .pipe(gulp.dest('resources/javascript/dist'))
+      .pipe(notify({ message: 'Javascript built to dist/app.min.js' }));
 });
 
 
