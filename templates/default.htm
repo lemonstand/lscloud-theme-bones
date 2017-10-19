@@ -1,24 +1,42 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title>{{ theme.title }}</title>
-{{ partial('head') }}
-</head>
-<body>
-<header {% if theme.sticky_menu %}class="sticky"{% endif %}>
-{{ partial('header') }}
-</header>
-<main>
-{{ page() }}
-</main>
-<footer>
-{{ partial('footer') }}
-</footer>
-{# This theme uses the Foundation framework #}
-<script src="{{ 'foundation/what-input.js' | theme_resource }}"></script>
-<script src="{{ 'foundation/foundation.min.js' | theme_resource }}"></script>
-<script>
-  $(document).foundation();
-</script>
-</body>
+  <head>
+    <title>{{ theme.title }}</title>
+    {# Add scripts and stylesheets here #}
+    {# Scripts can also go at the bottom of the body in this file. #}
+    <link rel="stylesheet" href="{{ 'css/global.css' | theme_resource }}">
+
+    {# Themes *must* include Lemonstand's css file to work #}
+    <link rel="stylesheet" href="/cms/lemonstand.css">
+
+    {# Themes *must* include jquery for the following script to work #}
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    {# Themes *must* include this script for lemonstand features to work #}
+    <script src="cms/lemonstand.js"></script>
+
+    {# This theme uses the Foundation framework (more in the template) #}
+    <link
+      rel="stylesheet"
+      href="{{ 'foundation/foundation.min.css' | theme_resource }}">
+  </head>
+  <body>
+    <header {% if theme.sticky_menu %}class="sticky"{% endif %}>
+      {{ partial('header') }}
+    </header>
+    <main>
+      {{ page() }}
+    </main>
+    <footer>
+      {{ partial('footer') }}
+    </footer>
+    {# Add scripts here or in the head. #}
+
+    {# This theme uses the Foundation framework #}
+    <script src="{{ 'foundation/what-input.js' | theme_resource }}"></script>
+    <script src="{{ 'foundation/foundation.min.js' | theme_resource }}">
+    </script>
+    <script>
+      $(document).foundation();
+    </script>
+  </body>
 </html>
