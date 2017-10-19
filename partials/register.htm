@@ -48,7 +48,22 @@ description: A registration form to sign up as a customer.
       Confirm password is required and must match password.
     </span>
   </label>
-  <input type="hidden" name="accepts_marketing" value="0">
+  <label>
+    Get occasional email updates from us?
+    <div class="switch">
+      <input
+        id="register_marketing"
+        class="switch-input"
+        type="checkbox"
+        name="accepts_marketing"
+        checked>
+      <label class="switch-paddle" for="register_marketing">
+        <span class="show-for-sr">Get occasional email updates from us?</span>
+        <span class="switch-active" aria-hidden="true">Yes</span>
+        <span class="switch-inactive" aria-hidden="true">No</span>
+      </label>
+    </div>
+  </label>
   <input type="hidden" name="autologin" value="1">
   <input type="hidden" name="redirect" value="/">
   <button class="button" type="submit">sign up</button>

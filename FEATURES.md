@@ -13,6 +13,8 @@
 * Registration page
   * Sign up for email list is ticked by default
   * Errors show up under fields when missing/filled incorrectly. Error responses are sent from LemonStand for these cases
+* “Accepts Marketing” checkbox
+  * Use language like “Get occasional email updates from us”
 
 ## Overall site layout (sitemap)
 * Homepage
