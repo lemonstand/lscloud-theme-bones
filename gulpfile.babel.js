@@ -1,11 +1,40 @@
 'use strict';
 
-import gulp from 'gulp';
+import fs from 'fs';
+import yargs from 'yargs';
 
-// Placeholder task, will be removed once real tasks are in place
+import gulp from 'gulp';
+import autoprefixer from 'gulp-autoprefixer';
+import sass from 'gulp-sass';
+import cleanCss from 'gulp-clean-css';
+import gulpIf from 'gulp-if';
+import rename from 'gulp-rename';
+import notify from 'gulp-notify';
+import sourcemaps from 'gulp-sourcemaps';
+
+// Load build settings
+const PRODUCTION = !!(yargs.argv.production);
+const jsonConfig = fs.readFileSync('gulp-config.json', 'utf8');
+const gulpConfig = JSON.parse(jsonConfig);
+
+// Build Sass into CSS
 gulp.task('sass', () => {
-  console.log("TODO: Sass task");
-  return true;
+  console.log("PRODUCTION?", PRODUCTION);
+  console.log("GULP CONFIG", gulpConfig);
+  return gulp.src('resources/css/src/app.scss')
+      .pipe(sourcemaps.init())
+      .pipe(sass({
+          style: 'expanded',
+          includePaths: gulpConfig.PATHS.sass
+        }).on('error', notify.onError((error) => {
+            return "Problem file : " + error.message;
+          })))
+      .pipe(autoprefixer({ browsers: gulpConfig.COMPATIBILITY }))
+      .pipe(cleanCss())
+      .pipe(rename({ suffix: '.min' }))
+      .pipe(gulpIf(!PRODUCTION, sourcemaps.write()))
+      .pipe(gulp.dest('resources/css/dist'))
+      .pipe(notify({ message: 'Sass task complete' }));
 });
 
 
