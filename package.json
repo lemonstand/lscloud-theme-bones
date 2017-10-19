@@ -5,9 +5,9 @@
   "main": "theme.yaml",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "gulp",
+    "build": "gulp build",
     "build:watch": "gulp build:watch",
-    "build:production": "gulp --production"
+    "build:production": "gulp build --production"
   },
   "repository": {
     "type": "git",
