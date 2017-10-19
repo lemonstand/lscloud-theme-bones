@@ -4,7 +4,10 @@
   "description": "A bare-bones starting point theme for Lemonstand 2",
   "main": "theme.yaml",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "gulp",
+    "build:watch": "gulp watch",
+    "build:production": "gulp --production"
   },
   "repository": {
     "type": "git",
@@ -21,5 +24,15 @@
   "bugs": {
     "url": "https://gitlab.com/sasquatchstudioprojects/bones-v2/issues"
   },
-  "homepage": "https://gitlab.com/sasquatchstudioprojects/bones-v2#README"
+  "homepage": "https://gitlab.com/sasquatchstudioprojects/bones-v2#README",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "gulp": "^3.9.1"
+  },
+  "babel": {
+    "presets": [
+      "env"
+    ]
+  }
 }
