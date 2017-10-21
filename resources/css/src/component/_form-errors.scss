@@ -1,0 +1,13 @@
+input.error { // sass-lint:disable-line no-qualifying-elements
+  @include form-input-error;
+}
+
+span.error { // sass-lint:disable-line no-qualifying-elements
+  @include form-error;
+  display: block;
+}
+
+// Lemonstand doesn't set erroneous labels color, so do the same for Abide.
+.is-invalid-label {
+  color: inherit;
+}

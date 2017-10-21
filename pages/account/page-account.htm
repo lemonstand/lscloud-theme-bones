@@ -10,6 +10,16 @@ published: true
 {% if customer %}
   {{ partial('account-settings') }}
 {% else %}
-  {{ partial('register') }}
-  {{ partial('login') }}
+  <ul class="accordion" data-accordion>
+    <li class="accordion-item is-active" data-accordion-item>
+      <a href="#" class="accordion-title">Login</a>
+      <div class="accordion-content" data-tab-content>
+        {{ partial('login') }}
+      </div>
+    <li class="accordion-item" data-accordion-item>
+      <a href="#" class="accordion-title">Register</a>
+      <div class="accordion-content" data-tab-content>
+        {{ partial('register') }}
+      </div>
+  </ul>
 {% endif %}
