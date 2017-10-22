@@ -30,10 +30,10 @@ published: true
   Check back for more {{ product.expected_availability_date|default('soon') }}.
 {% endif %}
 {{ partial('price-tiers', {tiers: product.priceTiers}) }}
-{% if theme.enable_reviews %}
+{% if theme.enableReviews %}
   {{ partial('reviews', {reviews: product.reviews()}) }}
 {% endif %}
-{% if theme.enable_ratings %}
+{% if theme.enableRatings %}
   {{ partial('ratings', {ratings: product.rating()}) }}
 {% endif %}
 {% if product.crossSells|length %}

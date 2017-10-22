@@ -17,8 +17,18 @@
     <script type="text/javascript" src="{{ 'javascript/custom.js' | theme_resource }}" defer></script>
   </head>
   <body>
-    <header {% if theme.sticky_menu %}class="sticky"{% endif %}>
-      {{ partial('header') }}
+    <header>
+      {% if theme.stickyHeader %}
+      <div data-sticky-container>
+        <div class="header-inner" data-sticky data-options="marginTop:0;" data-top-anchor="1">
+          {{ partial('header') }}
+        </div>
+      </div>
+      {% else %}
+      <div class="header-inner">
+        {{ partial('header') }}
+      </div>
+      {% endif %}
     </header>
     <main>
       {{ page() }}

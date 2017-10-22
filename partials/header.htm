@@ -1,15 +1,31 @@
-<a href="/">{{ theme.title }}</a>
-<a href="/products">products</a>
-{% for page in cmsContent('page') %}
-  <a href="{{ page.permalink }}">{{ page.title }}</a>
-{% endfor %}
-<a href="/account">
-  {% if customer %}
-    account
-  {% else %}
-    sign up
-  {% endif %}
-</a>
-{% if customer %}
-  <a href="/logout">logout</a>
-{% endif %}
+<div class="grid-container">
+  <div class="grid-x grid-padding-x align-justify">
+    <div class="cell shrink header-title">
+      <a href="/"><img src="https://placehold.it/150x80?text=Logo+Here" alt="Store Name"/></a>
+    </div>
+    <div class="cell shrink header-menu">
+      <ul>
+        <li>
+          <a href="/products">Products</a>
+        </li>
+        {% for page in cmsContent('page') %}
+        <li>
+          <a href="{{ page.permalink }}">{{ page.title }}</a>
+        </li>
+        {% endfor %}
+        <li>
+          {% if customer %}
+          <a href="/account">Account</a>
+          {% else %}
+          <a href="/account">Sign Up</a>
+          {% endif %}
+        </li>
+        {% if customer %}
+        <a href="/logout">Log Out</a>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</div>
+
+
