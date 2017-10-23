@@ -9,8 +9,9 @@ customFields:
     facebookLink: { type: text, title: 'Facebook Social Account Link', default: '' }
     twitterLink: { type: text, title: 'Twitter Social Account Link', default: '' }
     instagramLink: { type: text, title: 'Instagram Social Account Link', default: '' }
-    stickyHeader: { type: checkbox, title: 'Keep header menu on the page as user scrolls', default: "true" }
-    enableReviews: { type: checkbox, title: 'Show reviews on the product page', default: "true" }
-    enableRatings: { type: checkbox, title: 'Show ratings on the product page', default: "true" }
-    homeNewsletterSubscribe: { type: checkbox, title: 'Show newsletter subscription form on homepage', default: "true" }
+    stickyHeader: { type: checkbox, title: 'Keep header menu on the page as user scrolls', default: true }
+    fillWindow: { type: checkbox, title: 'Keep footer at bottom of screen on short pages', default: true }
+    enableReviews: { type: checkbox, title: 'Show reviews on the product page', default: true }
+    enableRatings: { type: checkbox, title: 'Show ratings on the product page', default: true }
+    homeNewsletterSubscribe: { type: checkbox, title: 'Show newsletter subscription form on homepage', default: true }
 ---

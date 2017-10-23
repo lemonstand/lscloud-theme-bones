@@ -1,14 +1,18 @@
 body {
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
 
   header,
-  footer {
+  footer,
+  main {
     flex: 0 0 auto;
   }
 
-  main {
-    flex: 1 1 auto;
+  &.fill-window {
+    min-height: 100vh;
+
+    main {
+      flex: 1 1 auto;
+    }
   }
 }
