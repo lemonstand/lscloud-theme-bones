@@ -5,7 +5,7 @@ engine: twig
 customFields:
     storeTitle: { type: text, title: 'Store Name', default: 'This Shop' }
     storeLogo: { type: image, title: 'Store Logo', default: '@images/dist/bones-logo.svg' }
-    footerLegalText: { type: text, title: 'Footer Legal Text', default: '© 2017 Lemonstand' }
+    footerLegalText: { type: text, title: 'Footer Legal Text', default: '© 2017 LemonStand eCommerce Inc.' }
     facebookLink: { type: text, title: 'Facebook Social Account Link', default: '' }
     twitterLink: { type: text, title: 'Twitter Social Account Link', default: '' }
     instagramLink: { type: text, title: 'Instagram Social Account Link', default: '' }
