@@ -7,10 +7,28 @@ template: default
 published: true
 ---
 <h1>{{ theme.storeTitle }}</h1>
-{{ partial('categories', {categories: categories}) }}
-{{ partial('product-list', {products: featured}) }}
-{{ partial('about') }}
-{{ partial('home-custom') }}
+<section>
+  <h1>Categories</h1>
+  {{ partial('categories', {categories: categories}) }}
+</section>
+<section class="calllout">
+  <h1>Featured</h1>
+  {{ partial('product-list', {products: ('featured' | collection).products }) }}
+</section>
+<section>
+  <h1>On Sale</h1>
+  {{ partial('product-list', {products: []}) }}
+</section>
+<section>
+  <h1>About</h1>
+  {{ partial('about') }}
+</section>
+<section>
+  {{ partial('home-custom') }}
+</section>
 {% if theme.homeNewsletterSubscribe %}
-  {{ partial('newsletter-subscribe') }}
+  <section>
+    <h1>Newsletter</h1>
+    {{ partial('newsletter-subscribe') }}
+  </section>
 {% endif %}
