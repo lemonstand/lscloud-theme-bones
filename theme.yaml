@@ -3,8 +3,12 @@ name: 'Bones V2'
 engine: twig
 404: home
 customFields:
-    title: { type: text, title: 'Store Name', default: 'This Shop' }
-    storeLogo: { type: image, title: 'Store Logo', default: '@images/dist/bones-logo.svg', comment: 'Shown in the page header' }
+    storeTitle: { type: text, title: 'Store Name', default: 'This Shop' }
+    storeLogo: { type: image, title: 'Store Logo', default: '@images/dist/bones-logo.svg' }
+    footerLegalText: { type: text, title: 'Footer Legal Text', default: '© 2017 Lemonstand' }
+    facebookLink: { type: text, title: 'Facebook Social Account Link', default: '' }
+    twitterLink: { type: text, title: 'Twitter Social Account Link', default: '' }
+    instagramLink: { type: text, title: 'Instagram Social Account Link', default: '' }
     stickyHeader: { type: checkbox, title: 'Keep header menu on the page as user scrolls', default: "true" }
     enableReviews: { type: checkbox, title: 'Show reviews on the product page', default: "true" }
     enableRatings: { type: checkbox, title: 'Show ratings on the product page', default: "true" }

@@ -1,0 +1,17 @@
+footer {
+  background: $light-gray;
+  padding: 1rem 0;
+
+  .footer-legal {
+    text-align: center;
+  }
+
+  .footer-social {
+    display: flex;
+    justify-content: flex-end;
+
+    @include breakpoint(medium down) {
+      justify-content: center;
+    }
+  }
+}
