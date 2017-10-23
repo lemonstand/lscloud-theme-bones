@@ -2,18 +2,22 @@
 description: Displays a product list.
 ---
 {# takes products as an argument #}
-<link rel="stylesheet" href="{{ 'css/product-list.css' | theme_resource }}">
-<ul class="product-list">
-  {% for product in products %}
-    <li>
-      <a href="product/{{ product.url_name }}">
-        <img
-          src="{{ product.images.first.thumbnail(400, 400)|default('http://placehold.it/400x400') }}"
-          alt="{{ product.images.first.description }}"
-          title="{{ product.images.first.description }}" />
-        {{ product.name }}
-      </a>
-    </li>
-  {% endfor %}
-</ul>
-
+<div class="grid-container fluid">
+  <div class="grid-x grid-margin-x small-up-2 medium-up-3 large-up-6">
+    {% for product in products %}
+      <div class="cell">
+        <div class="card">
+          <a href="product/{{ product.url_name }}">
+            <img
+              src="{{ product.images.first.thumbnail(400, 400)|default('http://placehold.it/400x400') }}"
+              alt="{{ product.images.first.description }}"
+              title="{{ product.images.first.description }}" />
+            <section class="card-divider">
+              {{ product.name }}
+            </section>
+          </a>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
