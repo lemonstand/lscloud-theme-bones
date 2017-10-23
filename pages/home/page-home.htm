@@ -17,7 +17,11 @@ published: true
 </section>
 <section>
   <h1>On Sale</h1>
-  {{ partial('product-list', {products: []}) }}
+  {% set sale_products = [] %}
+  {% for product in products if product.onSale %}
+    {% set sale_products = sale_products | merge([product])%}
+  {% endfor %}
+  {{ partial('product-list', {products: sale_products}) }}
 </section>
 <section>
   <h1>About</h1>
