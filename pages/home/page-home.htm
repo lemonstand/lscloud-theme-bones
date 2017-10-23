@@ -6,7 +6,9 @@ action: shop:products
 template: default
 published: true
 ---
-<h1>{{ theme.storeTitle }}</h1>
+<section>
+  <h1>{{ theme.storeTitle }}</h1>
+</section>
 <section>
   <h1>Categories</h1>
   {{ partial('categories', {categories: categories}) }}
@@ -24,11 +26,10 @@ published: true
   {{ partial('product-list', {products: sale_products}) }}
 </section>
 <section>
-  <h1>About</h1>
-  {{ partial('about') }}
+  {{ content_block('about') }}
 </section>
 <section>
-  {{ partial('home-custom') }}
+  {{ content_block('home-custom') }}
 </section>
 {% if theme.homeNewsletterSubscribe %}
   <section>
