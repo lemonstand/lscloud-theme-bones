@@ -1,0 +1,12 @@
+---
+url: /blog/:slug
+name: CMS Content Page
+description: Displays CMS content pages.
+action: cmscontent:blog
+template: default
+published: true
+---
+<h1>{{ post.title }}</h1>
+<main>
+{{ post.body | raw }}
+</main>
