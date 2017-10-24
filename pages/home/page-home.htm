@@ -6,19 +6,17 @@ action: shop:products
 template: default
 published: true
 ---
+<h1>{{ theme.storeTitle }}</h1>
 <section>
-  <h1>{{ theme.storeTitle }}</h1>
-</section>
-<section>
-  <h1>Categories</h1>
+  <h2>Categories</h2>
   {{ partial('categories', {categories: categories}) }}
 </section>
 <section class="calllout">
-  <h1>Featured</h1>
+  <h2>Featured</h2>
   {{ partial('product-list', {products: ('featured' | collection).products }) }}
 </section>
 <section>
-  <h1>On Sale</h1>
+  <h2>On Sale</h2>
   {% set sale_products = [] %}
   {% for product in products if product.onSale %}
     {% set sale_products = sale_products | merge([product])%}
@@ -33,7 +31,7 @@ published: true
 </section>
 {% if theme.homeNewsletterSubscribe %}
   <section>
-    <h1>Newsletter</h1>
+    <h2>Newsletter</h2>
     {{ partial('newsletter-subscribe') }}
   </section>
 {% endif %}
