@@ -12,10 +12,13 @@ published: true
     <h2>Categories</h2>
     {{ partial('categories', {categories: categories}) }}
   </section>
-  <section class="calllout">
-    <h2>Featured</h2>
-    {{ partial('product-list', {products: ('featured' | collection).products }) }}
-  </section>
+  {% set featured_products = ('featured' | collection).products %}
+  {% if featured_products | length %}
+    <section class="callout">
+      <h2>Featured</h2>
+      {{ partial('product-list', {products: featured_products}) }}
+    </section>
+  {% endif %}
   <section>
     <h2>On Sale</h2>
     {% set sale_products = [] %}
