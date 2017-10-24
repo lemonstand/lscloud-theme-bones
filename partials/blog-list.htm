@@ -1,5 +1,5 @@
 {% if not posts.length %}
-  <dl>
+  <dl class="blog-list">
     {% for post in posts
       | extended_sort('published_on', false) %} {# false means descending #}
       <dt><a href="{{ post.permalink }}">{{ post.title }}</a>
