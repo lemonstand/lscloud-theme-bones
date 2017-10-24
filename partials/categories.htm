@@ -3,5 +3,24 @@ description: Displays a list of categories.
 ---
 {# takes categories as an argument #}
 <section class="categories">
-Categories
+  <div class="grid-container fluid">
+    <div class="grid-x grid-margin-x small-up-2 medium-up-3 large-up-6">
+      {% for category in categories %}
+        <div class="cell">
+          <div class="card">
+            <a href="category/{{ product.url_name }}">
+              <img
+                src="{{ category.images.first.thumbnail(400, 400)
+                  | default('http://placehold.it/400x400') }}"
+                alt="{{ category.images.first.description }}"
+                title="{{ category.images.first.description }}" />
+              <section class="card-divider">
+                {{ category.name }}
+              </section>
+            </a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
 </section>
