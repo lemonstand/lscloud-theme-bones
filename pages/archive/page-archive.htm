@@ -6,5 +6,7 @@ action: cmscontent:archive
 template: default
 published: true
 ---
-<h1>Archive</h1>
-{{ partial('blog-list', {posts: cmsContent('blog')}) }}
+<section class="text-center">
+  <h1>Archive</h1>
+  {{ partial('blog-list', {posts: cmsContent('blog')}) }}
+</section>
