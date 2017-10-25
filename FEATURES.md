@@ -3,8 +3,13 @@
 ## Currently implemented in this theme
 
 ### Overall site layout (sitemap)
+* Homepage
 * Register page (Linked to here on registration)
 * Forgot password page
+
+### Home page
+* Default product collection
+  * The collection could should be ‘featured’ to match the default collection for new stores. There should also be a fallback in case no collections exist.
 
 #### My Account area
 * Login page
