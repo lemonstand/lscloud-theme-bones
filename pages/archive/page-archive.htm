@@ -1,0 +1,12 @@
+---
+url: /archive
+name: Blog archive
+description: Displays a list of CMS content blog posts.
+action: cmscontent:archive
+template: default
+published: true
+---
+<section class="archive text-center">
+  <h1>Archive</h1>
+  {{ partial('blog-list', {posts: cmsContent('blog')}) }}
+</section>

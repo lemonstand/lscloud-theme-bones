@@ -1,0 +1,23 @@
+---
+url: /blog/:slug
+name: CMS Content Page
+description: Displays CMS content pages.
+action: cmscontent:blog
+template: default
+published: true
+---
+<section class="blog">
+  {% if post.featured_image %}
+    <img
+      src="{{ post.featured_image.thumbnail(600, 360) }}"
+      alt="{{ post.featured_image.description }}"
+      title="{{ post.featured_image.title }}" />
+  {% endif %}
+  <h1>
+    {{ post.title }}
+    <small>
+      {{ post.published_on | date('Y/m/d') }}
+    </small>
+  </h1>
+  {{ post.body | raw }}
+</section>
