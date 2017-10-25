@@ -6,7 +6,9 @@ action: cmscontent:blog
 template: default
 published: true
 ---
-<h1>{{ post.title }}</h1>
-<main>
-{{ post.body | raw }}
-</main>
+<section class="blog">
+  <h1>{{ post.title }}</h1>
+  <main>
+    {{ post.body | raw }}
+  </main>
+</section>
