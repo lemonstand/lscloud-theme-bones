@@ -12,7 +12,7 @@ description: Displays a product list.
               src="{{ product.images.first.thumbnail(400, 400)
                 | default('http://placehold.it/400x400') }}"
               alt="{{ product.images.first.description }}"
-              title="{{ product.images.first.description }}" />
+              title="{{ product.images.first.title }}" />
             <section class="card-section">
               <div class="grid-x">
                 <div class="cell medium-8">{{ product.name }}</div>
