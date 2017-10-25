@@ -5,6 +5,8 @@
 ### Overall site layout (sitemap)
 * Register page (Linked to here on registration)
 * Forgot password page
+* Blog archive page
+  * Blog post page(s)
 
 #### My Account area
 * Login page
@@ -15,6 +17,15 @@
   * Errors show up under fields when missing/filled incorrectly. Error responses are sent from LemonStand for these cases
 * “Accepts Marketing” checkbox
   * Use language like “Get occasional email updates from us”
+
+#### Blog
+* /blog page with post archive (not yet paginated)
+  * Each post with featured image, (not yet author, date, category)
+* Blog post page
+  * Title, date (category still todo)
+  * Featured image
+
+# Complete list (not all implemented)
 
 ## Overall site layout (sitemap)
 * Homepage
