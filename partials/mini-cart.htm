@@ -8,6 +8,11 @@ description: Displays a mini-cart with a count of items and a dropdown of items
       <span>Cart <span class="badge">{{ cart.getItemNum() }}</span></span>
     </a>
     <ul class="menu nested vertical">
+      <li>
+        <a class="button" href="/cart">
+          Go to cart.
+        </a>
+      </li>
       {% for item in cart.items %}
         <li>
           <a href="/product/{{ item.product.url_name }}">
@@ -23,7 +28,11 @@ description: Displays a mini-cart with a count of items and a dropdown of items
           </a>
         </li>
       {% endfor %}
-      <li><a href="#">Total: {{ cart.getTotal() | currency }}</a></li>
+      <li>
+        <a href="/cart">
+          Total: {{ cart.getTotal() | currency }}
+        </a>
+      </li>
     </ul>
   </li>
 </ul>
