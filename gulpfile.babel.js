@@ -113,7 +113,6 @@ gulp.task('javascript-build', () => {
       .pipe(notify({ message: 'Javascript built to dist/app.min.js' }));
 });
 
-
 gulp.task('javascript', (callback) => {
   return gulp.series('javascript-lint', 'javascript-build')(callback);
 });
