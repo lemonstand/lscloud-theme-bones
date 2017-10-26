@@ -7,4 +7,8 @@
       height: 2.5rem;
     }
   }
+
+  .mini-cart > ul > li > a {
+    padding-right: 2rem; // make room for the down arrow.
+  }
 }
