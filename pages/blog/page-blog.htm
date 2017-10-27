@@ -20,4 +20,16 @@ published: true
     </small>
   </h1>
   {{ post.body | raw }}
+  <footer>
+    {% if profile_image %}
+      <img src="{{ profile_image.thumbnail('100', '100') }}" />
+    {% endif %}
+    <h2>{{ post.author_name }}</h2>
+    {{ post.user.user_bio | unescape }}
+    <ul>
+      {% for link in post.user.getSocialProfiles() %}
+        <li><a href="{{ link.link }}">{{ link.name }}</a></li>
+      {% endfor %}
+    </ul>
+  </footer>
 </section>
