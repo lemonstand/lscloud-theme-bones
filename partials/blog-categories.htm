@@ -1,0 +1,13 @@
+---
+description: Shows a menu of blog categories.
+---
+{# Takes parameter categories #}
+<ul class="menu align-right">
+  {% for category in categories %}
+    <li>
+      <a href="blog?category={{ category.slug }}">
+        {{ category.name }}
+      </a>
+    </li>
+  {% endfor %}
+</ul>

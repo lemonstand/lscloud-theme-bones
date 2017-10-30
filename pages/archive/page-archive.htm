@@ -8,10 +8,16 @@ published: true
 ---
 {# Takes GET parameter category: the category slug to filter for, if any. #}
 <section class="archive text-center">
-  <ul class="menu">
-    <li>
-  </ul>
   <h1>Archive</h1>
+  {% set blog_slugs = [] %}
+  {% set blog_categories = [] %}
+  {% for post in cmsContent('blog') %}
+    {% for category in post.categories if category.slug not in blog_slugs %}
+      {% set blog_slugs = blog_slugs | merge([category.slug]) %}
+      {% set blog_categories = blog_categories | merge([category]) %}
+    {% endfor %}
+  {% endfor %}
+  {{ partial('blog-categories', {categories: blog_categories}) }}
   {% if param('category') %}
     {% set posts = [] %}
     {% for post in cmsContent('blog')

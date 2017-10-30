@@ -20,15 +20,7 @@ published: true
         {{ post.published_on | date('Y/m/d') }}
       </small>
     </h1>
-    <ul class="menu align-right">
-      {% for category in post.categories %}
-        <li>
-          <a href="/archive?category={{ category.slug }}">
-            {{ category.name }}
-          </a>
-        </li>
-      {% endfor %}
-    </ul>
+    {{ partial('blog-categories', {categories: post.categories}) }}
   </header>
   {{ post.body | raw }}
   <footer class="media-object">
