@@ -7,29 +7,46 @@ template: default
 published: true
 ---
 <section class="blog">
-  {% if post.featured_image %}
-    <img
-      src="{{ post.featured_image.thumbnail(600, 360) }}"
-      alt="{{ post.featured_image.description }}"
-      title="{{ post.featured_image.title }}" />
-  {% endif %}
-  <h1>
-    {{ post.title }}
-    <small>
-      {{ post.published_on | date('Y/m/d') }}
-    </small>
-  </h1>
-  {{ post.body | raw }}
-  <footer>
-    {% if profile_image %}
-      <img src="{{ profile_image.thumbnail('100', '100') }}" />
+  <header>
+    {% if post.featured_image %}
+      <img
+        src="{{ post.featured_image.thumbnail(600, 360) }}"
+        alt="{{ post.featured_image.description }}"
+        title="{{ post.featured_image.title }}" />
     {% endif %}
-    <h2>{{ post.author_name }}</h2>
-    {{ post.user.user_bio | unescape }}
-    <ul>
-      {% for link in post.user.getSocialProfiles() %}
-        <li><a href="{{ link.link }}">{{ link.name }}</a></li>
+    <h1>
+      {{ post.title }}
+      <small>
+        {{ post.published_on | date('Y/m/d') }}
+      </small>
+    </h1>
+    <ul class="menu align-right">
+      {% for category in post.categories %}
+        <li>
+          <a href="/archive?category={{ category.slug }}">
+            {{ category.name }}
+          </a>
+        </li>
       {% endfor %}
     </ul>
+  </header>
+  {{ post.body | raw }}
+  <footer class="media-object">
+    {% if profile_image %}
+      <div class="media-object-secton">
+        <img src="{{ profile_image.thumbnail('100', '100') }}" />
+      </div>
+    {% endif %}
+    <div class="media-object-section main-section text-center">
+      <h2>{{ post.author_name }}</h2>
+      {{ post.user.user_bio | unescape }}
+    </div>
+    <div class="media-object-section">
+      <ul class="menu vertical">
+        {% for link in post.user.getSocialProfiles() %}
+          <li><a href="{{ link.link }}">{{ link.name }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
   </footer>
 </section>
