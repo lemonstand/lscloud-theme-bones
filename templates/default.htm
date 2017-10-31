@@ -22,31 +22,27 @@
     <script type="text/javascript" src="{{ 'javascript/custom.js' | theme_resource }}" defer></script>
   </head>
   <body {% if theme.fillWindow %}class="fill-window"{% endif %}>
-    <div class="off-canvas-wrapper">
-      <div class="off-canvas position-left" id="mobile-off-canvas-menu" data-off-canvas>
-        {{ partial('mobile-off-canvas-menu') }}
+    <nav class="off-canvas position-left is-closed" id="mobile-off-canvas-menu" data-off-canvas>
+      {{ partial('mobile-off-canvas-menu') }}
+    </nav>
+    <header>
+      {% if theme.stickyHeader %}
+      <div data-sticky-container>
+        <div class="header-inner" data-sticky data-options="marginTop:0;" data-top-anchor="1">
+          {{ partial('header') }}
+        </div>
       </div>
-      <div class="off-canvas-content" data-off-canvas-content>
-        <header>
-          {% if theme.stickyHeader %}
-          <div data-sticky-container>
-            <div class="header-inner" data-sticky data-options="marginTop:0;" data-top-anchor="1">
-              {{ partial('header') }}
-            </div>
-          </div>
-          {% else %}
-          <div class="header-inner">
-            {{ partial('header') }}
-          </div>
-          {% endif %}
-        </header>
-        <main>
-          {{ page() }}
-        </main>
-        <footer>
-          {{ partial('footer') }}
-        </footer>
+      {% else %}
+      <div class="header-inner">
+        {{ partial('header') }}
       </div>
-    </div>
+      {% endif %}
+    </header>
+    <main>
+      {{ page() }}
+    </main>
+    <footer>
+      {{ partial('footer') }}
+    </footer>
   </body>
 </html>
