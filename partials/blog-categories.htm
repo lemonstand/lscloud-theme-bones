@@ -1,8 +1,9 @@
 ---
 description: Shows a menu of blog categories.
 ---
-{# Takes parameter categories #}
-<ul class="menu align-right">
+{# Takes categories and align as parameters. #}
+{# align is one of align-right, align-left, align-center #}
+<ul class="menu {{ align }}">
   {% for category in categories %}
     <li>
       <a href="/archive/blog/{{ category.slug }}">

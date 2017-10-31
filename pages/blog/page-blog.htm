@@ -20,7 +20,8 @@ published: true
         {{ post.published_on | date('Y/m/d') }}
       </small>
     </h1>
-    {{ partial('blog-categories', {categories: post.categories}) }}
+    {{ partial('blog-categories',
+      {categories: post.categories, align: 'align-right'}) }}
   </header>
   {{ post.body | raw }}
   <footer class="media-object">

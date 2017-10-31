@@ -16,7 +16,8 @@ published: true
     {% set blog_categories = blog_categories | merge([category]) %}
   {% endfor %}
 {% endfor %}
-{{ partial('blog-categories', {categories: blog_categories}) }}
+{{ partial('blog-categories',
+  {categories: blog_categories, align: 'align-right'}) }}
 
 {% set posts = archives %}
 <section class="archive text-center">
