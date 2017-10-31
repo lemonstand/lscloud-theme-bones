@@ -4,7 +4,7 @@
       <a href="/"><img class="header-logo" src="{{ theme.storeLogo.thumbnail('auto', 'auto') }}" alt="{{ theme.storeLogo.alt }}"/></a>
     </div>
     <div class="cell shrink header-menu">
-      <ul class="menu dropdown" data-dropdown-menu>
+      <ul class="menu dropdown header-core-nav" data-dropdown-menu>
         <li>
           <a href="/">Home</a>
         </li>
@@ -19,8 +19,10 @@
           </ul>
         </li>
       </ul>
-      {{ widget_block('header-nav-menu') }}
-      <ul>
+      <span class="header-custom-nav">
+        {{ widget_block('header-nav-menu') }}
+      </span>
+      <ul class="menu header-account-nav">
         {% if customer %}
         <li>
           <a href="/logout">Log Out</a>
