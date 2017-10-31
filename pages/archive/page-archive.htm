@@ -25,20 +25,9 @@ published: true
     {% paginate posts by 5 %}
       {{ partial('blog-list', {posts: pagination.items}) }}
       <footer>
-        <ul
-          class="pagination text-center"
-          role="navigation"
-          aria-label="Pagination">
-          <li><a href="{{ pagination.firstUrl }}">first</a></li>
-          {% for page in pagination.pages %}
-            {% if page.isCurrent %}
-              <li class="current">{{ page.index }}</li>
-            {% else %}
-              <li><a href="{{ page.url }}">{{ page.index }}</li>
-            {% endif %}
-          {% endfor %}
-          <li><a href="{{ pagination.lastUrl }}">last</a></li>
-        </ul>
+        {{ partial('pagination',
+          {base_url: '/archive/' ~ type ~ '/' ~ category,
+          pagination: pagination}) }}
       </footer>
     {% endpaginate %}
   {% else %}

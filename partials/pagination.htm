@@ -1,0 +1,43 @@
+---
+description: Displays Foundation styled pagination navigation.
+---
+{# This is to be used with Lemonstand's paginate. #}
+{# Takes pagination and base_url as an arguments. #}
+{# base_url should not have a trailing slash, but should have a leading one. #}
+{# If you aren't using Foundation you can use Lemonstand's navigation. #}
+
+{% set current_index = 0 %}
+{% for page in pagination.pages if page.isCurrent %}
+  {% set current_index = page.index %}
+{% endfor %}
+
+<ul
+  class="pagination text-center"
+  role="navigation"
+  aria-label="Pagination">
+  <li><a href="{{ base_url }}/1">first</a></li>
+  {% if current_index != 1 %}
+    <li><a href="{{ base_url }}/{{ current_index - 1 }}">prev</a></li>
+  {% endif %}
+  {% for page in pagination.pages %}
+    {% if page.isCurrent %}
+      <li class="current">{{ page.index }}</li>
+    {% else %}
+      <li>
+        <a href="{{ base_url }}/{{ page.index }}">
+          {{ page.index }}
+        </a>
+      </li>
+    {% endif %}
+    {% if loop.last %}
+      {% if current_index != page.index %}
+        <li><a href="{{ base_url }}/{{ current_index + 1 }}">next</a></li>
+      {% endif %}
+      <li>
+        <a href="{{ base_url }}/{{ page.index }}">
+          last
+        </a>
+      </li>
+    {% endif %}
+  {% endfor %}
+</ul>
