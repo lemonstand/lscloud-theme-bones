@@ -1,8 +1,9 @@
 .off-canvas {
   .off-canvas-logo {
-    height: rem-calc(30);
-    margin: 1rem;
     @include xy-gutters($gutters: $grid-margin-gutters, $gutter-type: margin);
+    height: rem-calc(30);
+    margin-top: 1rem;
+    margin-bottom: 1rem;
   }
 
   .off-canvas-core-nav,
