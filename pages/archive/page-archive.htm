@@ -6,8 +6,6 @@ action: cmscontent:archive
 template: default
 published: true
 ---
-{# Takes GET parameter category: the category slug to filter for, if any. #}
-
 {% set blog_slugs = [] %}
 {% set blog_categories = [] %}
 {# Iterate by ascending published_on so that new posts don't change the #}
