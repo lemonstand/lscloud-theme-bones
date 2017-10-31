@@ -15,18 +15,10 @@
       display: inline-flex;
     }
 
-    .header-core-nav {
-
-    }
-
     .header-custom-nav {
       > ul {
         @include menu-base;
       }
-    }
-
-    .header-account-nav {
-
     }
   }
 }
