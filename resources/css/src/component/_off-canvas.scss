@@ -1,4 +1,10 @@
 .off-canvas {
+  .off-canvas-logo {
+    height: 2.5rem;
+    margin: 1rem;
+    @include xy-gutters($gutters: $grid-margin-gutters, $gutter-type: margin);
+  }
+
   .off-canvas-core-nav,
   .off-canvas-account-nav {
     li {
