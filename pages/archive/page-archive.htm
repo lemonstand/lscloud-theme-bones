@@ -23,9 +23,22 @@ published: true
   <h1>Archive</h1>
   {% if posts | length %}
     {% paginate posts by 5 %}
-      {{ partial('blog-list', {posts: posts}) }}
+      {{ partial('blog-list', {posts: pagination.items}) }}
       <footer>
-        {% navigation %}
+        <ul
+          class="pagination text-center"
+          role="navigation"
+          aria-label="Pagination">
+          <li><a href="{{ pagination.firstUrl }}">first</a></li>
+          {% for page in pagination.pages %}
+            {% if page.isCurrent %}
+              <li class="current">{{ page.index }}</li>
+            {% else %}
+              <li><a href="{{ page.url }}">{{ page.index }}</li>
+            {% endif %}
+          {% endfor %}
+          <li><a href="{{ pagination.lastUrl }}">last</a></li>
+        </ul>
       </footer>
     {% endpaginate %}
   {% else %}
