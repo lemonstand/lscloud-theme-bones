@@ -4,24 +4,37 @@
       <a href="/"><img class="header-logo" src="{{ theme.storeLogo.thumbnail('auto', 'auto') }}" alt="{{ theme.storeLogo.alt }}"/></a>
     </div>
     <div class="cell shrink header-menu">
-      <ul class="menu">
+      <ul class="menu dropdown" data-dropdown-menu>
         <li>
-          <a href="/products">Products</a>
+          <a href="/">Home</a>
         </li>
-        {% for page in cmsContent('page') %}
         <li>
-          <a href="{{ page.permalink }}">{{ page.title }}</a>
+          <a href="/products">Shop</a>
+          <ul class="menu">
+            {% for category in categories %}
+            <li>
+              <a href="/category/{{ category.url_name }}">{{ category.name }}</a>
+            </li>
+            {% endfor %}
+          </ul>
         </li>
-        {% endfor %}
-        <li>
-          {% if customer %}
-          <a href="/account">Account</a>
-          {% else %}
-          <a href="/account">Sign Up</a>
-          {% endif %}
-        </li>
+      </ul>
+      {{ widget_block('header-nav-menu') }}
+      <ul>
         {% if customer %}
-        <a href="/logout">Log Out</a>
+        <li>
+          <a href="/logout">Log Out</a>
+        </li>
+        <li>
+          <a href="/account" class="button">My Account</a>
+        </li>
+        {% else %}
+        <li>
+          <a href="/account">Log In</a>
+        </li>
+        <li>
+          <a href="/account" class="button">Register</a>
+        </li>
         {% endif %}
       </ul>
     </div>
