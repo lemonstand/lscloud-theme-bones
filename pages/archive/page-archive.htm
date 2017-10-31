@@ -1,5 +1,5 @@
 ---
-url: /blog
+url: /archive/:type/:category?/:page?
 name: Blog archive
 description: Displays a list of CMS content blog posts.
 action: cmscontent:archive
@@ -7,35 +7,28 @@ template: default
 published: true
 ---
 {# Takes GET parameter category: the category slug to filter for, if any. #}
+
+{% set blog_slugs = [] %}
+{% set blog_categories = [] %}
+{% for post in cmsContent('blog') %}
+  {% for category in post.categories if category.slug not in blog_slugs %}
+    {% set blog_slugs = blog_slugs | merge([category.slug]) %}
+    {% set blog_categories = blog_categories | merge([category]) %}
+  {% endfor %}
+{% endfor %}
+{{ partial('blog-categories', {categories: blog_categories}) }}
+
+{% set posts = archives %}
 <section class="archive text-center">
   <h1>Archive</h1>
-  {% set blog_slugs = [] %}
-  {% set blog_categories = [] %}
-  {% for post in cmsContent('blog') %}
-    {% for category in post.categories if category.slug not in blog_slugs %}
-      {% set blog_slugs = blog_slugs | merge([category.slug]) %}
-      {% set blog_categories = blog_categories | merge([category]) %}
-    {% endfor %}
-  {% endfor %}
-  {{ partial('blog-categories', {categories: blog_categories}) }}
-  {% if param('category') %}
-    {% set posts = [] %}
-    {% for post in cmsContent('blog')
-      | extended_sort('published_on', false) %} {# false means descending #}
-      {% for category in post.categories %}
-        {% if category.slug == param('category') %}
-          {% set posts = posts | merge([post]) %}
-        {% endif %}
-      {% endfor %}
-    {% endfor %}
-    {% if posts | length %}
+  {% if posts | length %}
+    {% paginate posts by 5 %}
       {{ partial('blog-list', {posts: posts}) }}
-    {% else %}
-      <span class="error">No posts with that category.</span>
-    {% endif %}
+      <footer>
+        {% navigation %}
+      </footer>
+    {% endpaginate %}
   {% else %}
-    {{ partial('blog-list',
-      {posts: cmsContent('blog') | extended_sort('published_on', false)})
-    }}{# false means descending #}
+    <span class="error">No posts to display.</span>
   {% endif %}
 </section>

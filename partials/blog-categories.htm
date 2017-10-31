@@ -5,7 +5,7 @@ description: Shows a menu of blog categories.
 <ul class="menu align-right">
   {% for category in categories %}
     <li>
-      <a href="blog?category={{ category.slug }}">
+      <a href="/archive/blog/{{ category.slug }}">
         {{ category.name }}
       </a>
     </li>
