@@ -1,0 +1,22 @@
+{
+  "theme_code": "bonesv2",
+  "store": "https://bones-v2-staging.lemonstand.com",
+  "api_token": "SSumPSPEQDQ7sQPJeBpn6U5QSOMxv60KyrqGCGBf",
+  "ignore_patterns": [
+    "lemonsync*.json",
+    ".lock",
+    "*.tmp",
+    "___jb_tmp___",
+    ".idea",
+    ".DS_Store",
+    ".git*",
+    ".jshintrc",
+    "*.md",
+    "gulp-config.json",
+    "gulpfile.babel.js",
+    "package.json",
+    "sass-lint.json",
+    "node_modules",
+    "src"
+  ]
+}
