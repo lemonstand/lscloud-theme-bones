@@ -1,1 +1,35 @@
-TODO
+<ul class="menu accordion-menu vertical off-canvas-core-nav" data-accordion-menu>
+  <li>
+    <a href="/">Home</a>
+  </li>
+  <li>
+    <a href="/products">Shop</a>
+    <ul class="menu vertical">
+      {% for category in categories %}
+      <li>
+        <a href="/category/{{ category.url_name }}">{{ category.name }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </li>
+</ul>
+<span class="off-canvas-custom-nav">
+  {{ widget_block('header-nav-menu') }}
+</span>
+<ul class="menu vertical off-canvas-account-nav">
+  {% if customer %}
+  <li>
+    <a href="/logout">Log Out</a>
+  </li>
+  <li>
+    <a href="/account" class="button">My Account</a>
+  </li>
+  {% else %}
+  <li>
+    <a href="/account">Log In</a>
+  </li>
+  <li>
+    <a href="/account" class="button">Register</a>
+  </li>
+  {% endif %}
+</ul>
