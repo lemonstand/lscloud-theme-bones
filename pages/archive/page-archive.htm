@@ -10,7 +10,9 @@ published: true
 
 {% set blog_slugs = [] %}
 {% set blog_categories = [] %}
-{% for post in cmsContent('blog') %}
+{# Iterate by ascending published_on so that new posts don't change the #}
+{# order of the categories in the list. #}
+{% for post in cmsContent('blog') | extended_sort('published_on', true) %}
   {% for category in post.categories if category.slug not in blog_slugs %}
     {% set blog_slugs = blog_slugs | merge([category.slug]) %}
     {% set blog_categories = blog_categories | merge([category]) %}
