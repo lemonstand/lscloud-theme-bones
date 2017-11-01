@@ -351,7 +351,7 @@ $closebutton-size: (
   medium: 2em,
 );
 $closebutton-lineheight: 1;
-$closebutton-color: $dark-gray;
+$closebutton-color: $black;
 $closebutton-color-hover: $black;
 
 // 16. Drilldown
@@ -470,7 +470,7 @@ $mediaobject-image-width-stacked: 100%;
 
 $menu-margin: 0;
 $menu-nested-margin: $global-menu-nested-margin;
-$menu-items-padding: $global-menu-padding;
+$menu-items-padding: .5rem 1rem;
 $menu-simple-margin: 1rem;
 $menu-item-color-active: $white;
 $menu-item-background-active: get-color(primary);
@@ -494,13 +494,13 @@ $meter-fill-bad: $alert-color;
 // --------------
 
 $offcanvas-sizes: (
-  small: 250px,
+  small: 100%,
 );
 $offcanvas-vertical-sizes: (
   small: 250px,
 );
 $offcanvas-background: $light-gray;
-$offcanvas-shadow: 0 0 10px rgba($black, .7);
+$offcanvas-shadow: none;
 $offcanvas-inner-shadow-size: 20px;
 $offcanvas-inner-shadow-color: rgba($black, .25);
 $offcanvas-overlay-zindex: 11;

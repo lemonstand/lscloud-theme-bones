@@ -4,24 +4,42 @@
       <a href="/"><img class="header-logo" src="{{ theme.storeLogo.thumbnail('auto', 'auto') }}" alt="{{ theme.storeLogo.alt }}"/></a>
     </div>
     <div class="cell shrink header-menu">
-      <ul class="menu">
+      <ul class="menu dropdown show-for-large header-core-nav" data-dropdown-menu>
         <li>
-          <a href="/products">Products</a>
+          <a href="/">Home</a>
         </li>
-        {% for page in cmsContent('page') %}
         <li>
-          <a href="{{ page.permalink }}">{{ page.title }}</a>
+          <a href="/products">Shop</a>
+          <ul class="menu">
+            {% for category in categories %}
+            <li>
+              <a href="/category/{{ category.url_name }}">{{ category.name }}</a>
+            </li>
+            {% endfor %}
+          </ul>
         </li>
-        {% endfor %}
-        <li>
-          {% if customer %}
-          <a href="/account">Account</a>
-          {% else %}
-          <a href="/account">Sign Up</a>
-          {% endif %}
+      </ul>
+      <span class="show-for-large header-custom-nav">
+        {{ widget_block('header-nav-menu') }}
+      </span>
+      <ul class="menu header-account-nav">
+        <li class="hide-for-large">
+          <a data-toggle="mobile-off-canvas-menu"><span class="fa fa-lg fa-bars"></span></a>
         </li>
         {% if customer %}
-        <a href="/logout">Log Out</a>
+        <li class="show-for-large">
+          <a href="/logout">Log Out</a>
+        </li>
+        <li>
+          <a href="/account" class="button">My Account</a>
+        </li>
+        {% else %}
+        <li class="show-for-large">
+          <a href="/account">Log In</a>
+        </li>
+        <li>
+          <a href="/account" class="button">Register</a>
+        </li>
         {% endif %}
       </ul>
     </div>

@@ -4,7 +4,21 @@
 
   .header-title {
     .header-logo {
-      height: 2.5rem;
+      height: rem-calc(30);
+    }
+  }
+
+  .header-menu {
+    .header-core-nav,
+    .header-custom-nav,
+    .header-account-nav {
+      display: inline-flex;
+    }
+
+    .header-custom-nav {
+      > ul {
+        @include menu-base;
+      }
     }
   }
 

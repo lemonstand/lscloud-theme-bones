@@ -22,6 +22,9 @@
     <script type="text/javascript" src="{{ 'javascript/custom.js' | theme_resource }}" defer></script>
   </head>
   <body {% if theme.fillWindow %}class="fill-window"{% endif %}>
+    <nav class="off-canvas position-left is-closed" id="mobile-off-canvas-menu" data-off-canvas>
+      {{ partial('mobile-off-canvas-menu') }}
+    </nav>
     <header>
       {% if theme.stickyHeader %}
       <div data-sticky-container>
