@@ -6,7 +6,9 @@ action: cmscontent:page
 template: default
 published: true
 ---
-<h1>{{ post.title }}</h1>
-<main>
-{{ post.body | raw }}
-</main>
+<section class="cms-content-page grid-container">
+  <h1>{{ post.title }}</h1>
+  <main>
+  {{ post.body | raw }}
+  </main>
+</section>

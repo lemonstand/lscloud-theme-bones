@@ -6,22 +6,24 @@ action: shop:login
 template: default
 published: true
 ---
-<h1>Account</h1>
-{% if customer %}
-  {{ partial('account-settings') }}
-{% else %}
-  <ul class="accordion" data-accordion>
-    <li class="accordion-item is-active" data-accordion-item>
-      <a href="#" class="accordion-title">Login</a>
-      <div class="accordion-content" data-tab-content>
-        {{ partial('login') }}
-      </div>
-    </li>
-    <li class="accordion-item" data-accordion-item>
-      <a href="#" class="accordion-title">Register</a>
-      <div class="accordion-content" data-tab-content>
-        {{ partial('register') }}
-      </div>
-    </li>
-  </ul>
-{% endif %}
+<section class="account grid-container">
+  <h1>Account</h1>
+  {% if customer %}
+    {{ partial('account-settings') }}
+  {% else %}
+    <ul class="accordion" data-accordion>
+      <li class="accordion-item is-active" data-accordion-item>
+        <a href="#" class="accordion-title">Login</a>
+        <div class="accordion-content" data-tab-content>
+          {{ partial('login') }}
+        </div>
+      </li>
+      <li class="accordion-item" data-accordion-item>
+        <a href="#" class="accordion-title">Register</a>
+        <div class="accordion-content" data-tab-content>
+          {{ partial('register') }}
+        </div>
+      </li>
+    </ul>
+  {% endif %}
+</section>
