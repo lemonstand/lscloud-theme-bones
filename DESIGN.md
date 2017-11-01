@@ -11,3 +11,14 @@
 
 * A partial should not need to be in a specific context without documenting it.
   * This means the form element should be inside the partial that uses it.
+
+## Layout
+
+* Buttons are laid out according to 
+  [https://material.io/guidelines/components/buttons.html#buttons-usage](Material Design guidelines).
+  * In summary:
+    * Forms: buttons on the left, affirmative on the left, dismissive on the
+      right.
+    * Cards: buttons on the left, or as suited
+    * Dialogs: buttons on the right, affirmative on the right, dismissive on the
+      left.
