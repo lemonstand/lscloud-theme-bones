@@ -18,6 +18,8 @@ import sass from 'gulp-sass';
 import sassLint from 'gulp-sass-lint';
 import sourcemaps from 'gulp-sourcemaps';
 import uglify from 'gulp-uglify';
+import gutil from 'gulp-util';
+import htmllint from 'gulp-htmllint';
 
 // Load build settings
 const PRODUCTION = !!(yargs.argv.production);
@@ -130,6 +132,26 @@ gulp.task('images', (callback) => {
 gulp.task('fonts', (callback) => {
   return gulp.src('node_modules/font-awesome/fonts/*')
       .pipe(gulp.dest('resources/fonts/dist'));
+});
+
+function htmlLintReporter(path, issues) {
+  if (issues.length > 0) {
+    issues.forEach(function (issue) {
+      gutil.log(gutil.colors.cyan('[gulp-htmllint] ') +
+        gutil.colors.white(path + ' [' + issue.line + ',' + issue.column + ']: ') +
+        gutil.colors.red('(' + issue.code + ') ' + issue.msg));
+    });
+    process.exitCode = 1;
+  }
+}
+
+gulp.task('html', (callback) => {
+  return gulp.src(['templates/*.htm', 'pages/*/*.htm', 'partials/*.htm'])
+      .pipe(htmllint({rules: {
+          'indent-width': false,
+          'id-class-style': 'dash',
+          'attr-name-style': 'dash'}
+          }, htmlLintReporter));
 });
 
 // Build the "dist" folder for images, fonts, css and javascript
