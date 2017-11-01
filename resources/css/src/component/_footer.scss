@@ -38,12 +38,6 @@ footer {
 
   @include breakpoint(small down) {
     .footer-custom-nav,
-    .footer-categories,
-    .footer-core {
-      text-align: center;
-    }
-
-    .footer-custom-nav,
     .footer-categories {
       border-bottom: 1px solid $medium-gray;
       padding-bottom: 1rem;
