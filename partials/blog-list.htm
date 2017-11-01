@@ -3,28 +3,41 @@ description: Displays a list of blog posts.
 ---
 {# takes posts as an argument #}
 {% if not posts.length %}
-  <dl class="blog-list">
-    {% for post in posts
-      | extended_sort('published_on', false) %} {# false means descending #}
-      <dt><a href="{{ post.permalink }}">{{ post.title }}</a>
-      <dd>
-        {% if post.featured_image %}
-          <div class="media-object">
-            <div class="media-object-section">
-              <img
-                src="{{ post.featured_image.thumbnail(400, 240) }}"
-                alt="{{ post.featured_image.description }}"
-                title="{{ post.featured_image.title }}" />
+  <section class="blog-list">
+    {% for post in posts %}
+      <section class="card">
+        <section class="card-divider">
+          <h1>
+            <a href="{{ post.permalink }}">{{ post.title }}</a>
+            <small>
+              {{ post.published_on | date('Y/m/d') }} by {{ post.author_name }}
+            </small>
+          </h1>
+        </section>
+        <section class="card-section">
+          {{ partial('blog-categories',
+            {categories: post.categories, align: 'align-center'}) }}
+        </section>
+        <section class="card-section">
+          {% if post.featured_image %}
+            <div class="media-object">
+              <div class="media-object-section">
+                <img
+                  src="{{ post.featured_image.thumbnail(200, 200) }}"
+                  alt="{{ post.featured_image.description }}"
+                  title="{{ post.featured_image.title }}" />
+              </div>
+              <div class="media-object-section main-section">
+                {{ post.excerpt | raw }}
+              </div>
             </div>
-            <div class="media-object-section main-section">
-              {{ post.excerpt | raw }}
-            </div>
-          </div>
-        {% else %}
-          {{ post.excerpt | raw }}
-        {% endif %}
+          {% else %}
+            {{ post.excerpt | raw }}
+          {% endif %}
+        </section>
+      </section>
     {% endfor %}
-  </dl>
+  </section>
 {% else %}
   No posts.
 {% endif %}

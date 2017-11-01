@@ -1,0 +1,38 @@
+---
+description: Displays a mini-cart with a count of items and a dropdown of items
+---
+<ul class="vertical menu accordion-menu" data-accordion-menu>
+  <li>
+    <a href="#">
+      <i class="fa fa-shopping-cart"></i>
+      <span>Cart <span class="badge">{{ cart.getItemNum() }}</span></span>
+    </a>
+    <ul class="menu nested vertical">
+      <li>
+        <a class="button" href="/cart">
+          Go to cart.
+        </a>
+      </li>
+      {% for item in cart.items %}
+        <li>
+          <a href="/product/{{ item.product.url_name }}">
+            {% if item.product.images.first %}
+              <img src="{{ item.product.images.first.thumbnail(32,32) }}" />
+            {% else %}
+              <i class="fa fa-circle"></i>
+            {% endif %}
+            <span>
+              {{ item.product.name }} X {{ item.quantity }}
+              = {{ item.total | currency }}
+            </span>
+          </a>
+        </li>
+      {% endfor %}
+      <li>
+        <a href="/cart">
+          Total: {{ cart.getTotal() | currency }}
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>

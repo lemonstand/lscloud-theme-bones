@@ -7,46 +7,50 @@ template: default
 published: true
 ---
 <section>
-<header>
-{{ product.name }}
-{% if product.images|length %}
-<img
-  src="{{ product.images.first.thumbnail('auto', 'auto') }}"
-  alt="{{ product.images.first.description }}"
-  title="{{product.images.first.title }}" />
-{% endif %}
-{{ product.price | currency }}
-</header>
-<section>
-  {{ partial('product-images', { images: product.images }) }}
-</section>
-{{ product.description | raw}}
-{% if product.in_stock_amount|default(product.out_of_stock_threshold + 1) > product.out_of_stock_threshold|default(0) %}
-  {% if product.onSale %}
-    SALE!
+  <header>
+    {{ product.name }}
+    {% if product.images|length %}
+      <img
+        src="{{ product.images.first.thumbnail('auto', 'auto') }}"
+        alt="{{ product.images.first.description }}"
+        title="{{product.images.first.title }}" />
+    {% endif %}
+    {{ product.price | currency }}
+    <form data-ajax-handler="shop:onAddToCart" data-ajax-update=".mini-cart=mini-cart" method="post">
+      <input type="hidden" name="productId" value="{{ product.id }}">
+      <input type="number" name="quantity" value="1">
+      <button class="button" type="submit">Add to cart</button>
+    </form>
+  </header>
+  <section>
+    {{ partial('product-images', { images: product.images }) }}
+  </section>
+  {{ product.description | raw}}
+  {% if product.in_stock_amount|default(product.out_of_stock_threshold + 1) > product.out_of_stock_threshold|default(0) %}
+    {% if product.onSale %}
+      SALE!
+    {% endif %}
+  {% else %}
+    This product is currently out of stock.
+    Check back for more {{ product.expected_availability_date|default('soon') }}.
   {% endif %}
-{% else %}
-  This product is currently out of stock.
-  Check back for more {{ product.expected_availability_date|default('soon') }}.
-{% endif %}
-{{ partial('price-tiers', {tiers: product.priceTiers}) }}
-{% if theme.enableReviews %}
-  {{ partial('reviews', {reviews: product.reviews()}) }}
-{% endif %}
-{% if theme.enableRatings %}
-  {{ partial('ratings', {ratings: product.rating()}) }}
-{% endif %}
-{% if product.crossSells|length %}
-  <section id="cross-sells">
-    <h1>Cross Sells</h1>
-    {{ partial('related-products', { products: product.crossSells }) }}
-  </section>
-{% endif %}
-{% if product.upSells|length %}
-  <section id="related">
-    <h1>Related</h1>
-    {{ partial('related-products', { products : product.upSells }) }}
-  </section>
-{% endif %}
+  {{ partial('price-tiers', {tiers: product.priceTiers}) }}
+  {% if theme.enableReviews %}
+    {{ partial('reviews', {reviews: product.reviews()}) }}
+  {% endif %}
+  {% if theme.enableRatings %}
+    {{ partial('ratings', {ratings: product.rating()}) }}
+  {% endif %}
+  {% if product.crossSells|length %}
+    <section id="cross-sells">
+      <h1>Cross Sells</h1>
+      {{ partial('related-products', { products: product.crossSells }) }}
+    </section>
+  {% endif %}
+  {% if product.upSells|length %}
+    <section id="related">
+      <h1>Related</h1>
+      {{ partial('related-products', { products : product.upSells }) }}
+    </section>
+  {% endif %}
 </section>
-

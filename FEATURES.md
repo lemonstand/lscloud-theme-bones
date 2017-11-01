@@ -23,12 +23,15 @@
 * “Accepts Marketing” checkbox
   * Use language like “Get occasional email updates from us”
 
-#### Blog
-* /blog page with post archive (not yet paginated)
-  * Each post with featured image, (not yet author, date, category)
+### Blog
+* /blog page with post archive (paginated)
+  * Blog category list
+  * Each post with featured image, author, date, category
 * Blog post page
-  * Title, date (category still todo)
+  * Title, date, category
   * Featured image
+  * Author bio
+    * Social links
 
 # Complete list (not all implemented)
 

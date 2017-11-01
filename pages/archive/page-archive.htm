@@ -1,12 +1,37 @@
 ---
-url: /archive
+url: /archive/:type/:category?/:page?
 name: Blog archive
 description: Displays a list of CMS content blog posts.
 action: cmscontent:archive
 template: default
 published: true
 ---
+{% set blog_slugs = [] %}
+{% set blog_categories = [] %}
+{# Iterate by ascending published_on so that new posts don't change the #}
+{# order of the categories in the list. #}
+{% for post in cmsContent('blog') | extended_sort('published_on', true) %}
+  {% for category in post.categories if category.slug not in blog_slugs %}
+    {% set blog_slugs = blog_slugs | merge([category.slug]) %}
+    {% set blog_categories = blog_categories | merge([category]) %}
+  {% endfor %}
+{% endfor %}
+{{ partial('blog-categories',
+  {categories: blog_categories, align: 'align-right'}) }}
+
+{% set posts = archives %}
 <section class="archive text-center">
   <h1>Archive</h1>
-  {{ partial('blog-list', {posts: cmsContent('blog')}) }}
+  {% if posts | length %}
+    {% paginate posts by 5 %}
+      {{ partial('blog-list', {posts: pagination.items}) }}
+      <footer>
+        {{ partial('pagination',
+          {base_url: '/archive/' ~ type ~ '/' ~ category,
+          pagination: pagination}) }}
+      </footer>
+    {% endpaginate %}
+  {% else %}
+    <span class="error">No posts to display.</span>
+  {% endif %}
 </section>

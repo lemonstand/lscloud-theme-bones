@@ -7,17 +7,39 @@ template: default
 published: true
 ---
 <section class="blog">
-  {% if post.featured_image %}
-    <img
-      src="{{ post.featured_image.thumbnail(600, 360) }}"
-      alt="{{ post.featured_image.description }}"
-      title="{{ post.featured_image.title }}" />
-  {% endif %}
-  <h1>
-    {{ post.title }}
-    <small>
-      {{ post.published_on | date('Y/m/d') }}
-    </small>
-  </h1>
+  <header>
+    {% if post.featured_image %}
+      <img
+        src="{{ post.featured_image.thumbnail(600, 360) }}"
+        alt="{{ post.featured_image.description }}"
+        title="{{ post.featured_image.title }}" />
+    {% endif %}
+    <h1>
+      {{ post.title }}
+      <small>
+        {{ post.published_on | date('Y/m/d') }}
+      </small>
+    </h1>
+    {{ partial('blog-categories',
+      {categories: post.categories, align: 'align-right'}) }}
+  </header>
   {{ post.body | raw }}
+  <footer class="media-object">
+    {% if profile_image %}
+      <div class="media-object-secton">
+        <img src="{{ profile_image.thumbnail('100', '100') }}" />
+      </div>
+    {% endif %}
+    <div class="media-object-section main-section text-center">
+      <h2>{{ post.author_name }}</h2>
+      {{ post.user.user_bio | unescape }}
+    </div>
+    <div class="media-object-section">
+      <ul class="menu vertical">
+        {% for link in post.user.getSocialProfiles() %}
+          <li><a href="{{ link.link }}">{{ link.name }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </footer>
 </section>
