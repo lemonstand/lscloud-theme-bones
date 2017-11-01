@@ -6,6 +6,13 @@
 * id attributes inside a partial should be prefixed with the partial name
   followed by an underscore. This prevents ambiguity with the dashes in
   partial names, while still working well with JQuery.
+* Classes for the elements immediately containing Twig variables are named
+  after the Twig variables, with camelCase or underscore\_separations replaced
+  with dashed-separations.
+* Classes for the main sections of partials or pages are named after those
+  partials or pages.
+* Other sections are named with hopefully understandable names, always with
+  dashed-separations.
 
 ## Divisions
 
