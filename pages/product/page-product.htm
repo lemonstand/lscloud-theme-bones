@@ -19,14 +19,32 @@ published: true
 
   <main class="media-object">
     <section class="product-image media-object-section">
-      <img
-        src="{{ product.images.first.thumbnail('auto', 'auto')
-          | default('http://placehold.it/400x400') }}"
-        alt="{{ product.images.first.description }}"
-        title="{{product.images.first.title }}" />
-      <section class="product-images">
-        {{ partial('product-images', { images: product.images }) }}
-      </section>
+      <div class="orbit" data-orbit>
+        <ul class="orbit-container">
+          {% for image in product.images %}
+            <li class="orbit-slide {% if loop.first %}is-active{% endif %}">
+              <img
+                class="orbit-image"
+                src="{{ image.thumbnail('auto', 'auto') }}"
+                alt="{{ image.description }}"
+                title="{{ image.title }}" />
+            </li>
+          {% endfor %}
+        </ul>
+        <nav class="orbit-bullets">
+          {% for index, image in product.images %}
+            <button
+              {% if loop.first %}class="is-active"{% endif %}
+              data-slide="{{ index }}">
+              <img
+                class="orbit-image"
+                src="{{ image.thumbnail('100', '100') }}"
+                alt="{{ image.description }}"
+                title="{{ image.title }}" />
+            </button>
+          {% endfor %}
+        </nav>
+      </div>
     </section>
 
     <section class="media-object-section main-section">
