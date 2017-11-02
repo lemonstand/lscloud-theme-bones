@@ -17,69 +17,73 @@ published: true
     {% endif %}
   </header>
 
-  <section class="product-image">
-    <img
-      src="{{ product.images.first.thumbnail('auto', 'auto')
-        | default('http://placehold.it/400x400') }}"
-      alt="{{ product.images.first.description }}"
-      title="{{product.images.first.title }}" />
-    <section class="product-images">
-      {{ partial('product-images', { images: product.images }) }}
+  <main class="media-object">
+    <section class="product-image media-object-section">
+      <img
+        src="{{ product.images.first.thumbnail('auto', 'auto')
+          | default('http://placehold.it/400x400') }}"
+        alt="{{ product.images.first.description }}"
+        title="{{product.images.first.title }}" />
+      <section class="product-images">
+        {{ partial('product-images', { images: product.images }) }}
+      </section>
     </section>
-  </section>
 
-  <h2>{{ product.name }}</h2>
+    <section class="media-object-section main-section">
+      <h2>{{ product.name }}</h2>
 
-  {% if theme.enableRatings %}
-    <section class="ratings">
-      {{ partial('ratings', {ratings: product.rating()}) }}
+      {% if theme.enableReviews %}
+
+        <section class="ratings">
+          {{ partial('ratings', {rating: product.rating()}) }}
+        </section>
+
+        <section class="reviews">
+          {{ partial('reviews', {reviews: product.reviews()}) }}
+        </section>
+
+      {% endif %}
+
+      <section class="price">
+        {{ product.price | currency }}
+        {% if product.onSale %}
+          SALE!
+        {% endif %}
+      </section>
+
+      <section class="description">
+        {{ product.description | unescape }}
+      </section>
+
+      <section class="product-options">
+        Options
+      </section>
+
+      <section class="product-form">
+        {% if product.in_stock_amount|default(product.out_of_stock_threshold + 1) > product.out_of_stock_threshold|default(0) %}
+          <form
+            data-ajax-handler="shop:onAddToCart"
+            data-ajax-update=".mini-cart=mini-cart"
+            method="post">
+            <input type="hidden" name="productId" value="{{ product.id }}">
+            <input type="number" name="quantity" value="1">
+            <button class="button" type="submit">Add to cart</button>
+          </form>
+        {% else %}
+          This product is currently out of stock.
+          Check back for more {{ product.expected_availability_date|default('soon') }}.
+        {% endif %}
+      </section>
+
+      <section class="price-tiers">
+        {{ partial('price-tiers', {tiers: product.priceTiers}) }}
+      </section>
+
+      <section class="product-description">
+        {{ product.description | raw}}
+      </section>
     </section>
-  {% endif %}
-
-  {% if theme.enableReviews %}
-    <section class="reviews">
-      {{ partial('reviews', {reviews: product.reviews()}) }}
-    </section>
-  {% endif %}
-
-  <section class="price">
-    {{ product.price | currency }}
-    {% if product.onSale %}
-      SALE!
-    {% endif %}
-  </section>
-
-  <section class="description">
-    {{ product.description | unescape }}
-  </section>
-
-  <section class="product-options">
-    Options
-  </section>
-
-  <section class="product-form">
-    {% if product.in_stock_amount|default(product.out_of_stock_threshold + 1) > product.out_of_stock_threshold|default(0) %}
-      <form
-        data-ajax-handler="shop:onAddToCart"
-        data-ajax-update=".mini-cart=mini-cart"
-        method="post">
-        <input type="hidden" name="productId" value="{{ product.id }}">
-        <input type="number" name="quantity" value="1">
-        <button class="button" type="submit">Add to cart</button>
-      </form>
-    {% else %}
-      This product is currently out of stock.
-      Check back for more {{ product.expected_availability_date|default('soon') }}.
-    {% endif %}
-  </section>
-
-  <section class="price-tiers">
-    {{ partial('price-tiers', {tiers: product.priceTiers}) }}
-  </section>
-
-  <section class="product-description">
-    {{ product.description | raw}}
-  </section>
+  </main>
 
   <footer>
     {% if product.crossSells|length %}
