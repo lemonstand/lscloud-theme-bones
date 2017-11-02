@@ -4,7 +4,7 @@ Description: Displays a product's ratings.
 {# takes rating as an argument #}
 {% if rating.total_reviews %}
   {% set avg = rating.average_int %}
-  {% for i in range(1, 5) %}
+  {% for i in 1..5 %}
     {% if i <= avg %}
       &starf;
     {% else %}
