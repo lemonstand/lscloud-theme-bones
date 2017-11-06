@@ -7,7 +7,7 @@ description: Displays a product list.
     {% for product in products %}
       <div class="cell">
         <div class="card">
-          <a href="product/{{ product.url_name }}">
+          <a href="/product/{{ product.url_name }}">
             <img
               src="{{ product.images.first.thumbnail(400, 400)
                 | default('http://placehold.it/400x400') }}"
