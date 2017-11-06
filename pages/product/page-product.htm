@@ -103,13 +103,13 @@ published: true
     {% if product.crossSells|length %}
       <section class="cross-sells">
         <h1>Cross Sells</h1>
-        {{ partial('related-products', { products: product.crossSells }) }}
+        {{ partial('product-list', { products: product.crossSells }) }}
       </section>
     {% endif %}
     {% if product.upSells|length %}
       <section class="related">
         <h1>Related</h1>
-        {{ partial('related-products', { products : product.upSells }) }}
+        {{ partial('product-list', { products : product.upSells }) }}
       </section>
     {% endif %}
   </footer>

@@ -17,7 +17,20 @@ description: Displays a product list.
               <div class="grid-x">
                 <div class="cell medium-8">{{ product.name }}</div>
                 <div class="cell medium-4">
-                  {{ product.price | currency }}
+                  {% if is_on_sale %}
+                    <span class="strike-price">
+                      {{ product.fullPrice | currency }}
+                    </span>
+                  {% endif %}
+                  {% if product.type == 'upsell' and product.discount %}
+                    <span class="strike-price">
+                      {{ product.product_relation.base_price | currency }}
+                    </span>
+                    {{ (product.product_relation.base_price - product.discount)
+                      | currency }}
+                  {% else %}
+                    {{ product.product_relation.base_price | currency }}
+                  {% endif %}
                 </div>
               </div>
             </section>
