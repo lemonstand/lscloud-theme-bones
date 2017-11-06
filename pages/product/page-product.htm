@@ -84,7 +84,7 @@ published: true
             data-ajax-update=".mini-cart=mini-cart"
             method="post">
             <input type="hidden" name="productId" value="{{ product.id }}">
-            <input type="number" name="quantity" value="1">
+            <input type="number" name="quantity" value="1" min="1">
             <button class="button" type="submit">Add to cart</button>
           </form>
         {% else %}
