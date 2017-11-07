@@ -57,7 +57,10 @@ published: true
         </section>
 
         <section class="reviews">
-          {{ partial('reviews', {reviews: product.reviews()}) }}
+          {{ partial('reviews', {
+            product: product,
+            reviews: product.reviews()})
+          }}
         </section>
 
       {% endif %}

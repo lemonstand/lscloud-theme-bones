@@ -1,6 +1,7 @@
 ---
 Description: Displays a product's reviews.
 ---
+{# takes product as an argument #}
 {# takes reviews as an argument #}
 {# can only be used once on a page, because it has id attributes #}
 
@@ -10,7 +11,26 @@ Description: Displays a product's reviews.
 <!-- review modals -->
 
 <section class="reveal review-view" id="review-view" data-reveal>
-View reviews.
+  <header>
+    <h1>{{ product.name }}</h1>
+  </header>
+  <main>
+    <section "total">
+      {{ partial('ratings', {rating: product.rating()}) }}
+    </section>
+    <nav>
+      <button class="button" data-open="review-add">leave a review</button>
+    </nav>
+    {% for review in product.reviews() %}
+      <section class="review">
+        {{ partial('stars', {count: review.item_rating}) }}
+        <p class="date">{{ review.created_at|date('M jS, Y') }}</p>
+        <h2>{{ review.title }}</h2>
+        <p>{{ review.comment }}</p>
+        <p class="name">By {{ review.from_name }}</p>
+      </section>
+    {% endfor %}
+  </main>
 </section>
 
 <section class="reveal review-add" id="review-add" data-reveal>
