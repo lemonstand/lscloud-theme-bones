@@ -2,5 +2,19 @@
 Description: Displays a product's reviews.
 ---
 {# takes reviews as an argument #}
-<a href="#" class="button secondary">view reviews</a>
-<a href="#" class="button secondary">leave a review</a>
+{# can only be used once on a page, because it has id attributes #}
+
+<button class="button secondary" data-open="review-view">view reviews</button>
+<button class="button secondary" data-open="review-add">leave a review</button>
+
+<!-- review modals -->
+
+<section class="reveal review-view" id="review-view" data-reveal>
+View reviews.
+</section>
+
+<section class="reveal review-add" id="review-add" data-reveal>
+Add a review.
+</section>
+
+<!-- end review modals -->
