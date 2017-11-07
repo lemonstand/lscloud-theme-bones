@@ -17,19 +17,28 @@ description: Displays a product list.
               <div class="grid-x">
                 <div class="cell medium-8">{{ product.name }}</div>
                 <div class="cell medium-4">
-                  {# For an upsell, .onSale is always false #}
-                  {% if product.onSale %}
-                    <span class="strike-price">
-                      {{ product.fullPrice | currency }}
-                    </span>
-                  {% endif %}
-                  {% if product.type == 'upsell' and product.discount %}
-                    <span class="strike-price">
+                  {% if product.product_relation %}
+                    {# For an upsell, .onSale is always false #}
+                    {% if product.onSale %}
+                      <span class="strike-price">
+                        {{ product.fullPrice | currency }}
+                      </span>
+                    {% endif %}
+                    {% if product.type == 'upsell' and product.discount %}
+                      <span class="strike-price">
+                        {{ product.product_relation.base_price | currency }}
+                      </span>
+                      {{ product.product_relation.price | currency }}
+                    {% else %}
                       {{ product.product_relation.base_price | currency }}
-                    </span>
-                    {{ product.product_relation.price | currency }}
+                    {% endif %}
                   {% else %}
-                    {{ product.product_relation.base_price | currency }}
+                    {% if product.onSale %}
+                      <span class="strike-price">
+                        {{ product.fullPrice | currency }}
+                      </span>
+                    {% endif %}
+                    {{ product.price | currency }}
                   {% endif %}
                 </div>
               </div>
