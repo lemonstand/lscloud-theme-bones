@@ -141,7 +141,13 @@ published: true
       </section>
 
       <section class="price-tiers">
-        {{ partial('price-tiers', {tiers: product.priceTiers}) }}
+        {% if product.priceTiers|length %}
+          <ul>
+          {% for tier in product.priceTiers %}
+            <li>{{ tier.price | currency}} for {{ tier.quantity }}</li>
+          {% endfor %}
+          </ul>
+        {% endif %}
       </section>
     </section>
   </main>
