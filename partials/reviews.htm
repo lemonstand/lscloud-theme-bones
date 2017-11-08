@@ -39,27 +39,35 @@ Description: Displays a product's reviews.
   </header>
   <main>
     {{ flash() }}
-    <form method="post" data-ajax-handler="system:onSendMessage">
+    <form
+      method="post"
+      data-ajax-handler="system:onSendMessage"
+      data-abide
+      novalidate>
       <label>
         Name
         <input type="text" name="fields[name]" required>
         <span class="error"></span>
+        <span class="form-error">Name is required.</span>
       </label>
       <label>
         Email
         <input type="email" name="fields[email]" required>
         <span class="error"></span>
+        <span class="form-error">Email must be a valid email address.</span>
       </label>
 
       <label>
         Title
         <input type="text" name="fields[subject]" required/>
         <span class="error"></span>
+        <span class="form-error">Review title is required.</span>
       </label>
       <label>
         Review
         <textarea name="fields[message]" rows="10" required></textarea>
         <span class="error"></span>
+        <span class="form-error">Review is required.</span>
       </label>
 
       <label>
@@ -75,8 +83,14 @@ Description: Displays a product's reviews.
 
       <button type="submit" class="button">submit</button>
 
-      <input type="hidden" name="fields[shop_customer_id]" value="{{customer.id}}">
-      <input type="hidden" name="fields[shop_product_id]" value="{{product.id}}">
+      <input
+        type="hidden"
+        name="fields[shop_customer_id]"
+        value="{{customer.id}}">
+      <input
+        type="hidden"
+        name="fields[shop_product_id]"
+        value="{{product.id}}">
       <input type="hidden" name="fields[message_type]" value="review">
     </form>
   </main>
