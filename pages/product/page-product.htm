@@ -76,10 +76,6 @@ published: true
         {{ product.description | unescape }}
       </section>
 
-      <section class="product-options">
-        Options
-      </section>
-
       {% if product.productAttributes.count %}
         <table class="product-attributes">
           {% for attribute in product.productAttributes %}
@@ -90,6 +86,21 @@ published: true
           {% endfor %}
         </table>
       {% endif %}
+
+      {% for option in product.options %}
+        <label>
+          {{ option.name }}
+          <select name="options[{{ option.id }}]">
+            {% for value, name in option.values %}
+              <option
+                value="{{ value }}"
+                {{ option_state(postedOptions[option.id], key) }}>
+                {{ name }}
+              </option>
+            {% endfor %}
+          </select>
+        </label>
+      {% endfor %}
 
       <section class="product-form">
         {% if product.in_stock_amount|default(product.out_of_stock_threshold + 1) > product.out_of_stock_threshold|default(0) %}
