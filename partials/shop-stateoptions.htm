@@ -1,0 +1,12 @@
+{% if states|length %}
+<option value="">- Select a State -</option>
+
+{% for state in states %}
+<option value="{{ state.id }}" {{ option_state(selected, state.id) }}>
+  {{ state.name }}
+</option>
+{% endfor %}
+
+{% else %} {# No states for given country #}
+<option selected value="">- no states -</option>
+{% endif %}

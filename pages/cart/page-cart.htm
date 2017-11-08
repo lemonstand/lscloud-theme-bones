@@ -7,7 +7,7 @@ template: default
 published: true
 ---
 <section class="grid-container cart-page">
-  <div class="grid-x grid-padding-x">
+  <form class="grid-x grid-padding-x">
 
     <header class="cell">
       <h1>Cart</h1>
@@ -17,12 +17,12 @@ published: true
       {{ partial('cart-contents') }}
     </section>
 
-    <section class="cart-summary">
-
+    <section class="cell cart-upsells">
+      <!-- Check all cart products for upsells, list out here including reg price, discount, and add to cart button-->
     </section>
 
-    <section class="cart-upsells">
-
+    <section class="cell cart-summary">
+      {{ partial('cart-summary') }}
     </section>
-  </div>
+  </form>
 </section>
