@@ -1,7 +1,10 @@
+{% if items | length > 0 %}
 <hr>
+{% endif %}
 
 <div class="grid-x grid-padding-x">
 
+  {% if items | length > 0 %}
   <div class="cell large-9 cart-shipping-estimates">
     <h3>Shipping Rates Calculator</h3>
 
@@ -71,6 +74,7 @@
 
     </div>
   </div>
+  {% endif %}
 
   <div class="cell large-12 cart-footer">
     <hr>
@@ -79,12 +83,14 @@
         <a class="button hollow" href="/products">Continue Shopping</a>
       </div>
       <div class="cell shrink footer-right">
+        {% if items | length > 0 %}
         <label class="input-group">
           <span class="input-group-label">Coupon Code</span>
           <input type="text" name="coupon" class="input-group-field" value="{{ coupon_code }}"/>
         </label>
         <input type="submit" class="button hollow" value="Apply Changes"/>
         <a class="button" href="/checkout">Checkout</a>
+        {% endif %}
       </div>
     </div>
   </div>

@@ -54,5 +54,14 @@
       font-size: .75rem;
       margin: 0;
     }
+
+    .price-original {
+      color: $alert-color;
+      text-decoration: line-through;
+    }
+  }
+
+  .empty-cart {
+    margin-bottom: -1rem;
   }
 }

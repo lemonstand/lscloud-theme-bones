@@ -43,11 +43,17 @@
       </header>
 
       <div class="cell number-cell">
-        <input type="number" min="1" value="{{ item.quantity }}"/>
+        <input name="item_quantity[{{ item.key }}]" type="number" min="1" value="{{ item.quantity }}"/>
       </div>
 
       <div class="cell number-cell">
-        {{ item.price | currency }}
+        {% if item.price != item.fullPrice() %}
+        <span class="price-original">{{ item.fullPrice() | currency }}</span><br>
+        <span>{{ item.price | currency }}</span>
+        {% else %}{# Item isn't on sale #}
+        <span>{{ item.price | currency }}</span>
+        {% endif %}
+
       </div>
 
       <div class="cell number-cell">
@@ -64,6 +70,9 @@
 
     </div>
   </section>
+  {% else %}
+  <section class="cell contents-product">
+    <p class="empty-cart">You don't have anything in your cart yet!</p>
+  </section>
   {% endfor %}
-
 </div>
