@@ -140,15 +140,27 @@ published: true
         </form>
       </section>
 
-      <section class="price-tiers">
-        {% if product.priceTiers|length %}
-          <ul>
-          {% for tier in product.priceTiers %}
-            <li>{{ tier.price | currency}} for {{ tier.quantity }}</li>
-          {% endfor %}
-          </ul>
-        {% endif %}
-      </section>
+      {% if product.priceTiers|length %}
+        <section class="price-tiers">
+          <h2>Bulk Pricing</h2>
+          <table>
+            <thead>
+              <tr>
+                <td>Quantity</td>
+                <td>Price</td>
+              </tr>
+            </thead>
+            <tbody>
+              {% for tier in product.priceTiers %}
+                <tr>
+                  <td>{{ tier.quantity }}</td>
+                  <td>{{ tier.price | currency}}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </section>
+      {% endif %}
     </section>
   </main>
 
