@@ -105,11 +105,9 @@ $print-transparent-backgrounds: true;
 // --------------
 
 $breakpoints: (
-  small: 0,
-  medium: 640px,
-  large: 1024px,
-  xlarge: 1200px,
-  xxlarge: 1440px,
+  small: 0, // iPhone 5, and most other mobile phones
+  medium: 640px, // iPad, and most other tablets
+  large: 1024px, // Desktop (and iPad Pro)
 );
 $print-breakpoint: large;
 $breakpoint-classes: (small medium large);

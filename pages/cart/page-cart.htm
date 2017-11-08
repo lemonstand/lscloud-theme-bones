@@ -1,0 +1,31 @@
+---
+url: /cart
+name: Cart
+description: Shows current cart contents
+action: shop:cart
+template: default
+published: true
+---
+<section class="grid-container cart-page">
+  <form class="grid-x grid-padding-x" data-ajax-handler="shop:cart"
+        data-ajax-update=".cart-contents=cart-contents, .cart-upsells=cart-upsells, .cart-summary=cart-summary">
+
+    <header class="cell">
+      <h1>Cart</h1>
+    </header>
+
+    <section class="cell cart-contents">
+      {{ partial('cart-contents') }}
+    </section>
+
+    {% if theme.enableCartUpsells %}
+    <section class="cell cart-upsells">
+      {{ partial('cart-upsells') }}
+    </section>
+    {% endif %}
+
+    <section class="cell cart-summary">
+      {{ partial('cart-summary') }}
+    </section>
+  </form>
+</section>
