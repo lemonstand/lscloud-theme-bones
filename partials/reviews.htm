@@ -22,12 +22,18 @@ Description: Displays a product's reviews.
       <button class="button" data-open="review-add">leave a review</button>
     </nav>
     {% for review in product.reviews() %}
-      <section class="review">
-        {{ partial('stars', {count: review.item_rating}) }}
-        <p class="date">{{ review.created_at|date('M jS, Y') }}</p>
-        <h2>{{ review.title }}</h2>
-        <p>{{ review.comment }}</p>
-        <p class="name">By {{ review.from_name }}</p>
+      <section class="card review">
+        <section class="card-section">
+          {{ partial('stars', {count: review.item_rating}) }}
+          <p>{{ review.created_at|date('M jS, Y') }}</p>
+        </section>
+        <header class="card-divider">
+          <h2>{{ review.title }}</h2>
+        </header>
+        <main class="card-section">
+          <p>{{ review.comment }}</p>
+          <p class="name">By {{ review.from_name }}</p>
+        </main>
       </section>
     {% endfor %}
   </main>
