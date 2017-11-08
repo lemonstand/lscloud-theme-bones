@@ -1,12 +1,7 @@
-<!-- Check all cart products for upsells, list out here including reg price, discount, and add to cart button-->
-{% set upsells = [] %}
-
-{% for item in items if not item.product.upsells.isEmpty() %}
-  {% for upsell in item.product.upsells %}
-    {% set upsells = upsells | merge([upsell]) %}
-  {% endfor %}
-{% endfor %}
-
+---
+description: Displays upsells, with add to cart buttons.
+---
+{# Takes upsells as a parameter #}
 {% if (upsells | length) > 0 %}
 <div class="grid-x grid-padding-x">
   <div class="cell upsells-header">

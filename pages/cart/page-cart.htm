@@ -6,6 +6,14 @@ action: shop:cart
 template: default
 published: true
 ---
+{# Get all cart products' upsells #}
+{% set upsells = [] %}
+{% for item in items if not item.product.upsells.isEmpty() %}
+  {% for upsell in item.product.upsells %}
+    {% set upsells = upsells | merge([upsell]) %}
+  {% endfor %}
+{% endfor %}
+
 <section class="grid-container cart-page">
   <form class="grid-x grid-padding-x" data-ajax-handler="shop:cart"
         data-ajax-update=".cart-contents=cart-contents, .cart-upsells=cart-upsells, .cart-summary=cart-summary">
@@ -20,7 +28,7 @@ published: true
 
     {% if theme.enableCartUpsells %}
     <section class="cell cart-upsells">
-      {{ partial('cart-upsells') }}
+      {{ partial('cart-upsells', {upsells: upsells}) }}
     </section>
     {% endif %}
 
