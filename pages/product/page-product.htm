@@ -87,35 +87,36 @@ published: true
         </table>
       {% endif %}
 
-      {% for option in product.options %}
-        <label>
-          {{ option.name }}
-          <select name="options[{{ option.id }}]">
-            {% for value, name in option.values %}
-              <option
-                value="{{ value }}"
-                {{ option_state(postedOptions[option.id], key) }}>
-                {{ name }}
-              </option>
-            {% endfor %}
-          </select>
-        </label>
-      {% endfor %}
-
       <section class="product-form">
-        {% if product.in_stock_amount|default(product.out_of_stock_threshold + 1) > product.out_of_stock_threshold|default(0) %}
-          <form
-            data-ajax-handler="shop:onAddToCart"
-            data-ajax-update=".mini-cart=mini-cart"
-            method="post">
-            <input type="hidden" name="productId" value="{{ product.id }}">
-            <input type="number" name="quantity" value="1" min="1">
-            <button class="button" type="submit">Add to cart</button>
-          </form>
-        {% else %}
-          This product is currently out of stock.
-          Check back for more {{ product.expected_availability_date|default('soon') }}.
-        {% endif %}
+        <form
+          data-ajax-handler="shop:onAddToCart"
+          data-ajax-update=".mini-cart=mini-cart"
+          method="post">
+
+          {% for option in product.options %}
+            <label>
+              {{ option.name }}
+              <select name="options[{{ option.id }}]">
+                {% for value, name in option.values %}
+                  <option
+                    value="{{ value }}"
+                    {{ option_state(postedOptions[option.id], key) }}>
+                    {{ name }}
+                  </option>
+                {% endfor %}
+              </select>
+            </label>
+          {% endfor %}
+
+          {% if product.in_stock_amount|default(product.out_of_stock_threshold + 1) > product.out_of_stock_threshold|default(0) %}
+              <input type="hidden" name="productId" value="{{ product.id }}">
+              <input type="number" name="quantity" value="1" min="1">
+              <button class="button" type="submit">Add to cart</button>
+          {% else %}
+            This product is currently out of stock.
+            Check back for more {{ product.expected_availability_date|default('soon') }}.
+          {% endif %}
+        </form>
       </section>
 
       <section class="price-tiers">
