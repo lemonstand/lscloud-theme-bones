@@ -1,0 +1,40 @@
+<!-- Check all cart products for upsells, list out here including reg price, discount, and add to cart button-->
+{% set upsells = [] %}
+
+{% for item in items if not item.product.upsells.isEmpty() %}
+  {% for upsell in item.product.upsells %}
+    {% set upsells = upsells | merge([upsell]) %}
+  {% endfor %}
+{% endfor %}
+
+{% if (upsells | length) > 0 %}
+<div class="grid-x grid-padding-x">
+  <div class="cell upsells-header">
+    <h2>Purchase together and save</h2>
+  </div>
+  {% for upsell in upsells %}
+  <div class="cell upsells-product">
+    <div class="grid-x grid-padding-x">
+      <div class="cell large-6 product-details">
+        <img class="product-image" src="{{ upsell.images.first.thumbnail(100, 'auto') }}"/>
+        <h3 class="product-name"><a href="/product/{{ upsell.url_name }}">{{ upsell.name }}</a></h3>
+        {% set options = upsell.optionsString() %}
+        {% if options %}
+        <p class="product-options">{{ details | unescape }}</p>
+        {% endif %}
+      </div>
+      <div class="cell large-3 product-prices">
+        <p class="product-base-price">Reg. {{ upsell.base_price | currency }}</p>
+        <p class="product-discount">SAVE {{ (upsell.base_price - upsell.price) | currency}}</p>
+        <p class="product-price">{{ upsell.price ? (upsell.price | currency) : 'Free' }}</p>
+      </div>
+      <div class="cell large-3 product-cta">
+        <a class="button" data-ajax-handler="shop:onAddToCart"
+           data-ajax-extra-fields="upsellId='{{ upsell.id }}', productId='{{ upsell.parentProduct.id }}'"
+           data-ajax-update=".cart-contents=cart-contents, .cart-summary=cart-summary">Add to Cart</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}

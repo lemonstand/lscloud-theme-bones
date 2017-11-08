@@ -29,10 +29,17 @@
       <header class="cell large-8">
         <img class="product-image" src="{{ item.product.images.first.thumbnail(100, 'auto') }}"/>
         <h2 class="product-name"><a href="/product/{{ item.url_name }}">{{ item.product.name }}</a></h2>
-        <p class="product-details">
-          TODO: Options<br>
-          TODO: Extras
-        </p>
+        {% set options = item.optionsString() %}
+        {% if options %}
+        <p class="product-options">{{ options | unescape }}</p>
+        {% endif %}
+        {% set extras = "" %}
+        {% for extra in item.extras %}
+        {% set extras = extras ~ extra.name ~ (not loop.first ? ', ' : '') %}
+        {% endfor %}
+        {% if extras | length > 0 %}
+        <p class="product-extras">{{ extras }}</p>
+        {% endif %}
       </header>
 
       <div class="cell number-cell">

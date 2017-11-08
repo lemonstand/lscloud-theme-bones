@@ -17,9 +17,11 @@ published: true
       {{ partial('cart-contents') }}
     </section>
 
+    {% if theme.enableCartUpsells %}
     <section class="cell cart-upsells">
-      <!-- Check all cart products for upsells, list out here including reg price, discount, and add to cart button-->
+      {{ partial('cart-upsells') }}
     </section>
+    {% endif %}
 
     <section class="cell cart-summary">
       {{ partial('cart-summary') }}

@@ -13,5 +13,6 @@ customFields:
     fillWindow: { type: checkbox, title: 'Keep footer at bottom of screen on short pages', default: true }
     enableReviews: { type: checkbox, title: 'Show reviews on the product page', default: true }
     enableRatings: { type: checkbox, title: 'Show ratings on the product page', default: true }
+    enableCartUpsells: {type: checkbox, title: 'Show upsells on the cart page', default: true }
     homeNewsletterSubscribe: { type: checkbox, title: 'Show newsletter subscription form on homepage', default: true }
 ---
