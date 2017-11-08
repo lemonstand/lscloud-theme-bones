@@ -1,0 +1,62 @@
+<div class="grid-x grid-padding-x">
+
+  <header class="cell contents-header">
+    <div class="grid-x grid-padding-x">
+
+      <div class="cell">
+        <span><strong>Item</strong></span>
+      </div>
+
+      <div class="cell number-cell">
+        <span><strong>Quantity</strong></span>
+      </div>
+
+      <div class="cell number-cell">
+        <span><strong>Price</strong></span>
+      </div>
+
+      <div class="cell number-cell">
+        <span><strong>Total</strong></span>
+      </div>
+
+    </div>
+  </header>
+
+  {% for item in items %}
+  <section class="cell contents-product">
+    <div class="grid-x grid-padding-x">
+
+      <header class="cell large-8">
+        <img class="product-image" src="{{ item.product.images.first.thumbnail(100, 'auto') }}"/>
+        <h2 class="product-name"><a href="/product/{{ item.url_name }}">{{ item.product.name }}</a></h2>
+        <p class="product-details">
+          TODO: Options<br>
+          TODO: Extras
+        </p>
+      </header>
+
+      <div class="cell number-cell">
+        <input type="number" min="1" value="{{ item.quantity }}"/>
+      </div>
+
+      <div class="cell number-cell">
+        {{ item.price | currency }}
+      </div>
+
+      <div class="cell number-cell">
+        {{ item.total | currency }}
+      </div>
+
+      <div class="cell remove-cell">
+        <a class="remove-button" data-ajax-handler="shop:cart"
+                data-ajax-extra-fields="delete_item={{ item.key }}"
+                data-ajax-update=".cart-contents=cart-contents">
+          <span class="fa fa-lg fa-times-circle"></span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+  {% endfor %}
+
+</div>

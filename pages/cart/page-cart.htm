@@ -1,0 +1,28 @@
+---
+url: /cart
+name: Cart
+description: Shows current cart contents
+action: shop:cart
+template: default
+published: true
+---
+<section class="grid-container cart-page">
+  <div class="grid-x grid-padding-x">
+
+    <header class="cell">
+      <h1>Cart</h1>
+    </header>
+
+    <section class="cell cart-contents">
+      {{ partial('cart-contents') }}
+    </section>
+
+    <section class="cart-summary">
+
+    </section>
+
+    <section class="cart-upsells">
+
+    </section>
+  </div>
+</section>
