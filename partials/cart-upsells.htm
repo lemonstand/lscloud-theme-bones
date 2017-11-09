@@ -16,13 +16,21 @@ description: Displays upsells and cross sells, with add to cart buttons.
         {% endif %}
       </div>
       <div class="cell large-3 product-prices">
-        <p class="product-base-price">Reg. {{ related.base_price | currency }}</p>
-        <p class="product-discount">SAVE {{ (related.base_price - upsell.price) | currency}}</p>
+        {% if related.type == 'upsell' or related.onSale %}
+          <p class="product-base-price">Reg. {{ related.base_price | currency }}</p>
+        {% endif %}
+        {% if related.type == 'upsell' %}
+          <p class="product-discount">SAVE {{ (related.base_price - upsell.price) | currency}}</p>
+        {% endif %}
         <p class="product-price">{{ related.price ? (related.price | currency) : 'Free' }}</p>
       </div>
       <div class="cell large-3 product-cta">
         <a class="button" data-ajax-handler="shop:onAddToCart"
-           data-ajax-extra-fields="upsellId='{{ related.id }}', productId='{{ related.parentProduct.id }}'"
+          {% if product.type == 'upsell' %}
+            data-ajax-extra-fields="upsellId='{{ related.id }}', productId='{{ related.parentProduct.id }}'"
+          {% else %}
+            data-ajax-extra-fields="productId='{{ related.product.id }}'"
+          {% endif %}
            data-ajax-update=".cart-contents=cart-contents, .cart-summary=cart-summary">
           Add to Cart
         </a>
