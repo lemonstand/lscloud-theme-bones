@@ -43,18 +43,23 @@
       </header>
 
       <div class="cell number-cell">
-        <input name="item_quantity[{{ item.key }}]" type="number" min="1" value="{{ item.quantity }}"/>
+        <label>
+          <span class="number-cell-label">Quantity: </span>
+          <input name="item_quantity[{{ item.key }}]" type="number" min="1" value="{{ item.quantity }}"/>
+        </label>
       </div>
 
       <div class="cell number-cell">
+        <span class="number-cell-label">Price: </span>
         {% if item.price != item.fullPrice() %}
-        <span class="product-price-original">{{ item.fullPrice() | currency }}</span><br>
+        <span class="product-price-original">{{ item.fullPrice() | currency }}</span><br class="show-for-medium">
         {% endif %}
 
         <span class="product-price-current">{{ item.price | currency }}</span>
       </div>
 
       <div class="cell number-cell">
+        <span class="number-cell-label">Total: </span>
         {{ item.total | currency }}
       </div>
 

@@ -68,4 +68,16 @@
       }
     }
   }
+
+  @include breakpoint(medium down) {
+    .button {
+      width: 100%;
+    }
+
+    .cart-footer {
+      .footer-right {
+        flex-direction: column;
+      }
+    }
+  }
 }

@@ -5,7 +5,43 @@
 <div class="grid-x grid-padding-x">
 
   {% if items | length > 0 %}
-  <div class="cell large-9 cart-shipping-estimates">
+  <div class="cell large-3 large-order-2 cart-totals">
+    <div class="grid-x grid-padding-x">
+
+      <div class="cell small-6 title-cell">
+        Subtotal
+      </div>
+      <div class="cell small-6 value-cell">
+        {{ cart.getSubtotalNoTax() | currency }}
+      </div>
+
+      <div class="cell small-6 title-cell">
+        Discount
+      </div>
+      <div class="cell small-6 value-cell">
+        {{ cart.getDiscountTotal() | currency }}
+      </div>
+
+      {% if shipping.streetAddressLine1 %}
+      <div class="cell small-6 title-cell">
+        Tax
+      </div>
+      <div class="cell small-6 value-cell">
+        {{ cart.getTotalTax() | currency }}
+      </div>
+      {% endif %}
+
+      <div class="cell small-6 title-cell total-cell">
+        Total
+      </div>
+      <div class="cell small-6 value-cell total-cell">
+        {{ cart.getTotal() | currency }}
+      </div>
+
+    </div>
+  </div>
+
+  <div class="cell large-9 large-order-1 cart-shipping-estimates">
     <h3>Shipping Rates Calculator</h3>
 
     <div class="grid-x grid-padding-x">
@@ -38,51 +74,15 @@
 
     <div class="shipping-estimates"><!-- Will be populated after Calculate button clicked --></div>
   </div>
-
-  <div class="cell large-3 cart-totals">
-    <div class="grid-x grid-padding-x">
-
-      <div class="cell large-6 title-cell">
-        Subtotal
-      </div>
-      <div class="cell large-6 value-cell">
-        {{ cart.getSubtotalNoTax() | currency }}
-      </div>
-
-      <div class="cell large-6 title-cell">
-        Discount
-      </div>
-      <div class="cell large-6 value-cell">
-        {{ cart.getDiscountTotal() | currency }}
-      </div>
-
-      {% if shipping.streetAddressLine1 %}
-      <div class="cell large-6 title-cell">
-        Tax
-      </div>
-      <div class="cell large-6 value-cell">
-        {{ cart.getTotalTax() | currency }}
-      </div>
-      {% endif %}
-
-      <div class="cell large-6 title-cell total-cell">
-        Total
-      </div>
-      <div class="cell large-6 value-cell total-cell">
-        {{ cart.getTotal() | currency }}
-      </div>
-
-    </div>
-  </div>
   {% endif %}
 
-  <div class="cell large-12 cart-footer">
+  <div class="cell large-12 large-order-3 cart-footer">
     <hr>
     <div class="grid-x grid-padding-x align-justify">
-      <div class="cell shrink footer-left">
+      <div class="cell large-shrink footer-left">
         <a class="button hollow" href="/products">Continue Shopping</a>
       </div>
-      <div class="cell shrink footer-right">
+      <div class="cell large-shrink footer-right">
         {% if items | length > 0 %}
         <label class="input-group">
           <span class="input-group-label">Coupon Code</span>
