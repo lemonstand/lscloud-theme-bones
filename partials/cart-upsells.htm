@@ -29,7 +29,7 @@
         <p class="product-price">{{ upsell.price ? (upsell.price | currency) : 'Free' }}</p>
       </div>
       <div class="cell large-3 product-cta">
-        <a class="button" data-ajax-handler="shop:onAddToCart"
+        <a class="button" data-ajax-handler="shop:cart"
            data-ajax-extra-fields="upsellId='{{ upsell.id }}', productId='{{ upsell.parentProduct.id }}'"
            data-ajax-update=".cart-contents=cart-contents, .cart-summary=cart-summary">Add to Cart</a>
       </div>
