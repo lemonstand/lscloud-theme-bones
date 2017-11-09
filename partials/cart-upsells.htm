@@ -20,7 +20,7 @@
         <h3 class="product-name"><a href="/product/{{ upsell.url_name }}">{{ upsell.name }}</a></h3>
         {% set options = upsell.optionsString() %}
         {% if options %}
-        <p class="product-options">{{ details | unescape }}</p>
+        <p class="product-options">{{ options | unescape }}</p>
         {% endif %}
       </div>
       <div class="cell large-3 product-prices">

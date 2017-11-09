@@ -35,7 +35,7 @@
         {% endif %}
         {% set extras = "" %}
         {% for extra in item.extras %}
-        {% set extras = extras ~ extra.name ~ (not loop.first ? ', ' : '') %}
+        {% set extras = extras ~ extra.name ~ (not loop.last ? ', ' : '') %}
         {% endfor %}
         {% if extras | length > 0 %}
         <p class="product-extras">{{ extras }}</p>
@@ -48,12 +48,10 @@
 
       <div class="cell number-cell">
         {% if item.price != item.fullPrice() %}
-        <span class="price-original">{{ item.fullPrice() | currency }}</span><br>
-        <span>{{ item.price | currency }}</span>
-        {% else %}{# Item isn't on sale #}
-        <span>{{ item.price | currency }}</span>
+        <span class="product-price-original">{{ item.fullPrice() | currency }}</span><br>
         {% endif %}
 
+        <span class="product-price-current">{{ item.price | currency }}</span>
       </div>
 
       <div class="cell number-cell">

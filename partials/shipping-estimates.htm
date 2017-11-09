@@ -2,6 +2,12 @@
 
 {% if shippingOptions %}
 <table>
+  <thead>
+    <td>Option</td>
+    <td>Estimate</td>
+    <td>Delivery Date</td>
+    <td>Guaranteed</td>
+  </thead>
   {% for index, option in shippingOptions %}
   <tr>
     {% if not option.error_hint %}
@@ -17,8 +23,18 @@
       {{ option.quote ? option.quote|currency : 'Free' }}
       {% endif %}
     </td>
+    <td>
+      {% if not option.error_hint %}
+      {{ option.deliveryDate | date("M j") }}
+      {% endif %}
+    </td>
+    <td class="date-guaranteed">
+      {% if not option.error_hint %}
+      {{ option.deliveryDateGuaranteed ? '<span class="fa fa-check"></span>' : '<span class="fa fa-close"></span>' }}
+      {% endif %}
+    </td>
     {% else %} {# Shipping option has an error hint #}
-    <td colspan="2">
+    <td colspan="4">
       <strong>{{ option.shippingMethodName }}</strong>
       <p class="error-hint">{{ option.error_hint }}</p>
     </td>

@@ -12,6 +12,18 @@
       table {
         width: auto;
       }
+
+      .date-guaranteed {
+        text-align: center;
+
+        .fa-check {
+          color: $success-color;
+        }
+
+        .fa-close {
+          color: $alert-color;
+        }
+      }
     }
   }
 
