@@ -26,13 +26,13 @@ published: true
       {{ partial('cart-contents') }}
     </section>
 
-    {% if theme.enableCartUpsells and upsells | length%}
+    {% if theme.enableCartUpsells and upsells | length %}
       <section class="cell cart-upsells">
         <div class="grid-x grid-padding-x">
-          <div class="cell upsells-header">
+          <div class="cell related-header">
             <h2>Purchase together and save</h2>
           </div>
-          {{ partial('cart-upsells', {relateds: upsells}) }}
+          {{ partial('related', {relateds: upsells}) }}
         </div>
       </section>
     {% endif %}

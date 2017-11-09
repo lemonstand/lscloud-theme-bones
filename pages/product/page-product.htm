@@ -165,34 +165,23 @@ published: true
   </main>
 
   <section>
-    {% if theme.enableCartUpsells and upsells | length%}
-      <section class="cell cart-upsells">
-        <div class="grid-x grid-padding-x">
-          <div class="cell upsells-header">
-            <h2>Purchase together and save</h2>
-          </div>
-          {{ partial('cart-upsells', {relateds: upsells}) }}
-        </div>
-      </section>
-    {% endif %}
-
-    {% if product.crossSells|length %}
+    {% if product.crossSells | length %}
       <section class="cell cross-sells">
         <div class="grid-x grid-padding-x">
-          <div class="cell -header">
+          <div class="cell related-header">
             <h1>You May Be Interested in These</h1>
           </div>
-          {{ partial('cart-upsells', { relateds: product.crossSells }) }}
+          {{ partial('related', { relateds: product.crossSells }) }}
         </div>
       </section>
     {% endif %}
-    {% if product.upSells|length %}
+    {% if product.upSells | length %}
       <section class="cell upsells">
         <div class="grid-x grid-padding-x">
-          <div class="cell upsells-header">
+          <div class="cell related-header">
             <h1>Purchase Together and Save</h1>
           </div>
-          {{ partial('cart-upsells', { relateds: product.upSells }) }}
+          {{ partial('related', { relateds: product.upSells }) }}
         </div>
       </section>
     {% endif %}
