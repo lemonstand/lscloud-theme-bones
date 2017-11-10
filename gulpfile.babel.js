@@ -145,6 +145,7 @@ function htmlLintReporter(path, issues) {
   }
 }
 
+// TODO: This task isn't currently part of the build pipeline. Review, polish, and include.
 gulp.task('html', (callback) => {
   return gulp.src(['templates/*.htm', 'pages/*/*.htm', 'partials/*.htm'])
       .pipe(htmllint({rules: {
