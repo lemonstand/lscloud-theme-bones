@@ -14,7 +14,7 @@
     {{ totals.discountTotal | currency }}
   </div>
 
-  {% if shippingMethodInfo.id %}
+  {% if shippingMethodInfo.id or step == 'pay' %}
   <div class="cell small-6 title-cell">
     Shipping
   </div>

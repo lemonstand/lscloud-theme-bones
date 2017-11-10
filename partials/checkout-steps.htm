@@ -268,7 +268,7 @@
 
     {% if step == 'shipping_method' %}
     <div class="tabs-panel is-active checkout-shipping-option-tab-content" id="checkout-shipping-option">
-      <form class="grid-x" data-ajax-handler="shop:checkout" data-ajax-update=".checkout-steps=checkout-steps">
+      <form class="grid-x grid-padding-x checkout-shipping-option-form" data-ajax-handler="shop:checkout" data-ajax-update=".checkout-steps=checkout-steps">
         <div class="cell large-9 shipping-options">
           {{ partial('shipping-options', { checkoutMode: true }) }}
         </div>
@@ -278,7 +278,7 @@
         <div class="cell">
           <input name="step" type="hidden" value="shipping_method"/>
           <input name="nextStep" type="hidden" value="pay"/>
-          <button class="button" {% if not shippingMethodInfo.id %}disabled{% endif %}>Next</button>
+          <input type="submit" class="button" value="Next" {% if not shippingMethodInfo.id %}disabled{% endif %}/>
         </div>
       </form>
 
@@ -287,7 +287,41 @@
 
     {% if step == 'pay' %}
     <div class="tabs-panel is-active checkout-review-and-pay-tab-content" id="checkout-review-and-pay">
-      <p>Review and Pay</p>
+      <div class="grid-x grid-padding-x">
+        <section class="cell cart-contents">
+          {{ partial('cart-contents', { checkoutMode: true }) }}
+        </section>
+        <section class="cell checkout-pay-footer">
+          <hr>
+
+          <div class="grid-x grid-padding-x">
+            <div class="cell large-3 large-order-2 checkout-totals">
+              {{ partial('checkout-totals') }}
+            </div>
+            <div class="cell large-9 large-order-1 checkout-payment-method">
+              <h4>Select a Payment Method</h4>
+              {% set paymentMethod = false %}
+
+              <form>
+                <select name="paymentMethodId" data-ajax-handler="shop:onUpdatePaymentMethod"
+                        data-ajax-update=".payment-form=payment-form">
+                  <option value=""></option>
+                  {% for method in paymentMethods %}
+                  {% if method.is_default %}
+                  {% set paymentMethod = method %}
+                  <option value="{{ method.id }}" selected>{{ method.name }}</option>
+                  {% else %}
+                  <option value="{{ method.id }}">{{ method.name }}</option>
+                  {% endif %}
+                  {% endfor %}
+                </select>
+              </form>
+
+              <div class="payment-form">{{ partial('payment-form', { paymentMethod : paymentMethod }) }}</div>
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
     {% endif %}
   </div>

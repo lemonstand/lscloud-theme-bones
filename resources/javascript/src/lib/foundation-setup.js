@@ -80,6 +80,10 @@ Foundation.plugin(Toggler, 'Toggler');
 // Foundation.plugin(Tooltip, 'Tooltip');
 // Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
 
-$(document).foundation();
+$(document).ready(() => {
+  'use strict';
+
+  $(document).foundation();
+});
 
 module.exports = Foundation;
