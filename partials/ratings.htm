@@ -1,8 +1,10 @@
 ---
 Description: Displays a product's ratings.
 ---
-{# takes ratings as an argument #}
-{# should only be displayed once on a page #}
-<section id="ratings">
-Ratings
-</section>
+{# takes rating as an argument #}
+{% if rating.total_reviews %}
+  {{ partial('stars', {count: rating.average_int}) }}
+  ({{  rating.total_reviews }} reviews)
+{% else %}
+  No reviews yet.
+{% endif %}

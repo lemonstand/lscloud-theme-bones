@@ -17,7 +17,14 @@ description: Displays a product list.
               <div class="grid-x">
                 <div class="cell medium-8">{{ product.name }}</div>
                 <div class="cell medium-4">
-                  {{ product.price | currency }}
+                  {% if product.onSale %}
+                    <span class="product-original-price">
+                      {{ product.fullPrice | currency }}
+                    </span>
+                  {% endif %}
+                  <span class="product-current-price">
+                    {{ product.price | currency }}
+                  </span>
                 </div>
               </div>
             </section>

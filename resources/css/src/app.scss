@@ -16,7 +16,7 @@ $fa-font-path: '../../fonts/dist';
 // Foundation
 @import 'foundation-settings';
 @import 'foundation';
-//@import 'motion-ui';
+@import 'motion-ui';
 
 @include foundation-global-styles;
 // @include foundation-grid;
@@ -43,12 +43,12 @@ $fa-font-path: '../../fonts/dist';
 //@include foundation-label;
 @include foundation-media-object;
 @include foundation-off-canvas;
-//@include foundation-orbit;
+@include foundation-orbit;
 @include foundation-pagination;
 //@include foundation-progress-bar;
 //@include foundation-slider;
 @include foundation-sticky;
-//@include foundation-reveal;
+@include foundation-reveal;
 @include foundation-switch;
 @include foundation-table;
 @include foundation-tabs;
@@ -62,8 +62,8 @@ $fa-font-path: '../../fonts/dist';
 
 // @include foundation-prototype-classes;
 
-//@include motion-ui-transitions;
-//@include motion-ui-animations;
+@include motion-ui-transitions;
+@include motion-ui-animations;
 
 // The files for the theme's scss.
 @import 'global/index';

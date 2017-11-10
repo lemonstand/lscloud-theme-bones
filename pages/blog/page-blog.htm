@@ -6,7 +6,7 @@ action: cmscontent:blog
 template: default
 published: true
 ---
-<section class="blog">
+<section class="blog grid-container">
   <header>
     {% if post.featured_image %}
       <img
@@ -30,7 +30,7 @@ published: true
         <img src="{{ profile_image.thumbnail('100', '100') }}" />
       </div>
     {% endif %}
-    <div class="media-object-section main-section text-center">
+    <div class="media-object-section main-section">
       <h2>{{ post.author_name }}</h2>
       {{ post.user.user_bio | unescape }}
     </div>

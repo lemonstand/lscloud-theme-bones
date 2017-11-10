@@ -6,5 +6,6 @@ action: shop:products
 template: default
 published: true
 ---
-<link rel="stylesheet" href="{{ 'css/page-products.css' | theme_resource }}">
-{{ partial('product-list', { products: products }) }}
+<section class="products grid-container">
+  {{ partial('product-list', { products: products }) }}
+</section>

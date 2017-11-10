@@ -6,6 +6,7 @@ action: shop:category
 template: default
 published: true
 ---
-<h1>{{ category.name }}</h1>
-{{ partial('product-list', { products: products }) }}
-</ul>
+<section class="category grid-container">
+  <h1>{{ category.name }}</h1>
+  {{ partial('product-list', { products: products }) }}
+</section>

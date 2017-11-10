@@ -6,7 +6,7 @@ action: shop:products
 template: default
 published: true
 ---
-<section class="text-center">
+<section class="home grid-container">
   <h1>{{ theme.storeTitle }}</h1>
   <section>
     <h2>Categories</h2>
@@ -33,10 +33,4 @@ published: true
   <section>
     {{ content_block('home-custom') }}
   </section>
-  {% if theme.homeNewsletterSubscribe %}
-    <section>
-      <h2>Newsletter</h2>
-      {{ partial('newsletter-subscribe') }}
-    </section>
-  {% endif %}
 </section>

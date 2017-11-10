@@ -20,7 +20,7 @@ published: true
   {categories: blog_categories, align: 'align-right'}) }}
 
 {% set posts = archives %}
-<section class="archive text-center">
+<section class="archive grid-container">
   <h1>Archive</h1>
   {% if posts | length %}
     {% paginate posts by 5 %}

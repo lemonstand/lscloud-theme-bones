@@ -1,0 +1,13 @@
+---
+description: Displays star ratings out of 5.
+---
+{# takes count as an argument #}
+<span class="stars stars-{{ count }}">
+  {% for i in 1..5 %}
+    {% if i <= count %}
+      &starf;
+    {% else %}
+      &star;
+    {% endif %}
+  {% endfor %}
+</span>
