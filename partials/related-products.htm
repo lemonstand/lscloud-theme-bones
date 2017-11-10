@@ -8,7 +8,7 @@ description: Displays upsells and cross sells, with add to cart buttons.
   <div class="cell related-product">
     <div class="grid-x grid-padding-x">
       <div class="cell large-6 product-details">
-        <img class="product-image" src="{{ related.images.first.thumbnail(100, 'auto') }}"/>
+        <img class="product-image" src="{{ relatedProduct.images.first.thumbnail(100, 'auto') }}"/>
         <h3 class="product-name"><a href="/product/{{ related.url_name }}">{{ relatedProduct.name }}</a></h3>
         {% set options = relatedProduct.optionsString() %}
         {% if options %}
@@ -20,12 +20,12 @@ description: Displays upsells and cross sells, with add to cart buttons.
           <p class="product-base-price">Reg. {{ relatedProduct.base_price | currency }}</p>
         {% endif %}
         {% if relatedProduct.type == 'upsell' %}
-          <p class="product-discount">SAVE {{ (relatedProduct.base_price - upsell.price) | currency}}</p>
+          <p class="product-discount">SAVE {{ (relatedProduct.base_price - relatedProduct.price) | currency}}</p>
         {% endif %}
         <p class="product-price">{{ relatedProduct.price ? (relatedProduct.price | currency) : 'Free' }}</p>
       </div>
       <div class="cell large-3 product-cta">
-        <a class="button" data-ajax-handler="shop:onAddToCart"
+        <a class="button" data-ajax-handler="shop:cart"
           {% if relatedProduct.type == 'upsell' %}
             data-ajax-extra-fields="upsellId='{{ relatedProduct.id }}', productId='{{ relatedProduct.parentProduct.id }}'"
           {% else %}
