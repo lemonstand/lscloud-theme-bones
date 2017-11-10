@@ -35,12 +35,35 @@
   <div class="tabs-content checkout-tabs-content" data-tabs-content="checkout-tabs">
 
     {% if step == 'billing_info' %}
+
+      {% set mirrorBillingShipping = true %}
+
+      {% if billingInfo.firstName != shippingInfo.firstName %}
+        {% set mirrorBillingShipping = false %}
+      {% elseif billingInfo.lastName != shippingInfo.lastName %}
+        {% set mirrorBillingShipping = false %}
+      {% elseif billingInfo.phone != shippingInfo.phone %}
+        {% set mirrorBillingShipping = false %}
+      {% elseif billingInfo.streetAddressLine1 != shippingInfo.streetAddressLine1 %}
+        {% set mirrorBillingShipping = false %}
+      {% elseif billingInfo.streetAddressLine2 != shippingInfo.streetAddressLine2 %}
+        {% set mirrorBillingShipping = false %}
+      {% elseif billingInfo.city != shippingInfo.city %}
+        {% set mirrorBillingShipping = false %}
+      {% elseif billingInfo.postalCode != shippingInfo.postalCode %}
+        {% set mirrorBillingShipping = false %}
+      {% elseif billingInfo.stateId != shippingInfo.stateId %}
+        {% set mirrorBillingShipping = false %}
+      {% elseif billingInfo.countryId != shippingInfo.countryId %}
+        {% set mirrorBillingShipping = false %}
+      {% endif %}
+
     <div class="tabs-panel is-active checkout-addresses-tab-content" id="checkout-addresses">
       {% if not customer %}
       <p>You are checking out as a guest. <a href="/account">Sign in</a> / <a href="/account">Sign up</a> to checkout faster and save your info.</p>
       {% endif %}
       <form class="grid-x grid-padding-x" novalidate data-abide
-            data-mirror="shipping-billing" data-mirror-state="on"
+            data-mirror="shipping-billing" data-mirror-state="{{ mirrorBillingShipping ? 'on' : 'off' }}"
             data-ajax-handler="shop:checkout" data-ajax-update=".checkout-steps=checkout-steps">
         <fieldset class="cell medium-6 billing-fieldset">
           <legend>Billing Address</legend>
@@ -137,11 +160,12 @@
         <fieldset class="cell medium-6 shipping-fieldset">
           <legend>Shipping Address</legend>
           <label class="mirror-toggle">
-            <input id="shipping-mirror-toggle" type="checkbox" checked data-toggle="shipping-inputs-grid"
-                   data-mirror-toggler="shipping-billing">
+            <input id="shipping-mirror-toggle" type="checkbox" {% if mirrorBillingShipping %}checked{% endif %}
+                   data-toggle="shipping-inputs-grid" data-mirror-toggler="shipping-billing">
             <span>Same as Billing Address</span>
           </label>
-          <div id="shipping-inputs-grid" class="grid-x grid-padding-x hide" data-toggler=".hide">
+          <div id="shipping-inputs-grid" class="grid-x grid-padding-x {% if mirrorBillingShipping %}hide{% endif %}"
+               data-toggler=".hide">
             <label class="cell medium-6">
               <span>First Name</span>
               <input name="shippingInfo[firstName]" type="text" value="{{ shippingInfo.firstName }}"

@@ -42,6 +42,16 @@
   }
 
   @include breakpoint(small down) {
+    .checkout-tabs {
+      .tabs-title {
+        float: unset;
+
+        > a {
+          padding: 0.75rem 1rem;
+        }
+      }
+    }
+
     .checkout-addresses-tab-content {
       fieldset {
         &.shipping-fieldset {
