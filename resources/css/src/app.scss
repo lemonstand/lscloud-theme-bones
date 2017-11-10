@@ -66,6 +66,7 @@ $fa-font-path: '../../fonts/dist';
 //@include motion-ui-animations;
 
 // The files for the theme's scss.
+@import 'global/index';
 @import 'component/index';
 @import 'partial/index';
 @import 'page/index';

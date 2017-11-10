@@ -1,13 +1,36 @@
-.checkout-container {
-  .checkout-tabs {
+.checkout-steps {
+  margin: 1rem 0;
 
+  .checkout-tabs {
+    .disabled {
+      color: $medium-gray;
+    }
   }
+
   .checkout-tabs-content {
 
   }
 
   .checkout-addresses-tab-content {
+    fieldset {
+      &.shipping-fieldset {
+        position: relative;
 
+        .mirror-toggle {
+          position: absolute;
+          top: .25rem;
+          left: 11.5rem;
+
+          input {
+            margin-right: .25rem;
+          }
+        }
+      }
+
+      legend {
+        font-size: rem-calc(20);
+      }
+    }
   }
 
   .checkout-shipping-option-tab-content {
@@ -16,5 +39,17 @@
 
   .checkout-review-and-pay-tab-content {
 
+  }
+
+  @include breakpoint(small down) {
+    .checkout-addresses-tab-content {
+      fieldset {
+        &.shipping-fieldset {
+          .mirror-toggle {
+            position: unset;
+          }
+        }
+      }
+    }
   }
 }
