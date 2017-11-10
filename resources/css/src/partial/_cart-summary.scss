@@ -7,24 +7,6 @@
     h4 {
       font-size: 1.25rem;
     }
-
-    .shipping-estimates {
-      table {
-        width: auto;
-      }
-
-      .date-guaranteed {
-        text-align: center;
-
-        .fa-check {
-          color: $success-color;
-        }
-
-        .fa-close {
-          color: $alert-color;
-        }
-      }
-    }
   }
 
   .cart-totals {

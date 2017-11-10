@@ -1,0 +1,25 @@
+.shipping-options {
+  table {
+    width: auto;
+  }
+
+  .date-radio {
+    text-align: center;
+
+    input {
+      margin: 0;
+    }
+  }
+
+  .date-guaranteed {
+    text-align: center;
+
+    .fa-check {
+      color: $success-color;
+    }
+
+    .fa-close {
+      color: $alert-color;
+    }
+  }
+}

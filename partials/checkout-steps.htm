@@ -268,7 +268,9 @@
 
     {% if step == 'shipping_method' %}
     <div class="tabs-panel is-active checkout-shipping-option-tab-content" id="checkout-shipping-option">
-      <p>Shipping Options</p>
+      <div class="shipping-options">
+        {{ partial('shipping-options', { checkoutMode: true }) }}
+      </div>
     </div>
     {% endif %}
 
