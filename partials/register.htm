@@ -2,6 +2,8 @@
 description: A registration form to sign up as a customer.
 ---
 {# This partial can only be used once on a page (it has an id attribute) #}
+{# Takes redirectUrl as an argument (defaults to '/') #}
+
 <form
   method="post"
   data-ajax-handler="shop:onSignup"
@@ -65,6 +67,6 @@ description: A registration form to sign up as a customer.
     </div>
   </label>
   <input type="hidden" name="autologin" value="1">
-  <input type="hidden" name="redirect" value="/">
+  <input type="hidden" name="redirect" value="{{ redirectUrl ?: '/' }}">
   <button class="button" type="submit">sign up</button>
 </form>

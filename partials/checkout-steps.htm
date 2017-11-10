@@ -66,7 +66,7 @@
 
     <div class="tabs-panel is-active checkout-addresses-tab-content" id="checkout-addresses">
       {% if not customer %}
-      <p>You are checking out as a guest. <a href="/account">Sign in</a> / <a href="/account">Sign up</a> to checkout faster and save your info.</p>
+      <p>You are checking out as a guest. <a data-open="checkout-login">Log In</a> / <a data-open="checkout-register">Register</a> to checkout faster and save your info.</p>
       {% endif %}
       <form class="grid-x grid-padding-x" novalidate data-abide
             data-mirror="shipping-billing" data-mirror-state="{{ mirrorBillingShipping ? 'on' : 'off' }}"
