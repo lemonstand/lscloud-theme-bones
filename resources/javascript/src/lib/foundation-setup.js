@@ -27,8 +27,8 @@ import { OffCanvas } from 'foundation-sites/js/foundation.offcanvas';
 // import { Slider } from 'foundation-sites/js/foundation.slider';
 // import { SmoothScroll } from 'foundation-sites/js/foundation.smoothScroll';
 import { Sticky } from 'foundation-sites/js/foundation.sticky';
-// import { Tabs } from 'foundation-sites/js/foundation.tabs';
-// import { Toggler } from 'foundation-sites/js/foundation.toggler';
+import { Tabs } from 'foundation-sites/js/foundation.tabs';
+import { Toggler } from 'foundation-sites/js/foundation.toggler';
 // import { Tooltip } from 'foundation-sites/js/foundation.tooltip';
 // import { ResponsiveAccordionTabs } from 'foundation-sites/js/foundation.responsiveAccordionTabs';
 
@@ -75,8 +75,8 @@ Foundation.plugin(OffCanvas, 'OffCanvas');
 // Foundation.plugin(Slider, 'Slider');
 // Foundation.plugin(SmoothScroll, 'SmoothScroll');
 Foundation.plugin(Sticky, 'Sticky');
-// Foundation.plugin(Tabs, 'Tabs');
-// Foundation.plugin(Toggler, 'Toggler');
+Foundation.plugin(Tabs, 'Tabs');
+Foundation.plugin(Toggler, 'Toggler');
 // Foundation.plugin(Tooltip, 'Tooltip');
 // Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
 
