@@ -1,0 +1,131 @@
+{# Get all cart products' upsells #}
+{% set upsells = [] %}
+
+{% for item in items if not item.product.upsells.isEmpty() %}
+  {% for upsell in item.product.upsells %}
+    {% set upsells = upsells | merge([upsell]) %}
+    {% endfor %}
+{% endfor %}
+
+<form class="grid-x grid-padding-x" data-ajax-handler="shop:cart"
+      data-ajax-update=".cart-page=cart-page">
+
+  <header class="cell">
+    <h1>Cart</h1>
+  </header>
+
+  <section class="cell cart-contents">
+    {{ partial('cart-contents') }}
+  </section>
+
+  {% if theme.enableCartUpsells and upsells | length %}
+  <section class="cell cart-upsells">
+    <div class="grid-x grid-padding-x">
+      <div class="cell related-header">
+        <h2>Purchase together and save</h2>
+      </div>
+      {{ partial('related-products', {relatedProducts: upsells}) }}
+    </div>
+  </section>
+  {% endif %}
+
+  <section class="cell cart-summary">
+    {% if items | length > 0 %}
+    <hr>
+    {% endif %}
+
+    <div class="grid-x grid-padding-x">
+
+      {% if items | length > 0 %}
+      <div class="cell large-3 large-order-2 cart-totals">
+        <div class="grid-x grid-padding-x">
+
+          <div class="cell small-6 title-cell">
+            Subtotal
+          </div>
+          <div class="cell small-6 value-cell">
+            {{ cart.getSubtotalNoTax() | currency }}
+          </div>
+
+          <div class="cell small-6 title-cell">
+            Discount
+          </div>
+          <div class="cell small-6 value-cell">
+            {{ cart.getDiscountTotal() | currency }}
+          </div>
+
+          {% if shipping.streetAddressLine1 %}
+          <div class="cell small-6 title-cell">
+            Tax
+          </div>
+          <div class="cell small-6 value-cell">
+            {{ cart.getTotalTax() | currency }}
+          </div>
+          {% endif %}
+
+          <div class="cell small-6 title-cell total-cell">
+            Total
+          </div>
+          <div class="cell small-6 value-cell total-cell">
+            {{ cart.getTotal() | currency }}
+          </div>
+
+        </div>
+      </div>
+
+      <div class="cell large-9 large-order-1 cart-shipping-estimates">
+        <h3>Shipping Rates Calculator</h3>
+
+        <div class="grid-x grid-padding-x">
+          <label class="cell large-4">
+            <span>Country</span>
+            <select name="countryId" data-state-selector="#shipping-estimate-state-id" data-current-state="{{ shippingInfo.shop_state_id }}">
+              {% for country in countries %}
+              <option value="{{ country.id }}" {{ option_state(country.id, shippingInfo.shop_country_id) }}>{{ country.name }}</option>
+              {% endfor %}
+            </select>
+          </label>
+
+          <label class="cell large-4">
+            <span>State</span>
+            <select id="shipping-estimate-state-id" name="stateId" data-ajax-refresh>
+              {{ partial('shop-stateoptions', { 'states': states, 'selected': shippingInfo.shop_state_id }) }}
+            </select>
+          </label>
+
+          <label class="cell large-2">
+            <span>Zip Code</span>
+            <input name="postalCode" type="text" value="{{ shippingInfo.postalCode }}"/>
+          </label>
+        </div>
+
+        <a class="button" data-ajax-handler="shop:onEvalShippingRate"
+           data-ajax-update=".shipping-options=shipping-options">
+          Calculate
+        </a>
+
+        <div class="shipping-options"><!-- Will be populated after Calculate button clicked --></div>
+      </div>
+      {% endif %}
+
+      <div class="cell large-12 large-order-3 cart-footer">
+        <hr>
+        <div class="grid-x grid-padding-x align-justify">
+          <div class="cell large-shrink footer-left">
+            <a class="button hollow" href="/products">Continue Shopping</a>
+          </div>
+          <div class="cell large-shrink footer-right">
+            {% if items | length > 0 %}
+            <label class="input-group">
+              <span class="input-group-label">Coupon Code</span>
+              <input type="text" name="coupon" class="input-group-field" value="{{ coupon_code }}"/>
+            </label>
+            <input type="submit" class="button hollow" value="Apply Changes"/>
+            <a class="button" href="/checkout">Checkout</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</form>

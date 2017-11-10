@@ -11,6 +11,11 @@
     }
 
     .card-form-input {
+      @include form-element;
+      @include foundation-form-text;
+
+      letter-spacing: normal;
+
       &.error-highlight {
         @include form-input-error;
 
@@ -19,11 +24,6 @@
           display: block;
         }
       }
-
-      @include form-element;
-      @include foundation-form-text;
-
-      letter-spacing: normal;
 
       ~ .error,
       ~ .error-bottom {
