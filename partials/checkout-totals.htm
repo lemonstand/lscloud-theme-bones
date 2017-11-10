@@ -1,0 +1,40 @@
+<div class="grid-x grid-padding-x">
+
+  <div class="cell small-6 title-cell">
+    Subtotal
+  </div>
+  <div class="cell small-6 value-cell">
+    {{ (totals.subtotal + totals.discountTotal) | currency }}
+  </div>
+
+  <div class="cell small-6 title-cell">
+    Discount
+  </div>
+  <div class="cell small-6 value-cell">
+    {{ totals.discountTotal | currency }}
+  </div>
+
+  {% if shippingMethodInfo.id %}
+  <div class="cell small-6 title-cell">
+    Shipping
+  </div>
+  <div class="cell small-6 value-cell">
+    {{ totals.totalShippingQuote | currency }}
+  </div>
+  {% endif %}
+
+  <div class="cell small-6 title-cell">
+    Tax
+  </div>
+  <div class="cell small-6 value-cell">
+    {{ totals.totalTax | currency }}
+  </div>
+
+  <div class="cell small-6 title-cell total-cell">
+    Total
+  </div>
+  <div class="cell small-6 value-cell total-cell">
+    {{ totals.total | currency }}
+  </div>
+
+</div>

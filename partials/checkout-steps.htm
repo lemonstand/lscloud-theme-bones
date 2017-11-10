@@ -268,9 +268,20 @@
 
     {% if step == 'shipping_method' %}
     <div class="tabs-panel is-active checkout-shipping-option-tab-content" id="checkout-shipping-option">
-      <div class="shipping-options">
-        {{ partial('shipping-options', { checkoutMode: true }) }}
-      </div>
+      <form class="grid-x" data-ajax-handler="shop:checkout" data-ajax-update=".checkout-steps=checkout-steps">
+        <div class="cell large-9 shipping-options">
+          {{ partial('shipping-options', { checkoutMode: true }) }}
+        </div>
+        <div class="cell large-3 checkout-totals">
+          {{ partial('checkout-totals') }}
+        </div>
+        <div class="cell">
+          <input name="step" type="hidden" value="shipping_method"/>
+          <input name="nextStep" type="hidden" value="pay"/>
+          <button class="button" {% if not shippingMethodInfo.id %}disabled{% endif %}>Next</button>
+        </div>
+      </form>
+
     </div>
     {% endif %}
 

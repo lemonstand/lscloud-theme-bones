@@ -26,8 +26,10 @@
     {% if not option.error_hint %}
     {% if checkoutMode %}
     <td class="date-radio">
-      <input name="shippingMethod" type="radio" value="{{ option.id}}"
-             {{ radio_state(shippingMethodInfo.id, option.id) }}/>
+      <input type="radio" value="{{ option.id}}"
+             {{ radio_state(shippingMethodInfo.id, option.id) }}
+             data-ajax-handler="shop:onCheckoutShippingMethod" data-ajax-update=".checkout-totals=checkout-totals"
+             data-ajax-extra-fields="shippingMethod={{ index }}"/>
     </td>
     {% endif %}
     <td>

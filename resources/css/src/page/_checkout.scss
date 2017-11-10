@@ -34,7 +34,28 @@
   }
 
   .checkout-shipping-option-tab-content {
+    .checkout-totals {
+      > .grid-x {
+        > .cell {
+          display: flex;
+          align-items: center;
+        }
+      }
 
+      .input-group {
+        width: auto;
+        margin-right: 1rem;
+      }
+
+      .title-cell {
+        font-weight: bold;
+        justify-content: flex-end;
+      }
+
+      .total-cell {
+        font-size: 1.25rem;
+      }
+    }
   }
 
   .checkout-review-and-pay-tab-content {
@@ -52,6 +73,12 @@
       }
     }
 
+    .checkout-tabs-content {
+      .button {
+        width: 100%;
+      }
+    }
+
     .checkout-addresses-tab-content {
       fieldset {
         &.shipping-fieldset {
@@ -59,6 +86,12 @@
             position: unset;
           }
         }
+      }
+    }
+
+    .checkout-shipping-option-tab-content {
+      .checkout-totals {
+        margin-bottom: 1rem;
       }
     }
   }
