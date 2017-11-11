@@ -9,7 +9,7 @@ url: '/receipt/:paymenthash'
 <section class="grid-container order">
   <div class="grid-x grid-padding-x">
     <header class="cell order-header">
-      <h1>Order Receipt</h1>
+      {{ partial('order-header', { title: 'Order Receipt', order: invoice.order }) }}
     </header>
     <section class="cell cart-contents">
       {{ partial('cart-contents', { order: invoice.order, checkoutMode: true }) }}
