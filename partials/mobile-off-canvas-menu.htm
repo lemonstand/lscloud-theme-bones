@@ -18,13 +18,21 @@
 <span class="off-canvas-custom-nav">
   {{ widget_block('header-nav-menu') }}
 </span>
-<ul class="menu vertical off-canvas-account-nav">
+<ul class="menu accordion-menu vertical off-canvas-account-nav" data-accordion-menu>
   {% if customer %}
   <li>
     <a href="/logout">Log Out</a>
   </li>
   <li>
-    <a href="/account" class="button">My Account</a>
+    <a href="/account">My Account</a>
+    <ul class="menu vertical">
+      <li>
+        <a href="/account">Settings</a>
+      </li>
+      <li>
+        <a href="/account/orders">Order History</a>
+      </li>
+    </ul>
   </li>
   {% else %}
   <li>
