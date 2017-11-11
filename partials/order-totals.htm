@@ -1,0 +1,42 @@
+{# Takes order as an argument. #}
+
+<div class="grid-x grid-padding-x">
+
+  <div class="cell small-6 title-cell">
+    Subtotal
+  </div>
+  <div class="cell small-6 value-cell">
+    {{ (order.subtotal_invoiced + order.total_discount) | currency }}
+  </div>
+
+  {% if order.total_discount > 0 %}
+  <div class="cell small-6 title-cell">
+    Discount
+  </div>
+  <div class="cell small-6 value-cell">
+    {{ order.total_discount | currency }}
+  </div>
+  {% endif %}
+
+  <div class="cell small-6 title-cell">
+    Shipping
+  </div>
+  <div class="cell small-6 value-cell">
+    {{ order.total_shipping_invoiced | currency }}
+  </div>
+
+  <div class="cell small-6 title-cell">
+    Tax
+  </div>
+  <div class="cell small-6 value-cell">
+    {{ order.total_sales_tax | currency }}
+  </div>
+
+  <div class="cell small-6 title-cell total-cell">
+    Total
+  </div>
+  <div class="cell small-6 value-cell total-cell">
+    {{ order.total_invoiced | currency }}
+  </div>
+
+</div>

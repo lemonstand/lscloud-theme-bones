@@ -2,6 +2,7 @@
   Partial Parameters:
 
   checkoutMode: true/false
+  order: if given, will show items from the order instead of from the cart
 #}
 
 <div class="grid-x grid-padding-x">
@@ -28,7 +29,7 @@
     </div>
   </header>
 
-  {% for item in items %}
+  {% for item in (order ? order.orderItems : items) %}
   <section class="cell contents-product">
     <div class="grid-x grid-padding-x">
 
@@ -51,7 +52,7 @@
       <div class="cell number-cell">
         {% if checkoutMode %}
         <span class="number-cell-label">Quantity: </span>
-        <span class="product-quantity">{{ item.quantity }}</span>
+        <span class="product-quantity">{{ item.quantity | number_format(0) }}</span>
         {% else %}
         <label>
           <span class="number-cell-label">Quantity: </span>
