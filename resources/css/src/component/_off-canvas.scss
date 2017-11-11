@@ -26,6 +26,10 @@
     }
   }
 
+  .off-canvas-account-nav {
+    border-bottom: 1px solid $medium-gray;
+  }
+
   .off-canvas-custom-nav {
     >  ul {
       @include menu-base;
