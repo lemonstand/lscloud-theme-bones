@@ -171,7 +171,7 @@ published: true
           <div class="cell related-header">
             <h2>You May Be Interested in These</h2>
           </div>
-          {{ partial('related', { relateds: product.crossSells }) }}
+          {{ partial('related-products', { relatedProducts: product.crossSells }) }}
         </div>
       </section>
     {% endif %}
@@ -181,7 +181,7 @@ published: true
           <div class="cell related-header">
             <h2>Purchase Together and Save</h2>
           </div>
-          {{ partial('related', { relateds: product.upSells }) }}
+          {{ partial('related-products', { relatedProducts: product.upSells }) }}
         </div>
       </section>
     {% endif %}

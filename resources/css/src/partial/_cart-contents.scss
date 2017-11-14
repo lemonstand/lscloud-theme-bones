@@ -14,6 +14,10 @@
         &.number-cell {
           flex: 0 0 10%;
           text-align: right;
+
+          .number-cell-label {
+            display: none;
+          }
         }
 
         &.remove-cell {
@@ -39,6 +43,11 @@
     padding-top: 1rem;
     padding-bottom: 1rem;
 
+    input {
+      margin: 0;
+      width: 5rem;
+    }
+
     .product-image {
       float: left;
       margin-right: 1rem;
@@ -55,7 +64,11 @@
       margin: 0;
     }
 
-    .price-original {
+    .product-quantity {
+      font-size: 1rem;
+    }
+
+    .product-price-original {
       color: $alert-color;
       text-decoration: line-through;
     }
@@ -63,5 +76,49 @@
 
   .empty-cart {
     margin-bottom: -1rem;
+  }
+
+  @include breakpoint(medium down) {
+    .contents-header {
+      display: none;
+    }
+
+    .contents-product {
+      padding-top: 2rem;
+      padding-bottom: 0;
+      border-top: 2px solid $dark-gray;
+
+      > .grid-x {
+        flex-direction: column;
+        position: relative;
+
+        > .cell {
+          padding: .5rem;
+
+          &.number-cell {
+            border-top: 1px solid $medium-gray;
+            text-align: left;
+
+            .number-cell-label {
+              display: inline;
+            }
+          }
+
+          &.remove-cell {
+            padding: 0;
+
+            .remove-button {
+              position: absolute;
+              top: -1.5rem;
+              right: .5rem;
+            }
+          }
+        }
+      }
+
+      input {
+        display: inline-block;
+      }
+    }
   }
 }

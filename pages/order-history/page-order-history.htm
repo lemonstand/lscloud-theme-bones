@@ -1,0 +1,34 @@
+---
+action: 'shop:orders'
+template: default
+protocol: all
+published: true
+name: Orders Page
+url: /account/orders
+---
+<section class="grid-container order-history">
+  <header class="grid-x grid-padding-x">
+
+    <div class="cell">
+      <h1>Order History</h1>
+      <p>Select any order for a detailed view.</p>
+    </div>
+
+  </header>
+  <main class="grid-x grid-padding-x orders-grid">
+
+    {% for order in customer.orders | extended_sort('created_at', false) %}
+    <a class="cell order-cell" href="/account/order/{{ order.id }}">
+      <div class="grid-x grid-padding-x">
+        <div class="cell medium-2">
+          <p>{{ order.created_at | date('m/d/Y') }}</p>
+        </div>
+        <div class="cell medium-10">
+          <p>Order #{{ order.number }} - {{ order.total | currency }} ({{ order.getItemQuantity() }} items)</p>
+        </div>
+      </div>
+    </a>
+    {% endfor  %}
+
+  </main>
+</section>

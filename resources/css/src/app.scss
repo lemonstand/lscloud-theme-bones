@@ -51,7 +51,7 @@ $fa-font-path: '../../fonts/dist';
 @include foundation-reveal;
 @include foundation-switch;
 @include foundation-table;
-//@include foundation-tabs;
+@include foundation-tabs;
 //@include foundation-thumbnail;
 //@include foundation-title-bar;
 //@include foundation-tooltip;
@@ -66,6 +66,7 @@ $fa-font-path: '../../fonts/dist';
 @include motion-ui-animations;
 
 // The files for the theme's scss.
+@import 'global/index';
 @import 'component/index';
 @import 'partial/index';
 @import 'page/index';

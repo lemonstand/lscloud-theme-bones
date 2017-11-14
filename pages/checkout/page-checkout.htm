@@ -6,4 +6,29 @@ action: shop:checkout
 template: default
 published: true
 ---
-Checkout
+<div class="grid-container">
+  <div class="grid-x grid-padding-x checkout-steps">
+    {{ partial('checkout-steps') }}
+  </div>
+</div>
+
+<section id="checkout-login" class="reveal" data-reveal>
+  <button class="close-button" data-close><span class="fa fa-close"></span></button>
+  <header>
+    <h1>Login</h1>
+  </header>
+  <main>
+    {{ partial('login', { redirectUrl: page.url }) }}
+  </main>
+</section>
+
+<section id="checkout-register" class="reveal" data-reveal>
+  <button class="close-button" data-close><span class="fa fa-close"></span></button>
+  <header>
+    <h1>Register</h1>
+  </header>
+  <main>
+    {{ partial('register', { redirectUrl: page.url }) }}
+  </main>
+</section>
+

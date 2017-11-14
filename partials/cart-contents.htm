@@ -1,3 +1,10 @@
+{#
+  Partial Parameters:
+
+  checkoutMode: true/false
+  order: if given, will show items from the order instead of from the cart
+#}
+
 <div class="grid-x grid-padding-x">
 
   <header class="cell contents-header">
@@ -22,7 +29,7 @@
     </div>
   </header>
 
-  {% for item in items %}
+  {% for item in (order ? order.orderItems : items) %}
   <section class="cell contents-product">
     <div class="grid-x grid-padding-x">
 
@@ -35,7 +42,7 @@
         {% endif %}
         {% set extras = "" %}
         {% for extra in item.extras %}
-        {% set extras = extras ~ extra.name ~ (not loop.first ? ', ' : '') %}
+        {% set extras = extras ~ extra.name ~ (not loop.last ? ', ' : '') %}
         {% endfor %}
         {% if extras | length > 0 %}
         <p class="product-extras">{{ extras }}</p>
@@ -43,30 +50,40 @@
       </header>
 
       <div class="cell number-cell">
-        <input name="item_quantity[{{ item.key }}]" type="number" min="1" value="{{ item.quantity }}"/>
+        {% if checkoutMode %}
+        <span class="number-cell-label">Quantity: </span>
+        <span class="product-quantity">{{ item.quantity | number_format(0) }}</span>
+        {% else %}
+        <label>
+          <span class="number-cell-label">Quantity: </span>
+          <input name="item_quantity[{{ item.key }}]" type="number" min="1" value="{{ item.quantity }}"/>
+        </label>
+        {% endif %}
       </div>
 
       <div class="cell number-cell">
+        <span class="number-cell-label">Price: </span>
         {% if item.price != item.fullPrice() %}
-        <span class="price-original">{{ item.fullPrice() | currency }}</span><br>
-        <span>{{ item.price | currency }}</span>
-        {% else %}{# Item isn't on sale #}
-        <span>{{ item.price | currency }}</span>
+        <span class="product-price-original">{{ item.fullPrice() | currency }}</span><br class="show-for-medium">
         {% endif %}
 
+        <span class="product-price-current">{{ item.price | currency }}</span>
       </div>
 
       <div class="cell number-cell">
+        <span class="number-cell-label">Total: </span>
         {{ item.total | currency }}
       </div>
 
+      {% if not checkoutMode %}
       <div class="cell remove-cell">
         <a class="remove-button" data-ajax-handler="shop:cart"
-                data-ajax-extra-fields="delete_item={{ item.key }}"
-                data-ajax-update=".cart-contents=cart-contents">
+           data-ajax-extra-fields="delete_item={{ item.key }}"
+           data-ajax-update=".cart-page=cart-page">
           <span class="fa fa-lg fa-times-circle"></span>
         </a>
       </div>
+      {% endif %}
 
     </div>
   </section>

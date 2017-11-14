@@ -1,3 +1,4 @@
+{# Takes redirectUrl as an argument (defaults to '/') #}
 <form
   method="post"
   data-ajax-handler="shop:onLogin"
@@ -18,5 +19,5 @@
   </label>
   <button class="button" type="submit">log in</button>
   <a class="button secondary" href="/reset-password">forgot password</a>
-  <input type="hidden" name="redirect" value="/">
+  <input type="hidden" name="redirect" value="{{ redirectUrl ?: '/' }}">
 </form>

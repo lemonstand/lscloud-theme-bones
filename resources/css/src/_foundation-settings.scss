@@ -106,7 +106,7 @@ $print-transparent-backgrounds: true;
 
 $breakpoints: (
   small: 0, // iPhone 5, and most other mobile phones
-  medium: 640px, // iPad, and most other tablets
+  medium: 768px, // iPad, and most other tablets
   large: 1024px, // Desktop (and iPad Pro)
 );
 $print-breakpoint: large;
@@ -794,7 +794,7 @@ $tab-background: $white;
 $tab-color: $primary-color;
 $tab-background-active: $light-gray;
 $tab-active-color: $primary-color;
-$tab-item-font-size: rem-calc(12);
+$tab-item-font-size: 1rem;
 $tab-item-background-hover: $white;
 $tab-item-padding: 1.25rem 1.5rem;
 $tab-expand-max: 6;
