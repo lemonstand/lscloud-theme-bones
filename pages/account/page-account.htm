@@ -1,17 +1,14 @@
 ---
-url: /account
-name: Account
-description: Allows a logged in user to edit their account.
+url: /login
+name: Log in and Sign Up
+description: Allows a user to log in or sign up.
 action: shop:login
 template: default
 published: true
 ---
-<section class="account grid-container">
-  <h1>Account</h1>
-  {% if customer %}
-    {{ partial('account-settings',
-      {customer: customer, countries: countries}) }}
-  {% else %}
+<section class="login grid-container">
+  <h1>Log in</h1>
+  {% if not customer %}
     <ul class="accordion" data-accordion>
       <li class="accordion-item is-active" data-accordion-item>
         <a href="#" class="accordion-title">Login</a>
@@ -26,5 +23,7 @@ published: true
         </div>
       </li>
     </ul>
+  {% else %}
+    You are already logged in.
   {% endif %}
 </section>
