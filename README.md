@@ -430,10 +430,12 @@ If you're unfamiliar with ES6 syntax, you may be surprised to see `const` or `le
 variables. You may also be confused to see what are called Arrow Functions, like the following:
 
 ```javascript
-$(document).ready(() => {
-  'use strict';
+$mirrorSource.on('change', (event) => {
+  const mirrorOn = $dataMirrorContainer.data('mirror-state') === 'on';
 
-  $(document).foundation();
+  if (mirrorOn) {
+    _mirrorElement();
+  }
 });
 ```
 
