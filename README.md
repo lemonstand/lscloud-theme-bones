@@ -400,7 +400,7 @@ Sass (in a file like **resources/css/src/global/_fonts.scss**, for example).
 
 ##### Third-party libraries
 Third-party tools for purchasing and/or hosting font files -- such as Google Fonts or Adobe Typekit -- have their own
-way of loading in the fonts you need. Follow whatever instructions they provide, which may include placing <script> tags 
+way of loading in the fonts you need. Follow whatever instructions they provide, which may include placing `<script>` tags 
 in an HTML/Twig template, and/or some CSS into a Sass file (remember, plain CSS is still valid Sass).
 
 ### Javascript
