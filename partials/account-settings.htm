@@ -238,27 +238,36 @@ description: Shows the account settings form.
   </button>
 </form>
 
-<form data-ajax-handler="shop:onChangePassword">
+<form
+  data-ajax-handler="shop:onChangePassword"
+  data-abide
+  novalidate>
   <h3>Change password</h3>
   <label>
     Old password
-    <input type="password" name="oldPassword">
+    <input type="password" name="oldPassword" required>
     <span class="error"></span>
-    <span class="form-error"></span>
+    <span class="form-error">Old password is required</span>
   </label>
 
   <label>
     New password
-    <input type="password" name="password">
+    <input type="password" name="password" id="password" required>
     <span class="error"></span>
-    <span class="form-error"></span>
+    <span class="form-error">New password is required</span>
   </label>
 
   <label>
     Password confirmation
-    <input type="password" name="passwordConfirm">
+    <input
+      type="password"
+      name="passwordConfirm"
+      required
+      data-equalto="password">
     <span class="error"></span>
-    <span class="form-error"></span>
+    <span class="form-error">
+      Password confirmation must match new password
+    </span>
   </label>
 
   <button type="submit" class="button">change password</button>
