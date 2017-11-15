@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 /**
  * How to use data-mirror:
  *

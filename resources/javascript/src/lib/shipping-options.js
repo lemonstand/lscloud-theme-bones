@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 $(document).on('change', 'input[name="shippingMethod"]', (event) => {
   'use strict';
 
