@@ -237,3 +237,30 @@ description: Shows the account settings form.
     save address information
   </button>
 </form>
+
+<form data-ajax-handler="shop:onChangePassword">
+  <h3>Change password</h3>
+  <label>
+    Old password
+    <input type="password" name="oldPassword">
+    <span class="error"></span>
+    <span class="form-error"></span>
+  </label>
+
+  <label>
+    New password
+    <input type="password" name="password">
+    <span class="error"></span>
+    <span class="form-error"></span>
+  </label>
+
+  <label>
+    Password confirmation
+    <input type="password" name="passwordConfirm">
+    <span class="error"></span>
+    <span class="form-error"></span>
+  </label>
+
+  <button type="submit" class="button">change password</button>
+  <input type="hidden" name="redirect" value="/account"/>
+</form>
