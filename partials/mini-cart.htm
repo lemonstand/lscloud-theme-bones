@@ -1,38 +1,35 @@
 ---
-description: Displays a mini-cart with a count of items and a dropdown of items
+description: Displays a mini-cart with a subtotal and link to the full cart and to checkout
 ---
-<ul class="vertical menu accordion-menu" data-accordion-menu>
-  <li>
-    <a href="#">
-      <i class="fa fa-shopping-cart"></i>
-      <span>Cart <span class="badge">{{ cart.getItemNum() }}</span></span>
-    </a>
-    <ul class="menu nested vertical">
-      <li>
-        <a class="button" href="/cart">
-          Go to cart.
-        </a>
-      </li>
-      {% for item in cart.items %}
-        <li>
-          <a href="/product/{{ item.product.url_name }}">
-            {% if item.product.images.first %}
-              <img src="{{ item.product.images.first.thumbnail(32,32) }}" />
-            {% else %}
-              <i class="fa fa-circle"></i>
-            {% endif %}
-            <span>
-              {{ item.product.name }} X {{ item.quantity }}
-              = {{ item.total | currency }}
-            </span>
-          </a>
-        </li>
-      {% endfor %}
-      <li>
-        <a href="/cart">
-          Total: {{ cart.getTotal() | currency }}
-        </a>
-      </li>
-    </ul>
-  </li>
-</ul>
+<div class="grid-x grid-padding-x products-grid">
+
+  {% for item in cart.items %}
+  <div class="cell product-cell">
+    <img class="product-image" src="{{ item.product.images.first.thumbnail(64, 'auto') }}"/>
+    <a class="product-name">{{ item.product.name }}</a>
+    <small class="product-summary">{{ item.quantity }} x {{ item.price | currency }}</small>
+  </div>
+  {% endfor %}
+
+</div>
+<div class="grid-x grid-padding-x">
+
+  {% if cart.items | length > 0 %}
+
+  <div class="cell subtotal-cell">
+    <span class="cart-subtotal">Subtotal: {{ cart.getTotal() | currency }}</span>
+    <a href="/cart" class="button hollow">View Cart</a>
+  </div>
+
+  <div class="cell cta-cell">
+    <a href="/checkout" class="button">Checkout</a>
+  </div>
+
+  {% else %} {# Cart is empty #}
+
+  <div class="cell empty-cell">
+    <span class="cart-empty">Your cart is empty!</span>
+  </div>
+
+  {% endif %}
+</div>

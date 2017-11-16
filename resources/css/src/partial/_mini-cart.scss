@@ -1,0 +1,51 @@
+.mini-cart {
+  .products-grid {
+    max-height: 50vh;
+    overflow-y: scroll;
+
+    .product-cell {
+      padding-top: .5rem;
+      padding-bottom: .5rem;
+
+      .product-image {
+        float: left;
+        margin-right: 1rem;
+      }
+
+      .product-name {
+        padding-bottom: 0;
+      }
+    }
+  }
+
+  .subtotal-cell {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid $medium-gray;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+
+    .cart-subtotal {
+      font-size: 1.25rem;
+    }
+  }
+
+  .cta-cell {
+    .button {
+      justify-content: center;
+    }
+  }
+
+  @include breakpoint(small down) {
+    .products-grid {
+      display: none;
+    }
+
+    .subtotal-cell {
+      border-top: 0;
+      margin-top: 0;
+      padding-top: 0;
+    }
+  }
+}
