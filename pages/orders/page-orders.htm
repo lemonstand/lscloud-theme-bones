@@ -1,0 +1,33 @@
+---
+action: 'shop:orders'
+template: main
+protocol: all
+published: true
+name: Orders
+url: /orders
+---
+<h1>{{ page.title }}</h1>
+
+{% if not orders or not orders.count %}
+  <h3 class="flash info">Orders not found</h3>
+{% else %}
+  <table id="orders-table">
+    <tr>
+      <th><h2>#</h2></th>
+      <th><h2>Date</h2></th>
+      <th><h2>Status</h2></th>
+      <th><h2>Total</h2></th>
+    </tr>
+    {% for order in orders if not order.is_quote %}
+
+      {% set url = root_url('/order/'~order.id) %}
+      <tr>
+        <td><a href="{{ url }}">{{ order.number }}</a></a></td>
+        <td><a href="{{ url }}">{{ order.created_at.format('M jS, Y') }}</a></td>
+        <td><a href="{{ url }}">{{ order.orderStatus.name }}</a></td>
+        <td><a href="{{ url }}"><i>{{ order.total|currency }}</i></a></td>
+      </tr>
+
+    {% endfor %}
+  </table>
+{% endif %}

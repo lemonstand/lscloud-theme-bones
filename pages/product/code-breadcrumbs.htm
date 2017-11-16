@@ -1,0 +1,19 @@
+{% set category = product ? product.categories[0] : null %}
+
+<div class="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="/">Home</a></li>
+    <li class="crumb"><a href="/shop">Shop</a></li>
+
+    {% if category %}
+      {% for parent in category.listAllParents() %}
+        <li class="crumb"><a href="/category/{{ parent.fullUrlName }}">{{ parent.name }}</a></li>
+      {% endfor %}
+      <li class="crumb"><a href="/category/{{ category.fullUrlName }}">{{ category.name }}</a></li>
+    {% endif %}
+
+    {% if product %}
+      <li class="crumb"><a href="{{ '/product/' ~ product.url_name }}">{{ product.name }}</a></li>
+    {% endif %}
+  </ul>
+</div>

@@ -1,0 +1,30 @@
+<div class="card-form-close" id="edit-{{card.id}}">
+    <div class="edit-card-form">
+        <h3>Edit Card</h3>
+        {{ customerCardForm('update', {
+            card: card,
+            options: {
+                number:{
+                        label: ' ',
+                        placeholder: 'Card Number'
+                },
+                cvv: {
+                    label: ' ',
+                    placeholder: 'CVV'
+                },
+                is_default: {
+                    label:'Make my default card'
+                },
+                expiry: {
+                    label:' '
+                },
+                full_name: {
+                    label:' ',
+                    placeholder: 'Cardholder Name'
+                },
+            }
+        }, {
+            'data-ajax-update': "#profile-edit-card=shop-customerprofile-edit-card"
+        }) }}
+    </div>
+</div>

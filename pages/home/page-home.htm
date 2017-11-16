@@ -1,0 +1,65 @@
+---
+action: 'shop:products'
+template: main
+protocol: all
+published: true
+name: Bones
+url: /
+---
+<section>
+	<h1>A bare-bones theme for developers.</h1>
+	<h2>Using HTML5, CSS, and JS.</h2>
+	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	<h2><a href="/shop">Shop Now</a></h2>
+	<h3>Use a <strong>collection</strong> to display an important product.</h3>
+
+	{% set featuredCollection = 'display'|collection %}
+	{% paginate featuredCollection.products by 1 %}
+    <ul>
+		{% for product in pagination.items %}
+			{% set on_sale = product.onSale %}
+
+      <li>
+				<figure>
+				  <a href="/product/{{ product.url_name }}"><img src="{{ product.images.first.thumbnail('400', '400')|default('http://placehold.it/400x400') }}" alt="{{ product.images.first.description }}" title="{{ product.images.first.title }}"/></a>
+				  <figcaption>
+					  <h3><a href="/product/{{ product.url_name }}">{{ product.name }}</a></h3>
+						<h2>{{ product.price|currency }}</h2>
+						{% if on_sale %}
+							<h2><s>{{ product.fullPrice|currency }}</s></h2>
+						{% endif %}
+					</figcaption>
+				</figure>
+      </li>
+
+		{% endfor %}
+    </ul>
+	{% endpaginate %}		
+</section>
+
+<section>
+	<h1>How Does It Work?</h1>
+	<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet vel, dapibus id, mattis vel, nisi. Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh. Nullam mollis. Ut justo. Suspendisse potenti.</p>
+	<h2><a href="/about">About us</a></h2>
+</section>
+<section>
+	<h1>Check These Out</h1>
+	<h3>Set up a featured collection below by using the API code <strong>featured</strong>.</h3>
+
+	{% set featuredCollection = 'featured'|collection %}
+	{% paginate featuredCollection.products by 4 %}
+		{% for product in pagination.items %}
+			{% set on_sale = product.onSale %}
+			<div class="product">
+				<a href="/product/{{ product.url_name }}">
+					<img src="{{ product.images.first.thumbnail('280', '280') }}" >
+				</a>
+				<h3><a href="/product/{{ product.url_name }}" class="btn btn-default">{{ product.name }}</a></h3>
+				<h2>{{ product.price|currency }}</h2>
+				{% if on_sale %}
+					<h2><s>{{ product.fullPrice|currency }}</s></h2>
+				{% endif %}
+			</div>
+		{% endfor %}
+	{% endpaginate %}
+</section>

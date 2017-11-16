@@ -1,0 +1,43 @@
+---
+action: 'shop:login'
+template: main
+protocol: all
+published: true
+name: Sign In
+url: /sign-in
+---
+<h1>{{ page.title }}</h1>
+<hr>
+<!-- Login section -->
+<section>
+{{ open_form({'data-ajax-handler': 'shop:onLogin', 'data-validation-message' : ''}) }}
+	<h3>Login</h3>
+	<p><label for="login_email">E-mail Address</label><input class="required" type="text" id="login_email" name="email" value="{{ post('email') }}"/>
+	<span class="error"></span></p>
+	<p><label for="login_password">Password</label><input class="required" type="password" name="password" id="login_password" />
+	<h4><a href="{{ site_url('/password-restore') }}">Forgot?</a></h4>
+	<span class="error"></span></p>
+	<input type="submit" value="Sign In"/>
+	<input type="hidden" name="redirect" value="{{ site_url(root_url('/')) }}"/>
+{{ close_form() }}
+</section>
+<!-- Register section -->
+<section>
+{{ open_form({'data-ajax-handler': 'shop:onSignup', 'data-validation-message' : ''}) }}
+	<h3>Register</h3>
+	<p><label for="signup[first_name]">First Name * </label><input name="signup[first_name]" id="signup[first_name]" type="text" class="text required"/>
+	<span class="error"></span></p>
+	<p><label for="signup[last_name]">Last Name * </label><input name="signup[last_name]" id="signup[last_name]" type="text" class="text required"/>
+	<span class="error"></span></p>
+	<p><label for="signup[email]">Email * </label><input id="signup[email]" type="text" name="signup[email]" class="text required"/>
+	<input type="checkbox" name="accepts_marketing" checked/>Receive promotional emails
+	<span class="error"></span></p>
+	<p><label for="signup[password]">Password * </label><input name="signup[password]" id="signup[password]" type="password" class="text required"/>
+	<span class="error"></span></p>
+	<p><label for="signup[password_confirmation]">Confirm Password * </label><input name="signup[password_confirmation]" id="signup[password_confirmation]" type="password"/>
+	<span class="error"></span></p>
+	<input type="hidden" name="autologin" value="1" />
+	<input type="hidden" name="redirect" value="{{ site_url('registered') }}"/>
+	<input type="submit" value="Sign Up"/>
+{{ close_form() }}
+</section>

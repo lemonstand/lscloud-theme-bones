@@ -1,0 +1,50 @@
+{
+  "name": "Bones base theme",
+  "version": "1.0.0",
+  "description": "Bones is a bare bones theme for developers that provides a foundation to get started faster when building a custom online store. All the core LemonStand theme elements, including templates, pages and partials, are already built in, saving you time and letting you get straight to the fun stuff. We stripped out all the styling, giving you a blank canvas to build off.<br/>Use Bones to create a truly unique user experience by designing your online stores without any constraints.",
+  "excerpt": "Bones provides a foundation for theme developers using HTML5, Sass, Gulp, node-bourbon and more.",
+  "main": "README.md",
+  "lemonstand" : {
+    "code":"bones",
+    "type": "theme",
+    "options": "options.json",
+    "demo": "https://bones.lemonstand.com",
+    "screenshots" : {
+      "small":"https://raw.githubusercontent.com/lemonstand/lscloud-theme-bones/master/resources/screenshots/tiny-square.png",
+      "large":"https://raw.githubusercontent.com/lemonstand/lscloud-theme-bones/master/resources/screenshots/large-square.png",
+      "full": "https://raw.githubusercontent.com/lemonstand/lscloud-theme-bones/master/resources/screenshots/full-size.png"
+    }
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/lemonstand/lscloud-theme-bones.git"
+  },
+  "author": "LemonStand <support@lemonstand.com> (http://docs.lemonstand.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lemonstand/lscloud-theme-bones/issues"
+  },
+  "homepage": "https://github.com/lemonstand/lscloud-theme-bones#readme",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-jshint": "^1.11.2",
+    "gulp-minify-css": "^1.2.1",
+    "gulp-notify": "^2.2.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.0.4",
+    "gulp-uglify": "^1.4.1",
+    "node-bourbon": "^4.2.3",
+    "node-neat": "^1.7.2"
+  },
+  "keywords": [
+    "html5",
+    "sass",
+    "gulp",
+    "base-theme",
+    "node-bourbon"
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "settings": {
+    "storeTitle": {
+      "type": "text",
+      "title": "Title of your Store",
+      "default": "Bones"
+    },
+    "logoImage": {
+      "type": "image",
+      "title": "Logo Image",
+      "default": "@images/bones-logo.png",
+      "comment": "Upload your logo! Recommended height of 37px."
+    },
+    "faviconImage": {
+      "type": "image",
+      "title": "Favicon Image",
+      "default": "@images/favicon.ico",
+      "comment": "Upload your favicon! Recommended dimmensions of 16px by 16px. You must use a .png file."
+    },
+    "footerLogo": {
+      "type": "image",
+      "title": "Footer Logo",
+      "default": "@images/lemonstand-logo.png",
+      "comment": "Upload your footer logo! Recommended height of 40px."
+    },
+    "facebookUrl": {
+      "type": "text",
+      "title": "Facebook URL",
+      "default": "http://facebook.com/lemonstand"
+    },
+    "twitterUrl": {
+      "type": "text",
+      "title": "Twitter URL",
+      "default": "http://twitter.com/lemonstand"
+    },
+    "linkedInUrl": {
+      "type": "text",
+      "title": "LinkedIn URL",
+      "default": "http://www.linkedin.com/company/lemonstand"
+    }
+  },
+  "pages": {
+    "404": "404"
+  }
+}

@@ -1,0 +1,54 @@
+---
+action: 'shop:category'
+template: main
+protocol: all
+published: true
+name: Category
+url: '/category/:urlName@/:page?'
+---
+<h1>{{ category.name }}</h1>
+
+{% tree categories %}
+<ul>
+	{% for category in tree.items %}
+	<li>
+		<h3><a href="/category/{{ category.fullUrlName }}">{{ category.name }}</a></h3>
+		<hr>
+		{% branch category.children %}
+	</li>
+	{% endfor %}
+</ul>
+{% endtree %}
+
+{% if not category %}
+
+	<h2>Category not found</h2>
+	<p>We are sorry, the requested category was not found.</p>
+
+{% else %}
+
+	{% paginate products by 9 %}
+		<ul>
+			{% for product in pagination.items %}
+				{% set is_on_sale = product.onSale %}
+				{% set page_url = '/product/' ~ product.url_name %}
+				<li class="product">
+					<figure>
+						<a href="{{ page_url }}">
+						<img src="{{ product.images.first.thumbnail(365, 365)|default('http://placehold.it/365x365') }}" width="365" height="365" alt="{{ product.images.first.description }}" title="{{ product.images.first.title }}"/>
+						</a>
+					  <figcaption>
+						  <h3><a href="/product/{{ product.url_name }}" class="btn btn-default">{{ product.name }}</a></h3>
+							<h2>{{ product.price|currency }}</h2>
+							{% if is_on_sale %}
+								<h2><s>{{ product.fullPrice|currency }}</s></h2>
+							{% endif %}
+						</figcaption>
+					</figure>
+				</li>
+			{% endfor %}
+		</ul>
+		{% navigation %}		
+	{% endpaginate %}
+
+{% endif %}

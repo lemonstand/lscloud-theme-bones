@@ -1,0 +1,28 @@
+---
+action: 'cmscontent:archive'
+template: main
+protocol: all
+published: true
+name: Blog
+url: /blog
+---
+<section>
+    
+    {% set publishedPosts = 0 %}
+    {% for post in archives %}
+        {% if post.status == "published" %}
+            {% set publishedPosts = publishedPosts + 1 %}
+        {% endif %}
+        <article>
+            <h2>{{ post.title }}</h2>
+            <div>{{ post.excerpt | unescape }}</div>
+            <div><a href="blog/{{ post.guid }}">Read More</a></div>
+        </article>
+        <hr>
+    {% endfor %}
+
+    {% if archives | length == 0 or publishedPosts == 0 %}
+        <h2>No posts found</h2>
+    {% endif %}
+
+</section>

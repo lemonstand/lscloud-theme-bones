@@ -1,0 +1,7 @@
+{% if step == 'billing_info' %}
+	{{ partial('partial-checkout-address') }}
+{% elseif step == 'shipping_method' %}
+	{{ partial('partial-checkout-shipping-payment') }}
+{% elseif step == 'pay' %}
+	{{ partial('partial-checkout-pay') }}
+{% endif %}

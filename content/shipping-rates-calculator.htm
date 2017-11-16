@@ -1,0 +1,26 @@
+<div style="display:none">
+	<h3>Shipping rates calculator</h3>
+
+	<label for="country">Country</label>
+	<!-- 
+		The state selector updates automatically when the country changes. 
+		See app.js for the implementation details. 
+	-->
+	<select id="country" name="country" data-state-select="state" data-current-state="{{ shipping_info.state }}">
+		{% for country in countries %}
+			<option value="{{ country.id }}" {{ option_state(country.id, shipping_info.country) }}>{{ country.name }}</option>
+		{% endfor %}
+	</select>
+
+	<label for="state">State</label>
+	<select id="state" name="state"> 
+		{# partial('shop-stateoptions', {'states': states, 'current_state': shipping_info.state}) #}
+	</select>
+
+	<label for="zip">Zip/Postal Code</label>
+	<input name="zip" type="text" value="{{ shipping_info.zip }}"/>
+	
+	<a class="button" href="#" data-ajax-handler="shop:onEvalShippingRate" data-ajax-update="#shipping_options=shopestimatedshippingoptions">Calculate</a>
+		
+	<div id="shipping_options"></div>
+</div>

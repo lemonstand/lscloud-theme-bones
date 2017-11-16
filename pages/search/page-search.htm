@@ -1,0 +1,43 @@
+---
+action: 'shop:search'
+template: main
+protocol: all
+published: true
+name: Search
+url: /search
+---
+<h1>{{ page.title }}</h1>
+<h3>Products found: {{ products.get().count() }}</h3>
+{{ open_form() }}
+	{% paginate products by 12 %}
+	<div itemtype="http://schema.org/ItemList">
+		<ul>
+			{% for product in pagination.items %}
+
+				{% set is_on_sale = product.onSale %}
+				{% set page_url = '/product/' ~ product.url_name %}
+				<li class="product" itemprop="itemListElement" itemscope itemtype="http://schema.org/Product">
+					<figure>
+						<a href="{{ page_url }}"><img itemprop="image" src="{{ product.images.first.thumbnail(365, 365)|default('http://placehold.it/365x365') }}" width="365" height="365" alt="{{ product.images.first.description }}" title="{{ product.images.first.title }}"/></a>
+					</figure>
+						<h3><a itemprop="url" href="{{ page_url }}"><span itemprop="name">{{ product.name }}</span></a></h3>
+						<div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+						{% if product.enabled %}
+							<link itemprop="availability" href="http://schema.org/InStock" />
+							<meta itemprop="priceCurrency" content="USD" /> <!-- Should get currency code through variable -->
+							<meta itemprop="price" content="{{ product.price }}" />
+							<h2>{{ product.price|currency }}</h2>
+							{% if on_sale %}
+								<h2><s>{{ product.fullPrice|currency }}</s></h2>
+							{% endif %}
+						{% else %}
+						<link itemprop="availability" href="http://schema.org/OutOfStock"/>
+						{% endif %}
+						</div>
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+	{% navigation %}		
+	{% endpaginate %}
+{{ close_form() }}

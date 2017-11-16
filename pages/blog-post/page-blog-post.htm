@@ -1,0 +1,14 @@
+---
+action: 'cmscontent:blog'
+template: main
+protocol: all
+published: true
+name: 'Blog Post'
+url: /blog/:slug
+---
+<section>
+    <h1>{{ post.title }}</h1>
+    <strong>In {{ post.type }} | {{ post.published_on | date("F j, Y") }}</strong> 
+    {{ post.body | unescape }}
+    <p>– {{ post.author_name }}</p>
+</section>

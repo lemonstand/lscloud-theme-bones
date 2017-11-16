@@ -1,0 +1,55 @@
+---
+action: 'shop:receipt'
+template: main
+protocol: all
+published: true
+name: Receipt
+url: '/receipt/:paymenthash'
+---
+{% if invoice %}
+  <h1>Thanks For Your Order!</h1>
+  <hr>
+  <p>You're order number is <strong>{{ invoice.order.number }}</strong>. Look for a confirmation email soon. Questions?</p>
+  <p>Customer Service: support@lemonstand.com or 1-855-332-0555</p>
+  <p><strong>Order Date: </strong> {{ invoice.order.created_at.format('M jS, Y') }}</p>
+  <p><strong>Payment method: </strong> {{ payment.guessPaymentMethod().name }}</p>
+
+  <table>
+    <tr>
+      <th><h2><strong>Product</strong></h2></th>
+      <th><h2><strong>Qty</strong></h2></th>
+      <th><h2><strong>Total</strong></h2></th>
+    </tr>
+    {% for shipment in invoice.shipments %}
+    {% for item in shipment.shipmentItems %}
+      <tr>
+        <td>{{ item.product.name }}</td>
+        <td>{{ item.quantity|number_format(0) }}</td>
+        <td>{{ (item.quantity *item.pivot.price)|currency }}</td>
+      </tr>
+    {% endfor %}
+    {% endfor %}
+  </table>
+
+  {% if invoice.isPaid() %}
+
+
+    {% if invoice.getDiscountTotal() > 0 %}
+      <h3>Discount: {{ invoice.getDiscountTotal()|currency }}</h3>
+    {% endif %} 
+    <h3>Subtotal: {{ invoice.subtotal|currency }}</h3>
+      <h3>Shipping: {{ invoice.total_shipping_quote|currency }}</h3>
+    <h3>Tax {{ invoice.tax_total|currency }}</h3>
+    <h2>Total {{ invoice.total|currency }}</h2>
+
+    <h3><a href="{{ site_url('shop') }}">Continue Shopping</a></h3>
+
+  {% else %}
+    <h3><p><a href="{{ site_url('review/'~order.order_hash) }}">Place order</a></p></h3>
+  {% endif %}
+
+</div>
+
+{% else %}
+  <p class="flash error">Invoice not found.</p>  
+{% endif %}

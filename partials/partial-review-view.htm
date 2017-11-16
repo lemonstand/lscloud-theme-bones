@@ -1,0 +1,30 @@
+<hr>
+<h1>{{ product.name }} Reviews</h1>
+{% set product_rating = product.rating() %}
+
+{% for review in product.reviews() %}
+		
+	{% if review.item_rating == 5 %}
+		<div class="review-rating">&starf;&starf;&starf;&starf;&starf;</div>
+	{% endif %}
+	{% if review.item_rating == 4 %}
+		<div class="review-rating">&starf;&starf;&starf;&starf;&star;</div>
+	{% endif %}
+	{% if review.item_rating == 3 %}
+		<div class="review-rating">&starf;&starf;&starf;&star;&star;</div>
+	{% endif %}
+	{% if review.item_rating == 2 %}
+		<div class="review-rating">&starf;&starf;&star;&star;&star;</div>
+	{% endif %}
+	{% if review.item_rating == 1 %}
+		<div class="review-rating">&starf;&star;&star;&star;&star;</div>  
+	{% endif %}
+
+	<p class="review-date">{{ review.created_at|date('M jS, Y') }}</p>
+	<p><strong>{{ review.title }}</strong></p>
+	<p><em>{{ review.comment }}</em></p>
+	<p>{{ review.from_name }}</p>
+	<hr>
+
+{% endfor %}
+

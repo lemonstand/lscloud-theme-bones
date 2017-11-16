@@ -1,0 +1,11 @@
+{% if cart.getItemNum() > 0 %}
+<a href="{{ site_url('/cart') }}" class="has-items">
+Shopping Bag
+<span>({{ cart.getItemNum() }})</span>
+
+{% else %}
+<a href="{{ site_url('/cart') }}">
+Shopping Bag
+{% endif %}
+
+</a>

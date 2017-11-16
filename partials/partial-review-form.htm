@@ -1,0 +1,42 @@
+<h2>Review {{ product.name }}</h2>
+
+{{ flash() }}
+{{ open_form({'data-ajax-handler': 'system:onSendMessage'}) }}
+
+	<p><input type="text" class="input-sm form-control" id="contact_name" name="fields[name]" value="" placeholder="Your name"/>
+	<span class="error"></span><p>
+
+
+	<p><input type="text" class="input-sm form-control" id="contact_email" name="fields[email]" value="" placeholder="Email address"/>
+	<span class="error"></span></p>
+
+
+	<p><input type="text" class="input-sm form-control" id="subject" name="fields[subject]" value="" placeholder="Title for your review"/>
+	<span class="error"></span></p>
+
+
+	<p><textarea class="input-sm form-control" id="contact_message" name="fields[message]" value="" rows="10" placeholder="Your review"></textarea>
+	<span class="error"></span></p>
+
+	<div class="rating">
+		<span id="hate">☆</span><span id="dont-like">☆</span><span id="ok">☆</span><span id="like">☆</span><span id="love">☆</span><p>&nbsp;</p>
+	</div>
+
+	<select style="display:none" id="item_rating" name="fields[item_rating]">
+		<option value="" diabled>-</option>
+		<option value="1">&starf;&star;&star;&star;&star;</option>
+		<option value="2">&starf;&starf;&star;&star;&star;</option>
+		<option value="3">&starf;&starf;&starf;&star;&star;</option>
+		<option value="4">&starf;&starf;&starf;&starf;&star;</option>
+		<option value="5">&starf;&starf;&starf;&starf;&starf;</option>
+	</select>
+	<span class="error"></span>
+	
+	<input type="submit" value="Submit"/>
+	<input type="text" name="hp" value="" style="display: none"/>
+	<input type="hidden" name="fields[shop_customer_id]" value="{{customer.id}}"/>
+	<input type="hidden" name="fields[shop_product_id]" value="{{product.id}}"/>
+	<input type="hidden" name="template" value="system:product-review"/>
+	<input type="hidden" name="fields[message_type]" value="review"/>
+
+{{ close_form() }}

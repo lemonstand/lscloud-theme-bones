@@ -1,0 +1,14 @@
+---
+template: main
+protocol: all
+published: true
+name: Registered
+url: /registered
+---
+<h1>{{ page.title }}</h1>
+<h2>Thank you for registering, a confirmation email has been sent to your email address.</h2>
+{% if customer %}
+  <h3>You have been automatically logged in.</h3>
+{% else %}
+  <h3>Please <a href="{{ root_url('/sign-in') }}">sign in</a> using your email and password.</h3>
+{% endif %}

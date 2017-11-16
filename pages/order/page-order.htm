@@ -1,0 +1,63 @@
+---
+action: 'shop:order'
+template: main
+published: true
+name: Order
+url: '/order/:orderId'
+---
+<h1>{{ page.title }}</h1>
+{% if order %}
+
+  <p><strong>Order number: </strong> #{{ order.number }} </p>
+  {% if order.invoices[0].payments().last().guessPaymentMethod() %}
+  <p><strong>Payment method: </strong> {{ order.invoices[0].payments().last().guessPaymentMethod().name }}</p>
+  {% endif %}
+  <p><strong>Order Date: </strong> {{ order.created_at.format('M jS, Y') }}</p>
+
+	<table id="order-table">
+	  <tr>
+	    <th class="order-item-header"><h2>Item</h2></th>
+	    <th class="order-quantity"><h2>Qty</h2></th>
+	    <th class="order-price"><h2>Price</h2></th>
+	    <th class="order-discount"><h2>Discount</h2></th>
+	    <th class="order-total"><h2>Total</h2></th>
+	  </tr>
+	  {% for invoice in order.invoices %}
+	    {% for shipment in invoice.shipments %}
+	      {% for item in shipment.shipmentItems %}
+	      <tr><td><hr></td></tr>
+	      <tr>
+	        <td class="order-item">
+	          <a href="/product/{{ item.product.url_name }}"><img src="{{ item.product.images.first.thumbnail(100, 100)|default('http://placehold.it/100x100') }}"/></a>
+	          						<a href="/product/{{ item.product.url_name }}">{{ item.product.name }}</a>
+						{% set description = item.optionsString() %}
+						{% if description %}<p>{{ description|unescape }}</p>{% endif %}
+	        </td>
+	        <td class="order-quantity">{{ item.quantity|number_format(0) }}</td>
+	        <td class="order-price">{{ item.pivot.price|currency }}</td>
+	        <td class="order-discount">{{ 0|currency }}</td>
+	        <td class="order-total">{{ (item.quantity *item.pivot.price)|currency }}</td>
+	      </tr>
+	      {% endfor %}
+	    {% endfor %}
+	  {% endfor %}
+
+		{% if order.total_discount %}
+		<p>Discount applied: <strong>{{ order.total_discount|currency }}</strong></p>
+		{% endif %}
+		<p>Subtotal: <strong>{{ order.subtotal_invoiced|currency }}</strong></p>
+		<p>Sales Tax: <strong>{{ order.total_sales_tax|currency }}</strong></p>
+		<p>Shipping: <strong>{{ order.total_shipping_quote|currency }}</strong></p>
+		{% if order.total_shipping_tax %}
+			<p>Shipping Taxes: <strong>{{ order.total_shipping_tax|currency }}</strong></p>
+		{% endif %}
+		<p>Total: <strong>{{ order.total|currency }}</strong></p>
+	</table>
+
+  {% if order.payment_method.has_payment_form() and not order.payment_processed() %}
+    <h3><a href="{{ root_url('/review/'~order.order_hash) }}">Pay the order</a></h3>
+  {% endif %}
+
+{% else %}
+  <p class="flash error">Order not found</p>
+{% endif %}
