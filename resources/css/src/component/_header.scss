@@ -9,20 +9,52 @@
   }
 
   .header-menu {
-    .header-core-nav,
-    .header-custom-nav,
-    .header-account-nav {
-      display: inline-flex;
+    .menu-cart {
+      margin-bottom: .5rem;
+
+      .button {
+        display: flex;
+        align-items: center;
+
+        .fa-shopping-cart {
+          margin-right: .5rem;
+        }
+
+        .badge {
+          font-weight: bold;
+          margin-left: .5rem;
+        }
+      }
     }
 
-    .header-custom-nav {
-      > ul {
-        @include menu-base;
+    .menu-nav {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+
+      .header-core-nav,
+      .header-custom-nav,
+      .header-account-nav {
+        display: inline-flex;
+      }
+
+      .header-custom-nav {
+        > ul {
+          @include menu-base;
+        }
       }
     }
   }
 
-  .mini-cart > ul > li > a {
-    padding-right: 2rem; // make room for the down arrow.
+  @include breakpoint(medium down) {
+    .header-menu {
+      .menu-cart {
+        margin-bottom: 0;
+      }
+
+      .menu-nav {
+        padding-right: 0;
+      }
+    }
   }
 }

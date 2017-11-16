@@ -3,56 +3,69 @@
     <div class="cell shrink header-title">
       <a href="/"><img class="header-logo" src="{{ theme.storeLogo.thumbnail('auto', 'auto') }}" alt="{{ theme.storeLogo.alt }}"/></a>
     </div>
-    <div class="cell shrink header-menu">
-      <ul class="menu dropdown show-for-large header-core-nav" data-dropdown-menu>
-        <li>
-          <a href="/">Home</a>
-        </li>
-        <li>
-          <a href="/products">Shop</a>
-          <ul class="menu">
-            {% for category in categories %}
+    <div class="cell auto header-menu">
+      <div class="grid-x grid-padding-x align-right">
+        <nav class="cell shrink large-12 large-order-2 menu-nav">
+          <ul class="menu dropdown show-for-large header-core-nav" data-dropdown-menu>
             <li>
-              <a href="/category/{{ category.url_name }}">{{ category.name }}</a>
-            </li>
-            {% endfor %}
-          </ul>
-        </li>
-      </ul>
-      <span class="show-for-large header-custom-nav">
-        {{ widget_block('header-nav-menu') }}
-      </span>
-      <ul class="menu dropdown header-account-nav" data-dropdown-menu>
-        <li class="hide-for-large">
-          <a data-toggle="mobile-off-canvas-menu"><span class="fa fa-lg fa-bars"></span></a>
-        </li>
-        {% if customer %}
-        <li class="show-for-large">
-          <a href="/logout">Log Out</a>
-        </li>
-        <li>
-          <a href="/account">My Account</a>
-          <ul class="menu">
-            <li>
-              <a href="/account">Settings</a>
+              <a href="/">Home</a>
             </li>
             <li>
-              <a href="/account/orders">Order History</a>
+              <a href="/products">Shop</a>
+              <ul class="menu">
+                {% for category in categories %}
+                <li>
+                  <a href="/category/{{ category.url_name }}">{{ category.name }}</a>
+                </li>
+                {% endfor %}
+              </ul>
             </li>
           </ul>
-        </li>
-        {% else %}
-        <li class="show-for-large">
-          <a href="/login">Log In</a>
-        </li>
-        <li>
-          <a href="/login" class="button">Register</a>
-        </li>
-        {% endif %}
-      </ul>
-    </div>
-    <div class="cell shrink mini-cart">
-      {{ partial('mini-cart') }}
+          <span class="show-for-large header-custom-nav">
+            {{ widget_block('header-nav-menu') }}
+          </span>
+          <ul class="menu dropdown header-account-nav" data-dropdown-menu>
+            <li class="hide-for-large">
+              <a data-toggle="mobile-off-canvas-menu"><span class="fa fa-lg fa-bars"></span></a>
+            </li>
+            {% if customer %}
+            <li class="show-for-large">
+              <a href="/logout">Log Out</a>
+            </li>
+            <li class="show-for-large">
+              <a href="/account">My Account</a>
+              <ul class="menu">
+                <li>
+                  <a href="/account">Settings</a>
+                </li>
+                <li>
+                  <a href="/account/orders">Order History</a>
+                </li>
+              </ul>
+            </li>
+            {% else %}
+            <li class="show-for-large">
+              <a href="/login">Log In</a>
+            </li>
+            <li class="show-for-large">
+              <a href="/login">Register</a>
+            </li>
+            {% endif %}
+          </ul>
+        </nav>
+        <div class="cell shrink large-order-1 menu-cart">
+          <ul class="menu">
+            <li>
+              <a class="button" data-toggle="mini-cart-dropdown">
+                <span class="fa fa-shopping-cart"></span>Cart <span class="badge white cart-count">{{ partial('cart-count') }}</span>
+              </a>
+              <div id="mini-cart-dropdown" class="dropdown-pane mini-cart" data-dropdown>
+                {{ partial('mini-cart') }}
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </div>

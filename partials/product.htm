@@ -80,7 +80,7 @@
     <section class="product-form">
       <form
           data-ajax-handler="shop:onAddToCart"
-          data-ajax-update=".mini-cart=mini-cart"
+          data-ajax-update=".mini-cart=mini-cart,.cart-count=cart-count"
           method="post">
 
         {% for option in product.options %}

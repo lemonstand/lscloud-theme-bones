@@ -37,7 +37,7 @@ $fa-font-path: '../../fonts/dist';
 @include foundation-menu;
 //@include foundation-menu-icon;
 //@include foundation-drilldown-menu;
-//@include foundation-dropdown;
+@include foundation-dropdown;
 @include foundation-dropdown-menu;
 //@include foundation-responsive-embed;
 //@include foundation-label;
