@@ -45,6 +45,15 @@ published: true
     {{ content_block('about') }}
   </section>
 
+  {% set blog_posts = cmsContent('blog')
+    | extended_sort('published_on', false) %} {# false means descending #}
+  {% if blog_posts | length and theme.enableLatestBlogPosts %}
+    <section>
+      <h1>Archive</h1>
+      {{ partial('blog-list', {posts: blog_posts | slice(0, 3)}) }}
+    </section>
+  {% endif %}
+
   <section>
     {{ content_block('home-custom') }}
   </section>
