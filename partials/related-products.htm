@@ -9,7 +9,7 @@ description: Displays upsells and cross sells, with add to cart buttons.
     <div class="grid-x grid-padding-x">
       <div class="cell large-6 product-details">
         <img class="product-image" src="{{ relatedProduct.images.first.thumbnail(100, 'auto') }}"/>
-        <h3 class="product-name"><a href="/product/{{ related.url_name }}">{{ relatedProduct.name }}</a></h3>
+        <h3 class="product-name"><a href="/product/{{ relatedProduct.url_name }}">{{ relatedProduct.name }}</a></h3>
         {% set options = relatedProduct.optionsString() %}
         {% if options %}
           <p class="product-options">{{ details | unescape }}</p>
