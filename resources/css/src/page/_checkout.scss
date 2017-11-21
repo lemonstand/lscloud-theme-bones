@@ -37,6 +37,11 @@
       &.shipping-fieldset {
         position: relative;
 
+        legend,
+        > .grid-x {
+          float: left;
+        }
+
         .mirror-toggle {
           position: absolute;
           top: .25rem;
@@ -82,6 +87,11 @@
     .checkout-addresses-tab-content {
       fieldset {
         &.shipping-fieldset {
+          legend,
+          > .grid-x {
+            float: unset;
+          }
+
           .mirror-toggle {
             position: unset;
           }
