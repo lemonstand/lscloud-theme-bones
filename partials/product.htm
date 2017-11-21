@@ -115,7 +115,8 @@
         {% endfor %}
         {% endif %}
 
-        {% if not product.track_inventory or (product.in_stock_amount != "Out Of Stock") %}
+        {% if not product.track_inventory or
+             (product.in_stock_amount != "Out Of Stock" and product.in_stock_amount > product.out_of_stock_threshold) %}
         <label>
           Quantity
           <input type="number" name="quantity" value="1" min="1" required>
