@@ -8,10 +8,12 @@ published: true
 ---
 <section class="home grid-container">
   <h1>{{ theme.storeTitle }}</h1>
+
   <section>
     <h2>Categories</h2>
     {{ partial('categories', {categories: categories}) }}
   </section>
+
   {% set featured_products = ('featured' | collection).products %}
   {% if featured_products | length %}
     <section class="callout">
