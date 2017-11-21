@@ -18,6 +18,14 @@ published: true
       <h2>Featured</h2>
       {{ partial('product-list', {products: featured_products}) }}
     </section>
+  {% else %}
+    <section class="callout">
+      <h2>Latest Products</h2>
+      {{ partial('product-list',
+        {products:
+          products | extended_sort('created_at', true) | reverse | slice(0,6) })
+      }}
+    </section>
   {% endif %}
   <section>
     <h2>On Sale</h2>
