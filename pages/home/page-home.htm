@@ -27,18 +27,26 @@ published: true
       }}
     </section>
   {% endif %}
-  <section>
+
+  {% set sale_products = [] %}
+  {% for product in products if product.onSale %}
+    {% set sale_products = sale_products | merge([product])%}
+  {% endfor %}
+  <section class="callout primary">
     <h2>On Sale</h2>
-    {% set sale_products = [] %}
-    {% for product in products if product.onSale %}
-      {% set sale_products = sale_products | merge([product])%}
-    {% endfor %}
-    {{ partial('product-list', {products: sale_products}) }}
+    {% if sale_products | length %}
+      {{ partial('product-list', {products: sale_products}) }}
+    {% else %}
+      There are no products on sale right now.
+    {% endif %}
   </section>
+
   <section>
     {{ content_block('about') }}
   </section>
+
   <section>
     {{ content_block('home-custom') }}
   </section>
+
 </section>
