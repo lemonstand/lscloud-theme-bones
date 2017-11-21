@@ -20,7 +20,7 @@ description: Shows the account settings form.
     <input type="hidden" name="billing[id]" value="{{ billing.id }}">
 
     <label class="cell medium-6">
-      First Name
+      First Name*
       <input
         type="text"
         name="billing[first_name]"
@@ -30,7 +30,7 @@ description: Shows the account settings form.
       <span class="form-error">First name is required.</span>
     </label>
     <label class="cell medium-6">
-      Last Name
+      Last Name*
       <input
         type="text"
         name="billing[last_name]"
@@ -41,7 +41,7 @@ description: Shows the account settings form.
     </label>
 
     <label class="cell medium-6">
-      Email
+      Email*
       <input
         type="email"
         name="billing[email]"
@@ -61,7 +61,7 @@ description: Shows the account settings form.
     </label>
 
     <label class="cell">
-      Address
+      Address*
       <input
         type="text"
         name="billing[street_address]"
@@ -81,7 +81,7 @@ description: Shows the account settings form.
     </label>
 
     <label class="cell medium-6">
-      City
+      City*
       <input
         type="text"
         name="billing[city]"
@@ -91,7 +91,7 @@ description: Shows the account settings form.
       <span class="form-error">City is required.</span>
     </label>
     <label class="cell medium-6">
-      Postal Code
+      Postal Code*
       <input
         type="text"
         name="billing[postal_code]"
@@ -139,7 +139,7 @@ description: Shows the account settings form.
     <input type="hidden" name="shipping[id]" value="{{ shipping.id }}">
 
     <label class="cell medium-6">
-      First Name
+      First Name*
       <input
         type="text"
         name="shipping[first_name]"
@@ -149,7 +149,7 @@ description: Shows the account settings form.
       <span class="form-error">First name is required.</span>
     </label>
     <label class="cell medium-6">
-      Last Name
+      Last Name*
       <input
         type="text"
         name="shipping[last_name]"
@@ -170,7 +170,7 @@ description: Shows the account settings form.
     </label>
 
     <label class="cell">
-      Address
+      Address*
       <input
         type="text"
         name="shipping[street_address]"
@@ -190,7 +190,7 @@ description: Shows the account settings form.
     </label>
 
     <label class="cell medium-6">
-      City
+      City*
       <input
         type="text"
         name="shipping[city]"
@@ -200,7 +200,7 @@ description: Shows the account settings form.
       <span class="form-error">City is required.</span>
     </label>
     <label class="cell medium-6">
-      Postal Code
+      Postal Code*
       <input
         type="text"
         name="shipping[postal_code]"
@@ -249,21 +249,21 @@ description: Shows the account settings form.
   novalidate>
   <h3>Change password</h3>
   <label>
-    Old password
+    Old password*
     <input type="password" name="oldPassword" required>
     <span class="error"></span>
     <span class="form-error">Old password is required</span>
   </label>
 
   <label>
-    New password
+    New password*
     <input type="password" name="password" id="password" required>
     <span class="error"></span>
     <span class="form-error">New password is required</span>
   </label>
 
   <label>
-    Password confirmation
+    Password confirmation*
     <input
       type="password"
       name="passwordConfirm"

@@ -75,7 +75,7 @@
           <legend>Billing Address</legend>
           <div class="grid-x grid-padding-x">
             <label class="cell medium-6">
-              <span>First Name</span>
+              <span>First Name*</span>
               <input name="billingInfo[firstName]" type="text" value="{{ billingInfo.firstName }}"
                      id="checkout-billing-first-name" required/>
               <span class="error"></span>
@@ -84,7 +84,7 @@
                   </span>
             </label>
             <label class="cell medium-6">
-              <span>Last Name</span>
+              <span>Last Name*</span>
               <input name="billingInfo[lastName]" type="text" value="{{ billingInfo.lastName }}"
                      id="checkout-billing-last-name" required/>
               <span class="error"></span>
@@ -93,7 +93,7 @@
                   </span>
             </label>
             <label class="cell medium-6">
-              <span>Email</span>
+              <span>Email*</span>
               <input name="billingInfo[email]" type="email" value="{{ billingInfo.email }}"
                      id="checkout-billing-email" required/>
               <span class="error"></span>
@@ -108,7 +108,7 @@
               <span class="error"></span>
             </label>
             <label class="cell">
-              <span>Address Line 1</span>
+              <span>Address Line 1*</span>
               <input name="billingInfo[streetAddressLine1]" type="text" value="{{ billingInfo.streetAddressLine1 }}"
                      id="checkout-billing-street-line-1" required/>
               <span class="error"></span>
@@ -123,7 +123,7 @@
               <span class="error"></span>
             </label>
             <label class="cell medium-6">
-              <span>City</span>
+              <span>City*</span>
               <input name="billingInfo[city]" type="text" value="{{ billingInfo.city }}"
                      id="checkout-billing-city" required/>
               <span class="error"></span>
@@ -132,7 +132,7 @@
                   </span>
             </label>
             <label class="cell medium-6">
-              <span>Zip Code</span>
+              <span>Zip Code*</span>
               <input name="billingInfo[postalCode]" type="text" value="{{ billingInfo.postalCode }}"
                      id="checkout-billing-postal-code" required/>
               <span class="error"></span>
@@ -141,7 +141,7 @@
                   </span>
             </label>
             <label class="cell medium-6">
-              <span>Country</span>
+              <span>Country*</span>
               <select name="billingInfo[countryId]" id="checkout-billing-country"
                       data-state-selector="#checkout-billing-state" data-current-state="{{ billingInfo.stateId }}"
                       required>
@@ -173,7 +173,7 @@
           <div id="shipping-inputs-grid" class="grid-x grid-padding-x {% if mirrorBillingShipping %}hide{% endif %}"
                data-toggler=".hide">
             <label class="cell medium-6">
-              <span>First Name</span>
+              <span>First Name*</span>
               <input name="shippingInfo[firstName]" type="text" value="{{ shippingInfo.firstName }}"
                      data-mirror-watcher="shipping-billing" data-mirror-source="checkout-billing-first-name"
                      required/>
@@ -183,7 +183,7 @@
                   </span>
             </label>
             <label class="cell medium-6">
-              <span>Last Name</span>
+              <span>Last Name*</span>
               <input name="shippingInfo[lastName]" type="text" value="{{ shippingInfo.lastName }}"
                      data-mirror-watcher="shipping-billing" data-mirror-source="checkout-billing-last-name"
                      required />
@@ -199,7 +199,7 @@
               <span class="error"></span>
             </label>
             <label class="cell">
-              <span>Address Line 1</span>
+              <span>Address Line 1*</span>
               <input name="shippingInfo[streetAddressLine1]" type="text" value="{{ shippingInfo.streetAddressLine1 }}"
                      data-mirror-watcher="shipping-billing" data-mirror-source="checkout-billing-street-line-1"
                      required/>
@@ -215,7 +215,7 @@
               <span class="error"></span>
             </label>
             <label class="cell medium-6">
-              <span>City</span>
+              <span>City*</span>
               <input name="shippingInfo[city]" type="text" value="{{ shippingInfo.city }}"
                      data-mirror-watcher="shipping-billing" data-mirror-source="checkout-billing-city"
                      required/>
@@ -225,7 +225,7 @@
                   </span>
             </label>
             <label class="cell medium-6">
-              <span>Zip Code</span>
+              <span>Zip Code*</span>
               <input name="shippingInfo[postalCode]" type="text" value="{{ shippingInfo.postalCode }}"
                      data-mirror-watcher="shipping-billing" data-mirror-source="checkout-billing-postal-code"
                      required/>
@@ -235,7 +235,7 @@
                   </span>
             </label>
             <label class="cell medium-6">
-              <span>Country</span>
+              <span>Country*</span>
               <select name="shippingInfo[countryId]"
                       data-state-selector="#checkout-shipping-state" data-current-state="{{ shippingInfo.stateId }}"
                       data-mirror-watcher="shipping-billing" data-mirror-source="checkout-billing-country"
