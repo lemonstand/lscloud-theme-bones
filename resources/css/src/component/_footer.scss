@@ -1,4 +1,4 @@
-footer {
+.page-footer {
   background: $light-gray;
   padding: 1rem 0;
 
@@ -7,8 +7,7 @@ footer {
 
     > ul {
       @include menu-base;
-      display: flex;
-      flex-direction: column;
+      display: block;
     }
   }
 
@@ -16,8 +15,7 @@ footer {
     margin: 0 5rem 1rem 0;
 
     > .menu {
-      display: flex;
-      flex-direction: column;
+      display: block;
     }
   }
 
