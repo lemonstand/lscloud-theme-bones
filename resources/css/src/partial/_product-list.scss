@@ -1,0 +1,6 @@
+// Internet Explorer hack.
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .product-list .card {
+    display: block;
+  }
+}

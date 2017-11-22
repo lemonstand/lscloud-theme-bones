@@ -2,12 +2,12 @@
 description: Displays a product list.
 ---
 {# takes products as an argument #}
-<div class="grid-container fluid">
+<div class="product-list grid-container fluid">
   <div class="grid-x grid-margin-x small-up-2 medium-up-3 large-up-6">
     {% for product in products %}
       <div class="cell">
-        <div class="card">
-          <a href="/product/{{ product.url_name }}">
+        <a href="/product/{{ product.url_name }}">
+          <div class="card">
             <img
               src="{{ product.images.first.thumbnail(400, 400)
                 | default('http://placehold.it/400x400') }}"
@@ -28,8 +28,8 @@ description: Displays a product list.
                 </div>
               </div>
             </section>
-          </a>
-        </div>
+          </div>
+        </a>
       </div>
     {% endfor %}
   </div>
