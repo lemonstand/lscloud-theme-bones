@@ -8,29 +8,60 @@ published: true
 ---
 <section class="home grid-container">
   <h1>{{ theme.storeTitle }}</h1>
+
   <section>
     <h2>Categories</h2>
     {{ partial('categories', {categories: categories}) }}
   </section>
+
   {% set featured_products = ('featured' | collection).products %}
   {% if featured_products | length %}
     <section class="callout">
       <h2>Featured</h2>
       {{ partial('product-list', {products: featured_products}) }}
     </section>
+  {% else %}
+    <section class="callout">
+      <h2>Latest Products</h2>
+      {{ partial('product-list',
+        {products:
+          products | extended_sort('created_at', true) | reverse | slice(0,6) })
+      }}
+    </section>
   {% endif %}
-  <section>
+
+  {% set sale_products = [] %}
+  {% for product in products if product.onSale %}
+    {% set sale_products = sale_products | merge([product])%}
+  {% endfor %}
+  <section class="callout primary">
     <h2>On Sale</h2>
-    {% set sale_products = [] %}
-    {% for product in products if product.onSale %}
-      {% set sale_products = sale_products | merge([product])%}
-    {% endfor %}
-    {{ partial('product-list', {products: sale_products}) }}
+    {% if sale_products | length %}
+      {{ partial('product-list', {products: sale_products}) }}
+    {% else %}
+      There are no products on sale right now.
+    {% endif %}
   </section>
-  <section>
-    {{ content_block('about') }}
-  </section>
-  <section>
-    {{ content_block('home-custom') }}
-  </section>
+
+  {% if theme.enableAboutContent %}
+    <section>
+      {{ content_block('home-about') }}
+    </section>
+  {% endif %}
+
+  {% set blog_posts = cmsContent('blog')
+    | extended_sort('published_on', false) %} {# false means descending #}
+  {% if blog_posts | length and theme.enableLatestBlogPosts %}
+    <section>
+      <h1>Archive</h1>
+      {{ partial('blog-list', {posts: blog_posts | slice(0, 3)}) }}
+    </section>
+  {% endif %}
+
+  {% if theme.enableCustomContent %}
+    <section>
+      {{ content_block('home-custom') }}
+    </section>
+  {% endif %}
+
 </section>

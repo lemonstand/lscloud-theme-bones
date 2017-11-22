@@ -14,4 +14,7 @@ customFields:
     enableReviews: { type: checkbox, title: 'Show reviews on the product page', default: true }
     enableRatings: { type: checkbox, title: 'Show ratings on the product page', default: true }
     enableCartUpsells: {type: checkbox, title: 'Show upsells on the cart page', default: true }
+    enableLatestBlogPosts: {type: checkbox, title: 'Show latest blog posts on the home page', default: true }
+    enableAboutContent: {type: checkbox, title: 'Show widget block home-about on the home page', default: true }
+    enableCustomContent: {type: checkbox, title: 'Show widget block home-custom on the home page', default: true }
 ---

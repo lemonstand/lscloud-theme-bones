@@ -55,11 +55,11 @@
 
     {% endif %}
 
-    <section class="price">
-      {{ product.price | currency }}
+    <section class="product-prices">
       {% if product.onSale %}
-      SALE!
+        <p class="product-base-price">Reg. {{ product.base_price | currency }}</p>
       {% endif %}
+      <p class="product-price">{{ product.price ? (product.price | currency) : 'Free' }}</p>
     </section>
 
     <section class="description">
