@@ -43,9 +43,11 @@ published: true
     {% endif %}
   </section>
 
-  <section>
-    {{ content_block('about') }}
-  </section>
+  {% if theme.enableAboutContent %}
+    <section>
+      {{ content_block('home-about') }}
+    </section>
+  {% endif %}
 
   {% set blog_posts = cmsContent('blog')
     | extended_sort('published_on', false) %} {# false means descending #}
@@ -56,8 +58,10 @@ published: true
     </section>
   {% endif %}
 
-  <section>
-    {{ content_block('home-custom') }}
-  </section>
+  {% if theme.enableCustomContent %}
+    <section>
+      {{ content_block('home-custom') }}
+    </section>
+  {% endif %}
 
 </section>
