@@ -57,6 +57,10 @@
             margin-right: 0;
           }
         }
+
+        [name="coupon"] {
+          min-width: rem-calc(185);
+        }
       }
     }
 
@@ -68,6 +72,10 @@
       .cart-footer {
         .footer-right {
           flex-direction: column;
+
+          [name="coupon"] {
+            min-width: 0;
+          }
         }
       }
     }
