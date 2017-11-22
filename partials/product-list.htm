@@ -15,14 +15,14 @@ description: Displays a product list.
               title="{{ product.images.first.title }}" />
             <section class="card-section">
               <div class="grid-x">
-                <div class="cell medium-8">{{ product.name }}</div>
-                <div class="cell medium-4">
+                <div class="cell">{{ product.name }}</div>
+                <div class="product-prices cell">
                   {% if product.onSale %}
-                    <span class="product-original-price">
+                    <span class="product-base-price">
                       {{ product.fullPrice | currency }}
                     </span>
                   {% endif %}
-                  <span class="product-current-price">
+                  <span class="product-price">
                     {{ product.price | currency }}
                   </span>
                 </div>
