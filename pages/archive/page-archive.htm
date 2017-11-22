@@ -16,12 +16,12 @@ published: true
     {% set blog_categories = blog_categories | merge([category]) %}
   {% endfor %}
 {% endfor %}
-{{ partial('blog-categories',
-  {categories: blog_categories, align: 'align-right'}) }}
-
 {% set posts = archives %}
 <section class="archive grid-container">
   <h1>Archive</h1>
+  {{ partial('blog-categories',
+    {categories: blog_categories, align: 'align-right'}) }}
+
   {% if posts | length %}
     {% paginate posts by 5 %}
       {{ partial('blog-list', {posts: pagination.items}) }}
