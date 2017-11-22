@@ -3,6 +3,12 @@
   padding: 1rem 0;
 
   .header-title {
+    // Internet Explorer hack.
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+      position: absolute;
+      width: 100%;
+    }
+
     .header-logo {
       height: rem-calc(30);
     }
