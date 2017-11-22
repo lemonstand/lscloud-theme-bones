@@ -33,7 +33,7 @@
   <section class="cell contents-product">
     <div class="grid-x grid-padding-x">
 
-      <header class="cell large-8">
+      <header class="cell large-8 clearfix">
         <img class="product-image" src="{{ item.product.images.first.thumbnail(100, 'auto') }}"/>
         <h2 class="product-name"><a href="/product/{{ item.product.url_name }}">{{ item.product.name }}</a></h2>
         {% set options = item.optionsString() %}

@@ -10,9 +10,11 @@
     > .grid-x {
       > .cell {
         flex: 0 0 60%;
+        max-width: 60%;
 
         &.number-cell {
           flex: 0 0 10%;
+          max-width: 10%;
           text-align: right;
 
           .number-cell-label {
@@ -22,6 +24,7 @@
 
         &.remove-cell {
           flex: 0 0 10%;
+          max-width: 10%;
 
           .remove-button {
             color: $alert-color;
@@ -92,12 +95,19 @@
         flex-direction: column;
         position: relative;
 
+        // Internet Explorer hack.
+        @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+          display: block;
+        }
+
         > .cell {
           padding: .5rem;
+          max-width: 100%;
 
           &.number-cell {
             border-top: 1px solid $medium-gray;
             text-align: left;
+            max-width: 100%;
 
             .number-cell-label {
               display: inline;
@@ -106,6 +116,7 @@
 
           &.remove-cell {
             padding: 0;
+            max-width: 100%;
 
             .remove-button {
               position: absolute;

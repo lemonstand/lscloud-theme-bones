@@ -1,5 +1,7 @@
 .cart-page {
   .cart-upsells {
+    margin-bottom: 1.25rem;
+
     > .grid-x {
       border: 1px solid $primary-color;
       border-radius: $global-radius;
@@ -8,6 +10,10 @@
   }
 
   .cart-summary {
+    hr {
+      margin-top: 0;
+    }
+
     .cart-shipping-estimates {
       h3 {
         font-size: 1.5rem;
@@ -72,6 +78,11 @@
       .cart-footer {
         .footer-right {
           flex-direction: column;
+
+          > * {
+            margin-left: 0;
+            margin-right: 0;
+          }
 
           [name="coupon"] {
             min-width: 0;
