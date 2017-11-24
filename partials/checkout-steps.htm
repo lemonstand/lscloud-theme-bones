@@ -2,11 +2,14 @@
   <h1>Checkout</h1>
 </div>
 {% if not items %}
+
 <div class="cell">
   <p class="empty-cart">You don't have anything in your cart yet!</p>
   <a class="button" href="/products">Continue Shopping</a>
 </div>
+
 {% else %}
+
 <div class="cell">
   <ul id="checkout-tabs" class="tabs checkout-tabs" data-tabs>
     <li class="tabs-title {% if step == 'billing_info' %}is-active{% endif %}">

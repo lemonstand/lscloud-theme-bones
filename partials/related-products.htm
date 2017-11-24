@@ -6,7 +6,9 @@ description: Displays upsells and cross sells, with add to cart buttons.
 
 {% for relatedProduct in relatedProducts %}
   <div class="cell related-product">
+
     <div class="grid-x grid-padding-x">
+
       <div class="cell large-6 product-details">
         <img class="product-image" src="{{ relatedProduct.images.first.thumbnail(100, 'auto') }}"/>
         <h3 class="product-name"><a href="/product/{{ relatedProduct.url_name }}">{{ relatedProduct.name }}</a></h3>
@@ -15,6 +17,7 @@ description: Displays upsells and cross sells, with add to cart buttons.
           <p class="product-options">{{ details | unescape }}</p>
         {% endif %}
       </div>
+
       <div class="cell large-3 product-prices">
         {% if relatedProduct.type == 'upsell' or relatedProduct.onSale %}
           <p class="product-base-price">Reg. {{ relatedProduct.base_price | currency }}</p>
@@ -24,6 +27,7 @@ description: Displays upsells and cross sells, with add to cart buttons.
         {% endif %}
         <p class="product-price">{{ relatedProduct.price ? (relatedProduct.price | currency) : 'Free' }}</p>
       </div>
+
       <div class="cell large-3 product-cta">
         <a class="button" data-ajax-handler="shop:cart"
           {% if relatedProduct.type == 'upsell' %}
@@ -35,6 +39,8 @@ description: Displays upsells and cross sells, with add to cart buttons.
           Add to Cart
         </a>
       </div>
+
     </div>
+
   </div>
 {% endfor %}

@@ -7,6 +7,7 @@ name: Orders Page
 url: /account/orders
 ---
 <section class="grid-container order-history">
+
   <header class="grid-x grid-padding-x">
 
     <div class="cell">
@@ -15,6 +16,7 @@ url: /account/orders
     </div>
 
   </header>
+
   <main class="grid-x grid-padding-x orders-grid">
 
     {% for order in customer.orders | extended_sort('created_at', false) %}

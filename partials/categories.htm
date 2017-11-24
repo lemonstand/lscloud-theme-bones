@@ -3,9 +3,12 @@ description: Displays a list of categories.
 ---
 {# takes categories as an argument #}
 <section class="categories">
+
   <div class="grid-container fluid">
     <div class="grid-x grid-margin-x small-up-2 medium-up-3 large-up-6">
+
       {% for category in categories %}
+
         <div class="cell">
           <a href="/category/{{ category.url_name }}">
             <div class="card">
@@ -20,7 +23,10 @@ description: Displays a list of categories.
             </div>
           </a>
         </div>
+
       {% endfor %}
+
     </div>
   </div>
+
 </section>

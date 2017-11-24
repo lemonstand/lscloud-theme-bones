@@ -5,12 +5,13 @@
 
     <!-- Add any required meta tags -->
     <meta charset="utf-8" />
+
     <!-- Set the viewport width to device width for mobile -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="Description" content="{{ page.description }}"/>
     <meta name="Keywords" content="{{ page.keywords }}"/>
 
-    <!-- Lemonstand requires lemonstand.css, jQuery, and lemonstand.js -- DO NOT REMOVE! -->
+    <!-- Lemonstand requires lemonstand.css, jQuery, and lemonstand.js DO NOT REMOVE! -->
     <link rel="stylesheet" href="/cms/lemonstand.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" defer></script>
     <script src="/cms/lemonstand.js" defer></script>
@@ -22,9 +23,11 @@
     <script type="text/javascript" src="{{ 'javascript/custom.js' | theme_resource }}" defer></script>
   </head>
   <body {% if theme.fillWindow %}class="fill-window"{% endif %}>
+
     <nav class="off-canvas position-left is-closed" id="mobile-off-canvas-menu" data-off-canvas>
       {{ partial('mobile-off-canvas-menu') }}
     </nav>
+
     <header>
       {% if theme.stickyHeader %}
       <div data-sticky-container>
@@ -38,11 +41,14 @@
       </div>
       {% endif %}
     </header>
+
     <main>
       {{ page() }}
     </main>
+
     <footer class="page-footer">
       {{ partial('footer') }}
     </footer>
+
   </body>
 </html>

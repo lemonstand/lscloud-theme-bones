@@ -2,9 +2,15 @@
 Description: Displays a product's ratings.
 ---
 {# takes rating as an argument #}
+
 {% if rating.total_reviews %}
-  {{ partial('stars', {count: rating.average_int}) }}
-  ({{  rating.total_reviews }} reviews)
+
+  {{ partial('stars', {
+      count: rating.average_int,
+  })  }}
+
 {% else %}
-  No reviews yet.
+
+No reviews yet.
+
 {% endif %}
