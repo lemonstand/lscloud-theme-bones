@@ -8,30 +8,48 @@ published: true
 ---
 {% set blog_slugs = [] %}
 {% set blog_categories = [] %}
+
 {# Iterate by ascending published_on so that new posts don't change the #}
 {# order of the categories in the list. #}
+
 {% for post in cmsContent('blog') | extended_sort('published_on', true) %}
   {% for category in post.categories if category.slug not in blog_slugs %}
     {% set blog_slugs = blog_slugs | merge([category.slug]) %}
     {% set blog_categories = blog_categories | merge([category]) %}
   {% endfor %}
 {% endfor %}
+
 {% set posts = archives %}
 <section class="archive grid-container">
-  <h1>Archive</h1>
-  {{ partial('blog-categories',
-    {categories: blog_categories, align: 'align-right'}) }}
+
+  <header>
+    <h1>Archive</h1>
+  </header>
+
+  {{ partial('blog-categories', {
+      categories: blog_categories,
+      align: 'align-right'
+  }) }}
 
   {% if posts | length %}
+
     {% paginate posts by 5 %}
-      {{ partial('blog-list', {posts: pagination.items}) }}
+
+      {{ partial('blog-list', {
+          posts: pagination.items
+      }) }}
+
       <footer>
-        {{ partial('pagination',
-          {base_url: '/archive/' ~ type ~ '/' ~ category,
-          pagination: pagination}) }}
+        {{ partial('pagination', {
+          base_url: '/archive/' ~ type ~ '/' ~ category,
+          pagination: pagination
+        }) }}
       </footer>
-    {% endpaginate %}
-  {% else %}
+
+      {% endpaginate %}
+
+    {% else %}
     <span class="error">No posts to display.</span>
   {% endif %}
+
 </section>

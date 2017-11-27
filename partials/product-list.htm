@@ -4,7 +4,9 @@ description: Displays a product list.
 {# takes products as an argument #}
 <div class="product-list grid-container fluid">
   <div class="grid-x grid-margin-x small-up-2 medium-up-3 large-up-6">
+
     {% for product in products %}
+
       <div class="cell">
         <a href="/product/{{ product.url_name }}">
           <div class="card">
@@ -13,6 +15,7 @@ description: Displays a product list.
                 | default('http://placehold.it/400x400') }}"
               alt="{{ product.images.first.description }}"
               title="{{ product.images.first.title }}" />
+
             <section class="card-section">
               <div class="grid-x">
                 <div class="cell">{{ product.name }}</div>
@@ -28,9 +31,11 @@ description: Displays a product list.
                 </div>
               </div>
             </section>
+
           </div>
         </a>
       </div>
+
     {% endfor %}
   </div>
 </div>

@@ -15,11 +15,15 @@ description: Displays Foundation styled pagination navigation.
   class="pagination text-center"
   role="navigation"
   aria-label="Pagination">
+
   <li><a href="{{ base_url }}/1">first</a></li>
+
   {% if current_index != 1 %}
     <li><a href="{{ base_url }}/{{ current_index - 1 }}">prev</a></li>
   {% endif %}
+
   {% for page in pagination.pages %}
+
     {% if page.isCurrent %}
       <li class="current">{{ page.index }}</li>
     {% else %}
@@ -29,6 +33,7 @@ description: Displays Foundation styled pagination navigation.
         </a>
       </li>
     {% endif %}
+
     {% if loop.last %}
       {% if current_index != page.index %}
         <li><a href="{{ base_url }}/{{ current_index + 1 }}">next</a></li>
@@ -39,5 +44,7 @@ description: Displays Foundation styled pagination navigation.
         </a>
       </li>
     {% endif %}
+
   {% endfor %}
+
 </ul>

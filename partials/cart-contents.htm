@@ -36,6 +36,7 @@
       <header class="cell large-8 clearfix">
         <img class="product-image" src="{{ item.product.images.first.thumbnail(100, 'auto') }}"/>
         <h2 class="product-name"><a href="/product/{{ item.product.url_name }}">{{ item.product.name }}</a></h2>
+
         {% set options = item.optionsString() %}
         {% if options %}
         <p class="product-options">{{ options | unescape }}</p>

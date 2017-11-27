@@ -1,5 +1,6 @@
 <header>
   <h1>{{ product.name }}</h1>
+
   {% if product.short_description %}
   <section class="short-description">
     {{ product.short_description | unescape }}
@@ -8,8 +9,10 @@
 </header>
 
 <main class="media-object">
+
   <section class="product-image media-object-section">
     <div class="orbit" data-orbit>
+
       <ul class="orbit-container">
         {% for image in product.images %}
         <li class="orbit-slide {% if loop.first %}is-active{% endif %}">
@@ -21,6 +24,7 @@
         </li>
         {% endfor %}
       </ul>
+
       <nav class="orbit-bullets">
         {% for index, image in product.images %}
         <button
@@ -34,6 +38,7 @@
         </button>
         {% endfor %}
       </nav>
+
     </div>
   </section>
 
@@ -153,6 +158,7 @@
     </section>
     {% endif %}
   </section>
+
 </main>
 
 <section>
@@ -176,4 +182,5 @@
     </div>
   </section>
   {% endif %}
+
 </section>

@@ -12,9 +12,11 @@ Description: Displays a product's reviews.
 
 <section class="reveal review-view" id="review-view" data-reveal>
   <button class="close-button" data-close><span class="fa fa-close"></span></button>
+
   <header>
     <h1>{{ product.name }}</h1>
   </header>
+
   <main>
     <section "total">
       {{ partial('ratings', {rating: product.rating()}) }}
@@ -38,13 +40,17 @@ Description: Displays a product's reviews.
       </section>
     {% endfor %}
   </main>
+
 </section>
 
 <section class="reveal review-add" id="review-add" data-reveal>
+
   <button class="close-button" data-close><span class="fa fa-close"></span></button>
+
   <header>
     <h1 class="modal-title">{{ product.name }}</h1>
   </header>
+
   <main>
     {{ flash() }}
     <form
@@ -101,7 +107,9 @@ Description: Displays a product's reviews.
         value="{{product.id}}">
       <input type="hidden" name="fields[message_type]" value="review">
     </form>
+
   </main>
+
 </section>
 
 <!-- end review modals -->

@@ -1,9 +1,12 @@
 <div class="grid-container">
   <div class="grid-x grid-padding-x">
+
     <div class="cell small-12 medium-shrink footer-custom-nav">
       {{ widget_block('footer-nav-menu') }}
     </div>
+
     <div class="cell small-12 medium-shrink footer-categories">
+
       <ul class="menu">
         {% for category in categories[:10] %}
         <li>
@@ -11,9 +14,14 @@
         </li>
         {% endfor %}
       </ul>
+
     </div>
+
+
     <div class="cell small-12 medium-auto footer-core">
+
       <p>{{ theme.footerLegalText }}</p>
+
       <ul class="menu footer-social-links">
         {% if theme.facebookLink %}
         <li>
@@ -31,6 +39,7 @@
         </li>
         {% endif %}
       </ul>
+
       <ul class="menu">
         {% if customer %}
         <li>
@@ -48,6 +57,9 @@
         </li>
         {% endif %}
       </ul>
+
     </div>
+
   </div>
+
 </div>

@@ -5,7 +5,10 @@ description: Displays a mini-cart with a subtotal and link to the full cart and 
 
   {% for item in cart.items %}
   <div class="cell product-cell">
-    <img class="product-image" src="{{ item.product.images.first.thumbnail(64, 'auto') }}"/>
+    <img
+        class="product-image"
+        src="{{ item.product.images.first.thumbnail(64, 'auto') }}"/>
+
     <a class="product-name">{{ item.product.name }}</a>
     <small class="product-summary">{{ item.quantity }} x {{ item.price | currency }}</small>
   </div>
@@ -32,4 +35,5 @@ description: Displays a mini-cart with a subtotal and link to the full cart and 
   </div>
 
   {% endif %}
+
 </div>
