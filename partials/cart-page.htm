@@ -7,9 +7,12 @@
     {% endfor %}
 {% endfor %}
 
-<form class="grid-x grid-padding-x" data-ajax-handler="shop:cart"
-      data-ajax-update=".cart-page=cart-page,.cart-count=cart-count,.mini-cart=mini-cart">
-
+{{ open_form({
+    'class': 'grid-x grid-padding-x',
+    'data-ajax-handler': 'shop:cart',
+    'data-ajax-update': '.cart-page=cart-page,.cart-count=cart-count,.mini-cart=mini-cart'
+   })
+}}
   <header class="cell">
     <h1>Cart</h1>
   </header>
@@ -130,4 +133,4 @@
 
   </section>
 
-</form>
+{{ close_form() }}

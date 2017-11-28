@@ -83,11 +83,12 @@
     {% endif %}
 
     <section class="product-form">
-      <form
-          data-ajax-handler="shop:onAddToCart"
-          data-ajax-update=".mini-cart=mini-cart,.cart-count=cart-count"
-          method="post">
-
+      {{ open_form({
+          'data-ajax-handler': 'shop:onAddToCart',
+          'data-ajax-update': '.mini-cart=mini-cart,.cart-count=cart-count',
+          'method': 'post'
+         })
+      }}
         {% for option in product.options %}
         <label>
           {{ option.name }}
@@ -133,7 +134,7 @@
         This product is currently out of stock.
         Check back for more {{ product.expected_availability_date|default('soon') }}.
         {% endif %}
-      </form>
+      {{ close_form() }}
     </section>
 
     {% if product.priceTiers|length %}

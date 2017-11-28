@@ -1,11 +1,12 @@
 {# Takes redirectUrl as an argument (defaults to '/') #}
-<form
-  method="post"
-  data-ajax-handler="shop:onLogin"
-  data-validation-message=""
-  data-abide
-  novalidate>
-
+{{ open_form({
+    'method': 'post',
+    'data-ajax-handler': 'shop:onLogin',
+    'data-validation-message': '',
+    'data-abide': null,
+    'novalidate': null
+   })
+}}
   <label>
     Email
     <input type="email" name="email" required pattern="email">
@@ -24,4 +25,4 @@
   <a class="button secondary" href="/reset-password">forgot password</a>
   <input type="hidden" name="redirect" value="{{ redirectUrl ?: '/' }}">
 
-</form>
+{{ close_form() }}
