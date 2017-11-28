@@ -53,11 +53,13 @@ Description: Displays a product's reviews.
 
   <main>
     {{ flash() }}
-    <form
-      method="post"
-      data-ajax-handler="system:onSendMessage"
-      data-abide
-      novalidate>
+    {{ open_form({
+        'method': 'post',
+        'data-ajax-handler': 'system:onSendMessage',
+        'data-abide': null,
+        'novalidate': null
+       })
+    }}
       <label>
         Name*
         <input type="text" name="fields[name]" required>
@@ -106,7 +108,7 @@ Description: Displays a product's reviews.
         name="fields[shop_product_id]"
         value="{{product.id}}">
       <input type="hidden" name="fields[message_type]" value="review">
-    </form>
+    {{ close_form() }}
 
   </main>
 

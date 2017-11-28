@@ -7,11 +7,13 @@ description: Shows the account settings form.
 
 {{ flash() }}
 
-<form
-  method="post"
-  data-ajax-handler="shop:onUpdateCustomerProfile"
-  data-abide
-  novalidate>
+{{ open_form({
+    'method': 'post',
+    'data-ajax-handler': 'shop:onUpdateCustomerProfile',
+    'data-abide': null,
+    'novalidate': null
+   })
+}}
   <input type="hidden" name="redirect" value="/account">
 
   <section class="account-billing-address grid-x grid-padding-x">
@@ -251,13 +253,15 @@ description: Shows the account settings form.
   <button type="submit" class="button">
     save address information
   </button>
-</form>
+{{ close_form() }}
 
-<form
-  method="post"
-  data-ajax-handler="shop:onChangePassword"
-  data-abide
-  novalidate>
+{{ open_form({
+    'method': 'post',
+    'data-ajax-handler': 'shop:onChangePassword',
+    'data-abide': null,
+    'novalidate': null
+   })
+}}
   <h3>Change password</h3>
 
   <label>
@@ -289,4 +293,4 @@ description: Shows the account settings form.
 
   <button type="submit" class="button">change password</button>
   <input type="hidden" name="redirect" value="/account"/>
-</form>
+{{ close_form() }}
