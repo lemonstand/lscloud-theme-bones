@@ -169,7 +169,14 @@
       <div class="cell related-header">
         <h2>You May Be Interested in These</h2>
       </div>
-      {{ partial('related-products', { relatedProducts: product.crossSells }) }}
+      {{ open_form({
+          'data-ajax-handler': 'shop:onAddToCart',
+          'data-ajax-update': '.mini-cart=mini-cart,.cart-count=cart-count',
+          'method': 'post'
+        })
+      }}
+        {{ partial('related-products', { relatedProducts: product.crossSells }) }}
+      {{ close_form() }}
     </div>
   </section>
   {% endif %}
@@ -179,7 +186,14 @@
       <div class="cell related-header">
         <h2>Purchase Together and Save</h2>
       </div>
+      {{ open_form({
+        'data-ajax-handler': 'shop:onAddToCart',
+        'data-ajax-update': '.mini-cart=mini-cart,.cart-count=cart-count',
+        'method': 'post'
+      })
+    }}
       {{ partial('related-products', { relatedProducts: product.upSells }) }}
+    {{ close_form() }}
     </div>
   </section>
   {% endif %}
