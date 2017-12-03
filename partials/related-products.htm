@@ -18,7 +18,7 @@ description: Displays upsells and cross sells, with add to cart buttons.
         {% endif %}
       </div>
 
-      <div class="cell large-3 product-prices">
+      <div class="cell large-3 product-prices {{ relatedProduct.type }}">
         {% if relatedProduct.type == 'upsell' or relatedProduct.onSale %}
           <p class="product-base-price">Reg. {{ relatedProduct.base_price | currency }}</p>
         {% endif %}
@@ -30,7 +30,7 @@ description: Displays upsells and cross sells, with add to cart buttons.
 
       <div class="cell large-3 product-cta">
         <a class="button" data-ajax-handler="shop:cart"
-          {% if relatedProduct.type == 'upsell' %}
+          {% if relatedProduct.type == 'upsell' or relatedProduct.type == 'cross-sell' %}
             data-ajax-extra-fields="upsellId='{{ relatedProduct.id }}', productId='{{ relatedProduct.parentProduct.id }}'"
           {% else %}
             data-ajax-extra-fields="productId='{{ relatedProduct.product.id }}'"
