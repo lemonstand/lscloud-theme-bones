@@ -23,6 +23,7 @@ published: true
       {{ partial('product-list', {products: featured_products}) }}
     </section>
   {% else %}
+    {% if products | length %}
     <section class="callout">
       <h2>Latest Products</h2>
       {{ partial('product-list',
@@ -30,12 +31,14 @@ published: true
           products | extended_sort('created_at', true) | reverse | slice(0,6) })
       }}
     </section>
+    {% endif %}
   {% endif %}
 
   {% set sale_products = [] %}
   {% for product in products if product.onSale %}
     {% set sale_products = sale_products | merge([product])%}
   {% endfor %}
+
   <section class="callout primary">
     <h2>On Sale</h2>
     {% if sale_products | length %}
