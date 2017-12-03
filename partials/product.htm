@@ -45,21 +45,6 @@
   <section class="media-object-section main-section">
     <h2>{{ product.name }}</h2>
 
-    {% if theme.enableReviews %}
-
-    <section class="ratings">
-      {{ partial('ratings', {rating: product.rating()}) }}
-    </section>
-
-    <section class="reviews">
-      {{ partial('reviews', {
-      product: product,
-      reviews: product.reviews()})
-      }}
-    </section>
-
-    {% endif %}
-
     <section class="product-prices">
       {% if product.onSale %}
         <p class="product-base-price">Reg. {{ product.base_price | currency }}</p>
@@ -70,6 +55,19 @@
     <section class="description">
       {{ product.description | unescape }}
     </section>
+
+    {% if theme.enableReviews %}
+      <section class="ratings">
+        {{ partial('ratings', {rating: product.rating()}) }}
+      </section>
+
+      <section class="reviews">
+        {{ partial('reviews', {
+          product: product,
+          reviews: product.reviews()})
+        }}
+      </section>
+    {% endif %}
 
     {% if product.productAttributes.count %}
     <table class="product-attributes">
