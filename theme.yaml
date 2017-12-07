@@ -1,7 +1,7 @@
 ---
 name: 'Bones V2'
 engine: twig
-404: home
+404: 404
 customFields:
     storeTitle: { type: text, title: 'Store Name', default: 'This Shop' }
     storeLogo: { type: image, title: 'Store Logo', default: '@images/dist/bones-logo.svg' }
