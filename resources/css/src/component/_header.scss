@@ -35,7 +35,7 @@
 
     .menu-nav {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: flex-end;
 
       .header-core-nav,
@@ -54,6 +54,10 @@
 
   @include breakpoint(medium down) {
     .header-menu {
+      .menu-search {
+        margin-top: .5rem;
+      }
+
       .menu-cart {
         margin-bottom: 0;
         padding-left: 0;

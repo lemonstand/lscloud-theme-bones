@@ -6,7 +6,7 @@
     </div>
     <div class="cell auto header-menu">
       <div class="grid-x grid-padding-x align-right">
-        <nav class="cell shrink large-12 large-order-2 menu-nav">
+        <nav class="cell shrink large-12 medium-order-2 large-order-3 menu-nav">
 
           <ul class="menu dropdown show-for-large header-core-nav" data-dropdown-menu>
             <li>
@@ -59,7 +59,7 @@
 
         </nav>
 
-        <div class="cell shrink large-order-1 menu-cart">
+        <div class="cell shrink medium-order-3 large-order-2 menu-cart">
           <ul class="menu">
             <li>
               <a class="button" data-toggle="mini-cart-dropdown">
@@ -72,6 +72,11 @@
           </ul>
         </div>
 
+        <div class="cell medium-6 medium-order-1 menu-search">
+          {{ open_form({ 'method': 'get', 'action': site_url('search') }) }}
+          <input type="text" name="query" value="{{ query | unescape }}" placeholder="Search store&hellip;"/>
+          {{ close_form() }}
+        </div>
       </div>
     </div>
   </div>
