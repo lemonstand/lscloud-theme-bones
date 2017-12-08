@@ -1,12 +1,11 @@
 ---
 url: /blog/:slug
-name: CMS Content Page
-description: Displays CMS content pages.
+name: Blog Post
 action: cmscontent:blog
 template: default
 published: true
 ---
-<section class="blog grid-container">
+<section class="blog-post grid-container">
 
   <header>
 
@@ -24,10 +23,12 @@ published: true
       </small>
     </h1>
 
-    {{ partial('blog-categories', {
-        categories: post.categories,
-        align: 'align-right'
-    }) }}
+    <div class="archive-categories">
+      {{ partial('archive-categories', {
+           categories: post.categories,
+         })
+      }}
+    </div>
 
   </header>
 

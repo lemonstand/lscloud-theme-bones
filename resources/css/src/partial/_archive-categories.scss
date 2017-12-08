@@ -1,0 +1,16 @@
+.archive-categories {
+  ul {
+    li {
+      a {
+        cursor: pointer;
+        display: inline-block;
+        margin-right: .25rem;
+        margin-bottom: .25rem;
+
+        &:hover {
+          color: $label-color;
+        }
+      }
+    }
+  }
+}

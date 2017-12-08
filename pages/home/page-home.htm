@@ -56,7 +56,7 @@ published: true
   {% if blog_posts | length and theme.enableLatestBlogPosts %}
     <section>
       <h1>Archive</h1>
-      {{ partial('blog-list', {posts: blog_posts | slice(0, 3)}) }}
+      {{ partial('archive-list', {posts: blog_posts | slice(0, 3)}) }}
     </section>
   {% endif %}
 
