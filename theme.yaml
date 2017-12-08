@@ -11,10 +11,10 @@ customFields:
     instagramLink: { type: text, title: 'Instagram Social Account Link', default: '' }
     stickyHeader: { type: checkbox, title: 'Keep header menu on the page as user scrolls', default: true }
     fillWindow: { type: checkbox, title: 'Keep footer at bottom of screen on short pages', default: true }
-    enableReviews: { type: checkbox, title: 'Show reviews on the product page', default: true }
-    enableRatings: { type: checkbox, title: 'Show ratings on the product page', default: true }
-    enableCartUpsells: {type: checkbox, title: 'Show upsells on the cart page', default: true }
-    enableLatestBlogPosts: {type: checkbox, title: 'Show latest blog posts on the home page', default: true }
-    enableAboutContent: {type: checkbox, title: 'Show widget block home-about on the home page', default: true }
-    enableCustomContent: {type: checkbox, title: 'Show widget block home-custom on the home page', default: true }
+    enableReviews: { type: checkbox, title: 'Product Page - Show reviews', default: true }
+    enableRatings: { type: checkbox, title: 'Product Page - Show ratings', default: true }
+    enableCartUpsells: { type: checkbox, title: 'Cart Page - Show upsells', default: true }
+    enableHomeBlogPreview: { type: checkbox, title: 'Home Page - Show latest blog posts', default: true }
+    enableHomeAbout: { type: checkbox, title: 'Home Page- Show widget block home-about', default: true }
+    homeHeroImage: { type: image, title: 'Home Page - Hero Image', default: '' }
 ---

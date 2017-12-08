@@ -6,64 +6,77 @@ action: shop:products
 template: default
 published: true
 ---
-<section class="home grid-container">
-  <header>
-    <h1>{{ theme.storeTitle }}</h1>
+<section class="home">
+
+  {% if theme.homeHeroImage %}
+  <header class="home-hero">
+    <div class="orbit" role="region" data-orbit>
+      <div class="orbit-wrapper">
+        <ul class="orbit-container">
+          <li class="is-active orbit-slide">
+            <figure class="orbit-figure">
+              <img class="orbit-image" src="{{ theme.homeHeroImage.thumbnail('auto', 'auto') }}"
+                   alt="{{ theme.homeHeroImage.alt }}" title="{{ theme.homeHeroImage.title }}">
+              <figcaption class="orbit-caption">
+                {{ content_block('home-hero-content') }}
+              </figcaption>
+            </figure>
+          </li>
+        </ul>
+      </div>
+    </div>
   </header>
-
-  <section>
-    <h2>Categories</h2>
-    {{ partial('categories', {categories: categories}) }}
-  </section>
-
-  {% set featured_products = ('featured' | collection).products %}
-  {% if featured_products | length %}
-    <section class="callout">
-      <h2>Featured</h2>
-      {{ partial('product-list', {products: featured_products}) }}
-    </section>
-  {% else %}
-    <section class="callout">
-      <h2>Latest Products</h2>
-      {{ partial('product-list',
-        {products:
-          products | extended_sort('created_at', true) | reverse | slice(0,6) })
-      }}
-    </section>
   {% endif %}
 
-  {% set sale_products = [] %}
-  {% for product in products if product.onSale %}
-    {% set sale_products = sale_products | merge([product])%}
-  {% endfor %}
-  <section class="callout primary">
-    <h2>On Sale</h2>
-    {% if sale_products | length %}
-      {{ partial('product-list', {products: sale_products}) }}
+  <main class="grid-container">
+    <section>
+      <h2>Categories</h2>
+      {{ partial('categories', {categories: categories}) }}
+    </section>
+
+    {% set featured_products = ('featured' | collection).products %}
+    {% if featured_products | length %}
+      <section class="callout">
+        <h2>Featured</h2>
+        {{ partial('product-list', {products: featured_products}) }}
+      </section>
     {% else %}
-      There are no products on sale right now.
+      <section class="callout">
+        <h2>Latest Products</h2>
+        {{ partial('product-list',
+          {products:
+            products | extended_sort('created_at', true) | reverse | slice(0,6) })
+        }}
+      </section>
     {% endif %}
-  </section>
 
-  {% if theme.enableAboutContent %}
-    <section>
-      {{ content_block('home-about') }}
+    {% set sale_products = [] %}
+    {% for product in products if product.onSale %}
+      {% set sale_products = sale_products | merge([product])%}
+    {% endfor %}
+    <section class="callout primary">
+      <h2>On Sale</h2>
+      {% if sale_products | length %}
+        {{ partial('product-list', {products: sale_products}) }}
+      {% else %}
+        There are no products on sale right now.
+      {% endif %}
     </section>
-  {% endif %}
 
-  {% set blog_posts = cmsContent('blog')
-    | extended_sort('published_on', false) %} {# false means descending #}
-  {% if blog_posts | length and theme.enableLatestBlogPosts %}
-    <section>
-      <h1>Archive</h1>
-      {{ partial('archive-list', {posts: blog_posts | slice(0, 3)}) }}
-    </section>
-  {% endif %}
+    {% if theme.enableHomeAbout %}
+      <section>
+        {{ content_block('home-about') }}
+      </section>
+    {% endif %}
 
-  {% if theme.enableCustomContent %}
-    <section>
-      {{ content_block('home-custom') }}
-    </section>
-  {% endif %}
+    {% set blog_posts = cmsContent('blog')
+      | extended_sort('published_on', false) %} {# false means descending #}
+    {% if blog_posts | length and theme.enableHomeBlogPreview %}
+      <section>
+        <h1>Archive</h1>
+        {{ partial('archive-list', {posts: blog_posts | slice(0, 3)}) }}
+      </section>
+    {% endif %}
+  </main>
 
 </section>
