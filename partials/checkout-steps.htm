@@ -270,9 +270,20 @@
         </fieldset>
         <fieldset class="cell">
           <label>
-            <input name="accepts_marketing" type="checkbox"
-                   {% if not customer or customer.accepts_marketing %}checked{% endif %}/>
-            <span>Get occasional email updates from us</span>
+            <span>Get occasional email updates from us?</span>
+            <div class="switch">
+              <input
+                  id="checkout_accepts_marketing"
+                  name="accepts_marketing"
+                  class="switch-input"
+                  type="checkbox"
+                  checked>
+              <label class="switch-paddle" for="checkout_accepts_marketing">
+                <span class="show-for-sr">Get occasional email updates from us?</span>
+                <span class="switch-active" aria-hidden="true">Yes</span>
+                <span class="switch-inactive" aria-hidden="true">No</span>
+              </label>
+            </div>
           </label>
           <input name="step" type="hidden" value="billing_info,shipping_info"/>
           <input name="nextStep" type="hidden" value="shipping_method"/>
