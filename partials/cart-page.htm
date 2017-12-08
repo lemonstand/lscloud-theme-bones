@@ -40,40 +40,8 @@
     <div class="grid-x grid-padding-x">
 
       {% if items | length > 0 %}
-      <div class="cell large-3 large-order-2 cart-totals">
-        <div class="grid-x grid-padding-x">
-
-          <div class="cell small-6 title-cell">
-            Subtotal
-          </div>
-          <div class="cell small-6 value-cell">
-            {{ cart.getSubtotalNoTax() | currency }}
-          </div>
-
-          <div class="cell small-6 title-cell">
-            Discount
-          </div>
-          <div class="cell small-6 value-cell">
-            {{ cart.getDiscountTotal() | currency }}
-          </div>
-
-          {% if shipping.streetAddressLine1 %}
-          <div class="cell small-6 title-cell">
-            Tax
-          </div>
-          <div class="cell small-6 value-cell">
-            {{ cart.getTotalTax() | currency }}
-          </div>
-          {% endif %}
-
-          <div class="cell small-6 title-cell total-cell">
-            Total
-          </div>
-          <div class="cell small-6 value-cell total-cell">
-            {{ cart.getTotal() | currency }}
-          </div>
-
-        </div>
+      <div class="cell large-3 large-order-2 checkout-totals">
+        {{ partial('checkout-totals') }}
       </div>
 
       <div class="cell large-9 large-order-1 cart-shipping-estimates">

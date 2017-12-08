@@ -64,16 +64,16 @@
 
       <div class="cell number-cell">
         <span class="number-cell-label">Price: </span>
-        {% if item.price != item.fullPrice() %}
+        {% if item.price() != item.fullPrice() %}
         <span class="product-price-original">{{ item.fullPrice() | currency }}</span><br class="show-for-medium">
         {% endif %}
 
-        <span class="product-price-current">{{ item.price | currency }}</span>
+        <span class="product-price-current">{{ item.price() | currency }}</span>
       </div>
 
       <div class="cell number-cell">
         <span class="number-cell-label">Total: </span>
-        {{ item.total | currency }}
+        {{ item.total() | currency }}
       </div>
 
       {% if not checkoutMode %}
