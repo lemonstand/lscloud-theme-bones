@@ -8,10 +8,14 @@ published: true
 ---
 <section class="products grid-container">
 
-  <header>
-    <h1>Shop</h1>
-  </header>
+  <div class="grid-x grid-padding-x">
+    <header class="cell">
+      <h1>Shop</h1>
+    </header>
 
-  {{ partial('product-list', { products: products }) }}
+    <main class="cell">
+      {{ partial('product-list', { products: products, showSort: true }) }}
+    </main>
+  </div>
 
 </section>

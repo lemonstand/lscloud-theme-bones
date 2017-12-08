@@ -96,7 +96,7 @@ protocol: all
     <div class="manufacturer-products cell">
       <h2>Products</h2>
       {% if products | length %}
-      {{ partial('product-list', { products: products }) }}
+      {{ partial('product-list', { products: products, showSort: true }) }}
       {% else %}
       <p>There are no products for this manufacturer.</p>
       {% endif %}

@@ -1,41 +1,79 @@
 ---
 description: Displays a product list.
 ---
-{# takes products as an argument #}
-<div class="product-list grid-container fluid">
-  <div class="grid-x grid-margin-x small-up-2 medium-up-3 large-up-6">
+{# params: products, showSort #}
+<div class="product-list grid-x grid-margin-x">
 
-    {% for product in products %}
+  {% if showSort %}
+  <div class="product-list-sort cell">
+    <label>
+      Sort Products By
+      <select data-sort-redirect>
+        <option value="orderBy=null&order=null">Default</option>
+        <option value="orderBy=base_price&order=asc"
+                {% if sortField == 'base_price' and sortOrder == 'asc'  %} selected="selected"{% endif %}>
+        Price - Ascending
+        </option>
 
-      <div class="cell">
-        <a href="/product/{{ product.url_name }}">
-          <div class="card">
-            <img
-              src="{{ product.images.first.thumbnail(400, 400)
-                | default('http://placehold.it/400x400') }}"
-              alt="{{ product.images.first.description }}"
-              title="{{ product.images.first.title }}" />
+        <option value="orderBy=base_price&order=desc"
+                {% if sortField == 'base_price' and sortOrder == 'desc'  %} selected="selected"{% endif %}>
+        Price - Descending
+        </option>
 
-            <section class="card-section">
-              <div class="grid-x">
-                <div class="cell">{{ product.name }}</div>
-                <div class="product-prices cell">
-                  {% if product.onSale %}
-                    <span class="product-base-price">
-                      {{ product.fullPrice | currency }}
-                    </span>
-                  {% endif %}
-                  <span class="product-price">
-                    {{ product.price | currency }}
-                  </span>
-                </div>
-              </div>
-            </section>
+        <option value="orderBy=name&order=asc"
+                {% if sortField == 'name' and sortOrder == 'asc'  %} selected="selected"{% endif %}>
+        Name - Ascending
+        </option>
 
-          </div>
-        </a>
-      </div>
+        <option value="orderBy=name&order=desc"
+                {% if sortField == 'name' and sortOrder == 'desc'  %} selected="selected"{% endif %}>
+        Name - Descending
+        </option>
 
-    {% endfor %}
+        <option value="orderBy=created_at&order=asc"
+                {% if sortField == 'created_at' and sortOrder == 'asc'  %} selected="selected"{% endif %}>
+        Date Created - Ascending
+        </option>
+
+        <option value="orderBy=created_at&order=desc"
+                {% if sortField == 'created_at' and sortOrder == 'desc'  %} selected="selected"{% endif %}>
+        Date Created - Descending
+        </option>
+      </select>
+    </label>
   </div>
+  {% endif %}
+
+  {% for product in products %}
+
+    <div class="cell small-6 medium-4 large-2">
+      <a href="/product/{{ product.url_name }}">
+        <div class="card">
+          <img
+            src="{{ product.images.first.thumbnail(400, 400)
+              | default('http://placehold.it/400x400') }}"
+            alt="{{ product.images.first.description }}"
+            title="{{ product.images.first.title }}" />
+
+          <section class="card-section">
+            <div class="grid-x">
+              <div class="cell">{{ product.name }}</div>
+              <div class="product-prices cell">
+                {% if product.onSale %}
+                  <span class="product-base-price">
+                    {{ product.fullPrice | currency }}
+                  </span>
+                {% endif %}
+                <span class="product-price">
+                  {{ product.price | currency }}
+                </span>
+              </div>
+            </div>
+          </section>
+
+        </div>
+      </a>
+    </div>
+
+  {% endfor %}
 </div>
