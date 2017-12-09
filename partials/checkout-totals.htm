@@ -1,20 +1,31 @@
 <div class="grid-x grid-padding-x">
 
-  <div class="cell small-6 title-cell">
-    Subtotal
-  </div>
-  <div class="cell small-6 value-cell">
-    {{ (totals.subtotal + totals.discountTotal) | currency }}
-  </div>
-
+  {% if totals.discountTotal %}
   <div class="cell small-6 title-cell">
     Discount
   </div>
   <div class="cell small-6 value-cell">
     {{ totals.discountTotal | currency }}
   </div>
+  {% endif %}
 
-  {% if shippingMethodInfo.id or step == 'pay' %}
+  <div class="cell small-6 title-cell">
+    Subtotal
+  </div>
+  <div class="cell small-6 value-cell">
+    {{ totals.subtotal | currency }}
+  </div>
+
+  {% if totals.totalSalesTax %}
+  <div class="cell small-6 title-cell">
+    Sales Tax
+  </div>
+  <div class="cell small-6 value-cell">
+    {{ totals.totalSalesTax | currency }}
+  </div>
+  {% endif %}
+
+  {% if totals.totalShippingQuote %}
   <div class="cell small-6 title-cell">
     Shipping
   </div>
@@ -23,12 +34,14 @@
   </div>
   {% endif %}
 
+  {% if totals.totalShippingTax %}
   <div class="cell small-6 title-cell">
-    Tax
+    Shipping Tax
   </div>
   <div class="cell small-6 value-cell">
-    {{ totals.totalTax | currency }}
+    {{ totals.totalShippingTax | currency }}
   </div>
+  {% endif %}
 
   <div class="cell small-6 title-cell total-cell">
     Total

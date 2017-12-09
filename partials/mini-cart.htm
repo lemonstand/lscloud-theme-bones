@@ -10,7 +10,7 @@ description: Displays a mini-cart with a subtotal and link to the full cart and 
         src="{{ item.product.images.first.thumbnail(64, 'auto') }}"/>
 
     <a class="product-name">{{ item.product.name }}</a>
-    <small class="product-summary">{{ item.quantity }} x {{ item.price | currency }}</small>
+    <small class="product-summary">{{ item.quantity }} x {{ item.price() | currency }}</small>
   </div>
   {% endfor %}
 
@@ -20,7 +20,7 @@ description: Displays a mini-cart with a subtotal and link to the full cart and 
   {% if cart.items | length > 0 %}
 
   <div class="cell subtotal-cell">
-    <span class="cart-subtotal">Subtotal: {{ cart.getTotal() | currency }}</span>
+    <span class="cart-subtotal">Subtotal: {{ cart.getSubtotal() | currency }}</span>
     <a href="/cart" class="button hollow">View Cart</a>
   </div>
 
