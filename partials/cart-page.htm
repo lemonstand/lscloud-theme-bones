@@ -1,10 +1,17 @@
 {# Get all cart products' upsells #}
 {% set upsells = [] %}
+{% set crossSells = [] %}
 
 {% for item in items if not item.product.upsells.isEmpty() %}
   {% for upsell in item.product.upsells %}
     {% set upsells = upsells | merge([upsell]) %}
-    {% endfor %}
+  {% endfor %}
+{% endfor %}
+
+{% for item in items if not item.product.crossSells.isEmpty() %}
+  {% for crossSell in item.product.crossSells %}
+    {% set crossSells = crossSells | merge([crossSell]) %}
+  {% endfor %}
 {% endfor %}
 
 {{ open_form({
@@ -21,13 +28,24 @@
     {{ partial('cart-contents') }}
   </section>
 
+  {% if theme.enableCartCrossSells and crossSells | length %}
+  <section class="cell cart-cross-sells">
+    <div class="grid-x grid-padding-x">
+      <div class="cell related-header">
+        <h2>You May Be Interested in These</h2>
+      </div>
+      {{ partial('related-products', { relatedProducts: crossSells }) }}
+    </div>
+  </section>
+  {% endif %}
+
   {% if theme.enableCartUpsells and upsells | length %}
   <section class="cell cart-upsells">
     <div class="grid-x grid-padding-x">
       <div class="cell related-header">
-        <h2>Purchase together and save</h2>
+        <h2>Purchase Together and Save</h2>
       </div>
-      {{ partial('related-products', {relatedProducts: upsells}) }}
+      {{ partial('related-products', { relatedProducts: upsells }) }}
     </div>
   </section>
   {% endif %}

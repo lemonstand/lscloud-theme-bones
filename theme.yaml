@@ -13,6 +13,7 @@ customFields:
     fillWindow: { type: checkbox, title: 'Keep footer at bottom of screen on short pages', default: true }
     enableReviews: { type: checkbox, title: 'Product Page - Show reviews', default: true }
     enableRatings: { type: checkbox, title: 'Product Page - Show ratings', default: true }
+    enableCartCrossSells: { type: checkbox, title: 'Cart Page - Show cross-sells', default: true }
     enableCartUpsells: { type: checkbox, title: 'Cart Page - Show upsells', default: true }
     enableHomeBlogPreview: { type: checkbox, title: 'Home Page - Show latest blog posts', default: true }
     enableHomeAbout: { type: checkbox, title: 'Home Page- Show widget block home-about', default: true }
