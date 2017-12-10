@@ -39,8 +39,9 @@ published: true
   <footer class="media-object">
 
     {% if profile_image %}
-      <div class="media-object-secton">
-        <img src="{{ profile_image.thumbnail('100', '100') }}" />
+      <div class="media-object-section">
+        <img src="{{ profile_image.thumbnail(100, 'auto')|default('http://placehold.it/100x100') }}"
+             alt="{{ profile_image.alt }}" title="{{ profile_image.title }}"/>
       </div>
     {% endif %}
 
