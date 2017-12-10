@@ -43,7 +43,17 @@
   </section>
 
   <section class="media-object-section main-section">
-    <h2>{{ product.name }}</h2>
+    <h2>
+      {{ product.name }}
+
+      {% if product.manufacturer %}
+      <br>
+      <small>by <a href="/manufacturer/{{ product.manufacturer.url_name }}">
+        {{ product.manufacturer.name}}
+      </a></small>
+      {% endif %}
+    </h2>
+
 
     {% if theme.enableReviews %}
 
@@ -71,7 +81,8 @@
       {{ product.description | unescape }}
     </section>
 
-    {% if product.productAttributes.count %}
+    {% if product.productAttributes.count or product.height or product.width
+        or product.depth or product.weight or product.sku %}
     <table class="product-attributes">
       {% for attribute in product.productAttributes %}
       <tr>
@@ -79,6 +90,36 @@
         <td>{{ attribute.value }}</td>
       </tr>
       {% endfor %}
+      {% if product.height %}
+      <tr>
+        <th>Height</th>
+        <td>{{ product.height }}</td>
+      </tr>
+      {% endif %}
+      {% if product.width %}
+      <tr>
+        <th>Width</th>
+        <td>{{ product.width }}</td>
+      </tr>
+      {% endif %}
+      {% if product.depth %}
+      <tr>
+        <th>Depth</th>
+        <td>{{ product.depth }}</td>
+      </tr>
+      {% endif %}
+      {% if product.weight %}
+      <tr>
+        <th>Weight</th>
+        <td>{{ product.weight }}</td>
+      </tr>
+      {% endif %}
+      {% if product.sku %}
+      <tr>
+        <th>SKU</th>
+        <td>{{ product.sku }}</td>
+      </tr>
+      {% endif %}
     </table>
     {% endif %}
 
