@@ -131,49 +131,54 @@
          })
       }}
         {% for option in product.options %}
-        <label>
-          {{ option.name }}
-          <select name="options[{{ option.id }}]">
-            {% for key, value in option.values %}
-            <option
-                value="{{ key }}"
-                {{ option_state(postedOptions[option.id], key) }}>
-              {{ value }}
-            </option>
-            {% endfor %}
-          </select>
-        </label>
+          <label>
+            {{ option.name }}
+            <select name="options[{{ option.id }}]">
+              {% for key, value in option.values %}
+              <option
+                  value="{{ key }}"
+                  {{ option_state(postedOptions[option.id], key) }}>
+                {{ value }}
+              </option>
+              {% endfor %}
+            </select>
+          </label>
         {% endfor %}
 
         {% if product.extras.count %}
-        {% for extra in product.extras %}
-        <label class="extra">
-          {{ extra.name }}
-          <span class="price">({{ extra.price | currency }})</span>
-          <input
-              type="checkbox"
-              {{ checkbox_state(postedExtras[extra.id], extra.id) }}
-              name="extras[{{ extra.id }}]"
-              {% if not extra.enabled %}
-              disabled
-              {% endif %}>
-          <span class="error"></span>
-        </label>
-        {% endfor %}
+          {% for extra in product.extras %}
+          <label class="extra">
+            {{ extra.name }}
+            <span class="price">({{ extra.price | currency }})</span>
+            <input
+                type="checkbox"
+                {{ checkbox_state(postedExtras[extra.id], extra.id) }}
+                name="extras[{{ extra.id }}]"
+                {% if not extra.enabled %}
+                disabled
+                {% endif %}>
+            <span class="error"></span>
+          </label>
+          {% endfor %}
         {% endif %}
 
-        {% if not product.track_inventory or
-             (product.in_stock_amount != "Out Of Stock" and product.in_stock_amount > product.out_of_stock_threshold) %}
-        <label>
-          Quantity
-          <input type="number" name="quantity" value="1" min="1" required>
-        </label>
+        {% if product.isOutOfStock() %}
+          <p class="product-stock">
+            This product is currently out of stock.
+            Check back for more {{ product.expected_availability_date|default('soon') }}.
+          </p>
+        {% else %} {# Product is in stock #}
+          {% if product.in_stock_amount %}
+            <p class="product-stock">{{ product.in_stock_amount }} in stock.</p>
+          {% endif %}
 
-        <input type="hidden" name="productId" value="{{ product.id }}">
-        <button class="button" type="submit">Add to cart</button>
-        {% else %}
-        This product is currently out of stock.
-        Check back for more {{ product.expected_availability_date|default('soon') }}.
+          <label>
+            Quantity
+            <input type="number" name="quantity" value="1" min="1" required>
+          </label>
+
+          <input type="hidden" name="productId" value="{{ product.id }}">
+          <button class="button" type="submit">Add to cart</button>
         {% endif %}
       {{ close_form() }}
     </section>
