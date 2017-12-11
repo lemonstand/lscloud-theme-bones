@@ -331,23 +331,28 @@
               {{ partial('checkout-totals') }}
             </div>
             <div class="cell large-9 large-order-1 checkout-payment-method">
-              <h4>Select a Payment Method</h4>
-              {% set paymentMethod = false %}
+              {% if paymentMethods | length > 1 %}
+                <h4>Select a Payment Method</h4>
+                {% set paymentMethod = false %}
 
-              {{ open_form({}) }}
-                <select name="paymentMethodId" data-ajax-handler="shop:onUpdatePaymentMethod"
-                        data-ajax-update=".payment-form=payment-form">
-                  <option value=""></option>
-                  {% for method in paymentMethods %}
-                  {% if method.is_default %}
-                  {% set paymentMethod = method %}
-                  <option value="{{ method.id }}" selected>{{ method.name }}</option>
-                  {% else %}
-                  <option value="{{ method.id }}">{{ method.name }}</option>
-                  {% endif %}
-                  {% endfor %}
-                </select>
-              {{ close_form() }}
+                {{ open_form({}) }}
+                  <select name="paymentMethodId" data-ajax-handler="shop:onUpdatePaymentMethod"
+                          data-ajax-update=".payment-form=payment-form">
+                    <option value=""></option>
+                    {% for method in paymentMethods %}
+                    {% if method.is_default %}
+                    {% set paymentMethod = method %}
+                    <option value="{{ method.id }}" selected>{{ method.name }}</option>
+                    {% else %}
+                    <option value="{{ method.id }}">{{ method.name }}</option>
+                    {% endif %}
+                    {% endfor %}
+                  </select>
+                {{ close_form() }}
+              {% else %} {# Only 1 payment method, no need to have user select #}
+                <h4>Payment</h4>
+                {% set paymentMethod = paymentMethods[0] %}
+              {% endif %}
 
               <div class="payment-form">{{ partial('payment-form', { paymentMethod : paymentMethod }) }}</div>
             </div>
