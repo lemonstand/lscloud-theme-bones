@@ -39,9 +39,12 @@ const webpackConfig = {
       }
     ]
   },
+  externals: {
+    jquery: '$'
+  },
   output: {
     filename: 'app.min.js'
-  }
+  },
 };
 
 // Lint first-party Sass
