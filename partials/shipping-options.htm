@@ -28,8 +28,13 @@
     <td class="date-radio">
       <input name="shippingMethod" type="radio" value="{{ index }}"
              {{ radio_state(shippingMethodInfo.id, option.id) }}
+             {% if theme.autoSubmitOnlyShippingMethod and shippingOptions | length == 1 %}
+             data-shipping-method-auto-submit
+             {% else %}
              data-ajax-handler="shop:onCheckoutShippingMethod" data-ajax-update=".checkout-totals=checkout-totals"
-             data-ajax-extra-fields="shippingMethod={{ index }}"/>
+             data-ajax-extra-fields="shippingMethod={{ index }}"
+             {% endif %}
+      />
     </td>
     {% endif %}
     <td>

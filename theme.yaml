@@ -18,4 +18,5 @@ customFields:
     enableHomeBlogPreview: { type: checkbox, title: 'Home Page - Show latest blog posts', default: true }
     enableHomeAbout: { type: checkbox, title: 'Home Page- Show widget block home-about', default: true }
     homeHeroImage: { type: image, title: 'Home Page - Hero Image', default: '' }
+    autoSubmitOnlyShippingMethod: { type: checkbox, title: 'Checkout Page - Auto-submit shipping option if there is only one option', default: true}
 ---
