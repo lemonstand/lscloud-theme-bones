@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import * as _ from 'lodash';
 
 /**
  * data-equalizer-ignore-class takes a string of classes that should be applied to an element that
@@ -12,25 +13,32 @@ $('[data-equalizer-ignore-class]').each((index, element) => {
   const equalizerId = $targetElement.data('equalizer-watch');
   const $equalizerContainer = $targetElement.closest('[data-equalizer="' + equalizerId + '"]');
   const equalizerIgnoreClasses = $targetElement.data('equalizer-ignore-class');
-  let calculationInProgress = false;
+  const _addIgnoredClassesDebounced = _.debounce(_addIgnoredClasses, 250);
+  let calculationsInProgress = 0;
 
   $equalizerContainer.on('preequalizedrow.zf.equalizer', (event) => {
-    calculationInProgress = true;
+    calculationsInProgress++;
 
     $targetElement.removeClass(equalizerIgnoreClasses);
   });
 
   $equalizerContainer.on('postequalizedrow.zf.equalizer', (event) => {
-    calculationInProgress = false;
+    calculationsInProgress--;
 
     // Timeout appears to be needed, otherwise height calculation still includes the classes
     // that are supposed to be ignored.
     setTimeout(() => {
-      if (!calculationInProgress) {
-        $targetElement.addClass(equalizerIgnoreClasses);
+      if (calculationsInProgress < 1) {
+        calculationsInProgress = 0;
+
+        _addIgnoredClassesDebounced();
       }
     });
   });
 
   $targetElement.addClass(equalizerIgnoreClasses);
+
+  function _addIgnoredClasses() {
+    $targetElement.addClass(equalizerIgnoreClasses);
+  }
 });
