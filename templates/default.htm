@@ -11,16 +11,14 @@
     <meta name="Description" content="{{ page.description }}"/>
     <meta name="Keywords" content="{{ page.keywords }}"/>
 
-    <!-- Lemonstand requires lemonstand.css, jQuery, and lemonstand.js DO NOT REMOVE! -->
+    <!-- Lemonstand requires lemonstand.css, jQuery, and lemonstand.js -- DO NOT REMOVE! -->
     <link rel="stylesheet" href="/cms/lemonstand.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" defer></script>
-    <script src="/cms/lemonstand.js" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="/cms/lemonstand.js"></script>
 
-    <!-- Theme scripts and stylesheets -->
+    <!-- Theme stylesheets -->
     <link rel="stylesheet" href="{{ 'css/dist/app.min.css' | theme_resource }}">
     <link rel="stylesheet" href="{{ 'css/custom.css' | theme_resource }}">
-    <script type="text/javascript" src="{{ 'javascript/dist/app.min.js' | theme_resource }}" defer></script>
-    <script type="text/javascript" src="{{ 'javascript/custom.js' | theme_resource }}" defer></script>
   </head>
   <body {% if theme.fillWindow %}class="fill-window"{% endif %}>
 
@@ -50,5 +48,8 @@
       {{ partial('footer') }}
     </footer>
 
+    <!-- Theme scripts -->
+    <script type="text/javascript" src="{{ 'javascript/dist/app.min.js' | theme_resource }}"></script>
+    <script type="text/javascript" src="{{ 'javascript/custom.js' | theme_resource }}"></script>
   </body>
 </html>
