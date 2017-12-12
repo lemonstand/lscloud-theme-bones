@@ -4,14 +4,15 @@ description: Displays a list of categories.
 {# params: categories #}
 <div data-equalizer="category-images" data-equalize-by-row="true">
   <div class="category-list grid-x grid-margin-x small-up-2 medium-up-3 large-up-6"
-       data-equalizer="category-details" data-equalize-by-row="true">
+       data-equalizer="category-name" data-equalize-by-row="true">
 
     {% for category in categories %}
 
-    <div class="cell">
+    <div class="cell" {% if loop.last %}data-equalizer-singleton-row-height-fix{% endif %}>
       <a href="/category/{{ category.url_name }}">
         <div class="card" >
-          <div class="card-image"
+
+          <section class="card-image"
                data-equalizer-ignore-class="flex-container align-{{ theme.categoryListImageEqualizeStrategy }}"
                data-equalizer-watch="category-images">
             <img
@@ -19,10 +20,12 @@ description: Displays a list of categories.
               | default('http://placehold.it/400x400') }}"
                 alt="{{ category.images.first.description }}"
                 title="{{ category.images.first.description }}"/>
-          </div>
-          <section class="card-divider" data-equalizer-watch="category-details">
+          </section>
+
+          <section class="card-divider" data-equalizer-watch="category-name">
             {{ category.name }}
           </section>
+
         </div>
       </a>
     </div>

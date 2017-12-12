@@ -1,6 +1,10 @@
-// Internet Explorer hack.
-@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-  .product-list .card {
-    display: block;
+.product-list {
+  // Internet Explorer hack.
+  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    .card {
+      display: block;
+    }
   }
 }
+
+
