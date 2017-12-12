@@ -1,0 +1,15 @@
+.flash {
+  @include callout-base;
+
+  &.success {
+    @include callout-style($success-color);
+  }
+
+  &.error {
+    @include callout-style($alert-color);
+  }
+
+  &.info {
+    @include callout-style($primary-color);
+  }
+}
