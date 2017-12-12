@@ -11,7 +11,7 @@ description: Displays a list of blog posts.
 
         {% if post.featured_image %}
         <img
-            src="{{ post.featured_image.thumbnail(200, 200) }}"
+            src="{{ post.featured_image.thumbnail(1000, 'auto') }}"
             alt="{{ post.featured_image.description }}"
             title="{{ post.featured_image.title }}" />
         {% endif %}

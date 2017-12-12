@@ -11,7 +11,7 @@ published: true
 
     {% if post.featured_image %}
       <img
-        src="{{ post.featured_image.thumbnail(600, 360) }}"
+        src="{{ post.featured_image.thumbnail(600, 'auto') }}"
         alt="{{ post.featured_image.description }}"
         title="{{ post.featured_image.title }}" />
     {% endif %}

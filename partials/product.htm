@@ -18,7 +18,7 @@
         <li class="orbit-slide {% if loop.first %}is-active{% endif %}">
           <img
               class="orbit-image"
-              src="{{ image.thumbnail('auto', 'auto') }}"
+              src="{{ image.thumbnail(800, 'auto') }}"
               alt="{{ image.description }}"
               title="{{ image.title }}" />
         </li>
@@ -32,7 +32,7 @@
             data-slide="{{ index }}">
           <img
               class="orbit-image"
-              src="{{ image.thumbnail('100', '100') }}"
+              src="{{ image.thumbnail(100, 'auto') }}"
               alt="{{ image.description }}"
               title="{{ image.title }}" />
         </button>
