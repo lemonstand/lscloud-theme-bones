@@ -14,12 +14,7 @@
   {% endfor %}
 {% endfor %}
 
-{{ open_form({
-    'class': 'grid-x grid-padding-x',
-    'data-ajax-handler': 'shop:cart',
-    'data-ajax-update': '.cart-page=cart-page,.cart-count=cart-count,.mini-cart=mini-cart'
-   })
-}}
+<section class="grid-x grid-padding-x">
   <header class="cell">
     <h1>Cart</h1>
   </header>
@@ -105,11 +100,6 @@
           </div>
           <div class="cell large-shrink footer-right">
             {% if items | length > 0 %}
-            <label class="input-group">
-              <span class="input-group-label">Coupon Code</span>
-              <input type="text" name="coupon" class="input-group-field" value="{{ coupon_code }}"/>
-            </label>
-            <input type="submit" class="button hollow" value="Apply Changes"/>
             <a class="button" href="/checkout">Checkout</a>
             {% endif %}
           </div>
@@ -118,5 +108,4 @@
     </div>
 
   </section>
-
-{{ close_form() }}
+</section>

@@ -15,7 +15,7 @@ url: '/receipt/:paymenthash'
     </header>
 
     <section class="cell cart-contents">
-      {{ partial('cart-contents', { order: invoice.order, checkoutMode: true }) }}
+      {{ partial('cart-contents', { order: invoice.order, checkoutMode: true, hideCouponCode: true }) }}
       <hr>
     </section>
 

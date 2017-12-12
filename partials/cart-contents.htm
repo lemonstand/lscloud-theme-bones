@@ -2,11 +2,23 @@
   Partial Parameters:
 
   checkoutMode: true/false
+  hideCouponCode: true/false
   order: if given, will show items from the order instead of from the cart
 #}
 
-<div class="grid-x grid-padding-x">
+{# Can't pass in params when reloading partial, so check if current page is checkout. #}
+{% if page.url == '/checkout' %}
+  {% set checkoutMode = true %}
+{% endif %}
 
+{{ open_form({
+     'class': 'grid-x grid-padding-x',
+     'data-ajax-handler': 'shop:cart',
+     'data-ajax-update': checkoutMode
+        ? '.cart-contents=cart-contents,.checkout-totals=checkout-totals,.cart-count=cart-count,.mini-cart=mini-cart'
+        : '.cart-page=cart-page,.cart-count=cart-count,.mini-cart=mini-cart'
+   })
+}}
   <header class="cell contents-header">
     <div class="grid-x grid-padding-x">
 
@@ -93,4 +105,14 @@
     <p class="empty-cart">You don't have anything in your cart yet!</p>
   </section>
   {% endfor %}
-</div>
+
+  {% if not hideCouponCode %}
+  <footer class="cell large-6 large-offset-6 contents-footer">
+    <label class="input-group">
+      <span class="input-group-label">Coupon Code</span>
+      <input type="text" name="coupon" class="input-group-field" value="{{ coupon_code }}"/>
+    </label>
+    <input type="submit" class="button" value="Apply Changes"/>
+  </footer>
+  {% endif %}
+{{ close_form() }}

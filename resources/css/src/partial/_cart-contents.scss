@@ -77,6 +77,14 @@
     }
   }
 
+  .contents-footer {
+    display: flex;
+
+    input[name="coupon"] {
+      margin-right: .5rem;
+    }
+  }
+
   .empty-cart {
     margin-bottom: -1rem;
   }
@@ -131,6 +139,21 @@
 
       input {
         display: inline-block;
+      }
+    }
+
+    .contents-footer {
+      border-top: 2px solid $dark-gray;
+      padding-top: 1rem;
+    }
+  }
+
+  @include breakpoint(small down) {
+    .contents-footer {
+      flex-direction: column;
+
+      input[name="coupon"] {
+        margin-right: 0;
       }
     }
   }
