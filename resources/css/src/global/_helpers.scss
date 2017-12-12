@@ -2,7 +2,9 @@
   word-wrap: break-word;
   overflow-wrap: break-word;
   word-break: break-all;
+  // sass-lint:disable no-duplicate-properties
   word-break: break-word; // Webkit-specific override
+  // sass-lint:enable no-duplicate-properties
 }
 
 .disabled {

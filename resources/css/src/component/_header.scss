@@ -4,10 +4,12 @@
 
   .header-title {
     // Internet Explorer hack.
+    // sass-lint:disable no-vendor-prefixes
     @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
       position: absolute;
       width: 100%;
     }
+    // sass-lint:enable no-vendor-prefixes
 
     .header-logo {
       height: rem-calc(30);

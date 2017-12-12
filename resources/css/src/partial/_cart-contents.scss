@@ -96,9 +96,11 @@
         position: relative;
 
         // Internet Explorer hack.
+        // sass-lint:disable no-vendor-prefixes
         @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
           display: block;
         }
+        // sass-lint:enable no-vendor-prefixes
 
         > .cell {
           padding: .5rem;
