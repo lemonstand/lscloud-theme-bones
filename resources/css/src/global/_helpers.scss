@@ -1,11 +1,15 @@
-.disabled {
-  pointer-events: none;
-  cursor: default;
-}
-
 @mixin break-long-words {
   word-wrap: break-word;
   overflow-wrap: break-word;
   word-break: break-all;
   word-break: break-word; // Webkit-specific override
+}
+
+.disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+.equalizer-row-fix {
+  opacity: 0;
 }
