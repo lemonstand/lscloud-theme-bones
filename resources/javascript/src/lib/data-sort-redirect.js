@@ -6,13 +6,11 @@ $(document).on('change', '[data-sort-redirect]', (event) => {
 
   const $sortElement = $(event.currentTarget);
   const sortParams = $sortElement.val().split('&');
-  console.log('MARCTEST SP', sortParams);
   const baseUrl = window.location.protocol + '//' + window.location.host;
   const path = window.location.pathname;
   const searchParams = _.reduce(sortParams, (searchParams, sortParam, index) => {
-    console.log('MARCTEST SEARCH START', searchParams);
     searchParams = _addUrlParam(searchParams, sortParam);
-    console.log('MARCTEST SEARCH END', searchParams);
+
     return searchParams;
   }, window.location.search);
 
