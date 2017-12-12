@@ -6,6 +6,9 @@
 
 <p>Order #{{ order.number }}</p>
 <p>Order Date: {{ order.created_on|date('m/d/Y') }}</p>
+{% if order.outputTrackingCodes() %}
+<p>Order Tracking: {{ order.outputTrackingCodes() | unescape }}</p>
+{% endif %}
 
 <div class="grid-x grid-padding-x header-grid">
 
