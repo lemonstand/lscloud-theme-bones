@@ -31,7 +31,7 @@ published: true
   <main class="grid-container">
     <section>
       <h2>Categories</h2>
-      {{ partial('categories', {categories: categories}) }}
+      {{ partial('category-list', {categories: categories}) }}
     </section>
 
     {% set featured_products = ('featured' | collection).products %}

@@ -1,0 +1,10 @@
+.category-list {
+  @include break-long-words;
+
+  // Internet Explorer hack.
+  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    .card {
+      display: block;
+    }
+  }
+}
