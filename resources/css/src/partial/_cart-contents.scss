@@ -80,7 +80,7 @@
   .contents-footer {
     display: flex;
 
-    input[name="coupon"] {
+    [name='coupon'] {
       margin-right: .5rem;
     }
   }
@@ -152,7 +152,7 @@
     .contents-footer {
       flex-direction: column;
 
-      input[name="coupon"] {
+      [name='coupon'] {
         margin-right: 0;
       }
     }
