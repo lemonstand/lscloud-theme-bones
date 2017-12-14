@@ -1,12 +1,12 @@
 <div class="grid-x grid-padding-x">
 
   {% if totals.discountTotal %}
-  <div class="cell small-6 title-cell">
-    Discount
-  </div>
-  <div class="cell small-6 value-cell">
-    {{ totals.discountTotal | currency }}
-  </div>
+    <div class="cell small-6 title-cell">
+      Discount
+    </div>
+    <div class="cell small-6 value-cell">
+      {{ totals.discountTotal | currency }}
+    </div>
   {% endif %}
 
   <div class="cell small-6 title-cell">
@@ -17,30 +17,30 @@
   </div>
 
   {% if totals.totalSalesTax %}
-  <div class="cell small-6 title-cell">
-    Sales Tax
-  </div>
-  <div class="cell small-6 value-cell">
-    {{ totals.totalSalesTax | currency }}
-  </div>
+    <div class="cell small-6 title-cell">
+      Sales Tax
+    </div>
+    <div class="cell small-6 value-cell">
+      {{ totals.totalSalesTax | currency }}
+    </div>
   {% endif %}
 
   {% if totals.totalShippingQuote %}
-  <div class="cell small-6 title-cell">
-    Shipping
-  </div>
-  <div class="cell small-6 value-cell">
-    {{ totals.totalShippingQuote | currency }}
-  </div>
+    <div class="cell small-6 title-cell">
+      Shipping
+    </div>
+    <div class="cell small-6 value-cell">
+      {{ totals.totalShippingQuote | currency }}
+    </div>
   {% endif %}
 
   {% if totals.totalShippingTax %}
-  <div class="cell small-6 title-cell">
-    Shipping Tax
-  </div>
-  <div class="cell small-6 value-cell">
-    {{ totals.totalShippingTax | currency }}
-  </div>
+    <div class="cell small-6 title-cell">
+      Shipping Tax
+    </div>
+    <div class="cell small-6 value-cell">
+      {{ totals.totalShippingTax | currency }}
+    </div>
   {% endif %}
 
   <div class="cell small-6 title-cell total-cell">

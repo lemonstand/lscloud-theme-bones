@@ -2,9 +2,9 @@
   <h1>{{ product.name }}</h1>
 
   {% if product.short_description %}
-  <section class="short-description">
-    {{ product.short_description | unescape }}
-  </section>
+    <section class="short-description">
+      {{ product.short_description | unescape }}
+    </section>
   {% endif %}
 </header>
 
@@ -15,27 +15,27 @@
 
       <ul class="orbit-container">
         {% for image in product.images %}
-        <li class="orbit-slide {% if loop.first %}is-active{% endif %}">
-          <img
-              class="orbit-image"
-              src="{{ image.thumbnail(800, 'auto') }}"
-              alt="{{ image.description }}"
-              title="{{ image.title }}" />
-        </li>
+          <li class="orbit-slide {% if loop.first %}is-active{% endif %}">
+            <img
+                class="orbit-image"
+                src="{{ image.thumbnail(800, 'auto') }}"
+                alt="{{ image.description }}"
+                title="{{ image.title }}" />
+          </li>
         {% endfor %}
       </ul>
 
       <nav class="orbit-bullets">
         {% for index, image in product.images %}
-        <button
-            {% if loop.first %}class="is-active"{% endif %}
-            data-slide="{{ index }}">
-          <img
-              class="orbit-image"
-              src="{{ image.thumbnail(100, 'auto') }}"
-              alt="{{ image.description }}"
-              title="{{ image.title }}" />
-        </button>
+          <button
+              {% if loop.first %}class="is-active"{% endif %}
+              data-slide="{{ index }}">
+            <img
+                class="orbit-image"
+                src="{{ image.thumbnail(100, 'auto') }}"
+                alt="{{ image.description }}"
+                title="{{ image.title }}" />
+          </button>
         {% endfor %}
       </nav>
 
@@ -47,26 +47,26 @@
       {{ product.name }}
 
       {% if product.manufacturer %}
-      <br>
-      <small>by <a href="/manufacturer/{{ product.manufacturer.url_name }}">
-        {{ product.manufacturer.name}}
-      </a></small>
+        <br>
+        <small>by <a href="/manufacturer/{{ product.manufacturer.url_name }}">
+          {{ product.manufacturer.name}}
+        </a></small>
       {% endif %}
     </h2>
 
 
     {% if theme.enableReviews %}
 
-    <section class="ratings">
-      {{ partial('ratings', {rating: product.rating()}) }}
-    </section>
+      <section class="ratings">
+        {{ partial('ratings', {rating: product.rating()}) }}
+      </section>
 
-    <section class="reviews">
-      {{ partial('reviews', {
-      product: product,
-      reviews: product.reviews()})
-      }}
-    </section>
+      <section class="reviews">
+        {{ partial('reviews', {
+        product: product,
+        reviews: product.reviews()})
+        }}
+      </section>
 
     {% endif %}
 
@@ -83,44 +83,49 @@
 
     {% if product.productAttributes.count or product.height or product.width
         or product.depth or product.weight or product.sku %}
-    <table class="product-attributes">
-      {% for attribute in product.productAttributes %}
-      <tr>
-        <th>{{ attribute.name }}</th>
-        <td>{{ attribute.value }}</td>
-      </tr>
-      {% endfor %}
-      {% if product.height %}
-      <tr>
-        <th>Height</th>
-        <td>{{ product.height }}</td>
-      </tr>
-      {% endif %}
-      {% if product.width %}
-      <tr>
-        <th>Width</th>
-        <td>{{ product.width }}</td>
-      </tr>
-      {% endif %}
-      {% if product.depth %}
-      <tr>
-        <th>Depth</th>
-        <td>{{ product.depth }}</td>
-      </tr>
-      {% endif %}
-      {% if product.weight %}
-      <tr>
-        <th>Weight</th>
-        <td>{{ product.weight }}</td>
-      </tr>
-      {% endif %}
-      {% if product.sku %}
-      <tr>
-        <th>SKU</th>
-        <td>{{ product.sku }}</td>
-      </tr>
-      {% endif %}
-    </table>
+      <table class="product-attributes">
+        {% for attribute in product.productAttributes %}
+          <tr>
+            <th>{{ attribute.name }}</th>
+            <td>{{ attribute.value }}</td>
+          </tr>
+        {% endfor %}
+
+        {% if product.height %}
+          <tr>
+            <th>Height</th>
+            <td>{{ product.height }}</td>
+          </tr>
+        {% endif %}
+
+        {% if product.width %}
+          <tr>
+            <th>Width</th>
+            <td>{{ product.width }}</td>
+          </tr>
+        {% endif %}
+
+        {% if product.depth %}
+          <tr>
+            <th>Depth</th>
+            <td>{{ product.depth }}</td>
+          </tr>
+        {% endif %}
+
+        {% if product.weight %}
+          <tr>
+            <th>Weight</th>
+            <td>{{ product.weight }}</td>
+          </tr>
+        {% endif %}
+
+        {% if product.sku %}
+          <tr>
+            <th>SKU</th>
+            <td>{{ product.sku }}</td>
+          </tr>
+        {% endif %}
+      </table>
     {% endif %}
 
     <section class="product-form">
@@ -135,11 +140,11 @@
             {{ option.name }}
             <select name="options[{{ option.id }}]">
               {% for key, value in option.values %}
-              <option
-                  value="{{ key }}"
-                  {{ option_state(postedOptions[option.id], key) }}>
-                {{ value }}
-              </option>
+                <option
+                    value="{{ key }}"
+                    {{ option_state(postedOptions[option.id], key) }}>
+                  {{ value }}
+                </option>
               {% endfor %}
             </select>
           </label>
@@ -147,18 +152,18 @@
 
         {% if product.extras.count %}
           {% for extra in product.extras %}
-          <label class="extra">
-            {{ extra.name }}
-            <span class="price">({{ extra.price | currency }})</span>
-            <input
-                type="checkbox"
-                {{ checkbox_state(postedExtras[extra.id], extra.id) }}
-                name="extras[{{ extra.id }}]"
-                {% if not extra.enabled %}
-                disabled
-                {% endif %}>
-            <span class="error"></span>
-          </label>
+            <label class="extra">
+              {{ extra.name }}
+              <span class="price">({{ extra.price | currency }})</span>
+              <input
+                  type="checkbox"
+                  {{ checkbox_state(postedExtras[extra.id], extra.id) }}
+                  name="extras[{{ extra.id }}]"
+                  {% if not extra.enabled %}
+                  disabled
+                  {% endif %}>
+              <span class="error"></span>
+            </label>
           {% endfor %}
         {% endif %}
 
@@ -184,25 +189,25 @@
     </section>
 
     {% if product.priceTiers|length %}
-    <section class="price-tiers">
-      <h2>Bulk Pricing</h2>
-      <table>
-        <thead>
-        <tr>
-          <td>Quantity</td>
-          <td>Price</td>
-        </tr>
-        </thead>
-        <tbody>
-        {% for tier in product.priceTiers %}
-        <tr>
-          <td>{{ tier.quantity }}</td>
-          <td>{{ tier.price | currency}}</td>
-        </tr>
-        {% endfor %}
-        </tbody>
-      </table>
-    </section>
+      <section class="price-tiers">
+        <h2>Bulk Pricing</h2>
+        <table>
+          <thead>
+          <tr>
+            <td>Quantity</td>
+            <td>Price</td>
+          </tr>
+          </thead>
+          <tbody>
+          {% for tier in product.priceTiers %}
+            <tr>
+              <td>{{ tier.quantity }}</td>
+              <td>{{ tier.price | currency}}</td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </section>
     {% endif %}
   </section>
 
@@ -210,24 +215,24 @@
 
 <section>
   {% if product.crossSells | length %}
-  <section class="cell cross-sells">
-    <div class="grid-x grid-padding-x">
-      <div class="cell related-header">
-        <h2>You May Be Interested in These</h2>
+    <section class="cell cross-sells">
+      <div class="grid-x grid-padding-x">
+        <div class="cell related-header">
+          <h2>You May Be Interested in These</h2>
+        </div>
+        {{ partial('related-products', { relatedProducts: product.crossSells }) }}
       </div>
-      {{ partial('related-products', { relatedProducts: product.crossSells }) }}
-    </div>
-  </section>
+    </section>
   {% endif %}
   {% if product.upSells | length %}
-  <section class="cell upsells">
-    <div class="grid-x grid-padding-x">
-      <div class="cell related-header">
-        <h2>Purchase Together and Save</h2>
+    <section class="cell upsells">
+      <div class="grid-x grid-padding-x">
+        <div class="cell related-header">
+          <h2>Purchase Together and Save</h2>
+        </div>
+        {{ partial('related-products', { relatedProducts: product.upSells }) }}
       </div>
-      {{ partial('related-products', { relatedProducts: product.upSells }) }}
-    </div>
-  </section>
+    </section>
   {% endif %}
 
 </section>

@@ -40,7 +40,7 @@ published: true
 
     {% if profile_image %}
       <div class="media-object-section">
-        <img src="{{ profile_image.thumbnail(100, 'auto')|default('http://placehold.it/100x100') }}"
+        <img src="{{ profile_image.thumbnail(100, 'auto') | default('http://placehold.it/100x100') }}"
              alt="{{ profile_image.alt }}" title="{{ profile_image.title }}"/>
       </div>
     {% endif %}

@@ -24,72 +24,72 @@
   </section>
 
   {% if theme.enableCartCrossSells and crossSells | length %}
-  <section class="cell cart-cross-sells">
-    <div class="grid-x grid-padding-x">
-      <div class="cell related-header">
-        <h2>You May Be Interested in These</h2>
+    <section class="cell cart-cross-sells">
+      <div class="grid-x grid-padding-x">
+        <div class="cell related-header">
+          <h2>You May Be Interested in These</h2>
+        </div>
+        {{ partial('related-products', { relatedProducts: crossSells }) }}
       </div>
-      {{ partial('related-products', { relatedProducts: crossSells }) }}
-    </div>
-  </section>
+    </section>
   {% endif %}
 
   {% if theme.enableCartUpsells and upsells | length %}
-  <section class="cell cart-upsells">
-    <div class="grid-x grid-padding-x">
-      <div class="cell related-header">
-        <h2>Purchase Together and Save</h2>
+    <section class="cell cart-upsells">
+      <div class="grid-x grid-padding-x">
+        <div class="cell related-header">
+          <h2>Purchase Together and Save</h2>
+        </div>
+        {{ partial('related-products', { relatedProducts: upsells }) }}
       </div>
-      {{ partial('related-products', { relatedProducts: upsells }) }}
-    </div>
-  </section>
+    </section>
   {% endif %}
 
   <section class="cell cart-summary">
     {% if items | length > 0 %}
-    <hr>
+      <hr>
     {% endif %}
 
     <div class="grid-x grid-padding-x">
 
       {% if items | length > 0 %}
-      <div class="cell large-3 large-order-2 checkout-totals">
-        {{ partial('checkout-totals') }}
-      </div>
-
-      <div class="cell large-9 large-order-1 cart-shipping-estimates">
-        <h3>Shipping Rates Calculator</h3>
-
-        <div class="grid-x grid-padding-x">
-          <label class="cell large-4">
-            <span>Country</span>
-            <select name="countryId" data-state-selector="#shipping-estimate-state-id" data-current-state="{{ shippingInfo.shop_state_id }}">
-              {% for country in countries %}
-              <option value="{{ country.id }}" {{ option_state(country.id, shippingInfo.shop_country_id) }}>{{ country.name }}</option>
-              {% endfor %}
-            </select>
-          </label>
-
-          <label class="cell large-4">
-            <span>State</span>
-            <select id="shipping-estimate-state-id" name="stateId" data-ajax-refresh>
-              {{ partial('shop-stateoptions', { 'states': states, 'selected': shippingInfo.shop_state_id }) }}
-            </select>
-          </label>
-
-          <label class="cell large-2">
-            <span>Zip Code</span>
-            <input name="postalCode" type="text" value="{{ shippingInfo.postalCode }}"/>
-          </label>
+        <div class="cell large-3 large-order-2 checkout-totals">
+          {{ partial('checkout-totals') }}
         </div>
 
-        <a class="button" data-ajax-handler="shop:onEvalShippingRate"
-           data-ajax-update=".shipping-options=shipping-options">
-          Calculate
-        </a>
+        <div class="cell large-9 large-order-1 cart-shipping-estimates">
+          <h3>Shipping Rates Calculator</h3>
 
-        <div class="shipping-options"><!-- Will be populated after Calculate button clicked --></div>
-      </div>
+          <div class="grid-x grid-padding-x">
+            <label class="cell large-4">
+              <span>Country</span>
+              <select name="countryId" data-state-selector="#shipping-estimate-state-id" data-current-state="{{ shippingInfo.shop_state_id }}">
+                {% for country in countries %}
+                  <option value="{{ country.id }}" {{ option_state(country.id, shippingInfo.shop_country_id) }}>{{ country.name }}</option>
+                {% endfor %}
+              </select>
+            </label>
+
+            <label class="cell large-4">
+              <span>State</span>
+              <select id="shipping-estimate-state-id" name="stateId" data-ajax-refresh>
+                {{ partial('shop-stateoptions', { 'states': states, 'selected': shippingInfo.shop_state_id }) }}
+              </select>
+            </label>
+
+            <label class="cell large-2">
+              <span>Zip Code</span>
+              <input name="postalCode" type="text" value="{{ shippingInfo.postalCode }}"/>
+            </label>
+          </div>
+
+          <a class="button" data-ajax-handler="shop:onEvalShippingRate"
+             data-ajax-update=".shipping-options=shipping-options">
+            Calculate
+          </a>
+
+          <div class="shipping-options"><!-- Will be populated after Calculate button clicked --></div>
+        </div>
       {% endif %}
 
       <div class="cell large-12 large-order-3 cart-footer">
@@ -100,7 +100,7 @@
           </div>
           <div class="cell large-shrink footer-right">
             {% if items | length > 0 %}
-            <a class="button" href="/checkout">Checkout</a>
+              <a class="button" href="/checkout">Checkout</a>
             {% endif %}
           </div>
         </div>

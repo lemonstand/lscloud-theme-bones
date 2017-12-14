@@ -9,23 +9,23 @@ published: true
 <section class="home">
 
   {% if theme.enableHomeHero %}
-  <header class="home-hero">
-    <div class="orbit" role="region" data-orbit>
-      <div class="orbit-wrapper">
-        <ul class="orbit-container">
-          <li class="is-active orbit-slide">
-            <figure class="orbit-figure">
-              <img class="orbit-image" src="{{ theme.homeHeroImage.thumbnail('auto', 'auto') }}"
-                   alt="{{ theme.homeHeroImage.alt }}" title="{{ theme.homeHeroImage.title }}">
-              <figcaption class="orbit-caption">
-                {{ content_block('home-hero-content') }}
-              </figcaption>
-            </figure>
-          </li>
-        </ul>
+    <header class="home-hero">
+      <div class="orbit" role="region" data-orbit>
+        <div class="orbit-wrapper">
+          <ul class="orbit-container">
+            <li class="is-active orbit-slide">
+              <figure class="orbit-figure">
+                <img class="orbit-image" src="{{ theme.homeHeroImage.thumbnail('auto', 'auto') }}"
+                     alt="{{ theme.homeHeroImage.alt }}" title="{{ theme.homeHeroImage.title }}">
+                <figcaption class="orbit-caption">
+                  {{ content_block('home-hero-content') }}
+                </figcaption>
+              </figure>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </header>
+    </header>
   {% endif %}
 
   <main class="grid-container">
