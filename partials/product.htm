@@ -1,6 +1,10 @@
 <header>
   <h1>{{ product.name }}</h1>
 
+  <div class="flash-container">
+    {{ partial('flash-container') }}
+  </div>
+
   {% if product.short_description %}
     <section class="short-description">
       {{ product.short_description | unescape }}
@@ -131,7 +135,7 @@
     <section class="product-form">
       {{ open_form({
           'data-ajax-handler': 'shop:onAddToCart',
-          'data-ajax-update': '.mini-cart=mini-cart,.cart-count=cart-count',
+          'data-ajax-update': '.mini-cart=mini-cart,.cart-count=cart-count,.flash-container=flash-container',
           'method': 'post'
          })
       }}
