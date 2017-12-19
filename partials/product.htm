@@ -47,6 +47,7 @@
   </section>
 
   <section class="media-object-section main-section">
+
     <h2>
       {{ product.name }}
 
@@ -57,7 +58,6 @@
         </a></small>
       {% endif %}
     </h2>
-    </section>
 
     <section class="description">
       {{ product.description | unescape }}
@@ -218,7 +218,10 @@
     {% endif %}
   </section>
 
-</main>
+  </main>
+
+  <main class="bottom-content">
+
 
 <section>
   {% if product.crossSells | length %}
@@ -257,3 +260,5 @@
   {% endif %}
 
 </section>
+
+</main>
