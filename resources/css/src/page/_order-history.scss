@@ -6,8 +6,13 @@
     border: 1px solid $medium-gray;
     margin: 0 !important;
 
+    .orders-header {
+      background: $light-gray;
+      padding-top: .5rem;
+      padding-bottom: .5rem;
+    }
+
     .order-cell {
-      color: $body-font-color;
       padding-top: .5rem;
       padding-bottom: .5rem;
 

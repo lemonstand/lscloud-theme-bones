@@ -6,14 +6,32 @@ action: shop:products
 template: default
 published: true
 ---
-<section class="home grid-container">
-  <header>
-    <h1>{{ theme.storeTitle }}</h1>
-  </header>
+<section class="home">
 
+  {% if theme.enableHomeHero %}
+    <header class="home-hero">
+      <div class="orbit" role="region" data-orbit>
+        <div class="orbit-wrapper">
+          <ul class="orbit-container">
+            <li class="is-active orbit-slide">
+              <figure class="orbit-figure">
+                <img class="orbit-image" src="{{ theme.homeHeroImage.thumbnail('auto', 'auto') }}"
+                     alt="{{ theme.homeHeroImage.alt }}" title="{{ theme.homeHeroImage.title }}">
+                <figcaption class="orbit-caption">
+                  {{ content_block('home-hero-content') }}
+                </figcaption>
+              </figure>
+            </li>
+          </ul>
+        </div>
+      </div>
+  </header>
+  {% endif %}
+
+  <main class="grid-container">
   <section>
     <h2>Categories</h2>
-    {{ partial('categories', {categories: categories}) }}
+      {{ partial('category-list', {categories: categories}) }}
   </section>
 
   {% set featured_products = ('featured' | collection).products %}
@@ -48,7 +66,7 @@ published: true
     {% endif %}
   </section>
 
-  {% if theme.enableAboutContent %}
+    {% if theme.enableHomeAbout %}
     <section>
       {{ content_block('home-about') }}
     </section>
@@ -56,13 +74,13 @@ published: true
 
   {% set blog_posts = cmsContent('blog')
     | extended_sort('published_on', false) %} {# false means descending #}
-  {% if blog_posts | length and theme.enableLatestBlogPosts %}
+    {% if blog_posts | length and theme.enableHomeBlogPreview %}
     <section>
       <h1>Archive</h1>
-      {{ partial('blog-list', {posts: blog_posts | slice(0, 3)}) }}
+        {{ partial('archive-list', {posts: blog_posts | slice(0, 3)}) }}
     </section>
   {% endif %}
-
+  </main>
   {% if theme.enableCustomContent %}
     <section>
       {{ content_block('home-custom') }}

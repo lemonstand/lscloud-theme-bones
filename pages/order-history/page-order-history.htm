@@ -19,13 +19,27 @@ url: /account/orders
 
   <main class="grid-x grid-padding-x orders-grid">
 
+    <header class="cell orders-header">
+      <div class="grid-x grid-padding-x">
+
+        <div class="cell small-4 medium-2">
+          <span><strong>Date</strong></span>
+        </div>
+
+        <div class="cell small-8 medium-10">
+          <span><strong>Details</strong></span>
+        </div>
+
+      </div>
+    </header>
+
     {% for order in customer.orders | extended_sort('created_at', false) %}
     <a class="cell order-cell" href="/account/order/{{ order.id }}">
       <div class="grid-x grid-padding-x">
-        <div class="cell medium-2">
+        <div class="cell small-4 medium-2">
           <p>{{ order.created_at | date('m/d/Y') }}</p>
         </div>
-        <div class="cell medium-10">
+        <div class="cell small-8 medium-10">
           <p>Order #{{ order.number }} - {{ order.total | currency }} ({{ order.getItemQuantity() }} items)</p>
         </div>
       </div>

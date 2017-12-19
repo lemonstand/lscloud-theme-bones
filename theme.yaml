@@ -1,7 +1,7 @@
 ---
 name: 'Bones V2'
 engine: twig
-404: home
+404: 404
 customFields:
     storeTitle: { type: text, title: 'Store Name', default: 'This Shop' }
     storeLogo: { type: image, title: 'Store Logo', default: '@images/dist/bones-logo.svg' }
@@ -11,10 +11,15 @@ customFields:
     instagramLink: { type: text, title: 'Instagram Social Account Link', default: '' }
     stickyHeader: { type: checkbox, title: 'Keep header menu on the page as user scrolls', default: true }
     fillWindow: { type: checkbox, title: 'Keep footer at bottom of screen on short pages', default: true }
-    enableReviews: { type: checkbox, title: 'Show reviews on the product page', default: true }
-    enableRatings: { type: checkbox, title: 'Show ratings on the product page', default: true }
-    enableCartUpsells: {type: checkbox, title: 'Show upsells on the cart page', default: true }
-    enableLatestBlogPosts: {type: checkbox, title: 'Show latest blog posts on the home page', default: true }
-    enableAboutContent: {type: checkbox, title: 'Show widget block home-about on the home page', default: true }
-    enableCustomContent: {type: checkbox, title: 'Show widget block home-custom on the home page', default: true }
+    enableReviews: { type: checkbox, title: 'Product Page - Show reviews', default: true }
+    enableRatings: { type: checkbox, title: 'Product Page - Show ratings', default: true }
+    enableCartCrossSells: { type: checkbox, title: 'Cart Page - Show cross-sells', default: true }
+    enableCartUpsells: { type: checkbox, title: 'Cart Page - Show upsells', default: true }
+    enableHomeBlogPreview: { type: checkbox, title: 'Home Page - Show latest blog posts', default: true }
+    enableHomeAbout: { type: checkbox, title: 'Home Page- Show widget block home-about', default: true }
+    enableHomeHero: { type: checkbox, title: 'Home Page - Show hero image with home-hero-content widget block centered within it', default: true }
+    homeHeroImage: { type: image, title: 'Home Page - Hero Image', default: 'https://placehold.it/1200x400' }
+    autoSubmitOnlyShippingMethod: { type: checkbox, title: 'Checkout Page - Auto-submit shipping option if there is only one option', default: true}
+    categoryListImageEqualizeStrategy: { type: dropdown, title: 'Category List - Image Height Equalization Strategy', default: stretch, options: { stretch: 'Stretch', top: 'Align Top', middle: 'Align Middle', bottom: 'Align Bottom' } }
+    productListImageEqualizeStrategy: { type: dropdown, title: 'Product List - Image Height Equalization Strategy', default: stretch, options: { stretch: 'Stretch', top: 'Align Top', middle: 'Align Middle', bottom: 'Align Bottom' } }
 ---

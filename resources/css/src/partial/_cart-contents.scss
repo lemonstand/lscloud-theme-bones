@@ -77,6 +77,14 @@
     }
   }
 
+  .contents-footer {
+    display: flex;
+
+    [name='coupon'] {
+      margin-right: .5rem;
+    }
+  }
+
   .empty-cart {
     margin-bottom: -1rem;
   }
@@ -96,9 +104,11 @@
         position: relative;
 
         // Internet Explorer hack.
+        // sass-lint:disable no-vendor-prefixes
         @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
           display: block;
         }
+        // sass-lint:enable no-vendor-prefixes
 
         > .cell {
           padding: .5rem;
@@ -129,6 +139,21 @@
 
       input {
         display: inline-block;
+      }
+    }
+
+    .contents-footer {
+      border-top: 2px solid $dark-gray;
+      padding-top: 1rem;
+    }
+  }
+
+  @include breakpoint(small down) {
+    .contents-footer {
+      flex-direction: column;
+
+      [name='coupon'] {
+        margin-right: 0;
       }
     }
   }

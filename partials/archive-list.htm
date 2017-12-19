@@ -1,0 +1,47 @@
+---
+description: Displays a list of blog posts.
+---
+{# takes posts as an argument #}
+{% if not posts.length %}
+
+  <section class="archive-list">
+
+    {% for post in posts %}
+      <section class="card">
+
+        {% if post.featured_image %}
+        <img
+            src="{{ post.featured_image.thumbnail(1000, 'auto') }}"
+            alt="{{ post.featured_image.description }}"
+            title="{{ post.featured_image.title }}" />
+        {% endif %}
+
+        <section class="card-section">
+          <h3>
+            <a href="{{ post.permalink }}">{{ post.title }}</a><br>
+            <small>
+              {{ post.published_on | date('Y/m/d') }} by {{ post.author_name }}
+            </small>
+          </h3>
+
+          <div class="archive-categories">
+            {{ partial('archive-categories', {
+                 categories: post.categories, class: 'menu'
+               })
+            }}
+          </div>
+
+        </section>
+
+        <section class="card-section">
+          {{ post.excerpt | raw }}
+        </section>
+
+      </section>
+    {% endfor %}
+
+  </section>
+
+{% else %}
+  No posts.
+{% endif %}

@@ -1,55 +1,71 @@
 ---
-url: /archive/:type/:category?/:page?
-name: Blog archive
+url: /archive/:type/:category?
+name: Archive
 description: Displays a list of CMS content blog posts.
 action: cmscontent:archive
 template: default
 published: true
 ---
-{% set blog_slugs = [] %}
-{% set blog_categories = [] %}
+{% set archive_slugs = [] %}
+{% set archive_categories = [] %}
 
 {# Iterate by ascending published_on so that new posts don't change the #}
 {# order of the categories in the list. #}
 
 {% for post in cmsContent('blog') | extended_sort('published_on', true) %}
-  {% for category in post.categories if category.slug not in blog_slugs %}
-    {% set blog_slugs = blog_slugs | merge([category.slug]) %}
-    {% set blog_categories = blog_categories | merge([category]) %}
+  {% for category in post.categories if category.slug not in archive_slugs %}
+    {% set archive_slugs = archive_slugs | merge([category.slug]) %}
+    {% set archive_categories = archive_categories | merge([category]) %}
   {% endfor %}
 {% endfor %}
 
-{% set posts = archives %}
 <section class="archive grid-container">
 
-  <header>
-    <h1>Archive</h1>
-  </header>
+  <div class="grid-x grid-padding-x">
 
-  {{ partial('blog-categories', {
-      categories: blog_categories,
-      align: 'align-right'
-  }) }}
+    <header class="cell">
+      <h1>Archive</h1>
+    </header>
 
-  {% if posts | length %}
+    <div class="archive-categories cell medium-shrink">
+      <h2>Categories</h2>
 
-    {% paginate posts by 5 %}
+      {{ partial('archive-categories', {
+           categories: archive_categories,
+           class: 'menu medium-vertical'
+         })
+      }}
+    </div>
 
-      {{ partial('blog-list', {
-          posts: pagination.items
-      }) }}
+    <div class="archive-list cell auto">
+      <h2>Posts</h2>
 
-      <footer>
-        {{ partial('pagination', {
-          base_url: '/archive/' ~ type ~ '/' ~ category,
-          pagination: pagination
-        }) }}
-      </footer>
+      {% if archives | length %}
 
-      {% endpaginate %}
+        {% paginate archives by 5 %}
 
-    {% else %}
-    <span class="error">No posts to display.</span>
-  {% endif %}
+        {% if pagination.items | length %}
+
+          {{ partial('archive-list', {
+               posts: pagination.items
+             })
+          }}
+
+          <footer class="archive-pagination">
+            {% navigation %}
+          </footer>
+
+        {% else %} {# No posts available #}
+
+        No posts
+
+        {% endif %}
+
+        {% endpaginate %}
+
+      {% endif %}
+    </div>
+
+  </div>
 
 </section>

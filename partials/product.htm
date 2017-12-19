@@ -1,6 +1,10 @@
 <header>
   <h1>{{ product.name }}</h1>
 
+  <div class="flash-container">
+    {{ partial('flash-container') }}
+  </div>
+
   {% if product.short_description %}
   <section class="short-description">
     {{ product.short_description | unescape }}
@@ -18,7 +22,7 @@
         <li class="orbit-slide {% if loop.first %}is-active{% endif %}">
           <img
               class="orbit-image"
-              src="{{ image.thumbnail('auto', 'auto') }}"
+                src="{{ image.thumbnail(800, 'auto') }}"
               alt="{{ image.description }}"
               title="{{ image.title }}" />
         </li>
@@ -32,7 +36,7 @@
             data-slide="{{ index }}">
           <img
               class="orbit-image"
-              src="{{ image.thumbnail('100', '100') }}"
+                src="{{ image.thumbnail(100, 'auto') }}"
               alt="{{ image.description }}"
               title="{{ image.title }}" />
         </button>
@@ -43,13 +47,16 @@
   </section>
 
   <section class="media-object-section main-section">
-    <h2>{{ product.name }}</h2>
+    <h2>
+      {{ product.name }}
 
-    <section class="product-prices">
-      {% if product.onSale %}
-        <p class="product-base-price">Reg. {{ product.base_price | currency }}</p>
+      {% if product.manufacturer %}
+        <br>
+        <small>by <a href="/manufacturer/{{ product.manufacturer.url_name }}">
+          {{ product.manufacturer.name}}
+        </a></small>
       {% endif %}
-      <p class="product-price">{{ product.price ? (product.price | currency) : 'Free' }}</p>
+    </h2>
     </section>
 
     <section class="description">
@@ -67,9 +74,22 @@
           reviews: product.reviews()})
         }}
       </section>
+
     {% endif %}
 
-    {% if product.productAttributes.count %}
+    <section class="product-prices">
+      {% if product.onSale %}
+        <p class="product-base-price">Reg. {{ product.base_price | currency }}</p>
+    {% endif %}
+      <p class="product-price">{{ product.price ? (product.price | currency) : 'Free' }}</p>
+    </section>
+
+    <section class="description">
+      {{ product.description | unescape }}
+    </section>
+
+    {% if product.productAttributes.count or product.height or product.width
+        or product.depth or product.weight or product.sku %}
     <table class="product-attributes">
       {% for attribute in product.productAttributes %}
       <tr>
@@ -77,13 +97,48 @@
         <td>{{ attribute.value }}</td>
       </tr>
       {% endfor %}
+
+        {% if product.height %}
+          <tr>
+            <th>Height</th>
+            <td>{{ product.height }}</td>
+          </tr>
+        {% endif %}
+
+        {% if product.width %}
+          <tr>
+            <th>Width</th>
+            <td>{{ product.width }}</td>
+          </tr>
+        {% endif %}
+
+        {% if product.depth %}
+          <tr>
+            <th>Depth</th>
+            <td>{{ product.depth }}</td>
+          </tr>
+        {% endif %}
+
+        {% if product.weight %}
+          <tr>
+            <th>Weight</th>
+            <td>{{ product.weight }}</td>
+          </tr>
+        {% endif %}
+
+        {% if product.sku %}
+          <tr>
+            <th>SKU</th>
+            <td>{{ product.sku }}</td>
+          </tr>
+        {% endif %}
     </table>
     {% endif %}
 
     <section class="product-form">
       {{ open_form({
           'data-ajax-handler': 'shop:onAddToCart',
-          'data-ajax-update': '.mini-cart=mini-cart,.cart-count=cart-count',
+          'data-ajax-update': '.mini-cart=mini-cart,.cart-count=cart-count,.flash-container=flash-container',
           'method': 'post'
          })
       }}
@@ -119,9 +174,15 @@
         {% endfor %}
         {% endif %}
 
-        {% if not product.track_inventory or
-             (product.in_stock_amount != "Out Of Stock" and
-                product.in_stock_amount > product.out_of_stock_threshold) %}
+        {% if product.isOutOfStock() %}
+          <p class="product-stock">
+            This product is currently out of stock.
+            Check back for more {{ product.expected_availability_date|default('soon') }}.
+          </p>
+        {% else %} {# Product is in stock #}
+          {% if product.in_stock_amount %}
+            <p class="product-stock">{{ product.in_stock_amount }} in stock.</p>
+          {% endif %}
 
              <label>
           Quantity
@@ -130,14 +191,6 @@
 
         <input type="hidden" name="productId" value="{{ product.id }}">
         <button class="button" type="submit">Add to cart</button>
-
-        {% else %}
-
-        <div class="callout primary">
-          <h4>This product is currently out of stock.</h4>
-          <p>Check back for more {{ product.expected_availability_date | default('soon') }}.</p>
-        </div>
-
         {% endif %}
       {{ close_form() }}
     </section>

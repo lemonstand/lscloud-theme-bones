@@ -1,0 +1,252 @@
+{# params: customer, countries #}
+{# WARNING: Only use this partial once per page. It uses id attributes. #}
+
+{{ open_form({
+     'method': 'post',
+     'data-ajax-handler': 'shop:onUpdateCustomerProfile',
+     'data-ajax-update': '.account-settings-addresses=account-settings-addresses',
+     'data-abide': null,
+     'novalidate': null
+   })
+}}
+{{ flash() }}
+<input type="hidden" name="redirect" value="/account">
+
+<section class="account-billing-address grid-x grid-padding-x">
+  <h2 class="cell">Billing Address</h2>
+
+  <input type="hidden" name="billing[id]" value="{{ billing.id }}">
+
+  <label class="cell medium-6">
+    First Name*
+    <input
+        type="text"
+        name="billing[first_name]"
+        value="{{ billing.first_name }}"
+        required>
+    <span class="error"></span>
+    <span class="form-error">First name is required.</span>
+  </label>
+
+  <label class="cell medium-6">
+    Last Name*
+    <input
+        type="text"
+        name="billing[last_name]"
+        value="{{ billing.last_name }}"
+        required>
+    <span class="error"></span>
+    <span class="form-error">Last name is required.</span>
+  </label>
+
+  <label class="cell medium-6">
+    Email*
+    <input
+        type="email"
+        name="billing[email]"
+        value="{{ customer.email }}"
+        required>
+    <span class="error"></span>
+    <span class="form-error">Email must be a valid email address.</span>
+  </label>
+
+  <label class="cell medium-6">
+    Phone Number
+    <input
+        type="tel"
+        name="billing[phone]"
+        value="{{ billing.phone }}">
+    <span class="error"></span>
+    <span class="form-error">Error.</span>
+  </label>
+
+  <label class="cell">
+    Address*
+    <input
+        type="text"
+        name="billing[street_address]"
+        value="{{ billing.street_address }}"
+        required>
+    <span class="error"></span>
+    <span class="form-error">Address is required.</span>
+  </label>
+
+  <label class="cell">
+    Address (line 2)
+    <input
+        type="text"
+        name="billing[street_address_line2]"
+        value="{{ billing.street_address_line2 }}">
+    <span class="error"></span>
+    <span class="form-error">Error.</span>
+  </label>
+
+  <label class="cell medium-6">
+    City*
+    <input
+        type="text"
+        name="billing[city]"
+        value="{{ billing.city }}"
+        required>
+    <span class="error"></span>
+    <span class="form-error">City is required.</span>
+  </label>
+
+  <label class="cell medium-6">
+    Postal Code*
+    <input
+        type="text"
+        name="billing[postal_code]"
+        value="{{ billing.postal_code }}"
+        required>
+    <span class="error"></span>
+    <span class="form-error">Postal code is required.</span>
+  </label>
+
+  <label class="cell medium-6">
+    Country
+    <select
+        name="billing[shop_country_id]"
+        data-current-state="{{ billing.country.id }}"
+        data-state-selector="#billing-state">
+      {% for country in countries %}
+      <option
+          value="{{ country.id }}"
+          {{ option_state(billing.country.id, country.id) }}>
+        {{ country.name }}
+      </option>
+      {% endfor %}
+    </select>
+    <span class="error"></span>
+    <span class="form-error">Error.</span>
+  </label>
+
+  <label class="cell medium-6">
+    State
+    <select name="billing[shop_state_id]" id="billing-state">
+      {{ partial('shop-stateoptions',
+      {'states': billingStates, 'selected': billing.state.id}) }}
+    </select>
+    <span class="error"></span>
+    <span class="form-error">Error.</span>
+  </label>
+</section>
+
+<a class="button secondary" href="#"
+   data-ajax-handler="shop:onUpdateCustomerProfile"
+   data-ajax-extra-fields="copy_billing_to_shipping='1'">
+  copy billing address to shipping address
+</a>
+
+<section class="account-shipping-address grid-x grid-padding-x">
+  <h2 class="cell">Shipping Address</h2>
+  <input type="hidden" name="shipping[id]" value="{{ shipping.id }}">
+
+  <label class="cell medium-6">
+    First Name*
+    <input
+        type="text"
+        name="shipping[first_name]"
+        value="{{ shipping.first_name }}"
+        required>
+    <span class="error"></span>
+    <span class="form-error">First name is required.</span>
+  </label>
+
+  <label class="cell medium-6">
+    Last Name*
+    <input
+        type="text"
+        name="shipping[last_name]"
+        value="{{ shipping.last_name }}"
+        required>
+    <span class="error"></span>
+    <span class="form-error">Last name is required.</span>
+  </label>
+
+  <label class="cell">
+    Phone Number
+    <input
+        type="tel"
+        name="shipping[phone]"
+        value="{{ shipping.phone }}">
+    <span class="error"></span>
+    <span class="form-error">Error.</span>
+  </label>
+
+  <label class="cell">
+    Address*
+    <input
+        type="text"
+        name="shipping[street_address]"
+        value="{{ shipping.street_address }}"
+        required>
+    <span class="error"></span>
+    <span class="form-error">Address is required.</span>
+  </label>
+
+  <label class="cell">
+    Address (line 2)
+    <input
+        type="text"
+        name="shipping[street_address_line2]"
+        value="{{ shipping.street_address_line2 }}">
+    <span class="error"></span>
+    <span class="form-error">Error.</span>
+  </label>
+
+  <label class="cell medium-6">
+    City*
+    <input
+        type="text"
+        name="shipping[city]"
+        value="{{ shipping.city }}"
+        required>
+    <span class="error"></span>
+    <span class="form-error">City is required.</span>
+  </label>
+
+  <label class="cell medium-6">
+    Postal Code*
+    <input
+        type="text"
+        name="shipping[postal_code]"
+        value="{{ shipping.postal_code }}"
+        required>
+    <span class="error"></span>
+    <span class="form-error">Postal code is required.</span>
+  </label>
+
+  <label class="cell medium-6">
+    Country
+    <select
+        name="shipping[shop_country_id]"
+        data-current-state="{{ shipping.country.id }}"
+        data-state-selector="#shipping-state">
+      {% for country in countries %}
+      <option
+          value="{{ country.id }}"
+          {{ option_state(shipping.country.id, country.id) }}>
+        {{ country.name }}
+      </option>
+      {% endfor %}
+    </select>
+    <span class="error"></span>
+    <span class="form-error">Error.</span>
+  </label>
+
+  <label class="cell medium-6">
+    State
+    <select name="shipping[shop_state_id]" id="shipping-state">
+      {{ partial('shop-stateoptions',
+      {'states': shippingStates, 'selected': shipping.state.id}) }}
+    </select>
+    <span class="error"></span>
+    <span class="form-error">Error.</span>
+  </label>
+</section>
+
+<button type="submit" class="button">
+  save address information
+</button>
+{{ close_form() }}

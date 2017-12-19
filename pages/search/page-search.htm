@@ -1,0 +1,23 @@
+---
+action: 'shop:search'
+url: /search
+name: Search Results
+template: default
+published: true
+protocol: all
+---
+<section class="search grid-container">
+
+  <div class="grid-x grid-padding-x">
+
+    <header class="cell">
+      <h1>Search Results</h1>
+      <p>{{ products.get().count() }} products found.</p>
+    </header>
+
+    <div class="search-products cell">
+      {{ partial('product-list', { products: products }) }}
+    </div>
+  </div>
+
+</section>

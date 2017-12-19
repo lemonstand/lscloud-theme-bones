@@ -1,0 +1,15 @@
+.archive {
+  .archive-pagination {
+    > ul {
+      @include pagination-container;
+
+      li {
+        &.active {
+          a {
+            @include pagination-item-current;
+          }
+        }
+      }
+    }
+  }
+}

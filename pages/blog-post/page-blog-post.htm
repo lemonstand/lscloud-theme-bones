@@ -1,18 +1,17 @@
 ---
 url: /blog/:slug
-name: CMS Content Page
-description: Displays CMS content pages.
+name: Blog Post
 action: cmscontent:blog
 template: default
 published: true
 ---
-<section class="blog grid-container">
+<section class="blog-post grid-container">
 
   <header>
 
     {% if post.featured_image %}
       <img
-        src="{{ post.featured_image.thumbnail(600, 360) }}"
+        src="{{ post.featured_image.thumbnail(600, 'auto') }}"
         alt="{{ post.featured_image.description }}"
         title="{{ post.featured_image.title }}" />
     {% endif %}
@@ -24,10 +23,12 @@ published: true
       </small>
     </h1>
 
-    {{ partial('blog-categories', {
-        categories: post.categories,
-        align: 'align-right'
-    }) }}
+    <div class="archive-categories">
+      {{ partial('archive-categories', {
+           categories: post.categories,
+         })
+      }}
+    </div>
 
   </header>
 
@@ -38,8 +39,9 @@ published: true
   <footer class="media-object">
 
     {% if profile_image %}
-      <div class="media-object-secton">
-        <img src="{{ profile_image.thumbnail('100', '100') }}" />
+      <div class="media-object-section">
+        <img src="{{ profile_image.thumbnail(100, 'auto') | default('http://placehold.it/100x100') }}"
+             alt="{{ profile_image.alt }}" title="{{ profile_image.title }}"/>
       </div>
     {% endif %}
 
