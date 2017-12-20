@@ -9,6 +9,8 @@ customFields:
     facebookLink: { type: text, title: 'Facebook Social Account Link', default: '' }
     twitterLink: { type: text, title: 'Twitter Social Account Link', default: '' }
     instagramLink: { type: text, title: 'Instagram Social Account Link', default: '' }
+    googleFontURL: { type: text, title: 'Google Font URL', default: 'https://fonts.googleapis.com/css?family=Bungee|Quicksand' }
+    fontCSS: { type: text, title: 'Font CSS', default: "font-family: 'Bungee', cursive; font-family: 'Quicksand', sans-serif;" }
     stickyHeader: { type: checkbox, title: 'Keep header menu on the page as user scrolls', default: true }
     fillWindow: { type: checkbox, title: 'Keep footer at bottom of screen on short pages', default: true }
     enableReviews: { type: checkbox, title: 'Product Page - Show reviews', default: true }
