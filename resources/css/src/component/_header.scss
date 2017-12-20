@@ -1,5 +1,5 @@
 .header-inner {
-  background: $light-gray;
+  background: $white;
   padding: 1rem 0;
 
   .header-title {
@@ -12,7 +12,7 @@
     // sass-lint:enable no-vendor-prefixes
 
     .header-logo {
-      height: rem-calc(30);
+      height: 3rem;
     }
   }
 
