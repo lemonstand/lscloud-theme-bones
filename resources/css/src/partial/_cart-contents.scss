@@ -21,9 +21,11 @@
             display: none;
           }
         }
+
         &.currency-cell {
           text-align: right;
         }
+
         &.total-cell {
           flex: 0 0 10%;
           max-width: 10%;
@@ -46,6 +48,7 @@
     h2 {
       small {
         font-size: .65rem;
+
         a {
           margin-left: 1em;
         }
