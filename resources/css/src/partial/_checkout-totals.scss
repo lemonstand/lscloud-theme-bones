@@ -3,6 +3,15 @@
     > .cell {
       display: flex;
       align-items: center;
+
+      &.currency-cell {
+        span {
+          text-align: right;
+          display: block;
+          width: 100%;
+        }
+
+      }
     }
   }
 
@@ -12,11 +21,10 @@
   }
 
   .title-cell {
-    font-weight: bold;
     justify-content: flex-end;
   }
 
   .total-cell {
-    font-size: 1.25rem;
+    font-weight: bold;
   }
 }

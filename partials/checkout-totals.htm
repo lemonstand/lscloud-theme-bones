@@ -2,52 +2,64 @@
 
   {% if totals.discountTotal %}
     <div class="cell small-6 title-cell">
-      Discount
+      Discount:
     </div>
-    <div class="cell small-6 value-cell">
-      {{ totals.discountTotal | currency }}
+    <div class="cell small-6 value-cell currency-cell">
+        <span class="cell-value">{{ totals.discountTotal | currency }}</span>
     </div>
   {% endif %}
 
   <div class="cell small-6 title-cell">
-    Subtotal
+    Subtotal:
   </div>
-  <div class="cell small-6 value-cell">
-    {{ totals.subtotal | currency }}
+  <div class="cell small-6 value-cell currency-cell">
+      <span class="cell-value">{{ totals.subtotal | currency }}</span>
   </div>
 
   {% if totals.totalSalesTax %}
     <div class="cell small-6 title-cell">
-      Sales Tax
+      Sales Tax:
     </div>
-    <div class="cell small-6 value-cell">
-      {{ totals.totalSalesTax | currency }}
+    <div class="cell small-6 value-cell currency-cell">
+        <span class="cell-value">{{ totals.totalSalesTax | currency }}</span>
     </div>
   {% endif %}
 
   {% if totals.totalShippingQuote %}
     <div class="cell small-6 title-cell">
-      Shipping
+      Shipping:
     </div>
-    <div class="cell small-6 value-cell">
-      {{ totals.totalShippingQuote | currency }}
+    <div class="cell small-6 value-cell currency-cell">
+        <span class="cell-value">{{ totals.totalShippingQuote | currency }}</span>
+    </div>
+  {% else %}
+
+    <div class="cell small-6 title-cell">
+      Shipping:
+    </div>
+
+    <div class="cell small-6 value-cell currency-cell">
+      <span style="display: none">
+        {{ partial('shipping-rate-calculator') }}
+        <span class="cell-value">(estimate)</span>
+      </span>
     </div>
   {% endif %}
 
   {% if totals.totalShippingTax %}
     <div class="cell small-6 title-cell">
-      Shipping Tax
+      Shipping Tax:
     </div>
-    <div class="cell small-6 value-cell">
-      {{ totals.totalShippingTax | currency }}
+    <div class="cell small-6 value-cell currency-cell">
+        <span class="cell-value">{{ totals.totalShippingTax | currency }}</span>
     </div>
   {% endif %}
 
   <div class="cell small-6 title-cell total-cell">
-    Total
+    Total:
   </div>
-  <div class="cell small-6 value-cell total-cell">
-    {{ totals.total | currency }}
+  <div class="cell small-6 value-cell total-cell currency-cell">
+    <span class="cell-value">{{ totals.total | currency }}</span>
   </div>
 
 </div>

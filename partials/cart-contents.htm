@@ -34,7 +34,7 @@
         <span><strong>Price</strong></span>
       </div>
 
-      <div class="cell number-cell">
+      <div class="cell number-cell total-cell">
         <span><strong>Total</strong></span>
       </div>
 
@@ -46,8 +46,20 @@
       <div class="grid-x grid-padding-x">
 
         <header class="cell large-8 clearfix">
+
           <img class="product-image" src="{{ item.product.images.first.thumbnail(100, 'auto') }}"/>
-          <h2 class="product-name"><a href="/product/{{ item.product.url_name }}">{{ item.product.name }}</a></h2>
+          <h2 class="product-name"><a href="/product/{{ item.product.url_name }}">{{ item.product.name }}</a>
+
+          {% if not checkoutMode %}
+
+            <small><a class="remove-button" data-ajax-handler="shop:cart"
+                data-ajax-extra-fields="delete_item={{ item.key }}"
+                data-ajax-update=".cart-page=cart-page,.cart-count=cart-count,.mini-cart=mini-cart">
+              [remove]
+            </a></small>
+
+          {% endif %}
+        </h2>
 
           {% set options = item.optionsString() %}
           {% if options %}
@@ -63,7 +75,7 @@
           {% endif %}
         </header>
 
-        <div class="cell number-cell">
+        <div class="cell number-cell currency-cell">
           {% if checkoutMode %}
             <span class="number-cell-label">Quantity: </span>
             <span class="product-quantity">{{ item.quantity | number_format(0) }}</span>
@@ -75,7 +87,7 @@
           {% endif %}
         </div>
 
-        <div class="cell number-cell">
+        <div class="cell number-cell currency-cell">
           <span class="number-cell-label">Price: </span>
           {% if item.price() != item.fullPrice() %}
             <span class="product-price-original">{{ item.fullPrice() | currency }}</span><br class="show-for-medium">
@@ -84,36 +96,46 @@
           <span class="product-price-current">{{ item.price() | currency }}</span>
         </div>
 
-        <div class="cell number-cell">
+        <div class="cell number-cell currency-cell total-cell">
           <span class="number-cell-label">Total: </span>
-          {{ item.total() | currency }}
+          <span class="cell-value">{{ item.total() | currency }}</span>
         </div>
-
-        {% if not checkoutMode %}
-          <div class="cell remove-cell">
-            <a class="remove-button" data-ajax-handler="shop:cart"
-               data-ajax-extra-fields="delete_item={{ item.key }}"
-               data-ajax-update=".cart-page=cart-page,.cart-count=cart-count,.mini-cart=mini-cart">
-              <span class="fa fa-lg fa-times-circle"></span>
-            </a>
-          </div>
-        {% endif %}
-
       </div>
     </section>
+
+    {% if items | length > 0 %}
+
+    <section class="cell cart-summary">
+        <div class="grid-x grid-padding-x">
+        <div class="cell large-9">
+            &nbsp;
+          </div>
+        <div class="cell large-3 large-order-2 checkout-totals">
+          {{ partial('checkout-totals') }}
+        </div>
+      </div>
+    </section>
+    {% endif %}
+
+    {% if not hideCouponCode %}
+    <footer class="cell large-8 large-offset-4 contents-footer">
+      <div class="grid-x grid-padding-x">
+
+      <label class="input-group">
+        <span class="input-group-label">Coupon Code</span>
+        <input type="text" name="coupon" class="input-group-field" value="{{ coupon_code }}"/>
+      </label>
+      <input type="submit" class="button" value="Apply Changes"/>
+      </div>
+    </footer>
+    {% endif %}
+
   {% else %}
     <section class="cell contents-product">
       <p class="empty-cart">You don't have anything in your cart yet!</p>
     </section>
   {% endfor %}
 
-  {% if not hideCouponCode %}
-    <footer class="cell large-6 large-offset-6 contents-footer">
-      <label class="input-group">
-        <span class="input-group-label">Coupon Code</span>
-        <input type="text" name="coupon" class="input-group-field" value="{{ coupon_code }}"/>
-      </label>
-      <input type="submit" class="button" value="Apply Changes"/>
-    </footer>
-  {% endif %}
+
+
 {{ close_form() }}
