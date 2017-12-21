@@ -14,12 +14,13 @@
   {% endfor %}
 {% endfor %}
 
-<section class="grid-x grid-padding-x">
-  <header class="cell">
-    <h1>Cart</h1>
+<header class="cell">
+  <h1>Cart</h1>
+</header>
 
-    {{ flash() }}
-  </header>
+<section class="grid-x grid-padding-x">
+
+  <div class="alert">{{ flash() }}</div>
 
   <section class="cell cart-contents">
     {{ partial('cart-contents') }}
@@ -38,7 +39,7 @@
           </div>
           <div class="cell large-shrink footer-right">
             {% if items | length > 0 %}
-              <a class="button" href="/checkout">Checkout</a>
+              <a class="button success" href="/checkout">Checkout</a>
             {% endif %}
           </div>
         </div>

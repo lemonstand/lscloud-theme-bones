@@ -103,31 +103,21 @@
       </div>
     </section>
 
+
     {% if items | length > 0 %}
+
+    <hr/>
 
     <section class="cell cart-summary">
         <div class="grid-x grid-padding-x">
-        <div class="cell large-9">
+        <div class="cell large-8">
             &nbsp;
           </div>
-        <div class="cell large-3 large-order-2 checkout-totals">
-          {{ partial('checkout-totals') }}
+        <div class="cell large-4 large-order-2 checkout-totals">
+          {{ partial('checkout-totals', { checkoutMode: checkoutMode } ) }}
         </div>
       </div>
     </section>
-    {% endif %}
-
-    {% if not hideCouponCode %}
-    <footer class="cell large-8 large-offset-4 contents-footer">
-      <div class="grid-x grid-padding-x">
-
-      <label class="input-group">
-        <span class="input-group-label">Coupon Code</span>
-        <input type="text" name="coupon" class="input-group-field" value="{{ coupon_code }}"/>
-      </label>
-      <input type="submit" class="button" value="Apply Changes"/>
-      </div>
-    </footer>
     {% endif %}
 
   {% else %}
@@ -135,7 +125,5 @@
       <p class="empty-cart">You don't have anything in your cart yet!</p>
     </section>
   {% endfor %}
-
-
 
 {{ close_form() }}

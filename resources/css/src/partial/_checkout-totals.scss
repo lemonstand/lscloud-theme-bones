@@ -6,11 +6,15 @@
 
       &.currency-cell {
         span {
+          // Inner wrapper for aligning cell text
           text-align: right;
           display: block;
           width: 100%;
         }
+      }
 
+      &.title-cell {
+        font-size: .7em;
       }
     }
   }
@@ -26,5 +30,10 @@
 
   .total-cell {
     font-weight: bold;
+  }
+
+  .input-group.coupon-code {
+    width: 100%;
+    margin-right: 0;
   }
 }
