@@ -13,15 +13,18 @@ published: true
       <img
         src="{{ post.featured_image.thumbnail(600, 'auto') }}"
         alt="{{ post.featured_image.description }}"
-        title="{{ post.featured_image.title }}" />
+        title="{{ post.featured_image.title }}"
+        class="float-right" />
     {% endif %}
 
     <h1>
       {{ post.title }}
+    </h1>
+    <h5>
       <small>
         {{ post.published_on | date('Y/m/d') }}
       </small>
-    </h1>
+    </h5>
 
     <div class="archive-categories">
       {{ partial('archive-categories', {
@@ -37,7 +40,7 @@ published: true
 </div>
 
 
-  <footer class="media-object author-profile">
+  <footer class="callout media-object author-profile">
 
     {% if profile_image %}
       <div class="media-object-section">
