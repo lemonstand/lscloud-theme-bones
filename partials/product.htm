@@ -63,19 +63,6 @@
       {{ product.description | unescape }}
     </section>
 
-    {% if theme.enableReviews %}
-      <section class="ratings">
-        {{ partial('ratings', {rating: product.rating()}) }}
-      </section>
-
-      <section class="reviews">
-        {{ partial('reviews', {
-          product: product,
-          reviews: product.reviews()})
-        }}
-      </section>
-
-    {% endif %}
 
     <section class="product-prices">
       {% if product.onSale %}
@@ -216,14 +203,29 @@
       </table>
     </section>
     {% endif %}
-  </section>
 
+  </section>
   </main>
 
-  <main class="bottom-content">
+<main class="bottom-content">
 
+<hr>
 
 <section>
+
+  {% if theme.enableReviews %}
+    <section class="ratings">
+      {{ partial('ratings', {rating: product.rating()}) }}
+    </section>
+
+    <section class="reviews">
+      {{ partial('reviews', {
+        product: product,
+        reviews: product.reviews()})
+      }}
+    </section>
+  {% endif %}
+
   {% if product.crossSells | length %}
   <section class="cell cross-sells">
     <div class="grid-x grid-padding-x">
