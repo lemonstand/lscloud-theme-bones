@@ -48,7 +48,7 @@ description: Displays a product list.
 
     {% for product in products %}
 
-      <div class="cell small-6 medium-4 large-2" {% if loop.last %}data-equalizer-singleton-row-height-fix{% endif %}>
+      <div class="cell small-12 medium-6 large-4" {% if loop.last %}data-equalizer-singleton-row-height-fix{% endif %}>
         <a href="/product/{{ product.url_name }}">
           <div class="card">
 

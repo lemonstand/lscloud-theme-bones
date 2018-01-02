@@ -16,6 +16,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="/cms/lemonstand.js"></script>
 
+{% if theme.googleFontURL %}
+    <!-- Custom font settings -->
+    <link href="{{ theme.googleFontURL }}" rel="stylesheet">
+{% endif %}
+
     <!-- Theme stylesheets -->
     <link rel="stylesheet" href="{{ 'css/dist/app.min.css' | theme_resource }}">
     <link rel="stylesheet" href="{{ 'css/custom.css' | theme_resource }}">

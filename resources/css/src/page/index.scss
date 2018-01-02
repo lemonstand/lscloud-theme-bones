@@ -10,3 +10,12 @@
 @import 'order-details';
 @import 'order-history';
 @import 'product';
+
+
+// globals
+
+hr {
+    clear: both;
+    width: 100%;
+    display: block;
+}

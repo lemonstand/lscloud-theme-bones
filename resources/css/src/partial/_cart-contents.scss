@@ -9,8 +9,8 @@
   .contents-product {
     > .grid-x {
       > .cell {
-        flex: 0 0 60%;
-        max-width: 60%;
+        flex: 0 0 70%;
+        max-width: 70%;
 
         &.number-cell {
           flex: 0 0 10%;
@@ -22,14 +22,13 @@
           }
         }
 
-        &.remove-cell {
+        &.currency-cell {
+          text-align: right;
+        }
+
+        &.total-cell {
           flex: 0 0 10%;
           max-width: 10%;
-
-          .remove-button {
-            color: $alert-color;
-            cursor: pointer;
-          }
         }
       }
     }
@@ -45,6 +44,16 @@
   .contents-product {
     padding-top: 1rem;
     padding-bottom: 1rem;
+
+    h2 {
+      small {
+        font-size: .65rem;
+
+        a {
+          margin-left: 1em;
+        }
+      }
+    }
 
     input {
       margin: 0;
