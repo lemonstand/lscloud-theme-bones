@@ -1,6 +1,8 @@
 .header-inner {
-  background: $light-gray;
-  padding: 1rem 0;
+  background: $white;
+  padding: 1rem 0 .5rem;
+  border-bottom: 1px solid #999;
+  box-shadow: 0px 0px 8px 8px rgba(0,0,0,.05);
 
   .header-title {
     // Internet Explorer hack.
@@ -12,7 +14,7 @@
     // sass-lint:enable no-vendor-prefixes
 
     .header-logo {
-      height: rem-calc(30);
+      height: 3rem;
     }
   }
 

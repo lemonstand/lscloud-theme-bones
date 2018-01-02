@@ -21,14 +21,14 @@ published: true
 
 <section class="archive grid-container">
 
+  <header class="cell">
+    <h1>{% if archives | length %}{{ archives.first.type | capitalize }}{% endif %} Archive</h1>
+  </header>
+
   <div class="grid-x grid-padding-x">
 
-    <header class="cell">
-      <h1>Archive</h1>
-    </header>
-
     <div class="archive-categories cell medium-shrink">
-      <h2>Categories</h2>
+      <h3>Categories</h3>
 
       {{ partial('archive-categories', {
            categories: archive_categories,
@@ -38,7 +38,6 @@ published: true
     </div>
 
     <div class="archive-list cell auto">
-      <h2>Posts</h2>
 
       {% if archives | length %}
 

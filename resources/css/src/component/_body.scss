@@ -25,3 +25,15 @@ body {
     }
   }
 }
+
+main {
+  > section {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+
+    > header {
+      margin-bottom: 3rem;
+      margin-top: 1rem;
+    }
+  }
+}

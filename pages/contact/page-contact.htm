@@ -7,6 +7,10 @@ protocol: all
 ---
 <section class="contact grid-container">
 
+  <header class="cell contact-header">
+    <h1>Contact Us</h1>
+  </header>
+
   {{ open_form({
        'class': 'grid-x grid-padding-x',
        'data-ajax-handler': 'system:onSendMessage',
@@ -14,9 +18,7 @@ protocol: all
        'novalidate': null
      })
   }}
-    <header class="cell contact-header">
-      <h1>Contact Us</h1>
-    </header>
+
 
     <div class="cell contact-flash">
       {{ flash() }}

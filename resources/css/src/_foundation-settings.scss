@@ -83,7 +83,7 @@ $foundation-palette: (
 );
 $body-background: $white;
 $body-font-color: $black;
-$body-font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
+$body-font-family: 'Quicksand', Helvetica, Roboto, Arial, sans-serif;
 $body-antialiased: true;
 $global-margin: 1rem;
 $global-padding: 1rem;
@@ -129,16 +129,18 @@ $block-grid-max: 8;
 // 4. Base Typography
 // ------------------
 
-$header-font-family: $body-font-family;
-$header-font-weight: $global-weight-normal;
+$header-font-family: Quicksand, 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
+$header-font-weight: bold;
 $header-font-style: normal;
+
 $font-family-monospace: Consolas, 'Liberation Mono', Courier, monospace;
+
 $header-color: inherit;
-$header-lineheight: 1.4;
+$header-lineheight: 1.2;
 $header-margin-bottom: .5rem;
 $header-styles: (
   small: (
-    'h1': ('font-size': 24),
+    'h1': ('font-size': 22),
     'h2': ('font-size': 20),
     'h3': ('font-size': 19),
     'h4': ('font-size': 18),
@@ -146,8 +148,8 @@ $header-styles: (
     'h6': ('font-size': 16),
   ),
   medium: (
-    'h1': ('font-size': 48),
-    'h2': ('font-size': 40),
+    'h1': ('font-size': 40),
+    'h2': ('font-size': 38),
     'h3': ('font-size': 31),
     'h4': ('font-size': 25),
     'h5': ('font-size': 20),
@@ -277,21 +279,22 @@ $breadcrumbs-item-separator-color: $medium-gray;
 // 11. Button
 // ----------
 
-$button-font-family: inherit;
+$button-font-family: $header-font-family;
+$button-font-weight: bold;
 $button-padding: .85em 1em;
 $button-margin: 0 0 $global-margin 0;
 $button-fill: solid;
 $button-background: $primary-color;
-$button-background-hover: scale-color($button-background, $lightness: -15%);
+$button-background-hover: scale-color($button-background, $lightness: -25%);
 $button-color: $white;
 $button-color-alt: $black;
 $button-radius: $global-radius;
 $button-hollow-border-width: 1px;
 $button-sizes: (
-  tiny: .6rem,
-  small: .75rem,
-  default: .9rem,
-  large: 1.25rem,
+  tiny: .65rem,
+  small: .8rem,
+  default: 1rem,
+  large: 1.35rem,
 );
 $button-palette: $foundation-palette;
 $button-opacity-disabled: .25;

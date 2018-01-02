@@ -1,0 +1,33 @@
+  <div class="cart-shipping-estimates">
+    <h3>Shipping Rates Calculator</h3>
+
+    <div class="grid-x grid-padding-x">
+      <label class="cell large-4">
+        <span>Country</span>
+        <select name="countryId" data-state-selector="#shipping-estimate-state-id" data-current-state="{{ shippingInfo.shop_state_id }}">
+          {% for country in countries %}
+            <option value="{{ country.id }}" {{ option_state(country.id, shippingInfo.shop_country_id) }}>{{ country.name }}</option>
+          {% endfor %}
+        </select>
+      </label>
+
+      <label class="cell large-4">
+        <span>State</span>
+        <select id="shipping-estimate-state-id" name="stateId" data-ajax-refresh>
+          {{ partial('shop-stateoptions', { 'states': states, 'selected': shippingInfo.shop_state_id }) }}
+        </select>
+      </label>
+
+      <label class="cell large-2">
+        <span>Zip Code</span>
+        <input name="postalCode" type="text" value="{{ shippingInfo.postalCode }}"/>
+      </label>
+    </div>
+
+    <a class="button" data-ajax-handler="shop:onEvalShippingRate"
+        data-ajax-update=".shipping-options=shipping-options">
+      Calculate
+    </a>
+
+    <div class="shipping-options"><!-- Will be populated after Calculate button clicked --></div>
+  </div>
