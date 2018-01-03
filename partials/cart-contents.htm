@@ -11,6 +11,7 @@
   {% set checkoutMode = true %}
 {% endif %}
 
+
 {{ open_form({
      'class': 'grid-x grid-padding-x',
      'data-ajax-handler': 'shop:cart',
@@ -73,6 +74,16 @@
           {% if extras | length > 0 %}
             <p class="product-extras">{{ extras }}</p>
           {% endif %}
+
+          {% if item.x_billing_plan_id %}
+            {% for plan in billingPlans %}
+              {% if item.x_billing_plan_id == plan.id %}
+                <p><em>{{ plan.schedule_type | capitalize }} subscription: <strong>{{ plan.name }} </strong></em></p>
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+
+
         </header>
 
         <div class="cell number-cell currency-cell">

@@ -178,36 +178,31 @@
 
         <input type="hidden" name="productId" value="{{ product.id }}">
         <button class="button" type="submit">Add to cart</button>
+
+          {% if product.subscription_plans.count %}
+
+          <div class="callout">
+            <h3>Subscribe and save!</h3>
+              {% for plan in product.subscription_plans %}
+              <label>
+                <input type="radio" name="product_billing_plan" value="{{ plan.id }}"/> {{ plan.name }}
+
+              </label>
+              {% endfor %}
+            <br>
+            <a class="button secondary" href="#" data-ajax-handler="shop:onAddToCart"
+                data-ajax-extra-fields="subscribe=1" type="submit">Subscribe</a>
+          </div>
+
+          {% endif %}
+
+        {{ close_form() }}
+
         {% endif %}
-
-
-
-
-      {% if product.subscription_plans.count %}
-
-      {{ open_form({
-        'data-ajax-handler': 'shop:onAddToCart',
-        'data-ajax-update': '.mini-cart=mini-cart,.cart-count=cart-count,.flash-container=flash-container',
-        'method': 'post'
-       })
-      }}
-      <div class="callout">
-        <h3>Subscribe and save!</h3>
-          {% for plan in product.subscription_plans %}
-          <label>
-            <input type="radio" name="billing_plan" value="{{ plan.id }}" {{ option_state(plan.id, cart_billing_plan) }}/> {{ plan.name }}
-          </label>
-          {% endfor %}
-        <br>
-        <a class="button" href="#" data-ajax-handler="shop:onAddToCart" data-ajax-extra-fields="subscribe=1">Subscribe</a>
-      </div>
-      {{ close_form() }}
-
-      {% endif %}
 
     </section>
 
-    {% if product.priceTiers|length %}
+    {% if product.priceTiers | length %}
     <section class="price-tiers">
       <h2>Bulk Pricing</h2>
       <table>
