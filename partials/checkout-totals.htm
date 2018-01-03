@@ -61,10 +61,17 @@
       Estimated shipping:
     </div>
     <div class="cell small-4 value-cell currency-cell">
-    <small>(TODO)</small>
-      <span style="display: none">
-        {{ partial('shipping-rate-calculator') }}
-        <span class="cell-value">(estimate)</span>
+
+      <span class="cell-value">
+        <button class="button tiny secondary float-right" data-open="shippingEstimator">Estimate
+          </button>
+
+        <div class="small reveal" id="shippingEstimator" data-reveal>
+          {{ partial('shipping-rate-calculator') }}
+          <button class="close-button" data-close aria-label="Close modal" type="button">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
       </span>
     </div>
   {% endif %}
