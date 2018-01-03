@@ -10,7 +10,18 @@ description: Displays a mini-cart with a subtotal and link to the full cart and 
         src="{{ item.product.images.first.thumbnail(64, 'auto') }}"/>
 
     <a class="product-name">{{ item.product.name }}</a>
-    <small class="product-summary">{{ item.quantity }} x {{ item.price() | currency }}</small>
+    <small class="product-summary">{{ item.quantity }} x {{ item.price() | currency }}
+
+    {% if item.x_billing_plan_id %}
+      {% for plan in billingPlans %}
+        {% if item.x_billing_plan_id == plan.id %}
+          <em>{{ plan.schedule_type | capitalize }}</em>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+
+  </small>
+
   </div>
   {% endfor %}
 

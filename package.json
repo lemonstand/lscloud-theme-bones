@@ -1,7 +1,7 @@
 {
-  "name": "bones-v2",
-  "version": "0.0.1",
-  "description": "A bare-bones starting point theme for Lemonstand 2",
+  "name": "bones",
+  "version": "2.0.0",
+  "description": "A bare-bones base theme for Lemonstand",
   "main": "theme.yaml",
   "lemonstand": {
     "code": "bones",
