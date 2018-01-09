@@ -176,24 +176,24 @@
           <input type="number" name="quantity" value="1" min="1" required>
         </label>
 
+
+        {% if product.subscription_plans.count %}
+
+        <div class="callout">
+          <h3>Subscribe and save!</h3>
+            {% for plan in product.subscription_plans %}
+            <label>
+              <input type="radio" name="product_billing_plan" value="{{ plan.id }}"/> {{ plan.name }}
+
+            </label>
+            {% endfor %}
+        </div>
+
+        {% endif %}
+
         <input type="hidden" name="productId" value="{{ product.id }}">
         <button class="button" type="submit">Add to cart</button>
 
-          {% if product.subscription_plans.count %}
-
-          <div class="callout">
-            <h3>Subscribe and save!</h3>
-              {% for plan in product.subscription_plans %}
-              <label>
-                <input type="radio" name="product_billing_plan" value="{{ plan.id }}"/> {{ plan.name }}
-
-              </label>
-              {% endfor %}
-            <br>
-            <a class="button secondary" href="#" type="submit">Subscribe</a>
-          </div>
-
-          {% endif %}
 
         {{ close_form() }}
 

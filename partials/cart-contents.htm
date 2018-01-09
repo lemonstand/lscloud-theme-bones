@@ -75,6 +75,11 @@
             <p class="product-extras">{{ extras }}</p>
           {% endif %}
 
+          {# Note:
+              - x_billing_plan_id not available (yet) in invoice.order.items (shop_order_items) yet
+              - plan reference needs to be looked up (#4994)
+          #}
+
           {% if item.x_billing_plan_id %}
             {% for plan in billingPlans %}
               {% if item.x_billing_plan_id == plan.id %}
