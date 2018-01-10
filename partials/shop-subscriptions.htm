@@ -41,6 +41,7 @@ description: List of subscriptions
             {% if last_invoice.order_items.count %}
             <ul>
             {% for product in last_invoice.order_items %}
+                {# Should filter out non-subscription items or use products #}
                 <li>{{ product.quantity }} x {{ product.name }} - {{ product.price | currency }}</li>
             {% endfor %}
             </ul>
