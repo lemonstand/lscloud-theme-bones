@@ -1,0 +1,96 @@
+---
+action: 'subscriptions:subscription'
+template: default
+protocol: all
+published: true
+name: Subscription Details Page
+url: '/account/orders/subscriptions/:subscriptionId'
+---
+<section class="grid-container order-details">
+
+  <div class="grid-x grid-padding-x">
+
+    <nav class="cell order-nav">
+      <a href="/account/orders"><span class="fa fa-angle-left"></span> Back to Orders and Subscriptions</a>
+    </nav>
+
+    {% if not subscription %}
+    <div class="alert warning">Subscription not found.</div>
+    {% else %}
+    <header class="cell order-header">
+        <header>
+            <h1>Subscription</h1>
+          </header>
+
+          <p>#{{ subscription.id }}</p>
+          <p><strong>Subscription:</strong>
+            {% for plan in billingPlans  %}
+                {% if plan.id == subscription.billingPlan.id %}
+                    {{ plan.name }}
+                {% endif %}
+            {% endfor %}
+        </p>
+        <p><strong>Started:</strong> {{ subscription.created_at.format('M jS, Y') }}</p>
+        <p><strong>Status:</strong>
+        {{ open_form({'data-ajax-handler': 'subscriptions:onUpdateSubscriptionStatus', 'class': 'custom', 'data-ajax-redirect': root_url('/subscription/' ~ subscription.id), 'data-validation-message' : ''}) }}
+
+            <span class="col-md-12 custom-dropdown">
+              <select id="subscription_status" name="subscription_status">
+              {% for status in subscriptionStatuses if (status.code == 'active' or status.code == 'paused' or status.code == 'cancelled')  %}
+                <option value="{{ status.code }}" {{ option_state(status.code, subscription.status.code) }}>{{ status.name }}</option>
+              {% endfor %}
+              </select>
+            </span>
+            <input type="submit" class="btn btn-important " value="Update Status"/>
+            <input type="hidden" name="subscription_id" value="{{ subscription.id }}"/>
+            {{ close_form() }}
+        </p>
+
+    </header>
+
+    <section class="cell cart-contents">
+
+        {% if card %}
+            <!-- Render card details -->
+            <p><strong>Saved payment details</strong></p>
+            {{ subscriptionCardForm('update',
+                {
+                    card: card,
+                    options: {
+                        number: {
+                            placeholder: 'Card number',
+                            style: "font-family: Helvetica Neue, Courier New, Courier Monospace, monospace; letter-spacing: 1.5px; font-weight: bold; font-size: 16px; color: #555; line-height: 42px; width: 100%;"
+                        },
+                        cvv: {
+                            placeholder: 'CVV',
+                            style: "font-family: Helvetica Neue, Courier New, Courier Monospace, monospace; letter-spacing: 1.5px; font-weight: bold; font-size: 16px; color: #555; line-height: 42px; width: 100%;"
+                        }
+                    }
+                },
+            { 'data-ajax-redirect': root_url('/subscription/' ~ subscription.id) }) }}
+        {% else %}
+            <!-- Example - Drop-In Twig Helper on Subscription Page - Add card form from subscriptions page. -->
+            <p>Add Payment Method</p>
+            {{ subscriptionCardForm('add',
+                {
+                    options: {
+                        number: {
+                            placeholder: 'Card number',
+                            style: "font-family: Helvetica Neue, Courier New, Courier Monospace, monospace; letter-spacing: 1.5px; font-weight: bold; font-size: 16px; color: #555; line-height: 42px; width: 100%;"
+                        },
+                        cvv: {
+                            placeholder: 'CVV',
+                            style: "font-family: Helvetica Neue, Courier New, Courier Monospace, monospace; letter-spacing: 1.5px; font-weight: bold; font-size: 16px; color: #555; line-height: 42px; width: 100%;"
+                        }
+                    }
+                },
+            { 'data-ajax-redirect': root_url('/subscription/' ~ subscription.id) }) }}
+        {% endif %}
+
+    </section>
+
+    {% endif %}
+
+  </div>
+
+</section>
