@@ -24,9 +24,9 @@ description: List of subscriptions
 
     {% for subscription in subscriptions | extended_sort('created_at', false) %}
 
-    {% set url = root_url('/account/orders/subscriptions/' ~ subscription.id) %}
+    {% set url = root_url('/account/subscriptions/' ~ subscription.id) %}
 
-    <a class="cell order-cell" href="/account/order/{{ order.id }}">
+    <a class="cell order-cell" href="{{ url }}">
     <div class="grid-x grid-padding-x">
         <div class="cell small-4 medium-2">
         <p>{{ subscription.created_at | date('m/d/Y') }} ({{ subscription.status.name }})</p>
@@ -36,16 +36,6 @@ description: List of subscriptions
             {% set last_invoice = subscription.orders | last %}
 
             <p>{{ subscription.billingPlan.name }} #{{ subscription.number }} - ({{ last_invoice.getItemQuantity() }} items)</p>
-
-            {# Pulls from last invoice instead of products (see #4997) #}
-            {% if last_invoice.order_items.count %}
-            <ul>
-            {% for product in last_invoice.order_items %}
-                {# Should filter out non-subscription items or use products #}
-                <li>{{ product.quantity }} x {{ product.name }} - {{ product.price | currency }}</li>
-            {% endfor %}
-            </ul>
-            {% endif %}
 
         </div>
         <div class="cell small-2 medium-2">

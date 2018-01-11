@@ -22,6 +22,8 @@ url: '/account/orders/subscriptions/:subscriptionId'
             <h1>Subscription</h1>
           </header>
 
+        <div>
+
           <p>#{{ subscription.id }}</p>
           <p><strong>Subscription:</strong>
             {% for plan in billingPlans  %}
@@ -31,9 +33,9 @@ url: '/account/orders/subscriptions/:subscriptionId'
             {% endfor %}
         </p>
         <p><strong>Started:</strong> {{ subscription.created_at.format('M jS, Y') }}</p>
-        <p><strong>Status:</strong>
-        {{ open_form({'data-ajax-handler': 'subscriptions:onUpdateSubscriptionStatus', 'class': 'custom', 'data-ajax-redirect': root_url('/subscription/' ~ subscription.id), 'data-validation-message' : ''}) }}
 
+        {{ open_form({'data-ajax-handler': 'subscriptions:onUpdateSubscriptionStatus', 'class': 'custom', 'data-ajax-redirect': root_url('/subscription/' ~ subscription.id), 'data-validation-message' : ''}) }}
+            <span><strong>Status:</strong></span>
             <span class="col-md-12 custom-dropdown">
               <select id="subscription_status" name="subscription_status">
               {% for status in subscriptionStatuses if (status.code == 'active' or status.code == 'paused' or status.code == 'cancelled')  %}
@@ -41,18 +43,15 @@ url: '/account/orders/subscriptions/:subscriptionId'
               {% endfor %}
               </select>
             </span>
-            <input type="submit" class="btn btn-important " value="Update Status"/>
+            <input type="submit" class="button secondary" value="Update Status"/>
             <input type="hidden" name="subscription_id" value="{{ subscription.id }}"/>
             {{ close_form() }}
-        </p>
+        </div>
 
-    </header>
-
-    <section class="cell cart-contents">
-
+        <div>
+        <p><strong>Saved payment details</strong></p>
         {% if card %}
             <!-- Render card details -->
-            <p><strong>Saved payment details</strong></p>
             {{ subscriptionCardForm('update',
                 {
                     card: card,
@@ -70,7 +69,6 @@ url: '/account/orders/subscriptions/:subscriptionId'
             { 'data-ajax-redirect': root_url('/subscription/' ~ subscription.id) }) }}
         {% else %}
             <!-- Example - Drop-In Twig Helper on Subscription Page - Add card form from subscriptions page. -->
-            <p>Add Payment Method</p>
             {{ subscriptionCardForm('add',
                 {
                     options: {
@@ -86,11 +84,37 @@ url: '/account/orders/subscriptions/:subscriptionId'
                 },
             { 'data-ajax-redirect': root_url('/subscription/' ~ subscription.id) }) }}
         {% endif %}
+        </div>
+
+    </header>
+
+    <section class="cell cart-contents">
+    <h3> Subscription order history</h3>
+        {% for order in subscription.orders | extended_sort('created_at', false) %}
+        <a class="cell order-cell" href="/account/order/{{ order.id }}">
+            <div class="grid-x grid-padding-x">
+            <div class="cell small-4 medium-2">
+                <p>{{ order.created_at | date('m/d/Y') }}</p>
+            </div>
+            <div class="cell small-6 medium-8">
+                <p>Order #{{ order.number }} - ({{ order.getItemQuantity() }} items)</p>
+            </div>
+            <div class="cell small-2 medium-2">
+                <p>{{ order.total | currency }}</p>
+            </div>
+            </div>
+        </a>
+        {% endfor  %}
 
     </section>
 
     {% endif %}
 
   </div>
+
+    <br/>
+    <br/>
+    <br/>
+
 
 </section>
