@@ -18,15 +18,25 @@
     <div class="orbit" data-orbit>
 
       <ul class="orbit-container">
-        {% for image in product.images %}
-        <li class="orbit-slide {% if loop.first %}is-active{% endif %}">
-          <img
-              class="orbit-image"
-                src="{{ image.thumbnail(800, 'auto') }}"
-              alt="{{ image.description }}"
-              title="{{ image.title }}" />
-        </li>
-        {% endfor %}
+        {% if not product.images.count %}
+          <li class="orbit-slide is-active">
+            <img
+                class="orbit-image"
+                  src="{{ '' | default('http://placehold.it/700x700') }}"
+                alt="Image not available"
+                title="Missing image" />
+          </li>
+        {% else %}
+          {% for image in product.images %}
+          <li class="orbit-slide {% if loop.first %}is-active{% endif %}">
+            <img
+                class="orbit-image"
+                  src="{{ image.thumbnail(800, 'auto') }}"
+                alt="{{ image.description }}"
+                title="{{ image.title }}" />
+          </li>
+          {% endfor %}
+        {% endif %}
       </ul>
 
       <nav class="orbit-bullets">
@@ -58,11 +68,6 @@
         </a></small>
       {% endif %}
     </h2>
-
-    <section class="description">
-      {{ product.description | unescape }}
-    </section>
-
 
     <section class="product-prices">
       {% if product.onSale %}
@@ -162,7 +167,7 @@
         {% endif %}
 
         {% if product.isOutOfStock() %}
-          <p class="product-stock">
+          <p class="product-stock alert warning">
             This product is currently out of stock.
             Check back for more {{ product.expected_availability_date|default('soon') }}.
           </p>
