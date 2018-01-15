@@ -68,7 +68,7 @@ url: '/account/orders/subscriptions/:subscriptionId'
                 },
             { 'data-ajax-redirect': root_url('/subscription/' ~ subscription.id) }) }}
         {% else %}
-            <!-- Example - Drop-In Twig Helper on Subscription Page - Add card form from subscriptions page. -->
+            <!-- Add card form from subscriptions page. -->
             {{ subscriptionCardForm('add',
                 {
                     options: {
