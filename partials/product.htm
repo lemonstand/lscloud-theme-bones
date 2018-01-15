@@ -181,10 +181,12 @@
 
         <div class="callout">
           <h3>Subscribe and save!</h3>
-            {% for plan in product.subscription_plans %}
+            <label>
+              <input type="radio" name="product_billing_plan" value="" checked/> No subscription
+            </label>
+          {% for plan in product.subscription_plans %}
             <label>
               <input type="radio" name="product_billing_plan" value="{{ plan.id }}"/> {{ plan.name }}
-
             </label>
             {% endfor %}
         </div>
