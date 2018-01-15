@@ -76,6 +76,17 @@
       <p class="product-price">{{ product.price ? (product.price | currency) : 'Free' }}</p>
     </section>
 
+    {% if product.isOutOfStock() %}
+      <p class="callout warning">
+        This product is currently out of stock.
+        Check back for more {{ product.expected_availability_date|default('soon') }}.
+      </p>
+    {% else %} {# Product is in stock #}
+      {% if product.in_stock_amount %}
+        <p class="product-stock">{{ product.in_stock_amount }} in stock.</p>
+      {% endif %}
+    {% endif %}
+
     <section class="description">
       {{ product.description | unescape }}
     </section>
@@ -166,17 +177,9 @@
         {% endfor %}
         {% endif %}
 
-        {% if product.isOutOfStock() %}
-          <p class="product-stock alert warning">
-            This product is currently out of stock.
-            Check back for more {{ product.expected_availability_date|default('soon') }}.
-          </p>
-        {% else %} {# Product is in stock #}
-          {% if product.in_stock_amount %}
-            <p class="product-stock">{{ product.in_stock_amount }} in stock.</p>
-          {% endif %}
+        {% if not product.isOutOfStock() %}
 
-             <label>
+        <label>
           Quantity
           <input type="number" name="quantity" value="1" min="1" required>
         </label>
@@ -208,28 +211,6 @@
 
     </section>
 
-    {% if product.priceTiers | length %}
-    <section class="price-tiers">
-      <h2>Bulk Pricing</h2>
-      <table>
-        <thead>
-        <tr>
-          <td>Quantity</td>
-          <td>Price</td>
-        </tr>
-        </thead>
-        <tbody>
-        {% for tier in product.priceTiers %}
-        <tr>
-          <td>{{ tier.quantity }}</td>
-          <td>{{ tier.price | currency}}</td>
-        </tr>
-        {% endfor %}
-        </tbody>
-      </table>
-    </section>
-    {% endif %}
-
   </section>
   </main>
 
@@ -238,6 +219,29 @@
 <hr>
 
 <section>
+
+
+  {% if product.priceTiers | length %}
+  <section class="price-tiers">
+    <h2>Bulk Pricing</h2>
+    <table>
+      <thead>
+      <tr>
+        <td>Quantity</td>
+        <td>Price</td>
+      </tr>
+      </thead>
+      <tbody>
+      {% for tier in product.priceTiers %}
+      <tr>
+        <td>{{ tier.quantity }}</td>
+        <td>{{ tier.price | currency}}</td>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </section>
+  {% endif %}
 
   {% if theme.enableReviews %}
     <section class="ratings">
