@@ -57,7 +57,7 @@ description: Displays a product list.
                  data-equalizer-watch="product-images">
               <img
                   src="{{ product.images.first.thumbnail(400, 'auto')
-                | default('http://placehold.it/400x400') }}"
+                | default('https://placehold.it/400x400') }}"
                   alt="{{ product.images.first.description }}"
                   title="{{ product.images.first.title }}" />
             </section>
