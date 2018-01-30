@@ -1,7 +1,7 @@
 {
   "name": "bones",
   "version": "2.0.0",
-  "description": "A bare-bones base theme for Lemonstand",
+  "description": "A bare-bones base theme for Lemonstand, based on Foundation 6, HTML/CSS/SASS, with handy development build scripts and tools.",
   "main": "theme.yaml",
   "lemonstand": {
     "code": "bones",

@@ -1,10 +1,10 @@
-# Bones V2
+# Bones 2
 
-A barebones theme for Lemonstand built with Foundation 6.4, Sass, and ES6/ES2015 (ES6 in all subsequent references). This is a great starting point from which to build your own custom theme.
+Bones 2 is the second release of our barebones theme for Lemonstand. It's built with Foundation 6.4, Sass, and ES6/ES2015 (ES6 in all subsequent references). It's a great starting point for new LemonStand custom themes.
 
 ## What's Included?
 
-This theme provides a full build pipeline tailored to common web development standards as well as Lemonstand-specific needs. Included are:
+Bones 2 has a full build pipeline tailored to standard web development tools. Included:
 
 - NPM (Node Package Manager)
 - Gulp 4 (Build Pipeline)
@@ -12,27 +12,21 @@ This theme provides a full build pipeline tailored to common web development sta
 - Sass (More powerful CSS)
 - Imagemin (Image optimization)
 - Font Awesome (For commonly required glyphs ie. social icons)
-- Lemonsync.js (Syncing between development environment and target store)
-
-Further details for each of these pieces and guidelines for development are provided below.
+- Lemonsync.js configuration (Syncing between development environment and target store)
 
 ## Installation
 
-All required third-party packages are managed with NPM. If you don't already have NPM installed on your system, follow the instructions in the link provided in Prerequisites below to install it first.
-
-Please also follow the instructions for installing Lemonsync.js if you haven't previously installed it (or if you've previously used the old Python version of Lemonsync at any point).
+Third-party packages are managed with NPM. If you don't already have NPM installed on your system, do that first.
 
 ### Prerequisites
 
-Rather than duplicate the instructions here, we've provided links to the installation instructions below.
-
 #### NPM
 
-https://www.npmjs.com/get-npm
+See: https://www.npmjs.com/get-npm
 
 #### Lemonsync
 
-http://lemonsync-js.lemonstand.com/
+See: http://lemonsync-js.lemonstand.com/
 
 ### Ready to Install
 
@@ -49,7 +43,7 @@ This will install the entire build pipeline and all of it's dependencies. Once y
 To update the resource files for distribution, run the following:
 
 ```bash
-npm run build
+🍋 npm run build
 ```
 
 If everything works, you'll get a couple of notifications that files were built successfully, and you'll notice a new 'dist' folder at each of the following 4 locations:
