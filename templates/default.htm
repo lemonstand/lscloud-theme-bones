@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html class="no-js">
   <head>
-    <title>{{ post.seo_title ? post.seo_title : page.title }}</title>
-
     <!-- Add any required meta tags -->
     <meta charset="utf-8" />
-
-    <!-- Set the viewport width to device width for mobile -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>{{ post.seo_title ? post.seo_title : page.title }}</title>
     <meta name="Description" content="{{ page.description }}"/>
     <meta name="Keywords" content="{{ page.keywords }}"/>
 
@@ -17,16 +15,14 @@
     <script src="/cms/lemonstand.js"></script>
 
 {% if theme.googleFontURL %}
-    <!-- Custom font settings -->
     <link href="{{ theme.googleFontURL }}" rel="stylesheet">
 {% endif %}
 
-    <!-- Theme stylesheets -->
+    <!-- Bones stylesheets -->
     <link rel="stylesheet" href="{{ 'css/dist/app.min.css' | theme_resource }}">
     <link rel="stylesheet" href="{{ 'css/custom.css' | theme_resource }}">
   </head>
-  <body {% if theme.fillWindow %}class="fill-window"{% endif %}>
-
+  <body class="{% if theme.fillWindow %}fill-window{% endif %} {{ page.name | lower }}">
     <nav class="off-canvas position-left is-closed" id="mobile-off-canvas-menu" data-off-canvas>
       {{ partial('mobile-off-canvas-menu') }}
     </nav>
@@ -53,7 +49,7 @@
       {{ partial('footer') }}
     </footer>
 
-    <!-- Theme scripts -->
+    <!-- Bones scripts -->
     <script type="text/javascript" src="{{ 'javascript/dist/app.min.js' | theme_resource }}"></script>
     <script type="text/javascript" src="{{ 'javascript/custom.js' | theme_resource }}"></script>
   </body>
