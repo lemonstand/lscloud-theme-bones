@@ -160,42 +160,54 @@
         </label>
         {% endfor %}
 
-        {% if product.extras.count %}
-        {% for extra in product.extras %}
-        <label class="extra">
-          {{ extra.name }}
-          <span class="price">({{ extra.price | currency }})</span>
-          <input
-              type="checkbox"
-              {{ checkbox_state(postedExtras[extra.id], extra.id) }}
-              name="extras[{{ extra.id }}]"
-              {% if not extra.enabled %}
-              disabled
-              {% endif %}>
-          <span class="error"></span>
-        </label>
-        {% endfor %}
-        {% endif %}
-
         {% if not product.isOutOfStock() %}
-
         <label>
           Quantity
           <input type="number" name="quantity" value="1" min="1" required>
         </label>
 
+        {% if product.extras.count %}
+        <div class="callout">
+        <h3>Add an extra:</h3>
+        {% for extra in product.extras %}
+          <label class="extra">
+            <input
+                type="checkbox"
+                {{ checkbox_state(postedExtras[extra.id], extra.id) }}
+                name="extras[{{ extra.id }}]"
+                {% if not extra.enabled %}
+                disabled
+                {% endif %}>
+
+                <span class="price">{{ extra.price | currency }}</span>
+
+                {{ extra.name }}
+            <span class="error"></span>
+        {% endfor %}
+        </label>
+        </div>
+        {% endif %}
 
         {% if product.subscription_plans.count %}
 
         <div class="callout">
           <h3>Subscribe and save!</h3>
+            {% if not product.is_subscription_only %}
             <label>
               <input type="radio" name="product_billing_plan" value="" checked/> No subscription
             </label>
+            {% endif %}
+          {% set first_plan = 1 %}
           {% for plan in product.subscription_plans %}
             <label>
-              <input type="radio" name="product_billing_plan" value="{{ plan.id }}"/> {{ plan.name }}
+              <input
+                type="radio"
+                name="product_billing_plan"
+                value="{{ plan.id }}"
+                {% if first_plan and product.is_subscription_only %}checked{% endif %}/>
+                  {{ plan.name }}
             </label>
+            {% set first_plan = 0 %}
             {% endfor %}
         </div>
 
