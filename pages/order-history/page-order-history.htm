@@ -16,6 +16,38 @@ url: /account/orders
   <div>
     <header class="grid-x grid-padding-x">
       <div class="cell">
+        <h4>Your current subscriptions</h4>
+      </div>
+    </header>
+
+    <div id="subscriptions" class="grid-x grid-padding-x orders-grid">
+      <!-- -->
+    </div>
+  </div>
+
+  <script>
+      $.ajax({
+        type: 'GET',
+        url: window.location.pathname,
+        headers: {
+            'X-Event-Handler': 'subscriptions:subscriptions',
+            'X-Requested-With': 'XMLHttpRequest',
+            'X-Partials'     : 'shop-subscriptions',
+        }
+      }).done(function(data) {
+        $('#subscriptions').html(data['shop-subscriptions']);
+      }).fail(function(res, status, xhr) {
+          console.log('Couldn\'t load subscriptions');
+      });
+  </script>
+
+  <br/>
+  <br/>
+  <br/>
+
+  <div>
+    <header class="grid-x grid-padding-x">
+      <div class="cell">
         <h4>Your orders</h4>
       </div>
     </header>
@@ -59,38 +91,6 @@ url: /account/orders
     </div>
   </div>
 
-  <br/>
-  <br/>
-  <br/>
-
-  <div>
-    <header class="grid-x grid-padding-x">
-      <div class="cell">
-        <h4>Your current subscriptions</h4>
-      </div>
-    </header>
-
-    <div id="subscriptions" class="grid-x grid-padding-x orders-grid">
-      <!-- -->
-    </div>
-  </div>
-
-    <script>
-        $.ajax({
-          type: 'GET',
-          url: window.location.pathname,
-          headers: {
-              'X-Event-Handler': 'subscriptions:subscriptions',
-              'X-Requested-With': 'XMLHttpRequest',
-              'X-Partials'     : 'shop-subscriptions',
-          }
-        }).done(function(data) {
-          $('#subscriptions').html(data['shop-subscriptions']);
-        }).fail(function(res, status, xhr) {
-            console.log('Couldn\'t load subscriptions');
-        });
-    </script>
-  </div>
 
 </section>
 
