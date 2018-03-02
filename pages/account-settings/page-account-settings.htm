@@ -1,0 +1,30 @@
+---
+url: /account
+name: Account Settings
+description: Allows a logged in user to edit their account.
+action: shop:customerProfile
+template: default
+published: true
+---
+<section class="account grid-container">
+  <header>
+    <h1>Account</h1>
+  </header>
+
+  {% if customer %}
+    <section class="account-settings-addresses">
+      {{ partial('account-settings-addresses', {
+           'customer': customer,
+           'countries': countries
+         })
+      }}
+    </section>
+
+    <section class="account-settings-password">
+      {{ partial('account-settings-password') }}
+    </section>
+  {% else %}
+    You must be logged in to use this page.
+  {% endif %}
+
+</section>

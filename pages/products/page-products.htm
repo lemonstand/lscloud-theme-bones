@@ -1,0 +1,21 @@
+---
+url: /products
+name: Products
+description: Lists the products.
+action: shop:products
+template: default
+published: true
+---
+<section class="products grid-container">
+
+  <div class="grid-x grid-padding-x">
+    <header class="cell">
+      <h1>Shop</h1>
+    </header>
+
+    <main class="cell">
+      {{ partial('product-list', { products: products, showSort: true }) }}
+    </main>
+  </div>
+
+</section>

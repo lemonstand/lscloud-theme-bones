@@ -1,0 +1,55 @@
+{# params: order #}
+
+<div class="grid-x grid-padding-x">
+
+  {% if order.total_discount %}
+    <div class="cell small-6 title-cell">
+      Discount
+    </div>
+    <div class="cell small-6 value-cell">
+      {{ order.total_discount | currency }}
+    </div>
+  {% endif %}
+
+  <div class="cell small-6 title-cell">
+    Subtotal
+  </div>
+  <div class="cell small-6 value-cell">
+    {{ order.subtotal_invoiced | currency }}
+  </div>
+
+  {% if order.total_sales_tax %}
+    <div class="cell small-6 title-cell">
+      Sales Tax
+    </div>
+    <div class="cell small-6 value-cell">
+      {{ order.total_sales_tax | currency }}
+    </div>
+  {% endif %}
+
+  {% if order.total_shipping_quote %}
+    <div class="cell small-6 title-cell">
+      Shipping
+    </div>
+    <div class="cell small-6 value-cell">
+      {{ order.total_shipping_quote | currency }}
+    </div>
+  {% endif %}
+
+  {% if order.total_shipping_tax %}
+    <div class="cell small-6 title-cell">
+      Shipping Tax
+    </div>
+    <div class="cell small-6 value-cell">
+      {{ order.total_shipping_tax | currency }}
+    </div>
+  {% endif %}
+
+  <div class="cell small-6 title-cell total-cell">
+    Total
+  </div>
+  <div class="cell small-6 value-cell total-cell">
+    {{ order.total | currency }}
+  </div>
+
+</div>

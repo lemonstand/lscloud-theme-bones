@@ -1,0 +1,32 @@
+---
+action: 'shop:order'
+template: default
+protocol: all
+published: true
+name: Order Details Page
+url: '/account/order/:orderId'
+---
+<section class="grid-container order-details">
+
+  <div class="grid-x grid-padding-x">
+
+    <nav class="cell order-nav">
+      <a href="/account/orders"><span class="fa fa-angle-left"></span> Back to Orders and Subscriptions</a>
+    </nav>
+
+    <header class="cell order-header">
+      {{ partial('order-header', { title: 'Order Details', order: order }) }}
+    </header>
+
+    <section class="cell cart-contents">
+      {{ partial('cart-contents', { order: order, checkoutMode: true, hideCouponCode: true }) }}
+      <hr>
+    </section>
+
+    <section class="cell large-3 large-offset-9 order-totals">
+      {{ partial('order-totals', { order: order }) }}
+    </section>
+
+  </div>
+
+</section>

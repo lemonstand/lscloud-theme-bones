@@ -1,0 +1,83 @@
+.checkout-steps {
+  margin: 1rem 0;
+
+  .checkout-tabs {
+    .disabled {
+      color: $medium-gray;
+    }
+  }
+
+  .checkout-addresses-tab-content {
+    fieldset {
+      &.shipping-fieldset {
+        position: relative;
+
+        legend,
+        > .grid-x {
+          float: left;
+        }
+
+        .mirror-toggle {
+          position: absolute;
+          top: .25rem;
+          left: 11.5rem;
+
+          input {
+            margin-right: .25rem;
+          }
+        }
+      }
+
+      legend {
+        font-size: rem-calc(20);
+      }
+    }
+  }
+
+  .checkout-review-and-pay-tab-content {
+    .checkout-payment-method {
+      select {
+        width: auto;
+      }
+    }
+  }
+
+  @include breakpoint(small down) {
+    .checkout-tabs {
+      .tabs-title {
+        float: unset;
+
+        > a {
+          padding: .75rem 1rem;
+        }
+      }
+    }
+
+    .checkout-tabs-content {
+      .button {
+        width: 100%;
+      }
+    }
+
+    .checkout-addresses-tab-content {
+      fieldset {
+        &.shipping-fieldset {
+          legend,
+          > .grid-x {
+            float: unset;
+          }
+
+          .mirror-toggle {
+            position: unset;
+          }
+        }
+      }
+    }
+
+    .checkout-shipping-option-tab-content {
+      .checkout-totals {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+}

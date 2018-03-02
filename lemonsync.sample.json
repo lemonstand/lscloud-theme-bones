@@ -1,0 +1,22 @@
+{
+  "theme_code": "bonesv2",
+  "store": "https://YOUR-STORE.lemonstand.com",
+  "api_token": "YOUR-API-TOKEN-HERE",
+  "ignore_patterns": [
+    "lemonsync*.json",
+    ".lock",
+    "*.tmp",
+    "___jb_tmp___",
+    ".idea",
+    ".DS_Store",
+    ".git*",
+    ".jshintrc",
+    "*.md",
+    "gulp-config.json",
+    "gulpfile.babel.js",
+    "package.json",
+    "sass-lint.json",
+    "node_modules",
+    "src"
+  ]
+}

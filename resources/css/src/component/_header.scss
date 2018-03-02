@@ -1,0 +1,80 @@
+.header-inner {
+  background: $white;
+  padding: 1rem 0 .5rem;
+  border-bottom: 1px solid #999;
+  box-shadow: 0px 0px 8px 8px rgba(0,0,0,.05);
+
+  .header-title {
+    // Internet Explorer hack.
+    // sass-lint:disable no-vendor-prefixes
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+      position: absolute;
+      width: 100%;
+    }
+    // sass-lint:enable no-vendor-prefixes
+
+    .header-logo {
+      height: 3rem;
+    }
+  }
+
+  .header-menu {
+    .menu-cart {
+      margin-bottom: .5rem;
+
+      .button {
+        display: flex;
+        align-items: center;
+
+        .fa-shopping-cart {
+          margin-right: .5rem;
+        }
+
+        .badge {
+          font-weight: bold;
+          margin-left: .5rem;
+        }
+      }
+    }
+
+    .menu-nav {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+
+      .header-core-nav,
+      .header-custom-nav,
+      .header-account-nav {
+        display: inline-flex;
+      }
+
+      .header-custom-nav {
+        > ul {
+          @include menu-base;
+        }
+      }
+    }
+  }
+
+  @include breakpoint(medium down) {
+    .header-menu {
+      .menu-cart {
+        margin-bottom: 0;
+        padding-left: 0;
+      }
+
+      .menu-nav {
+        padding-right: 0;
+        align-items: flex-start;
+      }
+    }
+  }
+
+  @include breakpoint(small down) {
+    .header-menu {
+      .menu-search {
+        margin-top: .5rem;
+      }
+    }
+  }
+}

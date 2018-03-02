@@ -1,0 +1,47 @@
+.ls-card-form {
+  font-family: $body-font-family;
+
+  .card-form-row {
+    .submit-button {
+      @include button;
+
+      float: unset;
+      letter-spacing: normal;
+      font-weight: $global-weight-normal;
+    }
+
+    .card-form-input {
+      @include form-element;
+      @include foundation-form-text;
+
+      letter-spacing: normal;
+
+      &.error-highlight {
+        @include form-input-error;
+
+        ~ .error,
+        ~ .error-bottom {
+          display: block;
+        }
+      }
+
+      ~ .error,
+      ~ .error-bottom {
+        @include form-error;
+
+        min-height: 0;
+        margin-left: 0;
+        letter-spacing: normal;
+        font-family: $body-font-family;
+      }
+    }
+
+    .card-form-label {
+      @include form-label;
+
+      padding-bottom: 0;
+      font-family: $body-font-family;
+      letter-spacing: normal;
+    }
+  }
+}

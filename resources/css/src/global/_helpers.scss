@@ -1,0 +1,17 @@
+@mixin break-long-words {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-all;
+  // sass-lint:disable no-duplicate-properties
+  word-break: break-word; // Webkit-specific override
+  // sass-lint:enable no-duplicate-properties
+}
+
+.disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+.equalizer-row-fix {
+  opacity: 0;
+}

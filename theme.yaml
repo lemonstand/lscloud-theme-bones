@@ -1,15 +1,26 @@
 ---
-name: 'Bones Theme'
-author: LemonStand
-website: 'https://lemonstand.com'
+name: 'Bones V2'
 engine: twig
-404: '404'
+404: 404
 customFields:
-    storeTitle: { type: text, title: 'Title of your Store', default: Bones }
-    logoImage: { type: image, title: 'Logo Image', default: '@images/bones-logo.png', comment: 'Upload your logo! Recommended height of 37px.' }
-    faviconImage: { type: image, title: 'Favicon Image', default: '@images/favicon.ico', comment: 'Upload your favicon! Recommended dimmensions of 16px by 16px. You must use a .png file.' }
-    footerLogo: { type: image, title: 'Footer Logo', default: '@images/lemonstand-logo.png', comment: 'Upload your footer logo! Recommended height of 40px.' }
-    facebookUrl: { type: text, title: 'Facebook URL', default: 'http://facebook.com/lemonstand' }
-    twitterUrl: { type: text, title: 'Twitter URL', default: 'http://twitter.com/lemonstand' }
-    linkedInUrl: { type: text, title: 'LinkedIn URL', default: 'http://www.linkedin.com/company/lemonstand' }
+    storeTitle: { type: text, title: 'Store Name', default: 'This Shop' }
+    storeLogo: { type: image, title: 'Store Logo', default: '@images/dist/bones-logo.svg' }
+    footerLegalText: { type: text, title: 'Footer Legal Text', default: '© 2017 LemonStand eCommerce Inc.' }
+    facebookLink: { type: text, title: 'Facebook Social Account Link', default: '' }
+    twitterLink: { type: text, title: 'Twitter Social Account Link', default: '' }
+    instagramLink: { type: text, title: 'Instagram Social Account Link', default: '' }
+    googleFontURL: { type: text, title: 'Google Font URL', default: 'https://fonts.googleapis.com/css?family=Bungee|Quicksand' }
+    stickyHeader: { type: checkbox, title: 'Keep header menu on the page as user scrolls', default: true }
+    fillWindow: { type: checkbox, title: 'Keep footer at bottom of screen on short pages', default: true }
+    enableReviews: { type: checkbox, title: 'Product Page - Show reviews', default: true }
+    enableRatings: { type: checkbox, title: 'Product Page - Show ratings', default: true }
+    enableCartCrossSells: { type: checkbox, title: 'Cart Page - Show cross-sells', default: true }
+    enableCartUpsells: { type: checkbox, title: 'Cart Page - Show upsells', default: true }
+    enableHomeBlogPreview: { type: checkbox, title: 'Home Page - Show latest blog posts', default: true }
+    enableHomeAbout: { type: checkbox, title: 'Home Page- Show widget block home-about', default: true }
+    enableHomeHero: { type: checkbox, title: 'Home Page - Show hero image with home-hero-content widget block centered within it', default: true }
+    homeHeroImage: { type: image, title: 'Home Page - Hero Image', default: 'https://placehold.it/1200x400' }
+    autoSubmitOnlyShippingMethod: { type: checkbox, title: 'Checkout Page - Auto-submit shipping option if there is only one option', default: true}
+    categoryListImageEqualizeStrategy: { type: dropdown, title: 'Category List - Image Height Equalization Strategy', default: stretch, options: { stretch: 'Stretch', top: 'Align Top', middle: 'Align Middle', bottom: 'Align Bottom' } }
+    productListImageEqualizeStrategy: { type: dropdown, title: 'Product List - Image Height Equalization Strategy', default: stretch, options: { stretch: 'Stretch', top: 'Align Top', middle: 'Align Middle', bottom: 'Align Bottom' } }
 ---

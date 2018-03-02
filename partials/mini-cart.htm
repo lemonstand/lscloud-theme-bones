@@ -1,0 +1,50 @@
+---
+description: Displays a mini-cart with a subtotal and link to the full cart and to checkout
+---
+<div class="grid-x grid-padding-x products-grid">
+
+  {% for item in cart.items %}
+  <div class="cell product-cell">
+    <img
+        class="product-image"
+        src="{{ item.product.images.first.thumbnail(64, 'auto') }}"/>
+
+    <a class="product-name">{{ item.product.name }}</a>
+    <small class="product-summary">{{ item.quantity }} x {{ item.price() | currency }}
+
+    {% if item.x_billing_plan_id %}
+      {% for plan in billingPlans %}
+        {% if item.x_billing_plan_id == plan.id %}
+          <em>{{ plan.schedule_type | capitalize }}</em>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+
+  </small>
+
+  </div>
+  {% endfor %}
+
+</div>
+<div class="grid-x grid-padding-x">
+
+  {% if cart.items | length > 0 %}
+
+  <div class="cell subtotal-cell">
+    <span class="cart-subtotal">Subtotal: {{ cart.getSubtotal() | currency }}</span>
+    <a href="/cart" class="button hollow">View Cart</a>
+  </div>
+
+  <div class="cell cta-cell">
+    <a href="/checkout" class="button">Checkout</a>
+  </div>
+
+  {% else %} {# Cart is empty #}
+
+  <div class="cell empty-cell">
+    <span class="cart-empty">Your cart is empty!</span>
+  </div>
+
+  {% endif %}
+
+</div>

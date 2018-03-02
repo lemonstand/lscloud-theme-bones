@@ -1,0 +1,70 @@
+.cart-page {
+  .cart-upsells,
+  .cart-cross-sells {
+    margin-bottom: 1.25rem;
+
+    > .grid-x {
+      border: 1px solid $primary-color;
+      border-radius: $global-radius;
+      margin: 0;
+    }
+  }
+
+  .cart-summary {
+
+    .cart-shipping-estimates {
+      h3 {
+        font-size: 1.5rem;
+      }
+
+      h4 {
+        font-size: 1.25rem;
+      }
+    }
+
+    .cart-footer {
+      .footer-right {
+        display: flex;
+
+        > * {
+          margin-left: .25rem;
+          margin-right: .25rem;
+
+          &:first-child {
+            margin-left: 0;
+          }
+
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+
+        [name='coupon'] {
+          min-width: rem-calc(185);
+        }
+      }
+    }
+
+    @include breakpoint(medium down) {
+      .button {
+        width: 100%;
+      }
+
+      .cart-footer {
+        .footer-right {
+          flex-direction: column;
+
+          > * {
+            margin-left: 0;
+            margin-right: 0;
+          }
+
+          [name='coupon'] {
+            min-width: 0;
+          }
+        }
+      }
+    }
+  }
+}
+

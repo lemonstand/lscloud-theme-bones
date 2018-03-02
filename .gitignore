@@ -1,0 +1,6 @@
+package-lock.json
+lemonsync.json
+.idea
+node_modules
+dist
+.DS_Store

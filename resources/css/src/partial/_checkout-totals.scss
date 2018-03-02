@@ -1,0 +1,47 @@
+.checkout-totals {
+  > .grid-x {
+    margin-bottom: 1rem;
+
+    > hr {
+      margin: .5rem 1rem;
+    }
+
+    > .cell {
+      display: flex;
+      align-items: center;
+
+      &.currency-cell {
+        span {
+          // Inner wrapper for aligning cell text
+          text-align: right;
+          display: block;
+          width: 100%;
+        }
+      }
+
+      &.title-cell {
+        font-size: .9em;
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  .input-group {
+    width: auto;
+    margin-right: 1rem;
+  }
+
+  .title-cell {
+    justify-content: flex-end;
+  }
+
+  .total-cell {
+    font-weight: bold;
+  }
+
+  .input-group.coupon-code {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: .25rem;
+  }
+}

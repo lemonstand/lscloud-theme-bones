@@ -1,0 +1,28 @@
+.order-history {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+
+  .orders-grid {
+    border: 1px solid $medium-gray;
+    margin: 0 !important;
+
+    .orders-header {
+      background: $light-gray;
+      padding-top: .5rem;
+      padding-bottom: .5rem;
+    }
+
+    .order-cell {
+      padding-top: .5rem;
+      padding-bottom: .5rem;
+
+      &:nth-child(odd) {
+        background: $light-gray;
+      }
+
+      p {
+        margin: 0;
+      }
+    }
+  }
+}

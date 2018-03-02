@@ -1,0 +1,23 @@
+.product-prices {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .product-base-price {
+    margin: 0;
+    color: $dark-gray;
+    text-decoration: line-through;
+  }
+
+  .product-discount {
+    margin: 0;
+    color: $alert-color;
+    font-weight: bold;
+  }
+
+  .product-price {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+}

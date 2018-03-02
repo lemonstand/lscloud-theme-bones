@@ -1,0 +1,65 @@
+<div class="grid-container">
+  <div class="grid-x grid-padding-x">
+
+    <div class="cell small-12 medium-shrink footer-custom-nav">
+      {{ widget_block('footer-nav-menu') }}
+    </div>
+
+    <div class="cell small-12 medium-shrink footer-categories">
+
+      <ul class="menu">
+        {% for category in categories[:10] %}
+        <li>
+          <a href="/category/{{ category.url_name }}">{{ category.name }}</a>
+        </li>
+        {% endfor %}
+      </ul>
+
+    </div>
+
+
+    <div class="cell small-12 medium-auto footer-core">
+
+      <p>{{ theme.footerLegalText }}</p>
+
+      <ul class="menu footer-social-links">
+        {% if theme.facebookLink %}
+        <li>
+          <a href="{{ theme.facebookLink }}" target="_blank"><span class="fa fa-2x fa-facebook-official"></span></a>
+        </li>
+        {% endif %}
+        {% if theme.twitterLink %}
+        <li>
+          <a href="{{ theme.twitterLink }}" target="_blank"><span class="fa fa-2x fa-twitter"></span></a>
+        </li>
+        {% endif %}
+        {% if theme.instagramLink %}
+        <li>
+          <a href="{{ theme.instagramLink }}" target="_blank"><span class="fa fa-2x fa-instagram"></span></a>
+        </li>
+        {% endif %}
+      </ul>
+
+      <ul class="menu">
+        {% if customer %}
+        <li>
+          <a href="/logout">Log Out</a>
+        </li>
+        <li>
+          <a href="/account">My Account</a>
+        </li>
+        {% else %}
+        <li>
+          <a href="/login#login">Log In</a>
+        </li>
+        <li>
+          <a href="/login#register">Register</a>
+        </li>
+        {% endif %}
+      </ul>
+
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,28 @@
+.order-header {
+  margin-top: 1rem;
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .header-grid {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  @include breakpoint(small down) {
+    h2 {
+      font-size: 1.25rem;
+    }
+
+    .header-grid {
+      > .cell {
+        margin: 1rem 0;
+      }
+    }
+  }
+}

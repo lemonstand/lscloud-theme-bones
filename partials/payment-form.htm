@@ -1,0 +1,58 @@
+{% if paymentMethod is defined %}
+
+  {% if paymentMethod.isLegacy() %}
+
+    <p>This payment method type is no longer supported. Create a standard or custom method.</p>
+
+  {% elseif paymentMethod.isStandard() %}
+
+    {# Render iFrame payment form if a standard-type payment method. #}
+
+    {% if hasFeature('saved-cards') %}
+      {% set saved_card_enabled = true %}
+    {% else %}
+      {% set saved_card_enabled = false %}
+    {% endif %}
+
+    {{ paymentForm({
+          options: {
+            number: {
+              label: 'Card Number',
+              placeholder: ' ',
+              style: "font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif; font-size: 16px; color: #0a0a0a; width: 100%;"
+            },
+            cvv: {
+              label: 'CVV',
+              placeholder: ' ',
+              style: "font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif; font-size: 16px; color: #0a0a0a; width: 100%;"
+            },
+            is_default: {
+              label:'Make my default card'
+            },
+            expiry: {
+              label:'Expiry (MM/YYYY)',
+              placeholder: ''
+            },
+            full_name: {
+              label:'Cardholder Name',
+              placeholder: ''
+            },
+            save_card: {
+              label: 'Save Card',
+              enabled: saved_card_enabled
+            }
+          }
+    }, paymentMethod) }}
+
+  {% elseif paymentMethod.isCustom() %}
+
+    {% set name = paymentMethod.getFrontendPartialName() %}
+    {{ partial(name, {paymentMethod: paymentMethod, payment: payment}) }}
+
+  {% endif %}
+
+{% else %}
+
+  <p>Please select a payment method.</p>
+
+{% endif %}

@@ -1,12 +1,12 @@
 ---
-action: 'shop:logout'
-description: ''
-template: main
-protocol: ''
-published: '1'
-redirect: ''
-name: Logout
 url: /logout
+name: Logout
+description: Logs the user out.
+action: shop:logout
+template: default
+published: true
+redirect: /
 ---
-<h1>{{ page.title }}</h1>
-<p>Logging out...</p>
+<section class="logout grid-container">
+  You have been logged out.
+</section>

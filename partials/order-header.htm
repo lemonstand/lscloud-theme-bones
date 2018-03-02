@@ -1,0 +1,36 @@
+{# Accepts title and order as parameters #}
+
+<header>
+  <h1>{{ title }}</h1>
+</header>
+
+<p>Order #{{ order.number }}</p>
+<p>Order Date: {{ order.created_on|date('m/d/Y') }}</p>
+{% if order.outputTrackingCodes() %}
+<p>Order Tracking: {{ order.outputTrackingCodes() | unescape }}</p>
+{% endif %}
+
+<div class="grid-x grid-padding-x header-grid">
+
+  <div class="cell medium-4">
+    <h2>Billing Address</h2>
+    <p>{{ order.billingAddress.first_name }} {{ order.billingAddress.last_name }}</p>
+    <p>{{ order.billingAddress.street_address }}</p>
+    {% if order.billingAddress.street_address_line2 %}<p>{{ order.billingAddress.street_address_line2 }}</p>{% endif %}
+    <p>{{ order.billingAddress.city }}, {{ order.billingAddress.state.name }} {{ order.billingAddress.postal_code }}</p>
+  </div>
+
+  <div class="cell medium-4">
+    <h2>Shipping Address</h2>
+    <p>{{ order.shippingAddress.first_name }} {{ order.shippingAddress.last_name }}</p>
+    <p>{{ order.shippingAddress.street_address }}</p>
+    {% if order.shippingAddress.street_address_line2 %}<p>{{ order.shippingAddress.street_address_line2 }}</p>{% endif %}
+    <p>{{ order.shippingAddress.city }}, {{ order.shippingAddress.state.name }} {{ order.shippingAddress.postal_code }}</p>
+  </div>
+
+  <div class="cell medium-4">
+    <h2>Payment Method</h2>
+    <p>{{ order.card.brand }} {{ order.card.sanitized_card_number }}</p>
+  </div>
+
+</div>

@@ -1,0 +1,73 @@
+{# Get all cart products' upsells #}
+{% set upsells = [] %}
+{% set crossSells = [] %}
+
+{% for item in items if not item.product.upsells.isEmpty() %}
+  {% for upsell in item.product.upsells %}
+    {% set upsells = upsells | merge([upsell]) %}
+  {% endfor %}
+{% endfor %}
+
+{% for item in items if not item.product.crossSells.isEmpty() %}
+  {% for crossSell in item.product.crossSells %}
+    {% set crossSells = crossSells | merge([crossSell]) %}
+  {% endfor %}
+{% endfor %}
+
+<header class="cell">
+  <h1>Cart</h1>
+</header>
+
+<section class="grid-x grid-padding-x">
+
+
+  <section class="cell cart-contents">
+      <div class="alert">{{ flash() }}</div>
+      {{ partial('cart-contents') }}
+  </section>
+
+  <section class="cell cart-summary">
+
+
+    <div class="grid-x grid-padding-x">
+
+      <div class="cell large-12 large-order-3 cart-footer">
+        <hr>
+        <div class="grid-x grid-padding-x align-justify">
+          <div class="cell large-shrink footer-left">
+            <a class="button hollow" href="/products">Continue Shopping</a>
+          </div>
+          <div class="cell large-shrink footer-right">
+            {% if items | length > 0 %}
+              <a class="button" href="/checkout">Checkout</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  {% if theme.enableCartCrossSells and crossSells | length %}
+    <section class="cell cart-cross-sells">
+      <div class="grid-x grid-padding-x">
+        <div class="cell related-header">
+          <h2>You May Be Interested in These</h2>
+        </div>
+        {{ partial('related-products', { relatedProducts: crossSells }) }}
+      </div>
+    </section>
+  {% endif %}
+
+  {% if theme.enableCartUpsells and upsells | length %}
+    <section class="cell cart-upsells">
+      <div class="grid-x grid-padding-x">
+        <div class="cell related-header">
+          <h2>Purchase Together and Save</h2>
+        </div>
+        {{ partial('related-products', { relatedProducts: upsells }) }}
+      </div>
+    </section>
+  {% endif %}
+
+</section>

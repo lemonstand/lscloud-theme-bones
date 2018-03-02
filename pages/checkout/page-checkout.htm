@@ -1,19 +1,34 @@
 ---
-action: 'shop:checkout'
-template: main
-protocol: all
-published: true
-name: Checkout
 url: /checkout
+name: Checkout
+description: Where the customer fills out their address and pays.
+action: shop:checkout
+template: default
+published: true
 ---
-{% if not items.count %}
-	<h1>{{ page.title }}</h1>
-	<hr>
-	<h3>Your cart is empty!<a href="{{ site_url('shop') }}"> Continue shopping.</a></h3>
-{% else %}
-	<div id="checkout-page">
-		{{ partial('partial-checkout') }}
-	</div>
 
-    {{ code_block('script') }}
-{% endif %}
+<div class="grid-container">
+  <div class="grid-x grid-padding-x checkout-steps">
+    {{ partial('checkout-steps') }}
+  </div>
+</div>
+
+<section id="checkout-login" class="reveal" data-reveal>
+  <button class="close-button" data-close><span class="fa fa-close"></span></button>
+  <header>
+    <h1>Login</h1>
+  </header>
+  <main>
+    {{ partial('login', { redirectUrl: page.url }) }}
+  </main>
+</section>
+
+<section id="checkout-register" class="reveal" data-reveal>
+  <button class="close-button" data-close><span class="fa fa-close"></span></button>
+  <header>
+    <h1>Register</h1>
+  </header>
+  <main>
+    {{ partial('register', { redirectUrl: page.url }) }}
+  </main>
+</section>

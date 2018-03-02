@@ -1,0 +1,49 @@
+---
+description: List of subscriptions
+---
+{% if not subscriptions or not subscriptions.count %}
+<p class="flash info">Subscriptions not found</p>
+{% else %}
+
+    <header class="cell orders-header">
+    <div class="grid-x grid-padding-x">
+
+        <div class="cell small-4 medium-2">
+        <span><strong>Date</strong></span>
+        </div>
+
+        <div class="cell small-6 medium-8">
+        <span><strong>Details</strong></span>
+        </div>
+
+        <div class="cell small-2 medium-2">
+        <span><strong>Total</strong></span>
+        </div>
+    </div>
+    </header>
+
+    {% for subscription in subscriptions | extended_sort('created_at', false) %}
+
+    {% set url = root_url('/account/subscriptions/' ~ subscription.id) %}
+
+    <a class="cell order-cell" href="{{ url }}">
+    <div class="grid-x grid-padding-x">
+        <div class="cell small-4 medium-2">
+        <p>{{ subscription.created_at | date('m/d/Y') }} ({{ subscription.status.name }})</p>
+        </div>
+        <div class="cell small-6 medium-8">
+
+            {% set last_invoice = subscription.orders | last %}
+
+            <p>{{ subscription.billingPlan.name }} #{{ subscription.number }} - ({{ last_invoice.getItemQuantity() }} items)</p>
+
+        </div>
+        <div class="cell small-2 medium-2">
+        <p>{{ last_invoice.total | currency }}</p>
+        </div>
+    </div>
+    </a>
+
+    {% endfor  %}
+
+{% endif %}

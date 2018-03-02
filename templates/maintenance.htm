@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>{{ post.seo_title ? post.seo_title : page.title }}</title>
+    <meta name="Description" content="{{ page.description }}"/>
+    <meta name="Keywords" content="{{ page.keywords }}"/>
+
+    <!-- Lemonstand's base files (required) -->
+    <link rel="stylesheet" href="/cms/lemonstand.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="/cms/lemonstand.js"></script>
+
+    <!-- Bones stylesheets -->
+    <link rel="stylesheet" href="{{ 'css/dist/app.min.css' | theme_resource }}">
+    <link rel="stylesheet" href="{{ 'css/custom.css' | theme_resource }}">
+  </head>
+  <body class="{% if theme.fillWindow %}fill-window{% endif %} {{ page.name | lower }}">
+
+    <main>
+      {{ page() }}
+    </main>
+
+    <!-- Bones scripts -->
+    <script type="text/javascript" src="{{ 'javascript/dist/app.min.js' | theme_resource }}"></script>
+    <script type="text/javascript" src="{{ 'javascript/custom.js' | theme_resource }}"></script>
+  </body>
+</html>

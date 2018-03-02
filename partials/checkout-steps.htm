@@ -1,0 +1,364 @@
+<div class="cell">
+  <h1>Checkout</h1>
+</div>
+{% if not items %}
+
+  <div class="cell">
+    <p class="empty-cart">You don't have anything in your cart yet!</p>
+    <a class="button" href="/products">Continue Shopping</a>
+  </div>
+
+{% else %}
+
+  <div class="cell">
+    <ul id="checkout-tabs" class="tabs checkout-tabs" data-tabs>
+      <li class="tabs-title {% if step == 'billing_info' %}is-active{% endif %}">
+        <a data-ajax-handler="shop:checkout"
+           data-ajax-update=".checkout-steps=checkout-steps"
+           data-ajax-extra-fields="nextStep=billing_info"
+           {% if step == 'billing_info' %}aria-selected="true"{% endif %}>
+          Billing / Shipping
+        </a>
+      </li>
+      <li class="tabs-title {% if step == 'shipping_method' %}is-active{% endif %}">
+        <a data-ajax-handler="shop:checkout"
+           data-ajax-update=".checkout-steps=checkout-steps"
+           data-ajax-extra-fields="nextStep=shipping_method"
+           {% if step not in ['shipping_method', 'pay'] %}class="disabled"{% endif %}
+           {% if step == 'shipping_method' %}aria-selected="true"{% endif %}>
+          Shipping Option
+        </a>
+      </li>
+      <li class="tabs-title {% if step == 'pay' %}is-active{% endif %}">
+        <a data-ajax-handler="shop:checkout"
+           data-ajax-update=".checkout-steps=checkout-steps"
+           data-ajax-extra-fields="nextStep=pay"
+           {% if step != 'pay' %}class="disabled"{% endif %}
+           {% if step == 'pay' %}aria-selected="true"{% endif %}>
+          Review and Pay
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="cell">
+    <div class="tabs-content checkout-tabs-content" data-tabs-content="checkout-tabs">
+
+      {% if step == 'billing_info' %}
+
+        {% set mirrorBillingShipping = true %}
+
+        {% if billingInfo.firstName != shippingInfo.firstName %}
+          {% set mirrorBillingShipping = false %}
+        {% elseif billingInfo.lastName != shippingInfo.lastName %}
+          {% set mirrorBillingShipping = false %}
+        {% elseif billingInfo.phone != shippingInfo.phone %}
+          {% set mirrorBillingShipping = false %}
+        {% elseif billingInfo.streetAddressLine1 != shippingInfo.streetAddressLine1 %}
+          {% set mirrorBillingShipping = false %}
+        {% elseif billingInfo.streetAddressLine2 != shippingInfo.streetAddressLine2 %}
+          {% set mirrorBillingShipping = false %}
+        {% elseif billingInfo.city != shippingInfo.city %}
+          {% set mirrorBillingShipping = false %}
+        {% elseif billingInfo.postalCode != shippingInfo.postalCode %}
+          {% set mirrorBillingShipping = false %}
+        {% elseif billingInfo.stateId != shippingInfo.stateId %}
+          {% set mirrorBillingShipping = false %}
+        {% elseif billingInfo.countryId != shippingInfo.countryId %}
+          {% set mirrorBillingShipping = false %}
+        {% endif %}
+
+        <div class="tabs-panel is-active checkout-addresses-tab-content" id="checkout-addresses">
+          {% if not customer %}
+            <p>You are checking out as a guest. <a data-open="checkout-login">Log In</a> / <a data-open="checkout-register">Register</a> to checkout faster and save your info.</p>
+          {% endif %}
+
+          {{ open_form({
+              'class': 'grid-x grid-padding-x',
+              'novalidate': null,
+              'data-abide': null,
+              'data-mirror': 'shipping-billing',
+              'data-mirror-state': mirrorBillingShipping ? 'on' : 'off',
+              'data-ajax-handler': 'shop:checkout',
+              'data-ajax-update': '.checkout-steps=checkout-steps'
+             })
+          }}
+            <fieldset class="cell medium-6 billing-fieldset">
+              <legend>Billing Address</legend>
+              <div class="grid-x grid-padding-x">
+                <label class="cell medium-6">
+                  <span>First Name*</span>
+                  <input name="billingInfo[firstName]" type="text" value="{{ billingInfo.firstName }}"
+                         id="checkout-billing-first-name" required/>
+                  <span class="error"></span>
+                  <span class="form-error">
+                        First Name is required.
+                      </span>
+                </label>
+                <label class="cell medium-6">
+                  <span>Last Name*</span>
+                  <input name="billingInfo[lastName]" type="text" value="{{ billingInfo.lastName }}"
+                         id="checkout-billing-last-name" required/>
+                  <span class="error"></span>
+                  <span class="form-error">
+                        Last Name is required.
+                      </span>
+                </label>
+                <label class="cell medium-6">
+                  <span>Email*</span>
+                  <input name="billingInfo[email]" type="email" value="{{ billingInfo.email }}"
+                         id="checkout-billing-email" required/>
+                  <span class="error"></span>
+                  <span class="form-error">
+                        Email is required.
+                      </span>
+                </label>
+                <label class="cell medium-6">
+                  <span>Phone Number</span>
+                  <input name="billingInfo[phone]" type="tel" value="{{ billingInfo.phone }}"
+                         id="checkout-billing-phone"/>
+                  <span class="error"></span>
+                </label>
+                <label class="cell">
+                  <span>Address Line 1*</span>
+                  <input name="billingInfo[streetAddressLine1]" type="text" value="{{ billingInfo.streetAddressLine1 }}"
+                         id="checkout-billing-street-line-1" required/>
+                  <span class="error"></span>
+                  <span class="form-error">
+                        Address is required.
+                      </span>
+                </label>
+                <label class="cell">
+                  <span>Address Line 2</span>
+                  <input name="billingInfo[streetAddressLine2]" type="text" value="{{ billingInfo.streetAddressLine2 }}"
+                         id="checkout-billing-street-line-2"/>
+                  <span class="error"></span>
+                </label>
+                <label class="cell medium-6">
+                  <span>City*</span>
+                  <input name="billingInfo[city]" type="text" value="{{ billingInfo.city }}"
+                         id="checkout-billing-city" required/>
+                  <span class="error"></span>
+                  <span class="form-error">
+                        City is required.
+                      </span>
+                </label>
+                <label class="cell medium-6">
+                  <span>Zip Code*</span>
+                  <input name="billingInfo[postalCode]" type="text" value="{{ billingInfo.postalCode }}"
+                         id="checkout-billing-postal-code" required/>
+                  <span class="error"></span>
+                  <span class="form-error">
+                        Zip Code is required.
+                      </span>
+                </label>
+                <label class="cell medium-6">
+                  <span>Country*</span>
+                  <select name="billingInfo[countryId]" id="checkout-billing-country"
+                          data-state-selector="#checkout-billing-state" data-current-state="{{ billingInfo.stateId }}"
+                          required>
+                    {% for country in countries %}
+                      <option {{ option_state(country.id, billingInfo.countryId) }} value="{{ country.id }}">{{ country.name }}</option>
+                    {% endfor %}
+                  </select>
+                  <span class="error"></span>
+                  <span class="form-error">
+                        Country is required.
+                      </span>
+                </label>
+                <label class="cell medium-6">
+                  <span>State</span>
+                  <select name="billingInfo[stateId]" id="checkout-billing-state" data-ajax-refresh>
+                    {{ partial('shop-stateoptions', {'states': billingStates, 'selected': billingInfo.stateId }) }}
+                  </select>
+                  <span class="error"></span>
+                </label>
+              </div>
+            </fieldset>
+            <fieldset class="cell medium-6 shipping-fieldset">
+              <legend>Shipping Address</legend>
+              <label class="mirror-toggle">
+                <input id="shipping-mirror-toggle" type="checkbox" {% if mirrorBillingShipping %}checked{% endif %}
+                       data-toggle="shipping-inputs-grid" data-mirror-toggler="shipping-billing">
+                <span>Same as Billing Address</span>
+              </label>
+              <div id="shipping-inputs-grid" class="grid-x grid-padding-x {% if mirrorBillingShipping %}hide{% endif %}"
+                   data-toggler=".hide">
+                <label class="cell medium-6">
+                  <span>First Name*</span>
+                  <input name="shippingInfo[firstName]" type="text" value="{{ shippingInfo.firstName }}"
+                         data-mirror-watcher="shipping-billing" data-mirror-source="checkout-billing-first-name"
+                         required/>
+                  <span class="error"></span>
+                  <span class="form-error">
+                        First Name is required.
+                      </span>
+                </label>
+                <label class="cell medium-6">
+                  <span>Last Name*</span>
+                  <input name="shippingInfo[lastName]" type="text" value="{{ shippingInfo.lastName }}"
+                         data-mirror-watcher="shipping-billing" data-mirror-source="checkout-billing-last-name"
+                         required />
+                  <span class="error"></span>
+                  <span class="form-error">
+                        Last Name is required.
+                      </span>
+                </label>
+                <label class="cell">
+                  <span>Phone Number</span>
+                  <input name="shippingInfo[phone]" type="tel" value="{{ shippingInfo.phone }}"
+                         data-mirror-watcher="shipping-billing" data-mirror-source="checkout-billing-phone"/>
+                  <span class="error"></span>
+                </label>
+                <label class="cell">
+                  <span>Address Line 1*</span>
+                  <input name="shippingInfo[streetAddressLine1]" type="text" value="{{ shippingInfo.streetAddressLine1 }}"
+                         data-mirror-watcher="shipping-billing" data-mirror-source="checkout-billing-street-line-1"
+                         required/>
+                  <span class="error"></span>
+                  <span class="form-error">
+                        Address is required.
+                      </span>
+                </label>
+                <label class="cell">
+                  <span>Address Line 2</span>
+                  <input name="shippingInfo[streetAddressLine2]" type="text" value="{{ shippingInfo.streetAddressLine2 }}"
+                         data-mirror-watcher="shipping-billing" data-mirror-source="checkout-billing-street-line-2"/>
+                  <span class="error"></span>
+                </label>
+                <label class="cell medium-6">
+                  <span>City*</span>
+                  <input name="shippingInfo[city]" type="text" value="{{ shippingInfo.city }}"
+                         data-mirror-watcher="shipping-billing" data-mirror-source="checkout-billing-city"
+                         required/>
+                  <span class="error"></span>
+                  <span class="form-error">
+                        City is required.
+                      </span>
+                </label>
+                <label class="cell medium-6">
+                  <span>Zip Code*</span>
+                  <input name="shippingInfo[postalCode]" type="text" value="{{ shippingInfo.postalCode }}"
+                         data-mirror-watcher="shipping-billing" data-mirror-source="checkout-billing-postal-code"
+                         required/>
+                  <span class="error"></span>
+                  <span class="form-error">
+                        Zip Code is required.
+                      </span>
+                </label>
+                <label class="cell medium-6">
+                  <span>Country*</span>
+                  <select name="shippingInfo[countryId]"
+                          data-state-selector="#checkout-shipping-state" data-current-state="{{ shippingInfo.stateId }}"
+                          data-mirror-watcher="shipping-billing" data-mirror-source="checkout-billing-country"
+                          required>
+                    {% for country in countries %}
+                    <option {{ option_state(country.id, shippingInfo.countryId) }} value="{{ country.id }}">{{ country.name }}</option>
+                    {% endfor %}
+                  </select>
+                  <span class="error"></span>
+                  <span class="form-error">
+                        Country is required.
+                      </span>
+                </label>
+                <label class="cell medium-6">
+                  <span>State</span>
+                  <select name="shippingInfo[stateId]" id="checkout-shipping-state" data-ajax-refresh
+                          data-mirror-watcher="shipping-billing" data-mirror-source="checkout-billing-state">
+                    {{ partial('shop-stateoptions', {'states': shippingStates, 'selected': shippingInfo.stateId }) }}
+                  </select>
+                </label>
+              </div>
+            </fieldset>
+            <fieldset class="cell">
+              <label>
+                <span>Get occasional email updates from us?</span>
+                <div class="switch">
+                  <input
+                      id="checkout_accepts_marketing"
+                      name="accepts_marketing"
+                      class="switch-input"
+                      type="checkbox"
+                      checked>
+                  <label class="switch-paddle" for="checkout_accepts_marketing">
+                    <span class="show-for-sr">Get occasional email updates from us?</span>
+                    <span class="switch-active" aria-hidden="true">Yes</span>
+                    <span class="switch-inactive" aria-hidden="true">No</span>
+                  </label>
+                </div>
+              </label>
+              <input name="step" type="hidden" value="billing_info,shipping_info"/>
+              <input name="nextStep" type="hidden" value="shipping_method"/>
+              <button type="submit" class="button">Next</button>
+            </fieldset>
+          {{ close_form() }}
+        </div>
+      {% endif %}
+
+      {% if step == 'shipping_method' %}
+        <div class="tabs-panel is-active checkout-shipping-option-tab-content" id="checkout-shipping-option">
+          {{ open_form({
+              'class': 'grid-x grid-padding-x checkout-shipping-option-form',
+              'data-ajax-handler': 'shop:checkout',
+              'data-ajax-update': '.checkout-steps=checkout-steps'
+             })
+          }}
+            <div class="cell large-9 shipping-options">
+              {{ partial('shipping-options', { checkoutMode: true }) }}
+            </div>
+            <div class="cell large-3 checkout-totals">
+              {{ partial('checkout-totals') }}
+            </div>
+            <div class="cell">
+              <input name="step" type="hidden" value="shipping_method"/>
+              <input name="nextStep" type="hidden" value="pay"/>
+              <input type="submit" class="button" value="Next" {% if not shippingMethodInfo.id %}disabled{% endif %}/>
+            </div>
+          {{ close_form() }}
+        </div>
+      {% endif %}
+
+      {% if step == 'pay' %}
+        <div class="tabs-panel is-active checkout-review-and-pay-tab-content" id="checkout-review-and-pay">
+          <div class="grid-x grid-padding-x">
+            <section class="cell cart-contents">
+              {{ partial('cart-contents', { checkoutMode: true }) }}
+            </section>
+            <section class="cell checkout-pay-footer">
+              <hr>
+
+              <div class="grid-x grid-padding-x">
+                <div class="cell large-9 large-order-1 checkout-payment-method">
+                  {% if paymentMethods | length > 1 %}
+                    <h4>Select a Payment Method</h4>
+                    {% set paymentMethod = false %}
+
+                    {{ open_form({}) }}
+                      <select name="paymentMethodId" data-ajax-handler="shop:onUpdatePaymentMethod"
+                              data-ajax-update=".payment-form=payment-form">
+                        <option value=""></option>
+                        {% for method in paymentMethods %}
+                          {% if method.is_default %}
+                            {% set paymentMethod = method %}
+                            <option value="{{ method.id }}" selected>{{ method.name }}</option>
+                          {% else %}
+                            <option value="{{ method.id }}">{{ method.name }}</option>
+                          {% endif %}
+                        {% endfor %}
+                      </select>
+                    {{ close_form() }}
+                  {% else %} {# Only 1 payment method, no need to have user select #}
+                    <h4>Payment</h4>
+                    {% set paymentMethod = paymentMethods[0] %}
+                  {% endif %}
+
+                  <div class="payment-form">{{ partial('payment-form', { paymentMethod : paymentMethod }) }}</div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+{% endif %}

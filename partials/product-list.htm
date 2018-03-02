@@ -1,0 +1,87 @@
+---
+description: Displays a product list.
+---
+{# params: products, showSort #}
+<div data-equalizer="product-images" data-equalize-by-row="true">
+  <div class="product-list grid-x grid-margin-x"
+       data-equalizer="product-name" data-equalize-by-row="true">
+
+    {% if showSort %}
+      <div class="product-list-sort cell">
+        <label>
+          Sort Products By
+          <select data-sort-redirect>
+            <option value="orderBy=null&order=null">Default</option>
+            <option value="orderBy=base_price&order=asc"
+                    {% if sortField == 'base_price' and sortOrder == 'asc'  %} selected="selected"{% endif %}>
+            Price - Ascending
+            </option>
+
+            <option value="orderBy=base_price&order=desc"
+                    {% if sortField == 'base_price' and sortOrder == 'desc'  %} selected="selected"{% endif %}>
+            Price - Descending
+            </option>
+
+            <option value="orderBy=name&order=asc"
+                    {% if sortField == 'name' and sortOrder == 'asc'  %} selected="selected"{% endif %}>
+            Name - Ascending
+            </option>
+
+            <option value="orderBy=name&order=desc"
+                    {% if sortField == 'name' and sortOrder == 'desc'  %} selected="selected"{% endif %}>
+            Name - Descending
+            </option>
+
+            <option value="orderBy=created_at&order=asc"
+                    {% if sortField == 'created_at' and sortOrder == 'asc'  %} selected="selected"{% endif %}>
+            Date Created - Ascending
+            </option>
+
+            <option value="orderBy=created_at&order=desc"
+                    {% if sortField == 'created_at' and sortOrder == 'desc'  %} selected="selected"{% endif %}>
+            Date Created - Descending
+            </option>
+          </select>
+        </label>
+      </div>
+    {% endif %}
+
+    {% for product in products %}
+
+      <div class="cell small-12 medium-6 large-4" {% if loop.last %}data-equalizer-singleton-row-height-fix{% endif %}>
+        <a href="/product/{{ product.url_name }}">
+          <div class="card">
+
+            <section class="card-image"
+                 data-equalizer-ignore-class="flex-container align-{{ theme.productListImageEqualizeStrategy }}"
+                 data-equalizer-watch="product-images">
+              <img
+                  src="{{ product.images.first.thumbnail(400, 'auto')
+                | default('https://placehold.it/400x400') }}"
+                  alt="{{ product.images.first.description }}"
+                  title="{{ product.images.first.title }}" />
+            </section>
+
+            <section class="card-section">
+              <div class="grid-x">
+                <div class="cell" data-equalizer-watch="product-name">{{ product.name }}</div>
+                <div class="product-prices cell">
+                  {% if product.onSale %}
+                    <span class="product-base-price">
+                      {{ product.fullPrice | currency }}
+                    </span>
+                  {% endif %}
+                  <span class="product-price">
+                    {{ product.price | currency }}
+                  </span>
+                </div>
+              </div>
+            </section>
+
+          </div>
+        </a>
+      </div>
+
+    {% endfor %}
+  </div>
+</div>

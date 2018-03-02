@@ -1,0 +1,21 @@
+// @import scss for pages here.
+// Files should be in resources/css/src/page/
+// File name should be the page name.
+
+@import 'archive';
+@import 'blog-post';
+@import 'cart';
+@import 'checkout';
+@import 'home';
+@import 'order-details';
+@import 'order-history';
+@import 'product';
+
+
+// globals
+
+hr {
+    clear: both;
+    width: 100%;
+    display: block;
+}

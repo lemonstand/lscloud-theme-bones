@@ -1,0 +1,126 @@
+---
+action: 'subscriptions:subscription'
+template: default
+protocol: all
+published: true
+name: Subscription Details Page
+url: '/account/subscriptions/:subscriptionId'
+---
+<section class="grid-container order-details">
+
+  <div class="grid-x grid-padding-x">
+
+    <nav class="cell order-nav">
+      <a href="/account/orders"><span class="fa fa-angle-left"></span> Back to Orders and Subscriptions</a>
+    </nav>
+
+    {% if not subscription %}
+    <div class="alert warning">Subscription not found.</div>
+    {% else %}
+    <header class="cell order-header">
+        <header>
+            <h1>Subscription</h1>
+          </header>
+
+        <div>
+
+          <p>#{{ subscription.id }}</p>
+          <p><strong>Subscription:</strong>
+            {% for plan in billingPlans  %}
+                {% if plan.id == subscription.billingPlan.id %}
+                    {{ plan.name }}
+                {% endif %}
+            {% endfor %}
+        </p>
+        <p><strong>Started:</strong> {{ subscription.created_at.format('M jS, Y') }}</p>
+
+        {{ open_form({
+                'data-ajax-handler': 'subscriptions:onUpdateSubscriptionStatus',
+                'class': 'custom',
+                'data-ajax-redirect': root_url('/subscription/' ~ subscription.id),
+                'data-validation-message' : ''
+            })
+        }}
+            <span><strong>Status:</strong></span>
+            <span class="col-md-12 custom-dropdown">
+              <select id="subscription_status" name="subscription_status">
+              {% for status in subscriptionStatuses if (status.code == 'active' or status.code == 'paused' or status.code == 'cancelled')  %}
+                <option value="{{ status.code }}" {{ option_state(status.code, subscription.status.code) }}>{{ status.name }}</option>
+              {% endfor %}
+              </select>
+            </span>
+            <input type="submit" class="button secondary" value="Update Status"/>
+            <input type="hidden" name="subscription_id" value="{{ subscription.id }}"/>
+            {{ close_form() }}
+        </div>
+
+        <div>
+        <p><strong>Saved payment details</strong></p>
+        {% if card %}
+            <!-- Render card details -->
+            {{ subscriptionCardForm('update',
+                {
+                    card: card,
+                    options: {
+                        number: {
+                            placeholder: 'Card number',
+                            style: "font-family: Helvetica Neue, Courier New, Courier Monospace, monospace; letter-spacing: 1.5px; font-weight: bold; font-size: 16px; color: #555; width: 100%;"
+                        },
+                        cvv: {
+                            placeholder: 'CVV',
+                            style: "font-family: Helvetica Neue, Courier New, Courier Monospace, monospace; letter-spacing: 1.5px; font-weight: bold; font-size: 16px; color: #555;  width: 100%;"
+                        }
+                    }
+                },
+            { 'data-ajax-redirect': root_url('/subscription/' ~ subscription.id) }) }}
+        {% else %}
+            <!-- Add card form from subscriptions page. -->
+            {{ subscriptionCardForm('add',
+                {
+                    options: {
+                        number: {
+                            placeholder: 'Card number',
+                            style: "font-family: Helvetica Neue, Courier New, Courier Monospace, monospace; letter-spacing: 1.5px; font-weight: bold; font-size: 16px; color: #555; width: 100%;"
+                        },
+                        cvv: {
+                            placeholder: 'CVV',
+                            style: "font-family: Helvetica Neue, Courier New, Courier Monospace, monospace; letter-spacing: 1.5px; font-weight: bold; font-size: 16px; color: #555; width: 100%;"
+                        }
+                    }
+                },
+            { 'data-ajax-redirect': root_url('/subscription/' ~ subscription.id) }) }}
+        {% endif %}
+        </div>
+
+    </header>
+
+    <section class="cell cart-contents">
+    <h3> Subscription order history</h3>
+        {% for order in subscription.orders | extended_sort('created_at', false) %}
+        <a class="cell order-cell" href="/account/order/{{ order.id }}">
+            <div class="grid-x grid-padding-x">
+            <div class="cell small-4 medium-2">
+                <p>{{ order.created_at | date('m/d/Y') }}</p>
+            </div>
+            <div class="cell small-6 medium-8">
+                <p>Order #{{ order.number }} - ({{ order.getItemQuantity() }} items)</p>
+            </div>
+            <div class="cell small-2 medium-2">
+                <p>{{ order.total | currency }}</p>
+            </div>
+            </div>
+        </a>
+        {% endfor  %}
+
+    </section>
+
+    {% endif %}
+
+  </div>
+
+    <br/>
+    <br/>
+    <br/>
+
+
+</section>

@@ -1,23 +1,11 @@
 ---
-action: 'shop:product'
-template: main
-protocol: all
-published: true
+url: /product/:urlName
 name: Product
-url: '/product/:urlName'
+description: Displays the details of one product.
+action: shop:product
+template: default
+published: true
 ---
-{{ open_form({'class': 'custom', 'onsubmit': 'return false'}) }}
-  {% if product %}
-    <div id="product-page">
-      {{ partial('partial-product') }}      
-    </div>
-  {% else %}
-    <h2>We are sorry, the requested product was not found.</h2>
-  {% endif %}
-{{ close_form() }}
-
-<!-- product reviews -->
-{{ partial('partial-review-view') }}
-
-<!-- product review form -->
-{{ partial('partial-review-form') }}
+<section class="product grid-container">
+  {{ partial('product') }}
+</section>

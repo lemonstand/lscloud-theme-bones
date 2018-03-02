@@ -1,0 +1,46 @@
+---
+description: Displays upsells and cross sells, with add to cart buttons.
+---
+{# Takes relatedProducts as a parameter, a list of upsells and/or cross sells. #}
+{# Creates Foundation cells, so this is expected to be used in a Grid. #}
+
+{% for relatedProduct in relatedProducts %}
+  <div class="cell related-product">
+
+    <div class="grid-x grid-padding-x">
+
+      <div class="cell large-6 product-details">
+        <img class="product-image" src="{{ relatedProduct.images.first.thumbnail(100, 'auto') }}"/>
+        <h3 class="product-name"><a href="/product/{{ relatedProduct.url_name }}">{{ relatedProduct.name }}</a></h3>
+        {% set options = relatedProduct.optionsString() %}
+        {% if options %}
+          <p class="product-options">{{ details | unescape }}</p>
+        {% endif %}
+      </div>
+
+      <div class="cell large-3 product-prices {{ relatedProduct.type }}">
+        {% if relatedProduct.type == 'upsell' or relatedProduct.onSale %}
+          <p class="product-base-price">Reg. {{ relatedProduct.base_price | currency }}</p>
+        {% endif %}
+        {% if relatedProduct.type == 'upsell' %}
+          <p class="product-discount">SAVE {{ (relatedProduct.base_price - relatedProduct.price) | currency}}</p>
+        {% endif %}
+        <p class="product-price">{{ relatedProduct.price ? (relatedProduct.price | currency) : 'Free' }}</p>
+      </div>
+
+      <div class="cell large-3 product-cta">
+        <a class="button" data-ajax-handler="shop:cart"
+          {% if relatedProduct.type == 'upsell' or relatedProduct.type == 'cross-sell' %}
+            data-ajax-extra-fields="upsellId='{{ relatedProduct.id }}', productId='{{ relatedProduct.parentProduct.id }}'"
+          {% else %}
+            data-ajax-extra-fields="productId='{{ relatedProduct.product.id }}'"
+          {% endif %}
+           data-ajax-update=".cart-page=cart-page,.cart-count=cart-count,.mini-cart=mini-cart,.flash-container=flash-container">
+          Add to Cart
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+{% endfor %}

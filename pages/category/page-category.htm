@@ -1,54 +1,46 @@
 ---
-action: 'shop:category'
-template: main
-protocol: all
-published: true
+url: /category/:urlName@
 name: Category
-url: '/category/:urlName@/:page?'
+description: Lists the products in a category.
+action: shop:category
+template: default
+published: true
 ---
-<h1>{{ category.name }}</h1>
+<section class="category grid-container">
+  <header>
+    <h1>{{ category.name }}</h1>
+  </header>
 
-{% tree categories %}
-<ul>
-	{% for category in tree.items %}
-	<li>
-		<h3><a href="/category/{{ category.fullUrlName }}">{{ category.name }}</a></h3>
-		<hr>
-		{% branch category.children %}
-	</li>
-	{% endfor %}
-</ul>
-{% endtree %}
+  <div class="grid-x">
 
-{% if not category %}
+    <nav class="category-sidenav cell medium-3">
+      <h4>Categories</h4>
+      {% tree categories %}
+        <ul
+          {% if tree.topLevel %}
+            class="vertical menu accordion-menu"
+            data-accordion-menu
+            data-submenu-toggle="true"
+          {% else %}
+            class="vertical menu nested"
+          {% endif %}
+          >
+          {% for category in tree.items %}
+            <li>
+              <a href="/category/{{ category.fullUrlName }}">
+                {{ category.name }}
+              </a>
+              {% branch category.children %}
+            </li>
+          {% endfor %}
+        </ul>
+      {% endtree %}
+    </nav>
 
-	<h2>Category not found</h2>
-	<p>We are sorry, the requested category was not found.</p>
+    <section class="category-products medium-9">
+      {{ partial('product-list', { products: products, showSort: true }) }}
+    </section>
 
-{% else %}
+  </div>
 
-	{% paginate products by 9 %}
-		<ul>
-			{% for product in pagination.items %}
-				{% set is_on_sale = product.onSale %}
-				{% set page_url = '/product/' ~ product.url_name %}
-				<li class="product">
-					<figure>
-						<a href="{{ page_url }}">
-						<img src="{{ product.images.first.thumbnail(365, 365)|default('http://placehold.it/365x365') }}" width="365" height="365" alt="{{ product.images.first.description }}" title="{{ product.images.first.title }}"/>
-						</a>
-					  <figcaption>
-						  <h3><a href="/product/{{ product.url_name }}" class="btn btn-default">{{ product.name }}</a></h3>
-							<h2>{{ product.price|currency }}</h2>
-							{% if is_on_sale %}
-								<h2><s>{{ product.fullPrice|currency }}</s></h2>
-							{% endif %}
-						</figcaption>
-					</figure>
-				</li>
-			{% endfor %}
-		</ul>
-		{% navigation %}		
-	{% endpaginate %}
-
-{% endif %}
+</section>

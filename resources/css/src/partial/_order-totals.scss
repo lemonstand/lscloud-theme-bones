@@ -1,0 +1,24 @@
+.order-totals {
+  margin-bottom: 1rem;
+
+  > .grid-x {
+    > .cell {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .input-group {
+    width: auto;
+    margin-right: 1rem;
+  }
+
+  .title-cell {
+    font-weight: bold;
+    justify-content: flex-end;
+  }
+
+  .total-cell {
+    font-size: 1.25rem;
+  }
+}

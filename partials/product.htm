@@ -1,0 +1,308 @@
+<header>
+  <h1>{{ product.name }}</h1>
+
+  <div class="flash-container">
+    {{ partial('flash-container') }}
+  </div>
+
+  {% if product.short_description %}
+  <section class="short-description">
+    {{ product.short_description | unescape }}
+  </section>
+  {% endif %}
+</header>
+
+<main class="media-object">
+
+  <section class="product-image media-object-section">
+    <div class="orbit" data-orbit>
+
+      <ul class="orbit-container">
+        {% if not product.images.count %}
+          <li class="orbit-slide is-active">
+            <img
+                class="orbit-image"
+                  src="{{ '' | default('https://placehold.it/700x700') }}"
+                alt="Image not available"
+                title="Missing image" />
+          </li>
+        {% else %}
+          {% for image in product.images %}
+          <li class="orbit-slide {% if loop.first %}is-active{% endif %}">
+            <img
+                class="orbit-image"
+                  src="{{ image.thumbnail(800, 'auto') }}"
+                alt="{{ image.description }}"
+                title="{{ image.title }}" />
+          </li>
+          {% endfor %}
+        {% endif %}
+      </ul>
+
+      <nav class="orbit-bullets">
+        {% for index, image in product.images %}
+        <button
+            {% if loop.first %}class="is-active"{% endif %}
+            data-slide="{{ index }}">
+          <img
+              class="orbit-image"
+                src="{{ image.thumbnail(100, 'auto') }}"
+              alt="{{ image.description }}"
+              title="{{ image.title }}" />
+        </button>
+        {% endfor %}
+      </nav>
+
+    </div>
+  </section>
+
+  <section class="media-object-section main-section">
+
+    <h2>
+      {{ product.name }}
+
+      {% if product.manufacturer %}
+        <br>
+        <small>by <a href="/manufacturer/{{ product.manufacturer.url_name }}">
+          {{ product.manufacturer.name}}
+        </a></small>
+      {% endif %}
+    </h2>
+
+    <section class="product-prices">
+      {% if product.onSale %}
+        <p class="product-base-price">Reg. {{ product.base_price | currency }}</p>
+    {% endif %}
+      <p class="product-price">{{ product.price ? (product.price | currency) : 'Free' }}</p>
+    </section>
+
+    {% if product.isOutOfStock() %}
+      <p class="callout warning">
+        This product is currently out of stock.
+        Check back for more {{ product.expected_availability_date|default('soon') }}.
+      </p>
+    {% else %} {# Product is in stock #}
+      {% if product.in_stock_amount %}
+        <p class="product-stock">{{ product.in_stock_amount }} in stock.</p>
+      {% endif %}
+    {% endif %}
+
+    <section class="description">
+      {{ product.description | unescape }}
+    </section>
+
+    {% if product.productAttributes.count or product.height or product.width
+        or product.depth or product.weight or product.sku %}
+    <table class="product-attributes">
+      {% for attribute in product.productAttributes %}
+      <tr>
+        <th>{{ attribute.name }}</th>
+        <td>{{ attribute.value }}</td>
+      </tr>
+      {% endfor %}
+
+        {% if product.height %}
+          <tr>
+            <th>Height</th>
+            <td>{{ product.height }}</td>
+          </tr>
+        {% endif %}
+
+        {% if product.width %}
+          <tr>
+            <th>Width</th>
+            <td>{{ product.width }}</td>
+          </tr>
+        {% endif %}
+
+        {% if product.depth %}
+          <tr>
+            <th>Depth</th>
+            <td>{{ product.depth }}</td>
+          </tr>
+        {% endif %}
+
+        {% if product.weight %}
+          <tr>
+            <th>Weight</th>
+            <td>{{ product.weight }}</td>
+          </tr>
+        {% endif %}
+
+        {% if product.sku %}
+          <tr>
+            <th>SKU</th>
+            <td>{{ product.sku }}</td>
+          </tr>
+        {% endif %}
+    </table>
+    {% endif %}
+
+    <section class="product-form">
+      {{ open_form({
+          'data-ajax-handler': 'shop:onAddToCart',
+          'data-ajax-update': '.mini-cart=mini-cart,.cart-count=cart-count,.flash-container=flash-container',
+          'method': 'post'
+         })
+      }}
+        {% for option in product.options %}
+        <label>
+          {{ option.name }}
+          <select name="options[{{ option.id }}]">
+            {% for key, value in option.values %}
+            <option
+                value="{{ key }}"
+                {{ option_state(postedOptions[option.id], key) }}>
+              {{ value }}
+            </option>
+            {% endfor %}
+          </select>
+        </label>
+        {% endfor %}
+
+        {% if not product.isOutOfStock() %}
+        <label>
+          Quantity
+          <input type="number" name="quantity" value="1" min="1" required>
+        </label>
+
+        {% if product.extras.count %}
+        <div class="callout">
+        <h3>Add an extra:</h3>
+        {% for extra in product.extras %}
+          <label class="extra">
+            <input
+                type="checkbox"
+                {{ checkbox_state(postedExtras[extra.id], extra.id) }}
+                name="extras[{{ extra.id }}]"
+                {% if not extra.enabled %}
+                disabled
+                {% endif %}>
+
+                <span class="price">{{ extra.price | currency }}</span>
+
+                {{ extra.name }}
+            <span class="error"></span>
+        {% endfor %}
+        </label>
+        </div>
+        {% endif %}
+
+        {% if product.subscription_plans.count %}
+
+        <div class="callout">
+          <h3>Subscribe and save!</h3>
+            {% if not product.is_subscription_only %}
+            <label>
+              <input type="radio" name="product_billing_plan" value="" checked/> No subscription
+            </label>
+            {% endif %}
+          {% set first_plan = 1 %}
+          {% for plan in product.subscription_plans %}
+            <label>
+              <input
+                type="radio"
+                name="product_billing_plan"
+                value="{{ plan.id }}"
+                {% if first_plan and product.is_subscription_only %}checked{% endif %}/>
+                  {{ plan.name }}
+            </label>
+            {% set first_plan = 0 %}
+            {% endfor %}
+        </div>
+
+        {% endif %}
+
+        <input type="hidden" name="productId" value="{{ product.id }}">
+        <button class="button" type="submit">Add to cart</button>
+
+
+        {{ close_form() }}
+
+        {% endif %}
+
+    </section>
+
+  </section>
+  </main>
+
+<main class="bottom-content">
+
+<hr>
+
+<section>
+
+
+  {% if product.priceTiers | length %}
+  <section class="price-tiers">
+    <h2>Bulk Pricing</h2>
+    <table>
+      <thead>
+      <tr>
+        <td>Quantity</td>
+        <td>Price</td>
+      </tr>
+      </thead>
+      <tbody>
+      {% for tier in product.priceTiers %}
+      <tr>
+        <td>{{ tier.quantity }}</td>
+        <td>{{ tier.price | currency}}</td>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </section>
+  {% endif %}
+
+  {% if theme.enableReviews %}
+    <section class="ratings">
+      {{ partial('ratings', {rating: product.rating()}) }}
+    </section>
+
+    <section class="reviews">
+      {{ partial('reviews', {
+        product: product,
+        reviews: product.reviews()})
+      }}
+    </section>
+  {% endif %}
+
+  {% if product.crossSells | length %}
+  <section class="cell cross-sells">
+    <div class="grid-x grid-padding-x">
+      <div class="cell related-header">
+        <h2>You May Be Interested in These</h2>
+      </div>
+      {{ open_form({
+          'data-ajax-handler': 'shop:onAddToCart',
+          'data-ajax-update': '.mini-cart=mini-cart,.cart-count=cart-count',
+          'method': 'post'
+        })
+      }}
+        {{ partial('related-products', { relatedProducts: product.crossSells }) }}
+      {{ close_form() }}
+    </div>
+  </section>
+  {% endif %}
+  {% if product.upsells | length %}
+  <section class="cell upsells">
+    <div class="grid-x grid-padding-x">
+      <div class="cell related-header">
+        <h2>Purchase Together and Save</h2>
+      </div>
+      {{ open_form({
+        'data-ajax-handler': 'shop:onAddToCart',
+        'data-ajax-update': '.mini-cart=mini-cart,.cart-count=cart-count',
+        'method': 'post'
+      })
+    }}
+      {{ partial('related-products', { relatedProducts: product.upsells }) }}
+    {{ close_form() }}
+    </div>
+  </section>
+  {% endif %}
+
+</section>
+
+</main>

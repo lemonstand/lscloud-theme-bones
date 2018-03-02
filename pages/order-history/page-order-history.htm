@@ -1,0 +1,97 @@
+---
+action: 'shop:orders'
+template: default
+protocol: all
+published: true
+name: Orders Page
+url: /account/orders
+---
+
+<section class="grid-container order-history">
+
+  <header>
+    <h1>Orders and subscriptions</h1>
+  </header>
+
+  <div>
+    <header class="grid-x grid-padding-x">
+      <div class="cell">
+        <h4>Your current subscriptions</h4>
+      </div>
+    </header>
+
+    <div id="subscriptions" class="grid-x grid-padding-x orders-grid">
+      <!-- -->
+    </div>
+  </div>
+
+  <script>
+      $.ajax({
+        type: 'GET',
+        url: window.location.pathname,
+        headers: {
+            'X-Event-Handler': 'subscriptions:subscriptions',
+            'X-Requested-With': 'XMLHttpRequest',
+            'X-Partials'     : 'shop-subscriptions',
+        }
+      }).done(function(data) {
+        $('#subscriptions').html(data['shop-subscriptions']);
+      }).fail(function(res, status, xhr) {
+          console.log('Couldn\'t load subscriptions');
+      });
+  </script>
+
+  <br/>
+  <br/>
+  <br/>
+
+  <div>
+    <header class="grid-x grid-padding-x">
+      <div class="cell">
+        <h4>Your orders</h4>
+      </div>
+    </header>
+
+    <div class="grid-x grid-padding-x orders-grid">
+
+      <header class="cell orders-header">
+        <div class="grid-x grid-padding-x">
+
+          <div class="cell small-4 medium-2">
+            <span><strong>Date</strong></span>
+          </div>
+
+          <div class="cell small-6 medium-8">
+            <span><strong>Details</strong></span>
+          </div>
+
+          <div class="cell small-2 medium-2">
+              <span><strong>Total</strong></span>
+          </div>
+
+        </div>
+      </header>
+
+      {% for order in customer.orders | extended_sort('created_at', false) %}
+      <a class="cell order-cell" href="/account/order/{{ order.id }}">
+        <div class="grid-x grid-padding-x">
+          <div class="cell small-4 medium-2">
+            <p>{{ order.created_at | date('m/d/Y') }}</p>
+          </div>
+          <div class="cell small-6 medium-8">
+            <p>Order #{{ order.number }} - ({{ order.getItemQuantity() }} items)</p>
+          </div>
+          <div class="cell small-2 medium-2">
+            <p>{{ order.total | currency }}</p>
+          </div>
+        </div>
+      </a>
+      {% endfor  %}
+
+    </div>
+  </div>
+
+
+</section>
+
+

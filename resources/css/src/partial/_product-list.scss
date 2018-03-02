@@ -1,0 +1,14 @@
+.product-list {
+
+
+  // Internet Explorer hack.
+  // sass-lint:disable no-vendor-prefixes
+  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    .card {
+      display: block;
+    }
+  }
+  // sass-lint:enable no-vendor-prefixes
+}
+
+

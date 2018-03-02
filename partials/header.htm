@@ -1,0 +1,86 @@
+<div class="grid-container">
+
+  <div class="grid-x grid-padding-x align-justify">
+    <div class="cell shrink header-title">
+      <a href="/"><img class="header-logo" src="{{ theme.storeLogo.thumbnail('auto', 'auto') }}" alt="{{ theme.storeLogo.alt }}"/></a>
+    </div>
+    <div class="cell auto header-menu">
+      <div class="grid-x grid-padding-x align-right">
+        <nav class="cell shrink large-12 medium-order-2 large-order-3 menu-nav">
+
+          <ul class="menu dropdown show-for-large header-core-nav" data-dropdown-menu>
+            <li>
+              <a href="/">Home</a>
+            </li>
+            <li class="is-dropdown-submenu-parent">
+              <a href="/products">Shop</a>
+              <ul class="menu">
+                {% for category in categories %}
+                <li>
+                  <a href="/category/{{ category.url_name }}">{{ category.name }}</a>
+                </li>
+                {% endfor %}
+              </ul>
+            </li>
+          </ul>
+
+          <span class="show-for-large header-custom-nav">
+            {{ widget_block('header-nav-menu') }}
+          </span>
+
+          <ul class="menu dropdown header-account-nav" data-dropdown-menu>
+            <li class="hide-for-large">
+              <a data-toggle="mobile-off-canvas-menu"><span class="fa fa-lg fa-bars"></span></a>
+            </li>
+            {% if customer %}
+            <li class="show-for-large">
+              <a href="/logout">Log Out</a>
+            </li>
+            <li class="show-for-large is-dropdown-submenu-parent">
+              <a href="/account">My Account</a>
+              <ul class="menu">
+                <li>
+                  <a href="/account">Settings</a>
+                </li>
+                <li>
+                  <a href="/account/orders">Order History</a>
+                </li>
+              </ul>
+            </li>
+            {% else %}
+            <li class="show-for-large">
+              <a href="/login#login">Log In</a>
+            </li>
+            <li class="show-for-large">
+              <a href="/login#register">Register</a>
+            </li>
+            {% endif %}
+          </ul>
+
+        </nav>
+
+        <div class="cell shrink medium-order-3 large-order-2 menu-cart">
+          <ul class="menu">
+            <li>
+              <a class="button secondary" data-toggle="mini-cart-dropdown">
+                <span class="fa fa-shopping-cart"></span>Cart <span class="badge light cart-count">{{ partial('cart-count') }}</span>
+              </a>
+              <div id="mini-cart-dropdown" class="dropdown-pane mini-cart" data-dropdown data-close-on-click="true">
+                {{ partial('mini-cart') }}
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="cell medium-6 medium-order-1 menu-search">
+          {{ open_form({ 'method': 'get', 'action': site_url('search') }) }}
+          <input type="text" name="query" value="{{ query | unescape }}" placeholder="Search store&hellip;"/>
+          {{ close_form() }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+

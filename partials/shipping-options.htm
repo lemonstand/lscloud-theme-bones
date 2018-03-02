@@ -1,0 +1,73 @@
+{#
+  Partial Parameters:
+
+  checkoutMode: true/false
+#}
+
+{% if checkoutMode %}
+<h4>Please Select a Shipping Option</h4>
+{% else %}
+<h4>Shipping Options Available at Checkout</h4>
+{% endif %}
+
+{% if shippingOptions %}
+<table class="scroll">
+  <thead>
+    {% if checkoutMode %}
+    <td>Select</td>
+    {% endif %}
+    <td>Option</td>
+    <td>{{ checkoutMode ? 'Cost' : 'Estimate' }}</td>
+    <td>Delivery Date</td>
+    <td>Guaranteed</td>
+  </thead>
+  {% for index, option in shippingOptions %}
+  <tr>
+    {% if not option.error_hint %}
+    {% if checkoutMode %}
+    <td class="date-radio">
+      <input name="shippingMethod" type="radio" value="{{ index }}"
+             {{ radio_state(shippingMethodInfo.id, option.id) }}
+             {% if theme.autoSubmitOnlyShippingMethod and shippingOptions | length == 1 %}
+             data-shipping-method-auto-submit
+             {% else %}
+             data-ajax-handler="shop:onCheckoutShippingMethod" data-ajax-update=".checkout-totals=checkout-totals"
+             data-ajax-extra-fields="shippingMethod={{ index }}"
+             {% endif %}
+      />
+    </td>
+    {% endif %}
+    <td>
+      {% if option.shippingServiceName %}
+      <strong>{{ option.shippingServiceName }}</strong> - {{ option.shippingMethodName }}
+      {% else %}
+      {{ option.shippingMethodName }}
+      {% endif %}
+    </td>
+    <td>
+      {% if not option.error_hint  %}
+      {{ option.quote ? option.quote|currency : 'Free' }}
+      {% endif %}
+    </td>
+    <td>
+      {% if not option.error_hint %}
+      {{ option.deliveryDate | date("M j") }}
+      {% endif %}
+    </td>
+    <td class="date-guaranteed">
+      {% if not option.error_hint %}
+      {{ option.deliveryDateGuaranteed ? '<span class="fa fa-check"></span>' : '<span class="fa fa-close"></span>' }}
+      {% endif %}
+    </td>
+    {% else %} {# Shipping option has an error hint #}
+    <td colspan="5">
+      <strong>{{ option.shippingMethodName }}</strong>
+      <p class="error-hint">{{ option.error_hint }}</p>
+    </td>
+    {% endif %}
+  </tr>
+  {% endfor %}
+</table>
+{% else %} {# No shippingOptions found for the given country/state/zip combination #}
+<p>Sorry, there are no shipping options available for your location.</p>
+{% endif %}

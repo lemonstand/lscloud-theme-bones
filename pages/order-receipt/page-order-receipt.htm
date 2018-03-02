@@ -1,0 +1,28 @@
+---
+action: 'shop:receipt'
+template: default
+protocol: all
+published: true
+name: Order Receipt Page
+url: '/receipt/:paymenthash'
+---
+<section class="grid-container order-receipt">
+
+  <div class="grid-x grid-padding-x">
+
+    <header class="cell order-header">
+      {{ partial('order-header', { title: 'Order Receipt', order: invoice.order }) }}
+    </header>
+
+    <section class="cell cart-contents">
+      {{ partial('cart-contents', { order: invoice.order, checkoutMode: true, hideCouponCode: true }) }}
+      <hr>
+    </section>
+
+    <section class="cell large-3 large-offset-9 order-totals">
+      {{ partial('order-totals', { order: invoice.order }) }}
+    </section>
+
+  </div>
+
+</section>

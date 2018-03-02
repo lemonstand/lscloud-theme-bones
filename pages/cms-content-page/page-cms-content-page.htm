@@ -1,0 +1,28 @@
+---
+url: /page/:slug
+name: CMS Content Page
+description: Displays CMS content pages.
+action: cmscontent:page
+template: default
+published: true
+---
+<section class="cms-content-page grid-container">
+
+  <header>
+
+    <h1>{{ post.title }}</h1>
+
+    {% if post.featured_image %}
+    <img
+      src="{{ post.featured_image.thumbnail(600, 'auto') }}"
+      alt="{{ post.featured_image.description }}"
+      title="{{ post.featured_image.title }}" />
+    {% endif %}
+
+  </header>
+
+  <main>
+    {{ post.body | raw }}
+  </main>
+
+</section>

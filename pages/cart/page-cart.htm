@@ -1,11 +1,13 @@
 ---
-action: 'shop:cart'
-template: main
-protocol: all
-published: true
-name: Cart
 url: /cart
+name: Cart
+description: Shows current cart contents
+action: shop:cart
+template: default
+published: true
 ---
-{{ open_form({'class': 'custom'}) }}
-	<div id="cart-content">{{ partial('partial-cart') }}</div>
-{{ close_form() }}
+<section class="grid-container cart-page">
+
+  {{ partial('cart-page') }}
+
+</section>

@@ -1,0 +1,108 @@
+---
+action: 'shop:manufacturer'
+url: /manufacturer/:urlName
+name: Manufacturer Products
+template: default
+published: true
+protocol: all
+---
+<section class="manufacturer grid-container">
+
+  <div class="grid-x grid-padding-x">
+    {% if not manufacturer %}
+
+      <div class="manufacturer-not-found cell">
+        <h1>Manufacturer Not Found</h1>
+        <p>We are sorry, the requested manufacturer was not found, here's a list of them:</p>
+        <ul class="menu">
+          {% for manufacturer in manufacturers %}
+            <li><a href="/manufacturer/{{ manufacturer.url_name }}">{{ manufacturer.name }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+
+    {% else %} {# Manufacturer exists #}
+
+      <div class="manufacturer-details medium-shrink cell">
+        <h1 class="manufacturer-name">{{ manufacturer.name }}</h1>
+
+        {% if manufacturer.description %}
+          <div class="manufacturer-description">{{ manufacturer.description | unescape }}</div>
+        {% endif %}
+
+        {% if manufacturer.address %}
+
+          <p class="manufacturer-address">
+            {{ manufacturer.address }}<br>
+            {{ manufacturer.city }}, {{ manufacturer.state.code }} {{ manufacturer.postal_code }}
+            {{ manufacturer.country.name }}
+          </p>
+
+        {% elseif manufacturer.country %}
+          <p class="manufacturer-country">{{ manufacturer.country.name }}</p>
+        {% endif %}
+
+        {% if manufacturer.phone %}
+          <p class="manufacturer-phone">
+            <span class="fa fa-phone"></span> {{ manufacturer.phone }}
+          </p>
+        {% endif %}
+
+        {% if manufacturer.fax %}
+          <p class="manufacturer-fax">
+            <span class="fa fa-fax"></span> {{ manufacturer.phone }}
+          </p>
+        {% endif %}
+
+        {% if manufacturer.website_url %}
+          <p class="manufacturer-website">
+            <a href="{{ manufacturer.website_url }}"><span class="fa fa-globe"></span> {{ manufacturer.website_url }}</a>
+          </p>
+        {% endif %}
+      </div>
+
+      <section class="manufacturer-images medium-auto cell ">
+        <div class="orbit" data-orbit>
+
+          <ul class="orbit-container">
+            {% for image in manufacturer.images %}
+              <li class="orbit-slide {% if loop.first %}is-active{% endif %}">
+                <img
+                    class="orbit-image"
+                    src="{{ image.thumbnail('auto', 'auto') }}"
+                    alt="{{ image.alt }}"
+                    title="{{ image.title }}" />
+              </li>
+            {% endfor %}
+          </ul>
+
+          <nav class="orbit-bullets">
+            {% for index, image in manufacturer.images %}
+              <button
+                  {% if loop.first %}class="is-active"{% endif %}
+                  data-slide="{{ index }}">
+                <img
+                    class="orbit-image"
+                    src="{{ image.thumbnail(100, 'auto') }}"
+                    alt="{{ image.alt }}"
+                    title="{{ image.title }}" />
+              </button>
+            {% endfor %}
+          </nav>
+
+        </div>
+      </section>
+
+      <div class="manufacturer-products cell">
+        <h2>Products</h2>
+        {% if products | length %}
+          {{ partial('product-list', { products: products, showSort: true }) }}
+        {% else %}
+          <p>There are no products for this manufacturer.</p>
+        {% endif %}
+      </div>
+
+    {% endif %}
+  </div>
+
+</section>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+    <!-- Add any required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>{{ post.seo_title ? post.seo_title : page.title }}</title>
+    <meta name="Description" content="{{ page.description }}"/>
+    <meta name="Keywords" content="{{ page.keywords }}"/>
+
+    <!-- Lemonstand requires lemonstand.css, jQuery, and lemonstand.js -- DO NOT REMOVE! -->
+    <link rel="stylesheet" href="/cms/lemonstand.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="/cms/lemonstand.js"></script>
+
+{% if theme.googleFontURL %}
+    <link href="{{ theme.googleFontURL }}" rel="stylesheet">
+{% endif %}
+
+    <!-- Bones stylesheets -->
+    <link rel="stylesheet" href="{{ 'css/dist/app.min.css' | theme_resource }}">
+    <link rel="stylesheet" href="{{ 'css/custom.css' | theme_resource }}">
+
+{% if has_theme_style() %}
+    <!-- {{ store_setting('theme-style') }} theme style loaded -->
+    <link rel="stylesheet" type="text/css" href="{{ '/css/theme.css' | theme_style_resource }}">
+    <link rel="icon" type="image/x-icon" href="{{ 'images/favicon.ico' | theme_style_resource }}"/>
+    <script type="text/javascript" src="{{ 'scripts/app.js' | theme_style_resource }}"></script>
+{% else %}
+    <!-- default theme style loaded -->
+{% endif %}
+
+  </head>
+  <body class="{% if theme.fillWindow %}fill-window{% endif %} {{ page.name | lower }}">
+    <nav class="off-canvas position-left is-closed" id="mobile-off-canvas-menu" data-off-canvas>
+      {{ partial('mobile-off-canvas-menu') }}
+    </nav>
+
+    <header>
+      {% if theme.stickyHeader %}
+      <div data-sticky-container>
+        <div class="header-inner" data-sticky data-options="marginTop:0;" data-top-anchor="1">
+          {{ partial('header') }}
+        </div>
+      </div>
+      {% else %}
+      <div class="header-inner">
+        {{ partial('header') }}
+      </div>
+      {% endif %}
+    </header>
+
+    <main>
+      {{ page() }}
+    </main>
+
+    <footer class="page-footer">
+      {{ partial('footer') }}
+    </footer>
+
+    <!-- Bones scripts -->
+    <script type="text/javascript" src="{{ 'javascript/dist/app.min.js' | theme_resource }}"></script>
+    <script type="text/javascript" src="{{ 'javascript/custom.js' | theme_resource }}"></script>
+  </body>
+</html>

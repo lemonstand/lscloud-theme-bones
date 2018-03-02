@@ -1,0 +1,39 @@
+body {
+  display: flex;
+  flex-direction: column;
+
+  > header,
+  > footer,
+  > main {
+    flex: 0 0 auto;
+  }
+
+  > footer,
+  > main {
+    z-index: 1;
+  }
+
+  > header {
+    z-index: 2;
+  }
+
+  &.fill-window {
+    min-height: 100vh;
+
+    > main {
+      flex: 1 1 auto;
+    }
+  }
+}
+
+main {
+  > section {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+
+    > header {
+      margin-bottom: 3rem;
+      margin-top: 1rem;
+    }
+  }
+}

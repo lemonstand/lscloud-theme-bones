@@ -1,0 +1,70 @@
+---
+url: /archive/:type/:category?
+name: Archive
+description: Displays a list of CMS content blog posts.
+action: cmscontent:archive
+template: default
+published: true
+---
+{% set archive_slugs = [] %}
+{% set archive_categories = [] %}
+
+{# Iterate by ascending published_on so that new posts don't change the #}
+{# order of the categories in the list. #}
+
+{% for post in cmsContent('blog') | extended_sort('published_on', true) %}
+  {% for category in post.categories if category.slug not in archive_slugs %}
+    {% set archive_slugs = archive_slugs | merge([category.slug]) %}
+    {% set archive_categories = archive_categories | merge([category]) %}
+  {% endfor %}
+{% endfor %}
+
+<section class="archive grid-container">
+
+  <header class="cell">
+    <h1>{% if archives | length %}{{ archives.first.type | capitalize }}{% endif %} Archive</h1>
+  </header>
+
+  <div class="grid-x grid-padding-x">
+
+    <div class="archive-categories cell medium-shrink">
+      <h3>Categories</h3>
+
+      {{ partial('archive-categories', {
+           categories: archive_categories,
+           class: 'menu medium-vertical'
+         })
+      }}
+    </div>
+
+    <div class="archive-list cell auto">
+
+      {% if archives | length %}
+
+        {% paginate archives by 5 %}
+
+        {% if pagination.items | length %}
+
+          {{ partial('archive-list', {
+               posts: pagination.items
+             })
+          }}
+
+          <footer class="archive-pagination">
+            {% navigation %}
+          </footer>
+
+        {% else %} {# No posts available #}
+
+        No posts
+
+        {% endif %}
+
+        {% endpaginate %}
+
+      {% endif %}
+    </div>
+
+  </div>
+
+</section>

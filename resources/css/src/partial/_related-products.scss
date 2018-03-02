@@ -1,0 +1,51 @@
+.related-header {
+  background: $primary-color;
+  color: $white;
+
+  h2 {
+    font-size: 1.75rem;
+  }
+}
+
+.related-product {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+
+  .button {
+    margin: 0;
+  }
+
+  .product-details {
+    .product-image {
+      float: left;
+    }
+
+    .product-name {
+      font-size: 1.25rem;
+      margin-bottom: .25rem;
+    }
+
+    .product-options {
+      font-size: .75rem;
+    }
+  }
+
+  .product-cta {
+    display: flex;
+    align-items: center;
+  }
+}
+
+@include breakpoint(medium down) {
+  .related-product {
+    border-bottom: 1px solid $primary-color;
+
+    .button {
+      width: 100%;
+    }
+
+    .product-prices {
+      margin: 1rem 0;
+    }
+  }
+}

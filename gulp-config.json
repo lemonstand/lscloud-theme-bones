@@ -1,0 +1,14 @@
+{
+  "COMPATIBILITY": [
+    "last 2 versions",
+    "ie >= 9",
+    "ios >= 7"
+  ],
+  "PATHS": {
+    "sass": [
+      "node_modules/font-awesome/scss",
+      "node_modules/foundation-sites/scss",
+      "node_modules/motion-ui/src"
+    ]
+  }
+}

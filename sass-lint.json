@@ -1,0 +1,10 @@
+{
+	"rules": {
+		"force-element-nesting": 0,
+		"property-sort-order": 0,
+		"no-important": 0,
+		"nesting-depth": [ 1, {
+			"max-depth": 7
+		}]
+	}
+}

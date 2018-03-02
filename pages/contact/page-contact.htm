@@ -1,31 +1,54 @@
 ---
-template: main
-protocol: all
-published: true
-name: Contact
 url: /contact
+name: Contact Us
+template: default
+published: true
+protocol: all
 ---
-<h1>Contact us!</h1>
-<h2>Our opening hours are Monday to Friday — 9:00 AM to 6:00 PM</h2>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lectus ante, convallis ut scelerisque at, pellentesque vitae justo. Integer ac euismod risus, nec placerat diam. Praesent interdum justo sem, non mollis sapien porta vel. Suspendisse ut lectus sit amet velit congue lacinia.</p>
+<section class="contact grid-container">
 
-<section>
-	<h2>Bones</h2>
-	<p>
-		666 Underground Lane<br>
-		Vancouver 000 000<br>
-		Canada
-	</p>
-</section>
-<section>
-	<h2>Call</h2>
-	<p>
-		You can reach us at this number for telephone support:<br>
-		<strong>+44 1234 567 890</strong>
-	</p>
-</section>
-<section>
-	<h2>Support</h2>
-	<p>Our dedicated team provides timely and effective <a href="https://docs.lemonstand.com/">support</a> whenever you need a hand getting things right.</p>
-</section>
+  <header class="cell contact-header">
+    <h1>Contact Us</h1>
+  </header>
 
+  {{ open_form({
+       'class': 'grid-x grid-padding-x',
+       'data-ajax-handler': 'system:onSendMessage',
+       'data-abide': null,
+       'novalidate': null
+     })
+  }}
+
+
+    <div class="cell contact-flash">
+      {{ flash() }}
+    </div>
+
+    <label class="cell">
+      Email*
+      <input type="email" name="fields[email]" required pattern="email">
+      <span class="error"></span>
+      <span class="form-error">Email is required.</span>
+    </label>
+
+    <label class="cell">
+      Name*
+      <input type="text" name="fields[name]" required>
+      <span class="error"></span>
+      <span class="form-error">Name is required.</span>
+    </label>
+
+    <label class="cell">
+      Message*
+      <textarea name="fields[message]" required rows="10"></textarea>
+      <span class="error"></span>
+      <span class="form-error">Message is required.</span>
+    </label>
+
+    <div class="cell">
+      <input type="text" name="hp" value="" style="display: none;"/>
+      <input type="submit" class="button" value="Submit"/>
+    </div>
+  {{ close_form() }}
+
+</section>

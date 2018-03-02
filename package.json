@@ -1,50 +1,73 @@
 {
-  "name": "Bones base theme",
-  "version": "1.0.0",
-  "description": "Bones is a bare bones theme for developers that provides a foundation to get started faster when building a custom online store. All the core LemonStand theme elements, including templates, pages and partials, are already built in, saving you time and letting you get straight to the fun stuff. We stripped out all the styling, giving you a blank canvas to build off.<br/>Use Bones to create a truly unique user experience by designing your online stores without any constraints.",
-  "excerpt": "Bones provides a foundation for theme developers using HTML5, Sass, Gulp, node-bourbon and more.",
-  "main": "README.md",
-  "lemonstand" : {
-    "code":"bones",
+  "name": "bones",
+  "version": "2.0.0",
+  "description": "A bare-bones base theme for Lemonstand, based on Foundation 6, HTML/CSS/SASS, with handy development build scripts and tools.",
+  "main": "theme.yaml",
+  "lemonstand": {
+    "code": "bones",
     "type": "theme",
     "options": "options.json",
     "demo": "https://bones.lemonstand.com",
-    "screenshots" : {
-      "small":"https://raw.githubusercontent.com/lemonstand/lscloud-theme-bones/master/resources/screenshots/tiny-square.png",
-      "large":"https://raw.githubusercontent.com/lemonstand/lscloud-theme-bones/master/resources/screenshots/large-square.png",
+    "screenshots": {
+      "small": "https://raw.githubusercontent.com/lemonstand/lscloud-theme-bones/master/resources/screenshots/tiny-square.png",
+      "large": "https://raw.githubusercontent.com/lemonstand/lscloud-theme-bones/master/resources/screenshots/large-square.png",
       "full": "https://raw.githubusercontent.com/lemonstand/lscloud-theme-bones/master/resources/screenshots/full-size.png"
     }
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "gulp build",
+    "build:watch": "gulp build:watch",
+    "build:production": "gulp build --production"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/lemonstand/lscloud-theme-bones.git"
-  },
-  "author": "LemonStand <support@lemonstand.com> (http://docs.lemonstand.com)",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/lemonstand/lscloud-theme-bones/issues"
-  },
-  "homepage": "https://github.com/lemonstand/lscloud-theme-bones#readme",
-  "devDependencies": {
-    "gulp": "^3.9.0",
-    "gulp-concat": "^2.6.0",
-    "gulp-jshint": "^1.11.2",
-    "gulp-minify-css": "^1.2.1",
-    "gulp-notify": "^2.2.0",
-    "gulp-rename": "^1.2.2",
-    "gulp-sass": "^2.0.4",
-    "gulp-uglify": "^1.4.1",
-    "node-bourbon": "^4.2.3",
-    "node-neat": "^1.7.2"
+    "url": "git+ssh://git@gitlab.com/sasquatchstudioprojects/bones-v2.git"
   },
   "keywords": [
-    "html5",
-    "sass",
-    "gulp",
-    "base-theme",
-    "node-bourbon"
-  ]
+    "bones",
+    "v2",
+    "lemonstand",
+    "theme"
+  ],
+  "author": "Lemonstand",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/sasquatchstudioprojects/bones-v2/issues"
+  },
+  "homepage": "https://gitlab.com/sasquatchstudioprojects/bones-v2#README",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "font-awesome": "^4.7.0",
+    "foundation-sites": "~6.4.3",
+    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-autoprefixer": "^4.0.0",
+    "gulp-clean-css": "^3.9.0",
+    "gulp-if": "^2.0.2",
+    "gulp-imagemin": "^3.4.0",
+    "gulp-jshint": "^2.0.4",
+    "gulp-notify": "^3.0.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-sass-lint": "^1.3.4",
+    "gulp-sourcemaps": "^2.6.1",
+    "gulp-uglify": "^3.0.0",
+    "jshint": "^2.9.5",
+    "motion-ui": "^1.2.3",
+    "vinyl-named": "^1.1.0",
+    "webpack": "^3.8.1",
+    "webpack-stream": "^4.0.0",
+    "yargs": "^9.0.1"
+  },
+  "babel": {
+    "presets": [
+      "env"
+    ]
+  },
+  "dependencies": {
+    "gulp-htmllint": "0.0.12",
+    "gulp-util": "^3.0.8"
+  }
 }

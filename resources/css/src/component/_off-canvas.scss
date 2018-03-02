@@ -1,0 +1,46 @@
+.off-canvas {
+  .off-canvas-logo {
+    @include xy-gutters($gutters: $grid-margin-gutters, $gutter-type: margin);
+    height: rem-calc(30);
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .off-canvas-core-nav,
+  .off-canvas-account-nav {
+    li {
+      a {
+        padding: 1rem;
+        border-top: 1px solid $medium-gray;
+
+        &.button {
+          font-size: inherit;
+        }
+      }
+
+      ul {
+        a {
+          border-top: 1px dashed $medium-gray;
+        }
+      }
+    }
+  }
+
+  .off-canvas-account-nav {
+    border-bottom: 1px solid $medium-gray;
+  }
+
+  .off-canvas-custom-nav {
+    >  ul {
+      @include menu-base;
+      @include menu-direction($dir: vertical);
+
+      li {
+        a {
+          padding: 1rem;
+          border-top: 1px solid $medium-gray;
+        }
+      }
+    }
+  }
+}

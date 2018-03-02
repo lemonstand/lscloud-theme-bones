@@ -1,0 +1,81 @@
+---
+description: A registration form to sign up as a customer.
+---
+{# This partial can only be used once on a page (it has an id attribute) #}
+{# Takes redirectUrl as an argument (defaults to '/') #}
+
+{{ open_form({
+  'method': 'post',
+  'data-ajax-handler': 'shop:onSignup',
+  'data-validation-message': '',
+  'data-abide': null,
+  'novalidate': null
+  })
+}}
+
+  <label>
+    First Name*
+    <input type="text" name="signup[first_name]" required>
+    <span class="error"></span>
+    <span class="form-error">First name is required.</span>
+  </label>
+
+  <label>
+    Last Name*
+    <input type="text" name="signup[last_name]" required>
+    <span class="error"></span>
+    <span class="form-error">Last name is required.</span>
+  </label>
+
+  <label>
+    Email*
+    <input type="email" name="signup[email]" required>
+    <span class="error"></span>
+    <span class="form-error">Email is required.</span>
+  </label>
+
+  <label>
+    Password*
+    <input
+      id="register_password"
+      type="password"
+      name="signup[password]"
+      required>
+    <span class="error"></span>
+    <span class="form-error">Password is required.</span>
+  </label>
+
+  <label>
+    Confirm Password*
+    <input
+      type="password"
+      name="signup[password_confirmation]"
+      data-equalto="register_password"
+      required>
+    <span class="error"></span>
+    <span class="form-error">
+      Confirm password is required and must match password.
+    </span>
+  </label>
+
+  <label>
+    Get occasional email updates from us?
+    <div class="switch">
+      <input
+        id="register_marketing"
+        class="switch-input"
+        type="checkbox"
+        name="accepts_marketing"
+        checked>
+      <label class="switch-paddle" for="register_marketing">
+        <span class="show-for-sr">Get occasional email updates from us?</span>
+        <span class="switch-active" aria-hidden="true">Yes</span>
+        <span class="switch-inactive" aria-hidden="true">No</span>
+      </label>
+    </div>
+  </label>
+
+  <input type="hidden" name="autologin" value="1">
+  <input type="hidden" name="redirect" value="{{ redirectUrl ?: '/' }}">
+  <button class="button" type="submit">sign up</button>
+{{ close_form() }}

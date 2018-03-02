@@ -1,0 +1,32 @@
+---
+url: /login
+name: Log in and Sign Up
+description: Allows a user to log in or sign up.
+action: shop:login
+template: default
+published: true
+---
+<section class="login grid-container">
+  <header>
+    <h1>Log in</h1>
+  </header>
+
+  {% if not customer %}
+    <ul class="accordion" data-accordion data-deep-link="true">
+      <li class="accordion-item" data-accordion-item>
+        <a href="#login" class="accordion-title">Login</a>
+        <div class="accordion-content" data-tab-content id="login">
+          {{ partial('login') }}
+        </div>
+      </li>
+      <li class="accordion-item" data-accordion-item>
+        <a href="#register" class="accordion-title">Register</a>
+        <div class="accordion-content" data-tab-content id="register">
+          {{ partial('register') }}
+        </div>
+      </li>
+    </ul>
+  {% else %}
+    You are already logged in.
+  {% endif %}
+</section>

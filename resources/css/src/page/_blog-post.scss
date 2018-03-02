@@ -1,0 +1,17 @@
+.blog-post {
+  width: 80%;
+  margin: auto;
+  margin-top: 2rem;
+
+  .blog-post-body {
+
+    img {
+      float: left;
+      margin: 1rem;
+    }
+
+  }
+  footer {
+    clear: both;
+  }
+}

@@ -1,0 +1,142 @@
+{#
+  Partial Parameters:
+
+  checkoutMode: true/false
+  hideCouponCode: true/false
+  order: if given, will show items from the order instead of from the cart
+#}
+
+{# Can't pass in params when reloading partial, so check if current page is checkout. #}
+{% if page.url == '/checkout' %}
+  {% set checkoutMode = true %}
+{% endif %}
+
+
+{{ open_form({
+     'class': 'grid-x grid-padding-x',
+     'data-ajax-handler': 'shop:cart',
+     'data-ajax-update': checkoutMode
+        ? '.cart-contents=cart-contents,.checkout-totals=checkout-totals,.cart-count=cart-count,.mini-cart=mini-cart'
+        : '.cart-page=cart-page,.cart-count=cart-count,.mini-cart=mini-cart'
+   })
+}}
+  <header class="cell contents-header">
+    <div class="grid-x grid-padding-x">
+
+      <div class="cell">
+        <span><strong>Item</strong></span>
+      </div>
+
+      <div class="cell number-cell">
+        <span><strong>Quantity</strong></span>
+      </div>
+
+      <div class="cell number-cell">
+        <span><strong>Price</strong></span>
+      </div>
+
+      <div class="cell number-cell total-cell">
+        <span><strong>Total</strong></span>
+      </div>
+
+    </div>
+  </header>
+
+  {% for item in (order ? order.orderItems : items) %}
+    <section class="cell contents-product">
+      <div class="grid-x grid-padding-x">
+
+        <header class="cell large-8 clearfix">
+
+          <img class="product-image" src="{{ item.product.images.first.thumbnail(100, 'auto') }}"/>
+          <h2 class="product-name"><a href="/product/{{ item.product.url_name }}">{{ item.product.name }}</a>
+
+          {% if not checkoutMode %}
+
+            <small><a class="remove-button" data-ajax-handler="shop:cart"
+                data-ajax-extra-fields="delete_item={{ item.key }}"
+                data-ajax-update=".cart-page=cart-page,.cart-count=cart-count,.mini-cart=mini-cart">
+              [remove]
+            </a></small>
+
+          {% endif %}
+        </h2>
+
+          {% set options = item.optionsString() %}
+          {% if options %}
+            <p class="product-options">{{ options | unescape }}</p>
+          {% endif %}
+
+          {% set extras = "" %}
+          {% for extra in item.extras %}
+            {% set extras = extras ~ extra.name ~ (not loop.last ? ', ' : '') %}
+          {% endfor %}
+          {% if extras | length > 0 %}
+            <p class="product-extras">{{ extras }}</p>
+          {% endif %}
+
+          {# Note:
+              - x_billing_plan_id not available (yet) in invoice.order.items (shop_order_items)
+              - plan reference needs to be looked up (#4994)
+          #}
+
+          {% if item.x_billing_plan_id %}
+            {% for plan in billingPlans %}
+              {% if item.x_billing_plan_id == plan.id %}
+                <p><em>{{ plan.schedule_type | capitalize }} subscription: <strong>{{ plan.name }} </strong></em></p>
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+
+
+        </header>
+
+        <div class="cell number-cell currency-cell">
+          {% if checkoutMode %}
+            <span class="number-cell-label">Quantity: </span>
+            <span class="product-quantity">{{ item.quantity | number_format(0) }}</span>
+          {% else %}
+            <label>
+              <span class="number-cell-label">Quantity: </span>
+              <input name="item_quantity[{{ item.key }}]" type="number" min="1" value="{{ item.quantity }}"/>
+            </label>
+          {% endif %}
+        </div>
+
+        <div class="cell number-cell currency-cell">
+          <span class="number-cell-label">Price: </span>
+          {% if item.price() != item.fullPrice() %}
+            <span class="product-price-original">{{ item.fullPrice() | currency }}</span><br class="show-for-medium">
+          {% endif %}
+
+          <span class="product-price-current">{{ item.price() | currency }}</span>
+        </div>
+
+        <div class="cell number-cell currency-cell total-cell">
+          <span class="number-cell-label">Total: </span>
+          <span class="cell-value">{{ item.total() | currency }}</span>
+        </div>
+      </div>
+    </section>
+
+  {% else %}
+    <section class="cell contents-product">
+      <p class="empty-cart">You don't have anything in your cart yet!</p>
+    </section>
+  {% endfor %}
+
+  {% if items | length > 0 %}
+  <hr/>
+  <section class="cell cart-summary">
+      <div class="grid-x grid-padding-x">
+      <div class="cell large-8">
+          &nbsp;
+        </div>
+      <div class="cell large-4 large-order-2 checkout-totals">
+        {{ partial('checkout-totals', { checkoutMode: checkoutMode } ) }}
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
+{{ close_form() }}
