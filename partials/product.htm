@@ -285,7 +285,7 @@
     </div>
   </section>
   {% endif %}
-  {% if product.upSells | length %}
+  {% if product.upsells | length %}
   <section class="cell upsells">
     <div class="grid-x grid-padding-x">
       <div class="cell related-header">
@@ -297,7 +297,7 @@
         'method': 'post'
       })
     }}
-      {{ partial('related-products', { relatedProducts: product.upSells }) }}
+      {{ partial('related-products', { relatedProducts: product.upsells }) }}
     {{ close_form() }}
     </div>
   </section>
