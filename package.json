@@ -1,8 +1,8 @@
 {
   "name": "bones",
   "version": "2.0.0",
-  "description": "A bare-bones base theme for Lemonstand, based on Foundation 6, HTML/CSS/SASS, with handy development build scripts and tools.",
-  "excerpt": "A bare-bones base theme for LemonStand (Foundation 6, build system, etc.)",
+  "description": "Bones is a bare bones theme for developers that provides a foundation to get started faster when building a custom online store. All the core LemonStand theme elements, including templates, pages and partials, are already built in, saving you time and letting you get straight to the fun stuff. We stripped out all the styling, giving you a blank canvas to build off.<br/>Use Bones to create a truly unique user experience by designing your online stores without any constraints.",
+  "excerpt": "Bones provides a foundation for theme developers using HTML5, Sass, Gulp, node-bourbon and more.",
   "main": "theme.yaml",
   "lemonstand": {
     "code": "bones",
@@ -26,6 +26,10 @@
     "url": "git+ssh://git@gitlab.com/sasquatchstudioprojects/bones-v2.git"
   },
   "keywords": [
+    "html5",
+    "sass",
+    "gulp",
+    "base-theme",
     "bones",
     "v2",
     "lemonstand",
