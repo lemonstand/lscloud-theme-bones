@@ -1,5 +1,5 @@
 {
-  "name": "bones",
+  "name": "Bones",
   "version": "2.0.0",
   "description": "Bones is a bare bones theme for developers that provides a foundation to get started faster when building a custom online store. All the core LemonStand theme elements, including templates, pages and partials, are already built in, saving you time and letting you get straight to the fun stuff. We stripped out all the styling, giving you a blank canvas to build off.<br/>Use Bones to create a truly unique user experience by designing your online stores without any constraints.",
   "excerpt": "Bones provides a foundation for theme developers using HTML5, Sass, Gulp, node-bourbon and more.",
