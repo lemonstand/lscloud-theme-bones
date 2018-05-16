@@ -1,5 +1,6 @@
 {
     "main": {
+        "name": "General settings",
         "store": {
             "name": "Store settings",
             "order": "",
@@ -42,6 +43,7 @@
         }
     },
     "product": {
+        "name": "Product settings",
         "product": {
             "name": "Products",
             "order": "",
