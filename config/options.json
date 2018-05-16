@@ -1,177 +1,81 @@
 {
-    "fields": {
-        "storeTitle": {
-            "type": "text",
-            "group": "store",
-            "section": "main",
-            "name": "Store Name"
-        },
-        "storeLogo": {
-            "type": "image",
-            "group": "store",
-            "section": "main",
-            "name": "Store Logo"
-        },
-        "footerLegalText": {
-            "type": "text",
-            "group": "headfoot",
-            "section": "main",
-            "name": "Footer Legal Text"
-        },
-        "facebookLink": {
-            "type": "text",
-            "group": "links",
-            "section": "main",
-            "name": "Facebook Social Account Link"
-        },
-        "twitterLink": {
-            "type": "text",
-            "group": "links",
-            "section": "main",
-            "name": "Twitter Social Account Link"
-        },
-        "instagramLink": {
-            "type": "text",
-            "group": "links",
-            "section": "main",
-            "name": "Instagram Social Account Link"
-        },
-        "googleFontURL": {
-            "type": "text",
-            "group": "fonts",
-            "section": "main",
-            "name": "Google Font URL"
-        },
-        "stickyHeader": {
-            "type": "checkbox",
-            "group": "headfoot",
-            "section": "main",
-            "name": "Keep header menu on the page as user scrolls"
-        },
-        "fillWindow": {
-            "type": "checkbox",
-            "group": "",
-            "section": "none",
-            "name": "Keep footer at bottom of screen on short pages"
-        },
-        "enableReviews": {
-            "type": "checkbox",
-            "group": "product",
-            "section": "product",
-            "name": "Product Page - Show reviews"
-        },
-        "enableRatings": {
-            "type": "checkbox",
-            "group": "product",
-            "section": "product",
-            "name": "Product Page - Show ratings"
-        },
-        "enableCartCrossSells": {
-            "type": "checkbox",
-            "group": "product",
-            "section": "product",
-            "name": "Cart Page - Show cross-sells"
-        },
-        "enableCartUpsells": {
-            "type": "checkbox",
-            "group": "product",
-            "section": "product",
-            "name": "Cart Page - Show upsells"
-        },
-        "enableHomeBlogPreview": {
-            "type": "checkbox",
-            "group": "store",
-            "section": "main",
-            "name": "Home Page - Show latest blog posts"
-        },
-        "enableHomeAbout": {
-            "type": "checkbox",
-            "group": "store",
-            "section": "main",
-            "name": "Home Page- Show widget block home-about"
-        },
-        "enableHomeHero": {
-            "type": "checkbox",
-            "group": "store",
-            "section": "main",
-            "name": "Home Page - Show hero image with home-hero-content widget block centered within it"
-        },
-        "homeHeroImage": {
-            "type": "image",
-            "group": "store",
-            "section": "main",
-            "name": "Home Page - Hero Image"
-        },
-        "autoSubmitOnlyShippingMethod": {
-            "type": "checkbox",
-            "group": "",
-            "section": "none",
-            "name": "Checkout Page - Auto-submit shipping option if there is only one option"
-        },
-        "categoryListImageEqualizeStrategy": {
-            "type": "dropdown",
-            "options": {
-                "stretch": "Stretch",
-                "top": "Align Top",
-                "middle": "Align Middle",
-                "bottom": "Align Bottom"
-            },
-            "group": "categories",
-            "section": "product",
-            "name": "Category List - Image Height Equalization Strategy"
-        },
-        "productListImageEqualizeStrategy": {
-            "type": "dropdown",
-            "options": {
-                "stretch": "Stretch",
-                "top": "Align Top",
-                "middle": "Align Middle",
-                "bottom": "Align Bottom"
-            },
-            "group": "summary",
-            "section": "product",
-            "name": "Product List - Image Height Equalization Strategy"
-        }
-    },
-    "groupings": {
-        "groupings": {
-            "store": {
-                "name": "Store settings",
-                "order": ""
-            },
-            "headfoot": {
-                "name": "Header and footers",
-                "order": ""
-            },
-            "links": {
-                "name": "Links",
-                "order": ""
-            },
-            "fonts": {
-                "name": "Fonts",
-                "order": ""
-            },
-            "product": {
-                "name": "Products",
-                "order": ""
-            },
-            "categories": {
-                "name": "Categories",
-                "order": ""
-            },
-            "summary": {
-                "name": "Summary",
-                "order": ""
+    "main": {
+        "store": {
+            "name": "Store settings",
+            "order": "",
+            "field": {
+                "type": "image",
+                "name": "Home Page - Hero Image"
             }
         },
-        "sections": {
-            "main": {
-                "name": "General settings",
-                "order": ""
-            },
-            "product": {
-                "name": "Product settings",
-                "order": ""
+        "headfoot": {
+            "name": "Header and footers",
+            "order": "",
+            "field": {
+                "type": "checkbox",
+                "name": "Keep header menu on the page as user scrolls"
+            }
+        },
+        "links": {
+            "name": "Links",
+            "order": "",
+            "field": {
+                "type": "text",
+                "name": "Instagram Social Account Link"
+            }
+        },
+        "fonts": {
+            "name": "Fonts",
+            "order": "",
+            "field": {
+                "type": "text",
+                "name": "Google Font URL"
+            }
+        }
+    },
+    "none": {
+        "name": null,
+        "order": "",
+        "field": {
+            "type": "checkbox",
+            "name": "Checkout Page - Auto-submit shipping option if there is only one option"
+        }
+    },
+    "product": {
+        "product": {
+            "name": "Products",
+            "order": "",
+            "field": {
+                "type": "checkbox",
+                "name": "Cart Page - Show upsells"
+            }
+        },
+        "categories": {
+            "name": "Categories",
+            "order": "",
+            "field": {
+                "type": "dropdown",
+                "options": {
+                    "stretch": "Stretch",
+                    "top": "Align Top",
+                    "middle": "Align Middle",
+                    "bottom": "Align Bottom"
+                },
+                "name": "Category List - Image Height Equalization Strategy"
+            }
+        },
+        "summary": {
+            "name": "Summary",
+            "order": "",
+            "field": {
+                "type": "dropdown",
+                "options": {
+                    "stretch": "Stretch",
+                    "top": "Align Top",
+                    "middle": "Align Middle",
+                    "bottom": "Align Bottom"
+                },
+                "name": "Product List - Image Height Equalization Strategy"
             }
         }
     }
