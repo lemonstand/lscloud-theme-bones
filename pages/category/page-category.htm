@@ -38,7 +38,14 @@ published: true
     </nav>
 
     <section class="category-products medium-9">
-      {{ partial('product-list', { products: products, showSort: true }) }}
+      {% paginate products by 48 %}
+        {{ partial('product-list', { products: pagination.items, showSort: true }) }}
+        <div class="pagination-centered">
+          <div class="pagination">
+            {% navigation %}
+          </div>
+        </div>
+      {% endpaginate %}
     </section>
 
   </div>
