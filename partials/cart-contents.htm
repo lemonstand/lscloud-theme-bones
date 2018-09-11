@@ -21,7 +21,7 @@
 }}
   {% if upcomingItems | length > 0  %}
     {{ partial('cart-contents-items', { listTitle: 'Subscription (Upcoming Charge)', items: upcomingItems, checkoutMode: checkoutMode }) }}
-    {{ partial('cart-contents-items', { listTitle: 'Currently Purchasing', items: singlePurchaseItems, checkoutMode: checkoutMode }) }}
+    {{ partial('cart-contents-items', { listTitle: 'Currently Purchasing', items: items, checkoutMode: checkoutMode }) }}
   {% else %}
     {{ partial('cart-contents-items', { items: items }) }}
   {% endif %}
