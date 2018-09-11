@@ -4,6 +4,10 @@
   hideCouponCode: true/false
 #}
 
+{% if totalTitle is defined %}
+    <h4>{{ totalTitle }}</h4>
+{% endif %}
+
 <div class="grid-x grid-padding-x">
 
   {% if not hideCouponCode %}
