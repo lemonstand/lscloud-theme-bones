@@ -23,7 +23,7 @@
     {{ partial('cart-contents-items', { listTitle: 'Upcoming subscription items', items: upcomingItems, checkoutMode: checkoutMode }) }}
     {{ partial('cart-contents-items', { listTitle: 'Items shipping immediately', items: items, checkoutMode: checkoutMode }) }}
   {% else %}
-    {{ partial('cart-contents-items', { items: items }) }}
+    {{ partial('cart-contents-items', { items: (order ? order.orderItems : items)}) }}
   {% endif %}
 
   {% if items | length > 0 %}
