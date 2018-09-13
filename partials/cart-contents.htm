@@ -37,9 +37,9 @@
         {% if upcomingTotals %}
             {{ partial('checkout-totals', { totalTitle: 'Total (shipping immediately)',  totals: totals, checkoutMode: checkoutMode } ) }}
             {{ partial('checkout-totals', { totalTitle: 'Total (upcoming subscription items)', totals: upcomingTotals, checkoutMode: checkoutMode, hideCouponCode: true} ) }}
-        {% endif %}
-          {{ partial('checkout-totals', { totals: totals, checkoutMode: checkoutMode } ) }}
         {% else %}
+          {{ partial('checkout-totals', { totals: totals, checkoutMode: checkoutMode } ) }}
+        {% endif %}
       </div>
     </div>
   </section>
