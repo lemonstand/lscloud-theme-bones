@@ -34,12 +34,12 @@
           &nbsp;
         </div>
       <div class="cell large-4 large-order-2 checkout-totals">
-        {{ partial('checkout-totals', { totalTitle: 'Total (shipping immediately)',  totals: totals, checkoutMode: checkoutMode } ) }}
-        
         {% if upcomingTotals %}
+            {{ partial('checkout-totals', { totalTitle: 'Total (shipping immediately)',  totals: totals, checkoutMode: checkoutMode } ) }}
             {{ partial('checkout-totals', { totalTitle: 'Total (upcoming subscription items)', totals: upcomingTotals, checkoutMode: checkoutMode, hideCouponCode: true} ) }}
         {% endif %}
-
+          {{ partial('checkout-totals', { totals: totals, checkoutMode: checkoutMode } ) }}
+        {% else %}
       </div>
     </div>
   </section>
