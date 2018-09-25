@@ -38,7 +38,7 @@
             <a class="button hollow" href="/products">Continue Shopping</a>
           </div>
           <div class="cell large-shrink footer-right">
-            {% if items | length > 0 %}
+            {% if items | length > 0 or upcomingItems | length > 0 %}
               <a class="button" href="/checkout">Checkout</a>
             {% endif %}
           </div>
