@@ -10,6 +10,8 @@
 {% if page.url == '/checkout' %}
   {% set checkoutMode = true %}
 {% endif %}
+{% set hasItems =  items | length > 0 %}
+{% set hasUpcomingItems =  upcomingItems | length > 0 %}
 
 {{ open_form({
      'class': 'grid-x grid-padding-x',
@@ -19,14 +21,15 @@
         : '.cart-page=cart-page,.cart-count=cart-count,.mini-cart=mini-cart'
    })
 }}
-  {% if upcomingItems | length > 0  %}
+  {% if hasUpcomingItems %}
     {{ partial('cart-contents-items', { listTitle: 'Upcoming subscription items', items: upcomingItems, checkoutMode: checkoutMode }) }}
-    {{ partial('cart-contents-items', { listTitle: 'Items shipping immediately', items: items, checkoutMode: checkoutMode }) }}
-  {% else %}
-    {{ partial('cart-contents-items', { items: (order ? order.orderItems : items)}) }}
   {% endif %}
 
-  {% if items | length > 0 %}
+  {% if hasItems  %}
+    {{ partial('cart-contents-items', { listTitle: 'Items shipping immediately', items: items, checkoutMode: checkoutMode }) }}
+  {% endif %}
+
+  {% if hasItems or hasUpcomingItems %}
   <hr/>
   <section class="cell cart-summary">
       <div class="grid-x grid-padding-x">
@@ -44,5 +47,4 @@
     </div>
   </section>
   {% endif %}
-
 {{ close_form() }}
