@@ -14,6 +14,8 @@
   {% endfor %}
 {% endfor %}
 
+{% set hasAnyItems = items | length > 0 or upcomingItems | length > 0 %}
+
 <header class="cell">
   <h1>Cart</h1>
 </header>
@@ -38,7 +40,7 @@
             <a class="button hollow" href="/products">Continue Shopping</a>
           </div>
           <div class="cell large-shrink footer-right">
-            {% if items | length > 0 %}
+            {% if hasAnyItems %}
               <a class="button" href="/checkout">Checkout</a>
             {% endif %}
           </div>

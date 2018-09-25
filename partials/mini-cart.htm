@@ -28,7 +28,7 @@ description: Displays a mini-cart with a subtotal and link to the full cart and 
 </div>
 <div class="grid-x grid-padding-x">
 
-  {% if cart.items | length > 0 %}
+  {% if cart.hasItems() %}
 
   <div class="cell subtotal-cell">
     <span class="cart-subtotal">Subtotal: {{ cart.getSubtotal() | currency }}</span>

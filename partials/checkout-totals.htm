@@ -90,6 +90,16 @@
     </div>
   {% endif %}
 
+  {% if totals.setupFee %}
+    <hr/>
+    <div class="cell small-8 title-cell">
+      Setup Fee:
+    </div>
+    <div class="cell small-4 value-cell currency-cell">
+        <span class="cell-value">{{ totals.setupFee | currency }}</span>
+    </div>
+  {% endif %}
+
   <hr/>
 
   <div class="cell small-8 title-cell total-cell">
