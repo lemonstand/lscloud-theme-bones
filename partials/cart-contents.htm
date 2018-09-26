@@ -10,6 +10,9 @@
 {% if page.url == '/checkout' %}
   {% set checkoutMode = true %}
 {% endif %}
+
+{% set hasOrder =  order is defined %}
+{% set hasOrderItems = hasOrder and order.hasItems() %}
 {% set hasItems =  items | length > 0 %}
 {% set hasUpcomingItems =  upcomingItems | length > 0 %}
 
@@ -21,6 +24,10 @@
         : '.cart-page=cart-page,.cart-count=cart-count,.mini-cart=mini-cart'
    })
 }}
+  {% if hasOrderItems %}
+    {{ partial('cart-contents-items', {items: order.items, checkoutMode: checkoutMode }) }}
+  {% endif %}
+
   {% if hasUpcomingItems %}
     {{ partial('cart-contents-items', { listTitle: 'Upcoming subscription items', items: upcomingItems, checkoutMode: checkoutMode }) }}
   {% endif %}
