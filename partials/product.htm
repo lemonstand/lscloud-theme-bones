@@ -53,6 +53,17 @@
         {% endfor %}
       </nav>
 
+      {% if theme.socialToggle %}
+      <div class="social-buttons">
+        <span>Share with your friends</span>
+          <ul style="margin: 0;">
+           <li class="facebook" style="display:inline-block;padding-right:5px;"><a href="http://www.facebook.com/sharer/sharer.php?u=http:{{ site_url('/') }}product/{{ product.url_name}}" target="_blank"><i class="fa fa-facebook"></i></a></li>
+           <li class="twitter" style="display:inline-block;padding-right:5px;"><a href="https://twitter.com/intent/tweet?text={{ product.name }} http:{{ site_url('/') }}product/{{ product.url_name}}" target="_blank"><i class="fa fa-twitter"></i></a></li>
+           <li class="pinterest" style="display:inline-block;padding-right:5px;"><a href="http://pinterest.com/pin/create/button/?url=http:{{ site_url('/') }}product/{{ product.url_name}}&media={{ product.images.first.thumbnail(746, 'auto') }}" target="_blank"><i class="fa fa-pinterest"></i></a></li>
+          </ul>
+       </div>
+      {% endif %}
+
     </div>
   </section>
 

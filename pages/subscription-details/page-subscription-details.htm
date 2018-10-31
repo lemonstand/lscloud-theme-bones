@@ -22,6 +22,8 @@ url: '/account/subscriptions/:subscriptionId'
             <h1>Subscription</h1>
           </header>
 
+          {{ flash() }}
+
         <div>
 
           <p>#{{ subscription.id }}</p>
@@ -37,12 +39,12 @@ url: '/account/subscriptions/:subscriptionId'
         {{ open_form({
                 'data-ajax-handler': 'subscriptions:onUpdateSubscriptionStatus',
                 'class': 'custom',
-                'data-ajax-redirect': root_url('/subscription/' ~ subscription.id),
+                'data-ajax-redirect': root_url('account/subscriptions/' ~ subscription.id),
                 'data-validation-message' : ''
             })
         }}
             <span><strong>Status:</strong></span>
-            <span class="col-md-12 custom-dropdown">
+            <span class="custom-dropdown">
               <select id="subscription_status" name="subscription_status">
               {% for status in subscriptionStatuses if (status.code == 'active' or status.code == 'paused' or status.code == 'cancelled')  %}
                 <option value="{{ status.code }}" {{ option_state(status.code, subscription.status.code) }}>{{ status.name }}</option>
@@ -53,6 +55,35 @@ url: '/account/subscriptions/:subscriptionId'
             <input type="hidden" name="subscription_id" value="{{ subscription.id }}"/>
             {{ close_form() }}
         </div>
+
+        <span class="">
+        	{% if subscription.canReschedule() %}
+
+        	  {{ open_form() }}
+        	  	<span><strong>Skip billing cycles:</strong></span>
+        	    <input type="hidden" name="subscription_id" value="{{ subscription.id }}"/>
+        	    <input style='width:3em;' type="number" name="skip_billing_cycles" value="3"/>
+        	    <a href="#" class="button"
+        	      data-ajax-handler="subscriptions:onSkipBillingCycles"
+        	      data-ajax-redirect="{{ root_url('account/subscriptions/' ~ subscription.id) }}"
+        	    >Skip</a>
+        	  {{ close_form() }}
+
+        	{% endif %}
+        </span>
+
+        <span class="">
+        	{% if subscription.canGenerateOrder() %}
+        	  {{ open_form() }}
+        	    <span><strong>Create an extra paid order:</strong></span>
+        	    <input type="hidden" name="subscription_id" value="{{ subscription.id }}"/>
+        	    <a href="#" class="button"
+        	      data-ajax-handler="subscriptions:onGenerateOrder"
+        	      data-ajax-redirect="{{ root_url('account/subscriptions/' ~ subscription.id) }}"
+        	    >Go</a>
+        	  {{ close_form() }}
+        	{% endif %}
+        </span>
 
         <div>
         <p><strong>Saved payment details</strong></p>
