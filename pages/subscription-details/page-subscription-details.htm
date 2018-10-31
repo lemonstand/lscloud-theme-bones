@@ -44,7 +44,7 @@ url: '/account/subscriptions/:subscriptionId'
             })
         }}
             <span><strong>Status:</strong></span>
-            <span class="custom-dropdown">
+            <span class="col-md-12 custom-dropdown">
               <select id="subscription_status" name="subscription_status">
               {% for status in subscriptionStatuses if (status.code == 'active' or status.code == 'paused' or status.code == 'cancelled')  %}
                 <option value="{{ status.code }}" {{ option_state(status.code, subscription.status.code) }}>{{ status.name }}</option>
