@@ -23,4 +23,5 @@ customFields:
     autoSubmitOnlyShippingMethod: { type: checkbox, title: 'Checkout Page - Auto-submit shipping option if there is only one option', default: true}
     categoryListImageEqualizeStrategy: { type: dropdown, title: 'Category List - Image Height Equalization Strategy', default: stretch, options: { stretch: 'Stretch', top: 'Align Top', middle: 'Align Middle', bottom: 'Align Bottom' } }
     productListImageEqualizeStrategy: { type: dropdown, title: 'Product List - Image Height Equalization Strategy', default: stretch, options: { stretch: 'Stretch', top: 'Align Top', middle: 'Align Middle', bottom: 'Align Bottom' } }
+    socialToggle: { type: checkbox, title: 'Store: Enable Social Sharing', default: '1' }
 ---
