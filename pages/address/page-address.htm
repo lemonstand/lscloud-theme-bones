@@ -1,0 +1,29 @@
+---
+action: 'shop:customerAddress'
+template: default
+protocol: all
+published: true
+name: Address
+url: '/address/:addressId'
+---
+<section class="account grid-container">
+  <header>
+      <h1>Update Address</h1>
+  </header>
+{% if address %}
+    {% if address.is_billing %}
+        {% set parameterPrefix = 'billing' %}
+    {% else %}
+        {% set parameterPrefix = 'shipping' %}
+    {% endif %}
+    {{ partial('address-form', { addressParameterPrefix : parameterPrefix }) }}
+{% else %}
+  <div class="grid-x grid-padding-x">
+    <div class="cell">
+      <p>
+        The address you're asking for doesn't exist.
+      </p>
+    </div>
+  </div>
+{% endif %}
+</section>
