@@ -1,0 +1,63 @@
+<header>
+    <h3>Addresses</h3>
+</header>
+<section class="grid-x grid-padding-x">
+    <section class="cell medium-6">
+        {{
+            open_form({
+                'method': 'get',
+                'class':'address-form'
+            })
+        }}
+        <label>
+            Billing Addresses
+            <select
+                class="address-selector"
+                data-current-state="{{ address.id }}"
+                data-state-selector="#billing-state">
+              {% for address in customer.billingAddresses %}
+              <option value="{{ address.id }}" {{ option_state(billing.id, address.id) }}>
+                {{ address.formatted_string }}
+              </option>
+              {% endfor %}
+            </select>
+            <span class="error"></span>
+            <span class="form-error">Error.</span>
+        </label>
+        <button type="submit" class="button">Edit Billing Address</button>
+        {{ close_form() }}
+    </section>
+    <section class="cell medium-6">
+        {{
+            open_form({
+                'method': 'get',
+                'class':'address-form'
+            })
+        }}
+        <label>
+            Shpping Addresses
+            <select
+                class="address-selector"
+                data-current-state="{{ address.id }}"
+                data-state-selector="#billing-state">
+              {% for address in customer.shippingAddresses %}
+              <option value="{{ address.id }}" {{ option_state(shipping.id, address.id) }}>
+                {{ address.formatted_string }}
+              </option>
+              {% endfor %}
+            </select>
+            <span class="error"></span>
+            <span class="form-error">Error.</span>
+        </label>
+        <button type="submit" class="button">Edit Shipping Address</button>
+        {{ close_form() }}
+    </section>
+</section>
+<script>
+/**
+ * Sets address selector forms to point to the address page on form submission.
+ */
+$('.address-form').submit(function (ev, handler){
+  $(this).attr('action', '/address/' + $(this).find('.address-selector').val());
+});
+</script>
