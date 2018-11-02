@@ -122,7 +122,7 @@
         id="default_address"
         class="switch-input"
         type="checkbox"
-        name="is_default"
+        name="{{ addressParameterPrefix }}[is_default]"
         {{ address.is_default ? 'checked' : '' }}>
       <label class="switch-paddle" for="default_address">
         <span class="show-for-sr">Is this your default address?</span>
