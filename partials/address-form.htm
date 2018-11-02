@@ -59,7 +59,6 @@
     <span class="error"></span>
     <span class="form-error">Address is required.</span>
   </label>
-
   <label class="cell">
     Address (line 2)
     <input
@@ -116,6 +115,22 @@
     <span class="form-error">Error.</span>
   </label>
 </section>
+<label class="cell">
+    Is this your default address?
+    <div class="switch">
+      <input
+        id="default_address"
+        class="switch-input"
+        type="checkbox"
+        name="is_default"
+        {{ address.is_default ? 'checked' : '' }}>
+      <label class="switch-paddle" for="default_address">
+        <span class="show-for-sr">Is this your default address?</span>
+        <span class="switch-active" aria-hidden="true">Yes</span>
+        <span class="switch-inactive" aria-hidden="true">No</span>
+      </label>
+    </div>
+</label>
 <button type="submit" class="button">
   save address information
 </button>
