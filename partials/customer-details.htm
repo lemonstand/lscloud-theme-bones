@@ -1,0 +1,46 @@
+{{ open_form({
+     'method': 'post',
+     'data-ajax-handler': 'shop:onUpdateCustomer',
+     'data-abide': null,
+     'novalidate': null
+   })
+}}
+{{ flash() }}
+<input type="hidden" name="redirect" value="/account">
+<section class="account-billing-address grid-x grid-padding-x">
+  <input type="hidden" name="address[id]" value="{{ address.id }}">
+  <label class="cell medium-6">
+    First Name*
+    <input
+        type="text"
+        name="first_name"
+        value="{{ customer.first_name }}"
+        required>
+    <span class="error"></span>
+    <span class="form-error">First name is required.</span>
+  </label>
+  <label class="cell medium-6">
+    Last Name*
+    <input
+        type="text"
+        name="last_name"
+        value="{{ customer.last_name }}"
+        required>
+    <span class="error"></span>
+    <span class="form-error">Last name is required.</span>
+  </label>
+  <label class="cell">
+    Email*
+    <input
+        type="email"
+        name="email"
+        value="{{ customer.email }}"
+        required>
+    <span class="error"></span>
+    <span class="form-error">Email must be a valid email address.</span>
+  </label>
+</section>
+<button type="submit" class="button">
+  Save Customer Info
+</button>
+{{ close_form() }}
