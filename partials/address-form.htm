@@ -1,6 +1,6 @@
 {{ open_form({
      'method': 'post',
-     'data-ajax-handler': 'shop:onUpdateCustomerProfile',
+     'data-ajax-handler': 'shop:onUpdateCustomerAddress',
      'data-abide': null,
      'novalidate': null
    })
@@ -8,12 +8,12 @@
 {{ flash() }}
 <input type="hidden" name="redirect" value="/address/{{ address.id }}">
 <section class="account-billing-address grid-x grid-padding-x">
-  <input type="hidden" name="{{ addressParameterPrefix }}[id]" value="{{ address.id }}">
+  <input type="hidden" name="address[id]" value="{{ address.id }}">
   <label class="cell medium-6">
     First Name*
     <input
         type="text"
-        name="{{ addressParameterPrefix }}[first_name]"
+        name="address[first_name]"
         value="{{ address.first_name }}"
         required>
     <span class="error"></span>
@@ -23,27 +23,17 @@
     Last Name*
     <input
         type="text"
-        name="{{ addressParameterPrefix }}[last_name]"
+        name="address[last_name]"
         value="{{ address.last_name }}"
         required>
     <span class="error"></span>
     <span class="form-error">Last name is required.</span>
   </label>
-  <label class="cell medium-6">
-    Email*
-    <input
-        type="email"
-        name="{{ addressParameterPrefix }}[email]"
-        value="{{ customer.email }}"
-        required>
-    <span class="error"></span>
-    <span class="form-error">Email must be a valid email address.</span>
-  </label>
-  <label class="cell medium-6">
+  <label class="cell">
     Phone Number
     <input
         type="tel"
-        name="{{ addressParameterPrefix }}[phone]"
+        name="address[phone]"
         value="{{ address.phone }}">
     <span class="error"></span>
     <span class="form-error">Error.</span>
@@ -53,7 +43,7 @@
     Address*
     <input
         type="text"
-        name="{{ addressParameterPrefix }}[street_address]"
+        name="address[street_address]"
         value="{{ address.street_address }}"
         required>
     <span class="error"></span>
@@ -63,7 +53,7 @@
     Address (line 2)
     <input
         type="text"
-        name="{{ addressParameterPrefix }}[street_address_line2]"
+        name="address[street_address_line2]"
         value="{{ address.street_address_line2 }}">
     <span class="error"></span>
     <span class="form-error">Error.</span>
@@ -72,7 +62,7 @@
     City*
     <input
         type="text"
-        name="{{ addressParameterPrefix }}[city]"
+        name="address[city]"
         value="{{ address.city }}"
         required>
     <span class="error"></span>
@@ -82,7 +72,7 @@
     Postal Code*
     <input
         type="text"
-        name="{{ addressParameterPrefix }}[postal_code]"
+        name="address[postal_code]"
         value="{{ address.postal_code }}"
         required>
     <span class="error"></span>
@@ -91,7 +81,7 @@
   <label class="cell medium-6">
     Country
     <select
-        name="{{ addressParameterPrefix }}[shop_country_id]"
+        name="address[shop_country_id]"
         data-current-state="{{ address.country.id }}"
         data-state-selector="#billing-state">
       {% for country in countries %}
@@ -107,7 +97,7 @@
   </label>
   <label class="cell medium-6">
     State
-    <select name="{{ addressParameterPrefix }}[shop_state_id]" id="billing-state">
+    <select name="address[shop_state_id]" id="billing-state">
       {{ partial('shop-stateoptions',
       {'states': states, 'selected': address.state.id}) }}
     </select>
@@ -122,7 +112,7 @@
         id="default_address"
         class="switch-input"
         type="checkbox"
-        name="{{ addressParameterPrefix }}[is_default]"
+        name="is_default"
         {{ address.is_default ? 'checked' : '' }}>
       <label class="switch-paddle" for="default_address">
         <span class="show-for-sr">Is this your default address?</span>
