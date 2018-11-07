@@ -1,0 +1,127 @@
+{{ open_form({
+     'method': 'post',
+     'data-ajax-handler': 'shop:onUpdateCustomerAddress',
+     'data-abide': null,
+     'novalidate': null
+   })
+}}
+{{ flash() }}
+<input type="hidden" name="redirect" value="/address/{{ address.id }}">
+<section class="account-billing-address grid-x grid-padding-x">
+  <input type="hidden" name="address[id]" value="{{ address.id }}">
+  <label class="cell medium-6">
+    First Name*
+    <input
+        type="text"
+        name="address[first_name]"
+        value="{{ address.first_name }}"
+        required>
+    <span class="error"></span>
+    <span class="form-error">First name is required.</span>
+  </label>
+  <label class="cell medium-6">
+    Last Name*
+    <input
+        type="text"
+        name="address[last_name]"
+        value="{{ address.last_name }}"
+        required>
+    <span class="error"></span>
+    <span class="form-error">Last name is required.</span>
+  </label>
+  <label class="cell">
+    Phone Number
+    <input
+        type="tel"
+        name="address[phone]"
+        value="{{ address.phone }}">
+    <span class="error"></span>
+    <span class="form-error">Error.</span>
+  </label>
+
+  <label class="cell">
+    Address*
+    <input
+        type="text"
+        name="address[street_address]"
+        value="{{ address.street_address }}"
+        required>
+    <span class="error"></span>
+    <span class="form-error">Address is required.</span>
+  </label>
+  <label class="cell">
+    Address (line 2)
+    <input
+        type="text"
+        name="address[street_address_line2]"
+        value="{{ address.street_address_line2 }}">
+    <span class="error"></span>
+    <span class="form-error">Error.</span>
+  </label>
+  <label class="cell medium-6">
+    City*
+    <input
+        type="text"
+        name="address[city]"
+        value="{{ address.city }}"
+        required>
+    <span class="error"></span>
+    <span class="form-error">City is required.</span>
+  </label>
+  <label class="cell medium-6">
+    Postal Code*
+    <input
+        type="text"
+        name="address[postal_code]"
+        value="{{ address.postal_code }}"
+        required>
+    <span class="error"></span>
+    <span class="form-error">Postal code is required.</span>
+  </label>
+  <label class="cell medium-6">
+    Country
+    <select
+        name="address[shop_country_id]"
+        data-current-state="{{ address.country.id }}"
+        data-state-selector="#billing-state">
+      {% for country in countries %}
+      <option
+          value="{{ country.id }}"
+          {{ option_state(address.country.id, country.id) }}>
+        {{ country.name }}
+      </option>
+      {% endfor %}
+    </select>
+    <span class="error"></span>
+    <span class="form-error">Error.</span>
+  </label>
+  <label class="cell medium-6">
+    State
+    <select name="address[shop_state_id]" id="billing-state">
+      {{ partial('shop-stateoptions',
+      {'states': states, 'selected': address.state.id}) }}
+    </select>
+    <span class="error"></span>
+    <span class="form-error">Error.</span>
+  </label>
+</section>
+<label class="cell">
+    Is this your default address?
+    <div class="switch">
+      <input
+        id="default_address"
+        class="switch-input"
+        type="checkbox"
+        name="is_default"
+        {{ address.is_default ? 'checked' : '' }}>
+      <label class="switch-paddle" for="default_address">
+        <span class="show-for-sr">Is this your default address?</span>
+        <span class="switch-active" aria-hidden="true">Yes</span>
+        <span class="switch-inactive" aria-hidden="true">No</span>
+      </label>
+    </div>
+</label>
+<button type="submit" class="button">
+  save address information
+</button>
+{{ close_form() }}

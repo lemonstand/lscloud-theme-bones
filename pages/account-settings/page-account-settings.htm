@@ -1,30 +1,50 @@
 ---
-url: /account
-name: Account Settings
-description: Allows a logged in user to edit their account.
-action: shop:customerProfile
+action: 'shop:customerProfile'
+description: 'Allows a logged in user to edit their account.'
 template: default
+protocol: all
 published: true
+name: 'Account Settings'
+url: /account
 ---
 <section class="account grid-container">
   <header>
     <h1>Account</h1>
   </header>
-
   {% if customer %}
     <section class="account-settings-addresses">
-      {{ partial('account-settings-addresses', {
-           'customer': customer,
-           'countries': countries
-         })
-      }}
-    </section>
+    {% if customer.hasBillingAddresses() and customer.hasShippingAddresses() %}
+        <header>
+            <h3>Customer Info</h3>
+        </header>
 
+        <section class="grid-x grid-padding-x">
+            <section class="cell">
+                {{
+                    partial('customer-details', {
+                        'customer' : customer
+                    })
+                }}
+            </section>
+        </section>
+        {{
+            partial('account-address-selectors', {
+                'customer' : customer
+            })
+        }}
+    {% else %}
+        {{
+            partial('account-settings-addresses', {
+                'customer': customer,
+                'countries': countries
+            })
+        }}
+    {% endif %}
+    </section>
     <section class="account-settings-password">
-      {{ partial('account-settings-password') }}
+        {{ partial('account-settings-password') }}
     </section>
   {% else %}
     You must be logged in to use this page.
   {% endif %}
-
 </section>
