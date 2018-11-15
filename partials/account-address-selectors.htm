@@ -1,6 +1,7 @@
 <header>
     <h3>Addresses</h3>
 </header>
+
 <section class="grid-x grid-padding-x">
     <section class="cell medium-6">
         {{
@@ -20,6 +21,15 @@
                 {{ address.formatted_string }}
               </option>
               {% endfor %}
+
+              {% if customer.hasSubscriptionBillingAddresses() %}
+                {% for address in customer.subscriptionBillingAddresses %}
+                  <option value="{{ address.id }}" {{ option_state(billing.id, address.id) }}>
+                    {{ address.formatted_string }}
+                  </option>
+                {% endfor %}
+              {% endif %}
+
             </select>
             <span class="error"></span>
             <span class="form-error">Error.</span>
@@ -27,6 +37,7 @@
         <button type="submit" class="button">Edit Billing Address</button>
         {{ close_form() }}
     </section>
+
     <section class="cell medium-6">
         {{
             open_form({
@@ -45,6 +56,14 @@
                 {{ address.formatted_string }}
               </option>
               {% endfor %}
+
+              {% if customer.hasSubscriptionShippingAddresses() %}
+                {% for address in customer.subscriptionShippingAddresses %}
+                  <option value="{{ address.id }}" {{ option_state(billing.id, address.id) }}>
+                    {{ address.formatted_string }}
+                  </option>
+                {% endfor %}
+              {% endif %}
             </select>
             <span class="error"></span>
             <span class="form-error">Error.</span>
